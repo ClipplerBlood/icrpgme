@@ -3,5 +3,11 @@
 /* This is your Sass entry file */
 /* ---------------------------- */
 
+:root {
+  //--c-light-grey: #bcbcbc;
+  --c-light-grey: #9d9d9d;
+}
+
 @import 'sheets';
 @import 'mixins';
+@import 'typography';

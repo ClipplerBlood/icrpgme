@@ -1,6 +1,7 @@
 import { registerSettings } from './settings.js';
 import { preloadTemplates } from './preloadTemplates.js';
 import { registerSystem } from './register.js';
+import registerHandlebarsHelpers from './utils/handlebars.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -14,6 +15,7 @@ Hooks.once('init', async () => {
 
   // Preload Handlebars templates
   await preloadTemplates();
+  registerHandlebarsHelpers();
 
   // Register custom sheets (if any)
 });

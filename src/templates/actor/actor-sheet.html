@@ -1,10 +1,9 @@
-
-<form class="flexcol" autocomplete="off">
+<form autocomplete="off">
   {{log this}}
 
   {{#*inline "headerField"}}
     <div class="icrpg-header-field">
-      <span>{{localize label}}</span>
+      <span class="ff-header">{{localize label}}</span>
       <input type="text" name="{{name}}" value="{{value}}">
     </div>
   {{/inline}}
@@ -15,8 +14,89 @@
       {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
       {{> headerField name="system.lifeform" value=system.lifeform label="Type"}}
     </div>
-    <div class="flex-row">
+    <div class="flex-row" style="margin-top: 8px">
       {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
     </div>
   </div>
+
+  {{#* inline "attributeBlock"}}
+    <div data-attribute="{{attributeName}}" class="icrpg-attribute-block">
+      {{#with (lookup system.attributes attributeName) as | attribute |}}
+        <div class="ff-header" style="font-size: 48px">
+          {{localizeConcat "ICRPG.attributesShort." ../attributeName}}
+        </div>
+        <div class="dice-container">
+          <span>{{attribute.total}}</span>
+          <img src="systems/icrpgme/assets/ui/dice-transparent/d20.webp">
+        </div>
+        <div class="icrpg-mods-values">
+          <div>
+            <input type="number" name="system.attributes.{{../attributeName}}.base" value="{{attribute.base}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.base"}}</div>
+          </div>
+          <div>
+            <input type="number" name="system.attributes.{{../attributeName}}.lifeform" value="{{attribute.lifeform}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.lifeform"}}</div>
+          </div>
+          <div>
+            <input type="number" name="system.attributes.{{../attributeName}}.loot" value="{{attribute.loot}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.loot"}}</div>
+          </div>
+        </div>
+      {{/with}}
+    </div>
+  {{/inline}}
+
+  {{#* inline "effectBlock"}}
+    <div data-attribute="{{effectName}}" class="icrpg-attribute-block">
+      {{#with (lookup system.effects effectName) as | effect |}}
+        <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
+          {{localizeConcat "ICRPG.effectDice." ../effectName}}
+        </div>
+        <div class="dice-container" style="margin-left: 2px">
+          <span style="font-size: 28px">{{effect.total}}</span>
+          <img src="systems/icrpgme/assets/ui/dice-transparent/{{../die}}.webp">
+        </div>
+        <div class="icrpg-mods-values">
+          <div>
+            <input type="number" name="system.effects.{{../effectName}}.base" value="{{effect.base}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.base"}}</div>
+          </div>
+          <div>
+            <input type="number" name="system.effects.{{../effectName}}.lifeform" value="{{effect.lifeform}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.lifeform"}}</div>
+          </div>
+          <div>
+            <input type="number" name="system.effects.{{../effectName}}.loot" value="{{effect.loot}}"
+                   min="-6" max="6">
+            <div>{{localize "ICRPG.loot"}}</div>
+          </div>
+        </div>
+      {{/with}}
+    </div>
+  {{/inline}}
+
+  <div class="icrpg-actor-main">
+    <div>
+      {{>attributeBlock attributeName="strength"}}
+      {{>attributeBlock attributeName="dexterity"}}
+      {{>attributeBlock attributeName="constitution"}}
+      {{>attributeBlock attributeName="intelligence"}}
+      {{>attributeBlock attributeName="wisdom"}}
+      {{>attributeBlock attributeName="charisma"}}
+    </div>
+    <div>
+      {{>effectBlock die="d4"  effectName="basic"}}
+      {{>effectBlock die="d6"  effectName="weapons"}}
+      {{>effectBlock die="d8"  effectName="guns"}}
+      {{>effectBlock die="d10" effectName="energy"}}
+      {{>effectBlock die="d12" effectName="ultimate"}}
+    </div>
+  </div>
+
 </form>

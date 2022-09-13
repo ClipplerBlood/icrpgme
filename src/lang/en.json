@@ -3,6 +3,23 @@
   "ICRPG": {
     "world": "World",
     "lifeform": "Life Form",
-    "story": "Story"
+    "story": "Story",
+    "base": "Base",
+    "loot": "Loot",
+    "attributesShort": {
+      "strength": "STR",
+      "dexterity": "DEX",
+      "constitution": "CON",
+      "intelligence": "INT",
+      "wisdom": "WIS",
+      "charisma": "CHA"
+    },
+    "effectDice": {
+      "basic": "Basic",
+      "weapons": "Weapons & Tools",
+      "guns": "Guns",
+      "energy": "Energy & Magic",
+      "ultimate": "Ultimate"
+    }
   }
 }

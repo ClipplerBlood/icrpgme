@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'FlatBread';
+  src: url('../fonts/FlatBread.woff2') format('woff2'), url('../fonts/FlatBread.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+$ff-flatbread: 'FlatBread', 'Arial', sans-serif;
+
+.fs-48 {
+  font-size: var(--font-size-48);
+}
+
+.fs-32 {
+  font-size: var(--font-size-32);
+}
+
+.fs-28 {
+  font-size: var(--font-size-28);
+}
+
+.fs-11 {
+  font-size: var(--font-size-11);
+}
+
+.ff-header {
+  font-family: $ff-flatbread;
+}

@@ -1,0 +1,46 @@
+{
+  "id": "icrpgme",
+  "title": "<human readable title for icrpgme>",
+  "description": "<description of the package>",
+  "authors": [
+    {
+      "name": "<your name>",
+      "email": "<optionally your e-mail address>",
+      "discord": "<optionally your discord username>"
+    }
+  ],
+  "url": "This is auto replaced",
+  "license": "<please choose an appropriate license. https://choosealicense.com/ is a great place to get more information if you are unsure>",
+  "readme": "<optionally the URL to your readme>",
+  "bugs": "<optionally the URL to your issue list>",
+  "changelog": "<optionally the URL to your changelog>",
+  "version": "This is auto replaced",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10"
+  },
+  "scripts": [],
+  "esmodules": ["module/icrpgme.js"],
+  "styles": ["styles/icrpgme.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "relationships": {
+    "requires": [],
+    "conflicts": []
+  },
+  "socket": false,
+  "manifest": "This is auto replaced",
+  "download": "This is auto replaced",
+  "background": "<optionally a relative filepath to a background image to use for worlds created with this system>",
+  "initiative": "<inititative roll formula for your system>",
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "<optionally the attribute to use as primary resource in tokens by default>",
+  "secondaryTokenAttribute": "<optionally the attribute to use as secondary resource in tokens by default>"
+}

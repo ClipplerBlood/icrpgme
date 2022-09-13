@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.icrpg-sheet-header {
+  .icrpg-header-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid;
+
+    input {
+      @include transparent-input;
+    }
+  }
+}

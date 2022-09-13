@@ -1,1 +1,8 @@
-{}
+{
+  "ACTOR.TypeCharacter": "Cazzo",
+  "ICRPG": {
+    "world": "World",
+    "lifeform": "Life Form",
+    "story": "Story"
+  }
+}

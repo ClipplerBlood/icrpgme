@@ -1,12 +1,10 @@
 {
   "id": "icrpgme",
-  "title": "<human readable title for icrpgme>",
-  "description": "<description of the package>",
+  "title": "Index Card RPG: Master Edition",
+  "description": "Something",
   "authors": [
     {
-      "name": "<your name>",
-      "email": "<optionally your e-mail address>",
-      "discord": "<optionally your discord username>"
+      "name": "Clipplerblood"
     }
   ],
   "url": "This is auto replaced",

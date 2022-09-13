@@ -1,0 +1,22 @@
+
+<form class="flexcol" autocomplete="off">
+  {{log this}}
+
+  {{#*inline "headerField"}}
+    <div class="icrpg-header-field">
+      <span>{{localize label}}</span>
+      <input type="text" name="{{name}}" value="{{value}}">
+    </div>
+  {{/inline}}
+
+  <div class="icrpg-sheet-header">
+    <div class="flex-row">
+      {{> headerField name="name" value=actor.name label="Name"}}
+      {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
+      {{> headerField name="system.lifeform" value=system.lifeform label="Type"}}
+    </div>
+    <div class="flex-row">
+      {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
+    </div>
+  </div>
+</form>

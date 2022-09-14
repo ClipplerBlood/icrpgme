@@ -29,7 +29,7 @@
     align-items: center;
     border-bottom: 2px solid;
     font-size: var(--font-size-12);
-
+    white-space: nowrap;
     input {
       height: 14px;
       box-sizing: content-box;
@@ -216,6 +216,7 @@
       color: var(--c-light-grey);
       display: inline-block;
       width: 20px;
+      height: 11px;
       position: relative;
       left: 2px;
 

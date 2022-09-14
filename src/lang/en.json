@@ -12,7 +12,17 @@
       "constitution": "CON",
       "intelligence": "INT",
       "wisdom": "WIS",
-      "charisma": "CHA"
+      "charisma": "CHA",
+      "defense": "DEF"
+    },
+    "attributesLong": {
+      "strength": "Strength",
+      "dexterity": "Dexterity",
+      "constitution": "Constitution",
+      "intelligence": "Intelligence",
+      "wisdom": "Wisdom",
+      "charisma": "Charisma",
+      "defense": "Defense"
     },
     "effectDice": {
       "basic": "Basic",
@@ -20,6 +30,11 @@
       "guns": "Guns",
       "energy": "Energy & Magic",
       "ultimate": "Ultimate"
-    }
+    },
+    "dying": "Dying",
+    "dyingSubtitle": "1d4 rnds 'til dead",
+    "defenseSubtitle": "10+DEF = Enemy to hit roll",
+    "herocoin": "Hero Coin",
+    "hp": "HP"
   }
 }

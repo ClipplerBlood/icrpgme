@@ -2,8 +2,8 @@ export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['icrpg-actor-sheet'],
-      width: 875,
-      height: 700,
+      width: 920,
+      height: 620,
       tabs: [],
       scrollY: [],
     });
@@ -31,6 +31,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       intelligence: x,
       wisdom: x,
       charisma: x,
+      defense: x,
     };
     content.system.effects = {
       basic: x,
@@ -39,6 +40,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       energy: x,
       ultimate: x,
     };
+    content.system.dyingRounds = 0;
     return content;
   }
 }

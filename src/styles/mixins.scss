@@ -2,7 +2,9 @@
   border: none;
   background: none;
 }
-
+.transparent-input {
+  @include transparent-input;
+}
 @mixin flex-row {
   display: flex;
   flex-direction: row;
@@ -13,4 +15,14 @@
 
 .flex-row {
   @include flex-row;
+}
+
+@mixin hover {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hoverable {
+  @include hover;
 }

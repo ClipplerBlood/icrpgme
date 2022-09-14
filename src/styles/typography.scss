@@ -24,6 +24,22 @@ $ff-flatbread: 'FlatBread', 'Arial', sans-serif;
   font-size: var(--font-size-11);
 }
 
+.fs-8 {
+  font-size: 8px;
+}
+
 .ff-header {
   font-family: $ff-flatbread;
+}
+
+.c-white {
+  color: white;
+}
+
+.c-grey {
+  color: var(--c-light-grey);
+}
+
+.t-center {
+  text-align: center;
 }

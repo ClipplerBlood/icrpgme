@@ -44,6 +44,12 @@ export class ICRPGActorDataModel extends foundry.abstract.DataModel {
       }),
       dyingRounds: nf({ min: 0, max: 9 }),
       heroCoin: new f.BooleanField({ required: true, initial: false }),
+      health: new f.SchemaField({
+        hearts: nf({ min: 1, max: 5 }),
+        total: nf({ min: 0, max: 50 }),
+        damage: nf({ min: 0 }),
+        current: nf({ min: 0 }),
+      }),
     };
     return schema;
   }

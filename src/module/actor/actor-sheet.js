@@ -25,4 +25,14 @@ export default class ICRPGActorSheet extends ActorSheet {
     content.system = this.actor.system;
     return content;
   }
+
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    // Hearts selector
+    html.find('.icrpg-selectable-heart').click((ev) => {
+      const heartIndex = $(ev.currentTarget).closest('[data-index]').data('index');
+      this.actor.update({ 'system.health.hearts': heartIndex + 1 });
+    });
+  }
 }

@@ -18,5 +18,8 @@ export class ICRPGActor extends Actor {
     // Set defense
     const defense = system.attributes.defense;
     defense.total = 10 + defense.loot + system.attributes.constitution.total;
+
+    // Set health
+    system.health.total = system.health.hearts * 10;
   }
 }

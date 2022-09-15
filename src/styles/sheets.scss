@@ -176,6 +176,14 @@
     img {
       border: none;
     }
+
+    input {
+      @extend .ff-header;
+      @include transparent-input;
+      @extend .t-center;
+      font-size: 32px;
+      height: auto;
+    }
   }
 
   .icrpg-actor-side-footer {
@@ -224,7 +232,7 @@
     }
 
     .icrpg-defense-loot {
-      @extend .transparent-input;
+      @include transparent-input;
       @extend .ff-header;
       @extend .fs-11;
       @extend .t-center;
@@ -251,7 +259,7 @@
     left: 22px;
     bottom: 6px;
     width: 42px;
-    @extend .transparent-input;
+    @include transparent-input;
     @extend .ff-header;
     @extend .t-center;
     font-size: 32px;

@@ -1,0 +1,175 @@
+<div class="icrpg-sheet-header">
+  <div class="flex-row">
+    {{> headerField name="name" value=actor.name label="Name"}}
+    {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
+    {{> headerField name="system.lifeform" value=system.lifeform label="ICRPG.lifeform"}}
+    {{> headerField name="system.type" value=system.type label="Type"}}
+  </div>
+  <div class="icrpg-sep-long"></div>
+  <div class="flex-row" style="margin-top: 12px">
+    {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
+  </div>
+  <div class="icrpg-sep-long"></div>
+</div>
+
+{{#* inline "attributeBlock"}}
+  <div data-attribute="{{attributeName}}" class="icrpg-attribute-block">
+    {{#with (lookup system.attributes attributeName) as | attribute |}}
+      <div class="ff-header" style="font-size: 48px">
+        {{localizeConcat "ICRPG.attributesShort." ../attributeName}}
+      </div>
+      <div class="dice-container">
+        <span>{{defaultValue attribute.total ""}}</span>
+        <img src="systems/icrpgme/assets/ui/dice-transparent/d20.webp">
+      </div>
+      <div class="icrpg-mods-values">
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.attributes.{{../attributeName}}.base"
+                 value="{{defaultValue attribute.base ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.base"}}</div>
+        </div>
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.attributes.{{../attributeName}}.lifeform"
+                 value="{{defaultValue attribute.lifeform ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.lifeform"}}</div>
+        </div>
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.attributes.{{../attributeName}}.loot"
+                 value="{{defaultValue attribute.loot ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.loot"}}</div>
+        </div>
+      </div>
+    {{/with}}
+  </div>
+{{/inline}}
+
+{{#* inline "effectBlock"}}
+  <div data-attribute="{{effectName}}" class="icrpg-attribute-block">
+    {{#with (lookup system.effects effectName) as | effect |}}
+      <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
+        {{localizeConcat "ICRPG.effectDice." ../effectName}}
+      </div>
+      <div class="dice-container" style="margin-left: 2px">
+        <span>{{defaultValue effect.total ""}}</span>
+        <img src="systems/icrpgme/assets/ui/dice-transparent/{{../die}}.webp">
+      </div>
+      <div class="icrpg-mods-values">
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.effects.{{../effectName}}.base" value="{{defaultValue effect.base ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.base"}}</div>
+        </div>
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.effects.{{../effectName}}.lifeform"
+                 value="{{defaultValue effect.lifeform ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.lifeform"}}</div>
+        </div>
+        <div class="icrpg-mods-sep"></div>
+        <div>
+          <input type="number" name="system.effects.{{../effectName}}.loot" value="{{defaultValue effect.loot ""}}"
+                 min="-6" max="6">
+          <div>{{localize "ICRPG.loot"}}</div>
+        </div>
+      </div>
+    {{/with}}
+  </div>
+{{/inline}}
+
+<div class="icrpg-actor-main">
+  <div>
+    {{>attributeBlock attributeName="strength"}}
+    {{>attributeBlock attributeName="dexterity"}}
+    {{>attributeBlock attributeName="constitution"}}
+    {{>attributeBlock attributeName="intelligence"}}
+    {{>attributeBlock attributeName="wisdom"}}
+    {{>attributeBlock attributeName="charisma"}}
+  </div>
+
+  <div>
+    {{>effectBlock die="d4"  effectName="basic"}}
+    {{>effectBlock die="d6"  effectName="weapons"}}
+    {{>effectBlock die="d8"  effectName="guns"}}
+    {{>effectBlock die="d10" effectName="energy"}}
+    {{>effectBlock die="d12" effectName="ultimate"}}
+  </div>
+
+
+  <div style="margin-left: 8px;">
+    <div class="icrpg-actor-side">
+
+      <div class="icrpg-img-container">
+        <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+      </div>
+
+      <div class="icrpg-hp-container">
+        <div style="display: flex">
+          <div class="icrpg-selectable-heart">
+            <img class="select-circle" src="systems/icrpgme/assets/ui/select-circle.webp">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          </div>
+          <div class="icrpg-selectable-heart">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          </div>
+          <div class="icrpg-selectable-heart">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          </div>
+          <div class="icrpg-selectable-heart">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          </div>
+          <div class="icrpg-selectable-heart">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          </div>
+          <div style="margin-left: auto; margin-right: 4px">
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-grey.webp"
+                 style="display: inline;height: 10px;width: 10px;top: -2px;position: relative;margin-right: 3px;">
+            <span class="ff-header c-grey fs-8">= 10 {{localize "ICRPG.hp"}}</span>
+          </div>
+        </div>
+        <div style="display: inline">
+
+        </div>
+      </div>
+
+      <div class="icrpg-actor-side-footer">
+        <div>
+          <div class="ff-header c-white t-center">{{localize "ICRPG.attributesLong.defense"}}</div>
+          <div class="ff-header c-grey fs-8 t-center" style="margin-bottom: 4px">{{localize
+            "ICRPG.defenseSubtitle"}}</div>
+          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp">
+          <div class="icrpg-defense-box">
+            <div>{{localize "ICRPG.attributesShort.constitution"}} + {{localize "ICRPG.loot"}}</div>
+            <div class="icrpg-defense-con">{{system.attributes.constitution.total}}</div>
+            <input class="icrpg-defense-loot " type="number"
+                   name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
+                   min="-6" max="6">
+            <div class="icrpg-defense-total">{{system.attributes.defense.total}}</div>
+          </div>
+        </div>
+        <div>
+          <div class="ff-header c-white t-center">{{localize "ICRPG.herocoin"}}</div>
+          <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
+        </div>
+        <div style="position: relative">
+          <div class="ff-header c-white t-center">{{localize "ICRPG.dying"}}</div>
+          <div class="ff-header c-grey fs-8 t-center" style="margin-bottom: 4px">{{localize
+            "ICRPG.dyingSubtitle"}}</div>
+          <img src="systems/icrpgme/assets/ui/dying.webp">
+          <input class="icrpg-dying" type="number" name="system.dyingRounds"
+                 value="{{defaultValue system.dyingRounds ""}}"
+                 placeholder="" min="0" max="9">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

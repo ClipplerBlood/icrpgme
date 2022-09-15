@@ -4,13 +4,20 @@ export default class ICRPGActorSheet extends ActorSheet {
       classes: ['icrpg-actor-sheet'],
       width: 920,
       height: 620,
-      tabs: [],
+      tabs: [
+        {
+          group: 'primary-tabs',
+          navSelector: '.icrpg-sheet-nav',
+          contentSelector: '.icrpg-tab-container',
+          initial: 'primary',
+        },
+      ],
       scrollY: [],
     });
   }
 
   get template() {
-    return 'systems/icrpgme/templates/actor/actor-sheet.html';
+    return 'systems/icrpgme/templates/actor/character-sheet.html';
   }
 
   async getData() {

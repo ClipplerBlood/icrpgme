@@ -2,67 +2,7 @@
   "Actor": {
     "types": ["character"],
     "templates": {
-      "base": {
-        "attributes": {
-          "strength": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "dexterity": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "constitution": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "intelligence": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "wisdom": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "charisma": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          }
-        },
-        "effectdice": {
-          "basic": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "weapons": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "guns": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "energy": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          },
-          "ultimate": {
-            "base": 0,
-            "lifeform": 0,
-            "loot": 0
-          }
-        }
-      }
+      "base": {}
     },
     "character": {
       "templates": ["base"]

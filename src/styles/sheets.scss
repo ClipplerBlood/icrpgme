@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 2px solid;
+    //border-bottom: 2px solid;
     font-size: var(--font-size-12);
     white-space: nowrap;
     input {
@@ -79,7 +79,6 @@
 .icrpg-mods-values {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   color: var(--c-light-grey);
   @extend .ff-header;
   font-size: 10px;
@@ -96,11 +95,17 @@
   }
 
   & > div {
-    border-top: 2px solid #282828;
-
     & div {
       display: inline-block;
     }
+  }
+
+  .icrpg-mods-sep {
+    height: 3px;
+    width: auto;
+    background-size: contain;
+    background: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar-tiny.webp') no-repeat;
+    margin-top: 1px;
   }
 }
 
@@ -121,7 +126,7 @@
   $w: 240px;
   $m: 4px;
   width: $w;
-  background: #202020;
+  background: black;
   border-radius: 4px;
 
   .icrpg-hp-container,
@@ -241,5 +246,38 @@
     @extend .t-center;
     font-size: 32px;
     height: 32px;
+  }
+}
+.icrpg-sheet-nav {
+  display: flex;
+}
+
+.icrpg-sheet-bar {
+  background: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+  background-size: cover;
+  width: 300px;
+  color: white;
+  @extend .ff-header;
+  height: 25px;
+  padding-top: 4px;
+  font-size: 18px;
+  padding-left: 6px;
+}
+
+.icrpg-tab-container {
+  & > div:not(.active) {
+    display: none;
+  }
+}
+
+.icrpg-sheet-nav {
+  position: absolute;
+  bottom: 16px;
+  & > * {
+    @include hover-red;
+  }
+
+  & > .active {
+    color: var(--c-red);
   }
 }

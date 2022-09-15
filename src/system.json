@@ -35,7 +35,7 @@
   "socket": false,
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
-  "background": "<optionally a relative filepath to a background image to use for worlds created with this system>",
+  "background": "systems/icrpgme/assets/world-bg.png",
   "initiative": "<inititative roll formula for your system>",
   "gridDistance": 1,
   "gridUnits": "m",

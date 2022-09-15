@@ -1,0 +1,20 @@
+<form autocomplete="off">
+  {{log this}}
+
+  {{#*inline "headerField"}}
+    <div class="icrpg-header-field">
+      <span class="ff-header">{{localize label}}</span>
+      <input type="text" name="{{name}}" value="{{value}}">
+    </div>
+  {{/inline}}
+
+  <section class="icrpg-tab-container">
+    <div data-group="primary-tabs" data-tab="primary">{{> "systems/icrpgme/templates/actor/tabs/character-primary-tab.html"}}</div>
+    <div data-group="primary-tabs" data-tab="loot-abilities">something</div>
+  </section>
+
+  <nav class="icrpg-sheet-nav" data-group="primary-tabs">
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">Character</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="loot-abilities">Loot & Abilities</a>
+  </nav>
+</form>

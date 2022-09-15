@@ -1,6 +1,13 @@
 @mixin transparent-input {
   border: none;
   background: none;
+  &:focus,
+  &:hover {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: var(--c-red);
+  }
 }
 .transparent-input {
   @include transparent-input;
@@ -23,6 +30,22 @@
   }
 }
 
+@mixin hover-red {
+  &:hover {
+    cursor: pointer;
+    color: var(--c-red);
+    text-shadow: none;
+  }
+}
+
 .hoverable {
   @include hover;
+}
+
+.icrpg-sep-long {
+  height: 4px;
+  width: auto;
+  background-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar-long.webp');
+  background-size: 100% 100%;
+  margin-top: -1px;
 }

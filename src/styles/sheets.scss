@@ -1,7 +1,6 @@
 @import 'mixins';
 
 .icrpg-actor-sheet {
-  //background: whitesmoke;
   .window-content {
     background: #202020;
   }
@@ -27,7 +26,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    //border-bottom: 2px solid;
     font-size: var(--font-size-12);
     white-space: nowrap;
     input {
@@ -38,6 +36,7 @@
       margin-left: 8px;
       margin-right: 8px;
       @extend .ff-header;
+      color: var(--c-red);
     }
   }
 }
@@ -250,18 +249,19 @@
 }
 .icrpg-sheet-nav {
   display: flex;
+  width: 95%;
 }
 
 .icrpg-sheet-bar {
   background: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
-  background-size: cover;
-  width: 300px;
+  background-size: 100% 100%;
   color: white;
   @extend .ff-header;
   height: 25px;
   padding-top: 4px;
   font-size: 18px;
   padding-left: 6px;
+  flex: 1;
 }
 
 .icrpg-tab-container {

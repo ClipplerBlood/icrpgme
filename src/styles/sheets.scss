@@ -194,6 +194,17 @@
       position: absolute;
       transform: translate(+15%, 0);
     }
+
+    input[type='checkbox'] {
+      z-index: 2;
+      @include hover();
+      width: 62px;
+      height: 62px;
+      position: relative;
+      left: 6px;
+      top: 15px;
+      opacity: 0;
+    }
   }
 
   .icrpg-defense-box {
@@ -249,7 +260,7 @@
 }
 .icrpg-sheet-nav {
   display: flex;
-  width: 95%;
+  width: calc(100% - 50px);
 }
 
 .icrpg-sheet-bar {

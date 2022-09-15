@@ -19,7 +19,7 @@
         {{localizeConcat "ICRPG.attributesShort." ../attributeName}}
       </div>
       <div class="dice-container">
-        <span>{{defaultValue attribute.total ""}}</span>
+        <span>{{defaultValue attribute.total 0}}</span>
         <img src="systems/icrpgme/assets/ui/dice-transparent/d20.webp">
       </div>
       <div class="icrpg-mods-values">
@@ -56,7 +56,7 @@
         {{localizeConcat "ICRPG.effectDice." ../effectName}}
       </div>
       <div class="dice-container" style="margin-left: 2px">
-        <span>{{defaultValue effect.total ""}}</span>
+        <span>{{defaultValue effect.total 0}}</span>
         <img src="systems/icrpgme/assets/ui/dice-transparent/{{../die}}.webp">
       </div>
       <div class="icrpg-mods-values">
@@ -156,7 +156,14 @@
         </div>
         <div>
           <div class="ff-header c-white t-center">{{localize "ICRPG.herocoin"}}</div>
-          <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
+          <div>
+            {{#if system.heroCoin}}
+              <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin-active.webp" style="bottom: -23px;">
+            {{else}}
+              <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
+            {{/if}}
+            <input type="checkbox" name="system.heroCoin" {{checked system.heroCoin}}>
+          </div>
         </div>
         <div style="position: relative">
           <div class="ff-header c-white t-center">{{localize "ICRPG.dying"}}</div>

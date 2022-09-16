@@ -1,3 +1,5 @@
+import { requestRollDialog } from '../dialogs/roll-dialogs.js';
+
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -23,17 +25,19 @@ export default class ICRPGActorSheet extends ActorSheet {
   async getData() {
     let content = super.getData();
     content.system = this.actor.system;
-    console.log(content);
     content = this.prepareItems(content);
     return content;
   }
 
   prepareItems(content) {
+    // Store each item in a map by type
     const itemsByType = new Map();
     for (const item of this.actor.items) {
       const type = item.type;
       itemsByType.has(type) ? itemsByType.get(type).push(item) : itemsByType.set(type, [item]);
     }
+
+    // Then for each type construct the items list
     content.loots = itemsByType.get('loot');
     content.abilities = itemsByType.get('ability');
     content.powers = itemsByType.get('power');
@@ -48,6 +52,13 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('.icrpg-selectable-heart').click((ev) => {
       const heartIndex = $(ev.currentTarget).closest('[data-index]').data('index');
       this.actor.update({ 'system.health.hearts': heartIndex + 1 });
+    });
+
+    // Rolls
+    html.find('[data-roll]').click((ev) => {
+      const rollName = $(ev.currentTarget).data('roll');
+      if (ev.altKey) this.actor.roll(rollName);
+      else requestRollDialog(this.actor, rollName);
     });
 
     // Items editor

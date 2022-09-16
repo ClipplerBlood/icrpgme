@@ -2,6 +2,7 @@ import { registerSettings } from './settings.js';
 import { preloadTemplates } from './preloadTemplates.js';
 import { registerSystem } from './register.js';
 import registerHandlebarsHelpers from './utils/handlebars.js';
+import { integrateExternalModules } from './modules-integration.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -32,3 +33,4 @@ Hooks.once('ready', async () => {
 });
 
 // Add any additional hooks if necessary
+integrateExternalModules();

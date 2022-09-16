@@ -4,7 +4,7 @@
       <div class="ff-header" style="font-size: 48px">
         {{localizeConcat "ICRPG.attributesShort." ../attributeName}}
       </div>
-      <div class="dice-container">
+      <div class="dice-container" data-roll="{{../attributeName}}">
         <span>{{defaultValue attribute.total 0}}</span>
         <img src="systems/icrpgme/assets/ui/dice-transparent/d20.webp">
       </div>
@@ -41,7 +41,7 @@
       <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
         {{localizeConcat "ICRPG.effectDice." ../effectName}}
       </div>
-      <div class="dice-container" style="margin-left: 2px">
+      <div class="dice-container" style="margin-left: 2px" data-roll="{{../effectName}}">
         <span>{{defaultValue effect.total 0}}</span>
         <img src="systems/icrpgme/assets/ui/dice-transparent/{{../die}}.webp">
       </div>
@@ -128,14 +128,15 @@
           <div class="ff-header c-white t-center">{{localize "ICRPG.attributesLong.defense"}}</div>
           <div class="ff-header c-grey fs-8 t-center" style="margin-bottom: 4px">{{localize
             "ICRPG.defenseSubtitle"}}</div>
-          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp">
+          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-roll="defense">
           <div class="icrpg-defense-box">
             <div>{{localize "ICRPG.attributesShort.constitution"}} + {{localize "ICRPG.loot"}}</div>
             <div class="icrpg-defense-con">{{system.attributes.constitution.total}}</div>
             <input class="icrpg-defense-loot " type="number"
                    name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
                    min="-6" max="6">
-            <div class="icrpg-defense-total">{{system.attributes.defense.total}}</div>
+            <div class="icrpg-defense-total hoverable"
+                 data-roll="defense">{{system.attributes.defense.total}}</div>
           </div>
         </div>
         <div>

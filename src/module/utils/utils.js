@@ -2,6 +2,25 @@ export function i18n(s) {
   return game.i18n.localize(s);
 }
 
+export function plusify(x) {
+  return x >= 0 ? '+' + x : x.toString();
+}
+
+export const diceMap = {
+  strength: '1d20',
+  dexterity: '1d20',
+  constitution: '1d20',
+  intelligence: '1d20',
+  wisdom: '1d20',
+  charisma: '1d20',
+  defense: '1d20',
+  basic: '1d4',
+  weapons: '1d6',
+  guns: '1d8',
+  energy: '1d10',
+  ultimate: '1d12',
+};
+
 Hooks.on('renderActorSheet', (app, html, data) => _onRenderInner(app, html, data));
 
 // eslint-disable-next-line no-unused-vars
@@ -11,7 +30,6 @@ function _onRenderInner(app, html, data) {
 }
 
 function _initializeAutosize(html) {
-  console.log('x');
   const autoresize = (el) => {
     const jEl = $(el);
     if (jEl.prop('tagName') === 'INPUT') {

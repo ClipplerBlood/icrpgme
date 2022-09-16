@@ -51,6 +51,12 @@
     "powers": "Powers",
     "augments": "Augments",
     "carried": "Carried",
-    "equipped": "Equipped"
+    "equipped": "Equipped",
+    "roll": {
+      "roll": "Roll",
+      "modifier": "Modifier",
+      "easy": "Easy",
+      "hard": "Hard"
+    }
   }
 }

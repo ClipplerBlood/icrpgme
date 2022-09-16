@@ -1,3 +1,5 @@
+import { diceMap, plusify } from '../utils/utils.js';
+
 export class ICRPGActor extends Actor {
   prepareDerivedData() {
     const system = this.system;
@@ -21,5 +23,30 @@ export class ICRPGActor extends Actor {
 
     // Set health
     system.health.total = system.health.hearts * 10;
+  }
+
+  /*
+  ROLLS
+   */
+  rollFormula(dice, mod) {
+    mod = parseInt(mod);
+    if (!mod) return dice;
+    return `${dice}${plusify(mod)}`;
+  }
+
+  async roll(name, options = { mod: 0, targetOffset: 0 }) {
+    // Get the attribute, either in attributes or effects
+    const attribute = this.system.attributes[name] || this.system.effects[name];
+    if (!attribute) throw `Attribute ${name} not found in actor`;
+    const dice = diceMap[name];
+    let mod = attribute.total + parseInt(options.mod);
+
+    // Only exception to mod: defense
+    if (name === 'defense') mod -= 10;
+
+    // Do the roll
+    const formula = this.rollFormula(dice, mod);
+    const roll = new Roll(formula);
+    roll.toMessage();
   }
 }

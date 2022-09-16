@@ -1,17 +1,3 @@
-<div class="icrpg-sheet-header">
-  <div class="flex-row">
-    {{> headerField name="name" value=actor.name label="Name"}}
-    {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
-    {{> headerField name="system.lifeform" value=system.lifeform label="ICRPG.lifeform"}}
-    {{> headerField name="system.type" value=system.type label="Type"}}
-  </div>
-  <div class="icrpg-sep-long"></div>
-  <div class="flex-row" style="margin-top: 12px">
-    {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
-  </div>
-  <div class="icrpg-sep-long"></div>
-</div>
-
 {{#* inline "attributeBlock"}}
   <div data-attribute="{{attributeName}}" class="icrpg-attribute-block">
     {{#with (lookup system.attributes attributeName) as | attribute |}}

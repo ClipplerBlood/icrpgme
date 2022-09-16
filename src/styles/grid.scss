@@ -1,0 +1,13 @@
+@mixin grid-base($n) {
+  display: grid;
+  grid-template-columns: repeat($n, 1fr);
+  //& > div {
+  //  height: fit-content;
+  //}
+}
+
+@for $i from 2 to 12 {
+  .grid-#{$i} {
+    @include grid-base($i);
+  }
+}

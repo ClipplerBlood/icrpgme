@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character"],
+    "types": ["character", "monster"],
     "templates": {
       "base": {}
     },
@@ -12,7 +12,7 @@
     }
   },
   "Item": {
-    "types": [],
+    "types": ["loot", "ability", "power", "augment"],
     "templates": {}
   }
 }

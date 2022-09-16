@@ -22,7 +22,40 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Carlito';
+  src: url('../fonts/Carlito-BoldItalic.woff2') format('woff2'), url('../fonts/Carlito-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Carlito';
+  src: url('../fonts/Carlito-Bold.woff2') format('woff2'), url('../fonts/Carlito-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Carlito';
+  src: url('../fonts/Carlito-Italic.woff2') format('woff2'), url('../fonts/Carlito-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Carlito';
+  src: url('../fonts/Carlito.woff2') format('woff2'), url('../fonts/Carlito.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 $ff-flatbread: 'FlatBread', 'Arial', sans-serif;
+$ff-carlito: 'Carlito', 'Arial', sans-serif;
 
 .fs-48 {
   font-size: var(--font-size-48);
@@ -46,6 +79,10 @@ $ff-flatbread: 'FlatBread', 'Arial', sans-serif;
 
 .ff-header {
   font-family: $ff-flatbread;
+}
+
+.ff-content {
+  font-family: $ff-carlito;
 }
 
 .c-white {

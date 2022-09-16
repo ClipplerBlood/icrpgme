@@ -49,3 +49,10 @@
   background-size: 100% 100%;
   margin-top: -1px;
 }
+
+textarea[autosize] {
+  height: 0;
+  overflow: hidden;
+  resize: none;
+  min-height: 0;
+}

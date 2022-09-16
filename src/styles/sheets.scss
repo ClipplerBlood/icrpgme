@@ -28,6 +28,7 @@
     align-items: center;
     font-size: var(--font-size-12);
     white-space: nowrap;
+
     input {
       height: 14px;
       box-sizing: content-box;
@@ -249,6 +250,7 @@
       }
     }
   }
+
   .icrpg-defense-total {
     color: black;
     font-size: 32px;
@@ -266,6 +268,7 @@
     height: 32px;
   }
 }
+
 .icrpg-sheet-nav {
   display: flex;
   width: calc(100% - 50px);
@@ -292,11 +295,73 @@
 .icrpg-sheet-nav {
   position: absolute;
   bottom: 16px;
+
   & > * {
     @include hover-red;
   }
 
   & > .active {
     color: var(--c-red);
+  }
+}
+
+.icrpg-actor-item,
+.icrpg-actor-item-loot {
+  margin-top: 4px;
+
+  input {
+    @include transparent-input;
+    @extend .ff-content;
+    font-weight: bold;
+    height: 15px;
+    text-transform: uppercase;
+    padding: 0;
+  }
+
+  textarea {
+    @include transparent-input;
+    @extend .ff-content;
+    padding: 0;
+    line-height: 1;
+  }
+
+  ::placeholder {
+    color: #929292;
+  }
+
+  .icrpg-equipped-select,
+  .icrpg-carried-select {
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: 100% 100%;
+    position: relative;
+    bottom: -10px;
+
+    input[type='checkbox'] {
+      @include hover();
+      margin: 0;
+      padding: 0;
+      height: 24px;
+      width: 24px;
+      opacity: 0;
+    }
+  }
+
+  .icrpg-equipped-select {
+    background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle.webp');
+  }
+
+  .icrpg-equipped-select.checked {
+    background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle-on.webp');
+  }
+
+  .icrpg-carried-select {
+    background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle.webp');
+  }
+
+  .icrpg-carried-select.checked {
+    background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
   }
 }

@@ -1,0 +1,93 @@
+{{#* inline "lootItem"}}
+  <div class="icrpg-actor-item-loot item-editable" data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    <div class="flex-row" style="align-items: flex-end; position: relative">
+      <div style="margin-left: 4px;">
+        <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
+        {{#if (not noDescription)}}
+          <textarea data-target="system.description" autosize
+                    placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
+        {{/if}}
+      </div>
+      <div class="grid-2" style="flex: 0; min-width: 128px; max-width: 128px; position: absolute; right: 0">
+        <div class="icrpg-equipped-select {{checked item.system.equipped}}">
+          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}}>
+        </div>
+        <div class="icrpg-carried-select {{checked item.system.carried}}">
+          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}}>
+        </div>
+      </div>
+    </div>
+
+    <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}
+
+{{#*inline "simpleItem"}}
+  <div class="icrpg-actor-item-loot item-editable" data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    <div class="flex-row" style="align-items: flex-end; position: relative">
+      <div style="margin-left: 4px;">
+        <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
+        {{#if (not noDescription)}}
+          <textarea data-target="system.description" autosize
+                    placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
+        {{/if}}
+      </div>
+    </div>
+    <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}
+
+<div class="grid-2" style="gap: 8px; margin-top: 16px">
+
+  <div data-item-type="loot">
+    <div class="flex-row" style="align-items: center;">
+      <div class="icrpg-sheet-bar">{{localize "ICRPG.loot"}}</div>
+      <div class="grid-2 ff-header t-center"
+           style="font-size: 10px; flex: 0; min-width: 128px; max-width: 128px; height: 18px; gap: 0">
+        <div>
+          <div style="height: 10px">{{localize "ICRPG.equipped"}}</div>
+          <div style="color: var(--c-light-grey)">MAX 10</div>
+        </div>
+        <div>
+          <div style="height: 10px">{{localize "ICRPG.carried"}}</div>
+          <div style="color: var(--c-light-grey)">MAX 10</div>
+        </div>
+      </div>
+    </div>
+    {{#each loots as | item |}}
+      {{> lootItem item=item}}
+    {{/each}}
+    {{> lootItem noDescription=true}}
+
+
+  </div>
+
+  <div>
+    <div class="icrpg-sheet-bar">{{localize "ICRPG.abilities"}}</div>
+    <div data-item-type="ability">
+      {{#each abilities as | item |}}
+        {{> simpleItem item=item}}
+      {{/each}}
+      {{> simpleItem noDescription=true}}
+    </div>
+
+    <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
+    <div data-item-type="power">
+      {{#each abilities as | item |}}
+        {{> simpleItem item=item}}
+      {{/each}}
+      {{> simpleItem noDescription=true}}
+    </div>
+
+    <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
+    <div data-item-type="augment">
+      {{#each abilities as | item |}}
+        {{> simpleItem item=item}}
+      {{/each}}
+      {{> simpleItem noDescription=true}}
+    </div>
+  </div>
+
+</div>

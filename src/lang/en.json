@@ -1,6 +1,13 @@
 {
-  "ACTOR.TypeCharacter": "Cazzo",
+  "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeMonster": "Monster",
+  "ITEM.TypeLoot": "Loot",
+  "ITEM.TypeAbility": "Ability",
+  "ITEM.TypePower": "Power",
+  "ITEM.TypeAugment": "Augment",
+
   "ICRPG": {
+    "name": "Name",
     "world": "World",
     "lifeform": "Life Form",
     "story": "Story",
@@ -39,6 +46,11 @@
     "tabs": {
       "character": "Character",
       "lootAbilities": "Loot & Abilities"
-    }
+    },
+    "abilities": "Abilities",
+    "powers": "Powers",
+    "augments": "Augments",
+    "carried": "Carried",
+    "equipped": "Equipped"
   }
 }

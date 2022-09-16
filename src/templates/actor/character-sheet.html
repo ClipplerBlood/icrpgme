@@ -7,9 +7,27 @@
     </div>
   {{/inline}}
 
+  <div class="icrpg-sheet-header">
+    <div class="flex-row">
+      {{> headerField name="name" value=actor.name label="Name"}}
+      {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
+      {{> headerField name="system.lifeform" value=system.lifeform label="ICRPG.lifeform"}}
+      {{> headerField name="system.type" value=system.type label="Type"}}
+    </div>
+    <div class="icrpg-sep-long"></div>
+    <div class="flex-row" style="margin-top: 12px">
+      {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
+    </div>
+    <div class="icrpg-sep-long"></div>
+  </div>
+
   <section class="icrpg-tab-container">
-    <div data-group="primary-tabs" data-tab="primary">{{> "systems/icrpgme/templates/actor/tabs/character-primary-tab.html"}}</div>
-    <div data-group="primary-tabs" data-tab="loot-abilities">something</div>
+    <div data-group="primary-tabs" data-tab="primary">
+      {{> "systems/icrpgme/templates/actor/tabs/character-primary-tab.html"}}
+    </div>
+    <div data-group="primary-tabs" data-tab="loot-abilities">
+      {{> "systems/icrpgme/templates/actor/tabs/character-loot-tab.html"}}
+    </div>
   </section>
 
   <nav class="icrpg-sheet-nav" data-group="primary-tabs">

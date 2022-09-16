@@ -4,6 +4,7 @@ export async function preloadTemplates() {
     // Character sheet
     'systems/icrpgme/templates/actor/character-sheet.html',
     'systems/icrpgme/templates/actor/tabs/character-primary-tab.html',
+    'systems/icrpgme/templates/actor/tabs/character-loot-tab.html',
   ];
 
   return loadTemplates(templatePaths);

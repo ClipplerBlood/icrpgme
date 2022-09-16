@@ -65,5 +65,18 @@ export default class ICRPGActorSheet extends ActorSheet {
         this.actor.createEmbeddedDocuments('Item', [{ type: itemType, [target]: value }]);
       }
     });
+
+    // Items context menu
+    ContextMenu.create(this, html, '.item-editable', [
+      {
+        name: 'Delete',
+        icon: '<i class="fas fa-times"></i>',
+        condition: this.actor.isOwner,
+        callback: (header) => {
+          const itemId = header.closest('[data-item-id]').data('itemId');
+          this.actor.items.get(itemId)?.delete();
+        },
+      },
+    ]);
   }
 }

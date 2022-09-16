@@ -5,6 +5,10 @@
     background: #202020;
   }
 
+  #context-menu {
+    max-width: 0;
+    min-width: 100%;
+  }
   header {
     background: #202020;
     border-bottom: none !important;

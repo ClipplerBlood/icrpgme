@@ -23,6 +23,10 @@ module.exports = {
 
   rules: {
     // Specify any specific ESLint rules.
+    'no-unused-vars': [
+      'error',
+      { vars: 'local', args: 'after-used', ignoreRestSiblings: false, argsIgnorePattern: '^_' },
+    ],
   },
 
   overrides: [

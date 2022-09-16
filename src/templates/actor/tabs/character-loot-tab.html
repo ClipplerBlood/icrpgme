@@ -75,7 +75,7 @@
 
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
     <div data-item-type="power">
-      {{#each abilities as | item |}}
+      {{#each powers as | item |}}
         {{> simpleItem item=item}}
       {{/each}}
       {{> simpleItem noDescription=true}}
@@ -83,7 +83,7 @@
 
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
     <div data-item-type="augment">
-      {{#each abilities as | item |}}
+      {{#each augments as | item |}}
         {{> simpleItem item=item}}
       {{/each}}
       {{> simpleItem noDescription=true}}

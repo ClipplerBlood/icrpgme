@@ -6,6 +6,10 @@ export function plusify(x) {
   return x >= 0 ? '+' + x : x.toString();
 }
 
+export function plusifyMod(x) {
+  return x > 0 ? '+' + x : x < 0 ? x.toString() : '';
+}
+
 export const diceMap = {
   strength: '1d20',
   dexterity: '1d20',

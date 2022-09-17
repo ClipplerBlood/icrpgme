@@ -2,6 +2,7 @@ import ICRPGActorSheet from './actor/actor-sheet.js';
 import { ICRPGActorDataModel } from './actor/actor-data-model.js';
 import { ICRPGActor } from './actor/actor.js';
 import { ICRPGItemLootDataModel } from './item/item-data-model.js';
+import { ICRPGRollMessage } from './chat/chat-message.js';
 
 export function registerSystem() {
   // Actor registration
@@ -12,4 +13,7 @@ export function registerSystem() {
 
   // Item registration
   CONFIG.Item.systemDataModels['loot'] = ICRPGItemLootDataModel;
+
+  // ChatMessage registration
+  CONFIG.ChatMessage.documentClass = ICRPGRollMessage;
 }

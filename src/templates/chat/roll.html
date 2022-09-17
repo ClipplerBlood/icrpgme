@@ -1,0 +1,31 @@
+{{log this}}
+<div class="icrpg-chat-title ff-header">
+  {{localizeConcatIf "ICRPG.attributesLong." roll.data.name}}
+  {{localizeConcatIf "ICRPG.effectDice." roll.data.name}}
+  {{#unless roll.data.name}}
+    {{localize "ICRPG.roll.roll"}}
+  {{/unless}}
+</div>
+
+<div class="icrpg-roll-result">
+  {{#each roll.terms as |term|}}
+    {{#if term.faces}}
+      {{#each term.results as |result|}}
+        <div class="icrpg-chat-dice d{{term.faces}} {{#if (eq result.result term.faces)}}crit{{/if}} {{#if (eq result.result 1)}}fail{{/if}}">
+          {{result.result}}
+        </div>
+      {{/each}}
+    {{else if term.operator}}
+      <div>{{term.operator}}</div>
+    {{else if term.total}}
+      <div>{{term.total}}</div>
+    {{/if}}
+  {{/each}}
+  <div class="icrpg-roll-total">
+    <div>>></div>
+    <div>{{roll.total}}</div>
+  </div>
+
+</div>
+
+

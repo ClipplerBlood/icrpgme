@@ -5,7 +5,10 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/actor/character-sheet.html',
     'systems/icrpgme/templates/actor/tabs/character-primary-tab.html',
     'systems/icrpgme/templates/actor/tabs/character-loot-tab.html',
-  ];
 
+    // Chat messages
+    'systems/icrpgme/templates/chat/roll.html',
+  ];
+  Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.html';
   return loadTemplates(templatePaths);
 }

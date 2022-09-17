@@ -1,0 +1,77 @@
+@import 'typography';
+
+textarea#chat-message,
+.chat-message {
+  background: url('../assets/ui/backgrounds/bg-sheet.png');
+  background-size: cover;
+  font-family: $ff-carlito;
+
+  .message-sender {
+    font-family: $ff-nusaliver;
+  }
+}
+.icrpg-chat-title {
+}
+
+.icrpg-roll-result {
+  @extend .ff-header;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1px;
+  //border-top: 2px solid #202020;
+  //border-bottom: 2px solid #202020;
+  margin-top: 4px;
+  //margin-bottom: 2px;
+
+  & > * {
+    padding-top: 2px;
+    flex: none;
+  }
+}
+
+.icrpg-chat-dice {
+  width: 32px;
+  height: 32px;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+
+  $dice-map: (
+    2: 4,
+    3: 6,
+    4: 4,
+    5: 10,
+    6: 6,
+    8: 8,
+    10: 10,
+    12: 12,
+    20: 20,
+    100: 10,
+  );
+  @each $i, $img in $dice-map {
+    &.d#{$i} {
+      background-image: url('../assets/ui/dice-transparent/d#{$img}.webp');
+    }
+  }
+
+  &.d12.crit,
+  &.d20.fail,
+  &.d20.crit {
+    color: var(--c-red);
+  }
+}
+
+.icrpg-roll-total {
+  font-family: $ff-flatbread;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}

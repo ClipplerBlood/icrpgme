@@ -1,4 +1,5 @@
-import { diceMap, plusify } from '../utils/utils.js';
+import { diceMap, plusifyMod } from '../utils/utils.js';
+import { postRollMessage } from '../chat/chat-roll.js';
 
 export class ICRPGActor extends Actor {
   prepareDerivedData() {
@@ -28,11 +29,6 @@ export class ICRPGActor extends Actor {
   /*
   ROLLS
    */
-  rollFormula(dice, mod) {
-    mod = parseInt(mod);
-    if (!mod) return dice;
-    return `${dice}${plusify(mod)}`;
-  }
 
   async roll(name, options = { mod: 0, targetOffset: 0 }) {
     // Get the attribute, either in attributes or effects
@@ -45,8 +41,8 @@ export class ICRPGActor extends Actor {
     if (name === 'defense') mod -= 10;
 
     // Do the roll
-    const formula = this.rollFormula(dice, mod);
-    const roll = new Roll(formula);
-    roll.toMessage();
+    let formula = `@dice ${plusifyMod(mod)}`;
+    const roll = new Roll(formula, { dice: dice, mod: mod, name: name });
+    postRollMessage(this, roll);
   }
 }

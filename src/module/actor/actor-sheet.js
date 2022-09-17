@@ -57,8 +57,8 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Rolls
     html.find('[data-roll]').click((ev) => {
       const rollName = $(ev.currentTarget).data('roll');
-      if (ev.altKey) this.actor.roll(rollName);
-      else requestRollDialog(this.actor, rollName);
+      if (ev.altKey) requestRollDialog(this.actor, rollName);
+      else this.actor.roll(rollName);
     });
 
     // Items editor

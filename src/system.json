@@ -32,7 +32,7 @@
     "requires": [],
     "conflicts": []
   },
-  "socket": false,
+  "socket": true,
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "background": "systems/icrpgme/assets/world-bg.png",

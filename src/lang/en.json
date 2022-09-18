@@ -5,7 +5,6 @@
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypePower": "Power",
   "ITEM.TypeAugment": "Augment",
-
   "ICRPG": {
     "name": "Name",
     "world": "World",
@@ -57,6 +56,11 @@
       "modifier": "Modifier",
       "easy": "Easy",
       "hard": "Hard"
+    },
+    "canvasTooltips": {
+      "tools": "ICRPG Tools",
+      "target": "Target",
+      "timer": "Timer"
     }
   }
 }

@@ -1,4 +1,4 @@
-import * as f from '../utils/data-model.js';
+import * as f from './data-model.js';
 
 export class ICRPGActorDataModel extends foundry.abstract.DataModel {
   static defineSchema() {

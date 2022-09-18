@@ -8,7 +8,11 @@ export async function preloadTemplates() {
 
     // Chat messages
     'systems/icrpgme/templates/chat/roll.html',
+
+    // Apps
+    'systems/icrpgme/templates/app/target-app.html',
   ];
+
   Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.html';
   return loadTemplates(templatePaths);
 }

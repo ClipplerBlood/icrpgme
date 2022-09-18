@@ -1,4 +1,4 @@
-import { requestRollDialog } from '../dialogs/roll-dialogs.js';
+import { requestRollDialog } from '../dialog/roll-dialogs.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {

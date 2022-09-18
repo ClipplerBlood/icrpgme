@@ -1,0 +1,23 @@
+.icrpg-app-target {
+  background: transparent;
+
+  .window-content {
+    background: transparent;
+    height: 128px;
+    width: 128px;
+    display: block;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .window-header {
+    display: none;
+  }
+}
+
+.icrpg-target-container {
+  height: 128px;
+  width: 128px;
+  background-image: url('../assets/ui/dice-red/target.webp');
+  background-size: 100% 100%;
+}

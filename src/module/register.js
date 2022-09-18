@@ -1,7 +1,7 @@
 import ICRPGActorSheet from './actor/actor-sheet.js';
-import { ICRPGActorDataModel } from './actor/actor-data-model.js';
+import { ICRPGActorDataModel } from './data-models/actor-data-model.js';
 import { ICRPGActor } from './actor/actor.js';
-import { ICRPGItemLootDataModel } from './item/item-data-model.js';
+import { ICRPGItemLootDataModel } from './data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
 
 export function registerSystem() {

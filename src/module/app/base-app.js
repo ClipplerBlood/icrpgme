@@ -143,17 +143,22 @@ export class ICRPGBaseApp extends Application {
   }
 
   getRelativePosition() {
+    const _do = this.constructor.defaultOptions;
     return {
-      left: this.position.left / window.innerWidth,
-      top: this.position.top / window.innerHeight,
+      left: this.position.left / (window.innerWidth - _do.width),
+      top: this.position.top / (window.innerHeight - _do.height),
+      width: this.element.width,
     };
   }
 
   setRelativePosition(position) {
+    const _do = this.constructor.defaultOptions;
+    const left = Math.min(position.left * (window.innerWidth - _do.width), window.innerWidth - _do.width - 300);
     if (!position) return;
     return this.setPosition({
-      left: position.left * window.innerWidth,
-      top: position.top * window.innerHeight,
+      left: left,
+      top: position.top * (window.innerHeight - _do.height),
+      width: position.width,
     });
   }
 }

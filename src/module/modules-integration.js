@@ -11,6 +11,7 @@ function initDiceSoNice(dice3d) {
     foreground: '#ffffff',
     background: '#C02025FF',
     outline: '#C02025FF',
+    edge: '#202020',
     material: 'plastic',
     font: 'Arial',
     default: true,

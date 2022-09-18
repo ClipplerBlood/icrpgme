@@ -26,6 +26,7 @@ export const diceMap = {
 };
 
 Hooks.on('renderActorSheet', (app, html, data) => _onRenderInner(app, html, data));
+Hooks.on('renderICRPGBaseApp', (app, html, data) => _onRenderInner(app, html, data));
 
 // eslint-disable-next-line no-unused-vars
 function _onRenderInner(app, html, data) {

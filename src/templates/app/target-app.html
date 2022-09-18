@@ -1,10 +1,36 @@
 <form autocomplete="off">
   <div class="icrpg-target-container drag-handle">
   </div>
+
   {{#if isGM}}
-    <input class="icrpg-value" type="number" min="0" max="20" name="value" value="{{value}}">
+    <input class="icrpg-value" type="number" min="0" max="20" name="target" value="{{value.target}}">
     <div class="close">x</div>
+    <div class="flex-row icrpg-easy-hard-selector">
+      <div class="hoverable {{checked value.isEasy}}" name="isEasy" value="{{value.isEasy}}">
+        {{localize "ICRPG.easy"}}
+      </div>
+      <div class="hoverable {{checked value.isHard}}" name="isHard" value="{{value.isHard}}">
+        {{localize "ICRPG.hard"}}
+      </div>
+    </div>
+
   {{else}}
-    <div class="icrpg-value">{{value}}</div>
+    <div class="icrpg-value">{{value.target}}</div>
+    <div class="icrpg-easy-hard-text">
+      {{#if value.isEasy}}
+        {{localize "ICRPG.easy"}}
+      {{else if value.isHard}}
+        {{localize "ICRPG.hard"}}
+      {{/if}}
+    </div>
   {{/if}}
+
+  <div class="icrpg-easy-hard-number">
+    {{#if value.isEasy}}
+      -3
+    {{else if value.isHard}}
+      +3
+    {{/if}}
+  </div>
+
 </form>

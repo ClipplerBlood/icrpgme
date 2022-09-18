@@ -1,5 +1,6 @@
 async function _renderRollMessage(messageData, options = {}) {
   const rolls = messageData.rolls;
+  console.log(rolls);
   if (rolls && game.dice3d) {
     for (let roll of rolls) {
       await game.dice3d.showForRoll(roll, game.user, true, messageData.whisper, messageData.blind);
@@ -24,7 +25,7 @@ function _getBaseMessageData(actor = undefined, rolls = undefined) {
         ? [game.user.id]
         : rollMode === 'gmroll' || rollMode === 'blindroll'
         ? ChatMessage.getWhisperRecipients('GM')
-        : [],
+        : null,
   };
 }
 

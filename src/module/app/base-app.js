@@ -6,7 +6,7 @@ export class ICRPGBaseApp extends Application {
   static async setStoredData(id, data, options = { emit: true }) {
     const storedAppData = game.settings.get('icrpgme', 'appData');
     const isCreate = !(id in storedAppData);
-    storedAppData[id] = mergeObject(storedAppData[id] ?? {}, data);
+    storedAppData[id] = mergeObject(storedAppData[id] ?? {}, expandObject(data));
     await game.settings.set('icrpgme', 'appData', storedAppData);
     if (options.emit) {
       // eslint-disable-next-line no-undef
@@ -25,6 +25,7 @@ export class ICRPGBaseApp extends Application {
           value: data,
         });
     }
+    return data;
   }
 
   static getStoredData(id) {
@@ -40,9 +41,14 @@ export class ICRPGBaseApp extends Application {
         icrpgID: id,
         action: 'close',
       });
+    return id;
   }
 
   // ----------------------------------------------
+
+  static async defaultValue() {
+    return undefined;
+  }
 
   static async create(icrpgID, callerID) {
     console.log('calling create', icrpgID, callerID);
@@ -55,7 +61,7 @@ export class ICRPGBaseApp extends Application {
     if (game.userId === callerID) {
       await this.setStoredData(icrpgID, {
         className: this.name,
-        value: 10,
+        value: await this.defaultValue(),
       });
     }
 
@@ -94,7 +100,7 @@ export class ICRPGBaseApp extends Application {
 
   async getData() {
     const content = super.getData();
-    content.value = this.constructor.getStoredData(this.icrpgID)?.value ?? 10;
+    content.value = this.constructor.getStoredData(this.icrpgID)?.value ?? this.constructor.defaultValue();
     content.isGM = game.user.isGM;
     return content;
   }
@@ -130,13 +136,6 @@ export class ICRPGBaseApp extends Application {
       });
     };
 
-    // Inputs
-    html.find("input[name='value']").on('input', (ev) => {
-      this.constructor.setStoredData(this.icrpgID, {
-        value: parseInt(ev.target.value),
-      });
-    });
-
     html.find('.close').click(() => {
       this.constructor.deleteStoredData(this.icrpgID);
       this.close();
@@ -145,16 +144,16 @@ export class ICRPGBaseApp extends Application {
 
   getRelativePosition() {
     return {
-      left: this.position.left / (window.innerWidth - 100),
-      top: this.position.top / (window.innerHeight - 100),
+      left: this.position.left / window.innerWidth,
+      top: this.position.top / window.innerHeight,
     };
   }
 
   setRelativePosition(position) {
     if (!position) return;
     return this.setPosition({
-      left: position.left * (window.innerWidth - 100),
-      top: position.top * (window.innerHeight - 100),
+      left: position.left * window.innerWidth,
+      top: position.top * window.innerHeight,
     });
   }
 }

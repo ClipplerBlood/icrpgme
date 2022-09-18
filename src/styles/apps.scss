@@ -4,6 +4,7 @@
 .icrpg-app-timer,
 .icrpg-app-target {
   background: transparent;
+  box-shadow: none;
 
   .window-content {
     background: transparent;
@@ -35,19 +36,22 @@
 
   input.icrpg-value {
     @include transparent-input;
-    &:focus,
-    &:hover {
+    &:focus {
       color: #111;
+    }
+    &:hover {
+      color: #ddd;
     }
   }
 
   .close {
     @include hover;
     position: absolute;
-    right: 17px;
-    top: 1px;
+    left: 0;
+    top: 0;
     font-size: 20px;
     font-family: $ff-nusaliver;
+    text-shadow: 0 0 4px grey;
   }
 }
 
@@ -64,4 +68,46 @@
 
 .icrpg-timer-container {
   background-image: url('../assets/ui/dice-red/d4.webp');
+}
+
+.icrpg-app-target {
+  .icrpg-easy-hard-text,
+  .icrpg-easy-hard-number,
+  .icrpg-easy-hard-selector {
+    font-family: $ff-nusaliver;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 0 0 4px grey;
+    color: #111;
+  }
+  .icrpg-easy-hard-selector {
+    & > .checked {
+      color: var(--c-red);
+      text-shadow: 0 0 4px #111;
+    }
+  }
+  .icrpg-easy-hard-number {
+    position: absolute;
+    right: -17px;
+    top: 19px;
+    font-size: 29px;
+  }
+}
+
+.icrpg-app-timer {
+  .icrpg-timer-name {
+    font-family: $ff-nusaliver;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 0 0 4px grey;
+    color: #111;
+  }
+
+  textarea.icrpg-timer-name {
+    @include transparent-input;
+    &:focus,
+    &:hover {
+      color: #111;
+    }
+  }
 }

@@ -1,3 +1,7 @@
+@import 'mixins';
+@import 'typography';
+
+.icrpg-app-timer,
 .icrpg-app-target {
   background: transparent;
 
@@ -8,10 +12,42 @@
     display: block;
     overflow: visible;
     padding: 0;
+    position: relative;
   }
 
   .window-header {
     display: none;
+  }
+
+  .icrpg-value {
+    font-family: $ff-nusaliver;
+    position: absolute;
+    height: auto;
+    width: 80px;
+    border: none;
+    background: none;
+    font-size: 46px;
+    left: 20px;
+    top: 35px;
+    text-align: center;
+    color: #ddd;
+  }
+
+  input.icrpg-value {
+    @include transparent-input;
+    &:focus,
+    &:hover {
+      color: #111;
+    }
+  }
+
+  .close {
+    @include hover;
+    position: absolute;
+    right: 17px;
+    top: 1px;
+    font-size: 20px;
+    font-family: $ff-nusaliver;
   }
 }
 
@@ -21,9 +57,11 @@
   width: 128px;
   background-size: 100% 100%;
 }
+
 .icrpg-target-container {
   background-image: url('../assets/ui/dice-red/target.webp');
 }
+
 .icrpg-timer-container {
   background-image: url('../assets/ui/dice-red/d4.webp');
 }

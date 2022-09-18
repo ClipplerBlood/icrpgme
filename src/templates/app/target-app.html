@@ -1,8 +1,10 @@
-{{log this}}
 <form autocomplete="off">
-  <div class="icrpg-target-container">
+  <div class="icrpg-target-container drag-handle">
   </div>
-  <input type="number" min="0" max="20" name="value" value="{{value}}">
-  <i class="fas fa-times close hoverable"></i>
-  {{isGM}}
+  {{#if isGM}}
+    <input class="icrpg-value" type="number" min="0" max="20" name="value" value="{{value}}">
+    <div class="close">x</div>
+  {{else}}
+    <div class="icrpg-value">{{value}}</div>
+  {{/if}}
 </form>

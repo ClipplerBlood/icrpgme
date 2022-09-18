@@ -85,7 +85,7 @@ export class ICRPGBaseApp extends Application {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/app/target-app.html',
-      classes: ['icrpg-app-target'],
+      classes: ['icrpg-app'],
       height: 128,
       width: 128,
       title: 'ICRPG APP', // Needed otherwise it can break
@@ -112,7 +112,7 @@ export class ICRPGBaseApp extends Application {
     if (!game.user.isGM) return;
 
     // Dragging
-    const handle = html.find('.icrpg-target-container').get(0);
+    const handle = html.find('.drag-handle').get(0);
     const draggable = new Draggable(this, html, handle, false);
     draggable._onDragMouseUp = (event) => {
       Draggable.prototype._onDragMouseUp.call(draggable, event);

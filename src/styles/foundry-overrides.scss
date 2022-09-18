@@ -1,0 +1,43 @@
+:root {
+  --color-text-light-highlight: #eee;
+  --color-text-light-heading: #ddd;
+  --color-border-highlight: var(--c-red);
+  --color-border-highlight-alt: var(--c-red);
+  --color-shadow-primary: transparent;
+  --color-shadow-highlight: transparent;
+}
+
+input,
+.directory .directory-header .header-search input,
+button {
+  background: #ddd;
+}
+
+#chat-controls .roll-type-select {
+  background: #eee;
+}
+
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context,
+#navigation #nav-toggle,
+#controls ol.control-tools > li,
+#sidebar {
+  background: #222;
+}
+
+header.window-header {
+  background: #202020;
+  border-bottom: none !important;
+  border-radius: 8px 8px 0 0;
+  color: white;
+}
+
+.app.sidebar-popout {
+  background: rgba(34, 34, 34, 0.45);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.app .window-content {
+  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
+}

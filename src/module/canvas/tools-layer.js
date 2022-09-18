@@ -1,14 +1,11 @@
-import { ICRPGTargetApp } from '../app/target-app.js';
+import { ICRPGBaseApp } from '../app/base-app.js';
 import { i18n } from '../utils/utils.js';
+import { ICRPGTargetApp } from '../app/target-app.js';
+import { ICRPGTimerApp } from '../app/timer-app.js';
 
 export class ICRPGToolsLayer extends CanvasLayer {
   static register() {
-    Hooks.on('icrpgTargetAdd', (icrpgID, callerId) => ICRPGTargetApp.create(icrpgID, callerId));
-    Hooks.on('icrpgTargetRemove', () => console.log('icrpgTargetRemove'));
-    Hooks.on('icrpgTimerAdd', () => console.log('icrpgTimerAdd'));
-    Hooks.on('icrpgTimerRemove', () => console.log('icrpgTimerRemove'));
-
-    Hooks.on('ready', async () => renderStoredApps());
+    Hooks.once('ready', async () => renderStoredApps());
     Hooks.once('init', async () => game.socket.on('system.icrpgme', icrpgAppsListener));
 
     Hooks.on('getSceneControlButtons', (controls) => {
@@ -24,15 +21,13 @@ export class ICRPGToolsLayer extends CanvasLayer {
             icon: 'fas fa-dice-d20',
             name: 'icrpg-target',
             title: i18n('ICRPG.canvasTooltips.target'),
-            onClick: () => {
-              ICRPGTargetApp.create(randomID(), game.user.id);
-            },
+            onClick: () => ICRPGTargetApp.create(randomID(), game.user.id),
           },
           {
             icon: 'fas fa-hourglass',
             name: 'icrpg-timer',
             title: i18n('ICRPG.canvasTooltips.timer'),
-            onClick: () => Hooks.call('icrpgTimerAdd', game.user.id),
+            onClick: () => ICRPGTimerApp.create(randomID(), game.user.id),
           },
         ],
       });
@@ -42,27 +37,38 @@ export class ICRPGToolsLayer extends CanvasLayer {
 
 export function icrpgAppsListener(data) {
   // Remember that the socket 'on' function does not run for the emitter client
-  console.log(data, game.icrpgme.apps);
   const icrpgID = data.icrpgID;
   if (!icrpgID) return;
+  const cls = getAppClassByName(data.className);
   switch (data.action) {
     case 'position':
-      ICRPGTargetApp.getApp(icrpgID)?.setRelativePosition(data.position);
+      cls.getApp(icrpgID)?.setRelativePosition(data.position);
       break;
     case 'create':
-      ICRPGTargetApp.create(icrpgID, undefined);
+      cls.create(icrpgID, undefined);
       break;
     case 'close':
-      ICRPGTargetApp.destroy(icrpgID);
+      cls.destroy(icrpgID);
       break;
-    case 'value':
-      ICRPGTargetApp.getApp(icrpgID)?.render();
+    case 'change':
+      cls.getApp(icrpgID)?.render();
   }
 }
 
 function renderStoredApps() {
-  const targets = ICRPGTargetApp.getObjectMap();
-  for (const id of Object.keys(targets)) {
-    ICRPGTargetApp.create(id);
+  const apps = game.settings.get('icrpgme', 'appData');
+  for (const [id, appData] of Object.entries(apps)) {
+    getAppClassByName(appData.className).create(id, undefined);
+  }
+}
+
+function getAppClassByName(className) {
+  switch (className) {
+    case 'ICRPGTargetApp':
+      return ICRPGTargetApp;
+    case 'ICRPGTimerApp':
+      return ICRPGTimerApp;
+    default:
+      return ICRPGBaseApp;
   }
 }

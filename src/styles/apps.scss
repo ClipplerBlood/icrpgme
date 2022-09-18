@@ -15,9 +15,15 @@
   }
 }
 
+.icrpg-timer-container,
 .icrpg-target-container {
   height: 128px;
   width: 128px;
-  background-image: url('../assets/ui/dice-red/target.webp');
   background-size: 100% 100%;
+}
+.icrpg-target-container {
+  background-image: url('../assets/ui/dice-red/target.webp');
+}
+.icrpg-timer-container {
+  background-image: url('../assets/ui/dice-red/d4.webp');
 }

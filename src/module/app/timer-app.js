@@ -1,9 +1,9 @@
 import { ICRPGBaseApp } from './base-app.js';
 
-export class ICRPGTargetApp extends ICRPGBaseApp {
+export class ICRPGTimerApp extends ICRPGBaseApp {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      template: 'systems/icrpgme/templates/app/target-app.html',
+      template: 'systems/icrpgme/templates/app/timer-app.html',
       classes: ['icrpg-app-target'],
       height: 128,
       width: 128,

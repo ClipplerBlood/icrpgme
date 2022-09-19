@@ -13,21 +13,21 @@
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.base"
                  value="{{defaultValue attribute.base ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.base"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.lifeform"
                  value="{{defaultValue attribute.lifeform ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.lifeform"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.loot"
                  value="{{defaultValue attribute.loot ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.loot"}}</div>
         </div>
       </div>
@@ -49,20 +49,20 @@
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.effects.{{../effectName}}.base" value="{{defaultValue effect.base ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.base"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.effects.{{../effectName}}.lifeform"
                  value="{{defaultValue effect.lifeform ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.lifeform"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.effects.{{../effectName}}.loot" value="{{defaultValue effect.loot ""}}"
-                 min="-6" max="6">
+                 min="-6" max="6" {{readonly ../isLocked}}>
           <div>{{localize "ICRPG.loot"}}</div>
         </div>
       </div>
@@ -134,7 +134,7 @@
             <div class="icrpg-defense-con">{{system.attributes.constitution.total}}</div>
             <input class="icrpg-defense-loot " type="number"
                    name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
-                   min="-6" max="6">
+                   min="-6" max="6" {{readonly isLocked}}>
             <div class="icrpg-defense-total hoverable"
                  data-roll="defense">{{system.attributes.defense.total}}</div>
           </div>

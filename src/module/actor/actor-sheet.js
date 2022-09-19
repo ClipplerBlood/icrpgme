@@ -26,6 +26,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     let content = super.getData();
     content.system = this.actor.system;
     content = this.prepareItems(content);
+    content.isLocked = this.isLocked ?? true;
     return content;
   }
 
@@ -62,7 +63,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     });
 
     // Items editor
-    html.find('.item-editable input, .item-editable textarea').change((ev) => {
+    html.find('.item-editable input, .item-editable textarea, input[type="checkbox"]').change((ev) => {
       const ct = $(ev.currentTarget);
       const itemId = ct.closest('[data-item-id]').data('itemId');
       const itemType = ct.closest('[data-item-type]').data('itemType');
@@ -89,5 +90,42 @@ export default class ICRPGActorSheet extends ActorSheet {
         },
       },
     ]);
+  }
+
+  _getHeaderButtons() {
+    // Get default buttons, removing the sheet configuration
+    let buttons = super._getHeaderButtons();
+    buttons = buttons.filter((b) => b.class !== 'configure-sheet');
+
+    // Callback
+    const lockCb = (ev) => {
+      ev.stopPropagation();
+      ev.stopImmediatePropagation();
+
+      const ct = $(ev.currentTarget);
+      const _isLocked = ct.prop('value') ?? false;
+      this.isLocked = _isLocked;
+      ct.prop('value', !_isLocked);
+
+      const fas = $(ev.currentTarget).find('i.fas');
+      fas.toggleClass('fa-lock');
+      fas.toggleClass('fa-unlock');
+      fas.toggleClass('c-red');
+      this.render();
+
+      const notification = _isLocked ? 'ICRPG.notifications.lockedSheet' : 'ICRPG.notifications.unlockedSheet';
+      ui.notifications.info(notification, { localize: true });
+    };
+
+    // Add the button (TODO: refactor a bit)
+    const isLocked = this.isLocked ?? true;
+    buttons.unshift({
+      label: '',
+      class: isLocked ? 'sheet-lock' : 'sheet-unlock',
+      icon: isLocked ? 'fas fa-lock' : 'fas fa-lock-open c-red',
+      onclick: lockCb,
+    });
+
+    return buttons;
   }
 }

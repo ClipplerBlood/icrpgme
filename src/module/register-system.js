@@ -7,7 +7,7 @@ import { ICRPGRollMessage } from './chat/chat-message.js';
 export function registerSystem() {
   // Actor registration
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('demonlord', ICRPGActorSheet, { makeDefault: true });
+  Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;
   CONFIG.Actor.systemDataModels['character'] = ICRPGActorDataModel;
 

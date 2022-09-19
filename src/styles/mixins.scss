@@ -6,7 +6,17 @@
     border: none;
     outline: none;
     box-shadow: none;
+  }
+
+  &:focus:not([readonly]),
+  &:hover:not([readonly]) {
     color: var(--c-red);
+  }
+
+  &[readonly] {
+    &:hover {
+      cursor: default;
+    }
   }
 }
 
@@ -57,4 +67,10 @@ textarea[autosize] {
   overflow: hidden;
   resize: none;
   min-height: 0;
+}
+
+input[type='checkbox'][readonly] {
+  &:hover {
+    cursor: default !important;
+  }
 }

@@ -5,6 +5,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('localizeConcatIf', _localizeConcatIf);
   Handlebars.registerHelper('localizationHas', (x) => game.i18n.has(x));
   Handlebars.registerHelper('defaultValue', (x, y) => (x ? x : y));
+  Handlebars.registerHelper('readonly', (x) => (x ? 'readonly' : ''));
 }
 
 function _localizeConcat(...args) {

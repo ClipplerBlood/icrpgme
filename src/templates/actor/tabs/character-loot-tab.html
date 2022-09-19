@@ -1,22 +1,28 @@
 {{#* inline "lootItem"}}
-  <div class="icrpg-actor-item-loot item-editable" data-item-id="{{item._id}}"
+  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
     <div class="flex-row" style="align-items: flex-end; position: relative">
+
       <div style="margin-left: 4px;">
-        <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
-        {{#if (not noDescription)}}
+        <input type="text" data-target="name" value="{{item.name}}"
+               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
+        {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize
-                    placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
-        {{/if}}
+                    placeholder="{{localize "Description"}}"
+            {{readonly isLocked}}>{{~item.system.description}}</textarea>
+        {{/unless}}
       </div>
+
       <div class="grid-2" style="flex: 0; min-width: 128px; max-width: 128px; position: absolute; right: 0">
         <div class="icrpg-equipped-select {{checked item.system.equipped}}">
-          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}}>
+          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly noDescription}}>
         </div>
         <div class="icrpg-carried-select {{checked item.system.carried}}">
-          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}}>
+          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly noDescription}}>
         </div>
       </div>
+
     </div>
 
     <div class="icrpg-sep-long"></div>
@@ -24,15 +30,17 @@
 {{/inline}}
 
 {{#*inline "simpleItem"}}
-  <div class="icrpg-actor-item-loot item-editable" data-item-id="{{item._id}}"
+  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}" data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
     <div class="flex-row" style="align-items: flex-end; position: relative">
       <div style="margin-left: 4px;">
-        <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
-        {{#if (not noDescription)}}
+        <input type="text" data-target="name" value="{{item.name}}"
+               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
+        {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize
-                    placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
-        {{/if}}
+                    placeholder="{{localize "Description"}}"
+            {{readonly isLocked}}>{{~item.system.description}}</textarea>
+        {{/unless}}
       </div>
     </div>
     <div class="icrpg-sep-long"></div>
@@ -57,37 +65,50 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{> lootItem item=item}}
+      {{> lootItem item=item isLocked=../isLocked}}
     {{/each}}
-    {{> lootItem noDescription=true}}
-
+    {{#unless isLocked}}
+      {{> lootItem noDescription=true}}
+    {{/unless}}
 
   </div>
 
-  <div>
+<div>
+  {{#if (or (not isLocked) abilities.length)}}
     <div class="icrpg-sheet-bar">{{localize "ICRPG.abilities"}}</div>
     <div data-item-type="ability">
       {{#each abilities as | item |}}
-        {{> simpleItem item=item}}
+        {{> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
-      {{> simpleItem noDescription=true}}
+      {{#unless isLocked}}
+        {{> simpleItem noDescription=true}}
+      {{/unless}}
     </div>
+  {{/if}}
 
+  {{#if (or (not isLocked) powers.length)}}
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
     <div data-item-type="power">
       {{#each powers as | item |}}
-        {{> simpleItem item=item}}
+        {{> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
-      {{> simpleItem noDescription=true}}
+      {{#unless isLocked}}
+        {{> simpleItem noDescription=true}}
+      {{/unless}}
     </div>
+  {{/if}}
 
+  {{#if (or (not isLocked) augments.length)}}
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
     <div data-item-type="augment">
       {{#each augments as | item |}}
-        {{> simpleItem item=item}}
+        {{> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
-      {{> simpleItem noDescription=true}}
+      {{#unless isLocked}}
+        {{> simpleItem noDescription=true}}
+      {{/unless}}
     </div>
   </div>
+  {{/if}}
 
 </div>

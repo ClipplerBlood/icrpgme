@@ -64,6 +64,10 @@
     },
     "timer": "Timer",
     "easy": "Easy",
-    "hard": "Hard"
+    "hard": "Hard",
+    "notifications": {
+      "lockedSheet": "Locked sheet",
+      "unlockedSheet": "Unlocked sheet"
+    }
   }
 }

@@ -3,7 +3,7 @@
   {{#*inline "headerField"}}
     <div class="icrpg-header-field">
       <span class="ff-header">{{localize label}}</span>
-      <input type="text" name="{{name}}" value="{{value}}">
+      <input type="text" name="{{name}}" value="{{value}}" {{readonly isLocked}}>
     </div>
   {{/inline}}
 

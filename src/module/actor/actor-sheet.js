@@ -1,5 +1,6 @@
 import { requestRollDialog } from '../dialog/roll-dialogs.js';
 import { postItemMessage } from '../chat/chat-item.js';
+import { trimNewLineWhitespace } from '../utils/utils.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -69,7 +70,11 @@ export default class ICRPGActorSheet extends ActorSheet {
       const itemId = ct.closest('[data-item-id]').data('itemId');
       const itemType = ct.closest('[data-item-type]').data('itemType');
       const target = ct.closest('[data-target]').data('target');
-      const value = ct.prop('type') === 'checkbox' ? ct.prop('checked') : ct.val();
+      let value = ct.prop('type') === 'checkbox' ? ct.prop('checked') : ct.val();
+
+      // Trim starting whitespace
+      if (typeof value === 'string') value = trimNewLineWhitespace(value);
+      console.log(value);
 
       if (itemId) {
         this.actor.items.get(itemId).update({ [target]: value });

@@ -10,6 +10,10 @@ export function plusifyMod(x) {
   return x > 0 ? '+' + x : x < 0 ? x.toString() : '';
 }
 
+export function trimNewLineWhitespace(x) {
+  return x.replace(/^(\s+)/gm, '');
+}
+
 export const diceMap = {
   strength: '1d20',
   dexterity: '1d20',
@@ -32,6 +36,9 @@ Hooks.on('renderICRPGBaseApp', (app, html, data) => _onRenderInner(app, html, da
 function _onRenderInner(app, html, data) {
   _initializeAutosize(html);
   html.find('nav > *:not(.active)').click(() => setTimeout(() => _initializeAutosize(html), 20));
+  html.find('textarea').each((_, el) => {
+    el.value = trimNewLineWhitespace(el.value);
+  });
 }
 
 function _initializeAutosize(html) {

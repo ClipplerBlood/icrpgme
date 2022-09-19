@@ -1,4 +1,4 @@
-@mixin transparent-input {
+@mixin transparent-input($color: var(--c-red)) {
   border: none;
   background: none;
   &:focus,
@@ -8,9 +8,11 @@
     box-shadow: none;
   }
 
-  &:focus:not([readonly]),
-  &:hover:not([readonly]) {
-    color: var(--c-red);
+  @if $color {
+    &:focus:not([readonly]),
+    &:hover:not([readonly]) {
+      color: $color;
+    }
   }
 
   &[readonly] {
@@ -67,6 +69,7 @@ textarea[autosize] {
   overflow: hidden;
   resize: none;
   min-height: 0;
+  white-space: pre-line;
 }
 
 input[type='checkbox'][readonly] {

@@ -85,3 +85,9 @@ img.icrpg-chat-item-img {
   border: none;
   outline: 1px solid #999;
 }
+
+.icrpg-chat-description {
+  white-space: pre-line;
+  line-height: 1.1;
+  display: table; // Weird fix
+}

@@ -10,7 +10,8 @@
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
-            {{readonly isLocked}}>{{~item.system.description}}</textarea>
+            {{readonly isLocked}}>{{item.system.description}}</textarea>
+        {{log item.system.description}}
         {{/unless}}
       </div>
 
@@ -39,7 +40,7 @@
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
-            {{readonly isLocked}}>{{~item.system.description}}</textarea>
+            {{readonly isLocked}}>{{~item.system.description~}}</textarea>
         {{/unless}}
       </div>
     </div>
@@ -65,10 +66,10 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{> lootItem item=item isLocked=../isLocked}}
+      {{~> lootItem item=item isLocked=../isLocked}}
     {{/each}}
     {{#unless isLocked}}
-      {{> lootItem noDescription=true}}
+      {{~> lootItem noDescription=true}}
     {{/unless}}
 
   </div>
@@ -78,10 +79,10 @@
     <div class="icrpg-sheet-bar">{{localize "ICRPG.abilities"}}</div>
     <div data-item-type="ability">
       {{#each abilities as | item |}}
-        {{> simpleItem item=item isLocked=../isLocked}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
       {{#unless isLocked}}
-        {{> simpleItem noDescription=true}}
+        {{~> simpleItem noDescription=true}}
       {{/unless}}
     </div>
   {{/if}}
@@ -90,10 +91,10 @@
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
     <div data-item-type="power">
       {{#each powers as | item |}}
-        {{> simpleItem item=item isLocked=../isLocked}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
       {{#unless isLocked}}
-        {{> simpleItem noDescription=true}}
+        {{~> simpleItem noDescription=true}}
       {{/unless}}
     </div>
   {{/if}}
@@ -102,10 +103,10 @@
     <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
     <div data-item-type="augment">
       {{#each augments as | item |}}
-        {{> simpleItem item=item isLocked=../isLocked}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
       {{#unless isLocked}}
-        {{> simpleItem noDescription=true}}
+        {{~> simpleItem noDescription=true}}
       {{/unless}}
     </div>
   </div>

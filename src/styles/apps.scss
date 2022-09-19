@@ -35,12 +35,12 @@
   }
 
   input.icrpg-value {
-    @include transparent-input;
-    &:focus {
-      color: #111;
-    }
+    @include transparent-input(false);
     &:hover {
       color: #ddd;
+    }
+    &:focus {
+      color: #111 !important;
     }
   }
 
@@ -104,10 +104,10 @@
   }
 
   textarea.icrpg-timer-name {
-    @include transparent-input;
+    @include transparent-input(false);
     &:focus,
     &:hover {
-      color: #111;
+      color: #111 !important;
     }
   }
 }

@@ -8,7 +8,7 @@
         <input type="text" data-target="name" value="{{item.name}}"
                placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
-          <textarea data-target="system.description" autosize
+          <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
             {{readonly isLocked}}>{{~item.system.description}}</textarea>
         {{/unless}}
@@ -37,7 +37,7 @@
         <input type="text" data-target="name" value="{{item.name}}"
                placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
-          <textarea data-target="system.description" autosize
+          <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
             {{readonly isLocked}}>{{~item.system.description}}</textarea>
         {{/unless}}

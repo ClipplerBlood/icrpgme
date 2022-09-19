@@ -2,7 +2,7 @@
 
 .icrpg-actor-sheet {
   .window-content {
-    background: #202020;
+    background: #202020 !important;
   }
 
   #context-menu {
@@ -367,5 +367,15 @@
 
   .icrpg-carried-select.checked {
     background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
+  }
+}
+
+.item-clickable {
+  [data-target='name'] {
+    user-select: none; /* Likely future */
+  }
+  [data-target='name']:hover {
+    cursor: pointer !important;
+    color: var(--c-red);
   }
 }

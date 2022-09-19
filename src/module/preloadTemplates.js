@@ -8,6 +8,7 @@ export async function preloadTemplates() {
 
     // Chat messages
     'systems/icrpgme/templates/chat/roll.html',
+    'systems/icrpgme/templates/chat/item.html',
 
     // Apps
     'systems/icrpgme/templates/app/target-app.html',

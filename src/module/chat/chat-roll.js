@@ -1,3 +1,5 @@
+import { _getBaseMessageData } from './chat-common.js';
+
 async function _renderRollMessage(messageData, options = {}) {
   const rolls = messageData.rolls;
   console.log(rolls);
@@ -7,26 +9,6 @@ async function _renderRollMessage(messageData, options = {}) {
     }
   }
   return ChatMessage.create(messageData, options);
-}
-
-function _getBaseMessageData(actor = undefined, rolls = undefined) {
-  const rollMode = game.settings.get('core', 'rollMode');
-  return {
-    user: game.user.id,
-    speaker: {
-      actor: actor?.id,
-      token: actor?.token,
-      alias: actor?.name,
-    },
-    rolls: rolls,
-    blind: rollMode === 'blindroll',
-    whisper:
-      rollMode === 'selfroll'
-        ? [game.user.id]
-        : rollMode === 'gmroll' || rollMode === 'blindroll'
-        ? ChatMessage.getWhisperRecipients('GM')
-        : null,
-  };
 }
 
 export async function postRollMessage(actor, roll, options = { temporary: false }, messageData = {}) {

@@ -1,4 +1,5 @@
 import { requestRollDialog } from '../dialog/roll-dialogs.js';
+import { postItemMessage } from '../chat/chat-item.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -90,6 +91,12 @@ export default class ICRPGActorSheet extends ActorSheet {
         },
       },
     ]);
+
+    // Item click
+    html.find('.item-clickable input[data-target="name"]').click((ev) => {
+      const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
+      postItemMessage(this.actor, itemId);
+    });
   }
 
   _getHeaderButtons() {

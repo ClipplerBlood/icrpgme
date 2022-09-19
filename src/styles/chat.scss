@@ -75,3 +75,13 @@ textarea#chat-message,
   flex-wrap: wrap;
   gap: 2px;
 }
+
+img.icrpg-chat-item-img {
+  max-width: 25%;
+  object-fit: contain;
+  object-position: top;
+  height: fit-content;
+  float: right;
+  border: none;
+  outline: 1px solid #999;
+}

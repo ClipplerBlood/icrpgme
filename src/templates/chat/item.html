@@ -1,0 +1,11 @@
+{{log this}}
+<div class="icrpg-chat-title ff-header">
+  {{localizeType item}}: {{item.name}}
+</div>
+<div style="line-height: 1.1">
+  {{#if (and item.img (ne item.img 'icons/svg/item-bag.svg'))}}
+    <img class="icrpg-chat-item-img" src="{{item.img}}">
+  {{/if}}
+  {{item.system.description}}
+</div>
+

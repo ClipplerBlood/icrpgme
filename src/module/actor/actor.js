@@ -23,7 +23,8 @@ export class ICRPGActor extends Actor {
     defense.total = 10 + defense.loot + system.attributes.constitution.total;
 
     // Set health
-    system.health.total = system.health.hearts * 10;
+    system.health.max = system.health.hearts * 10;
+    system.health.value = system.health.max - system.health.damage;
   }
 
   /*

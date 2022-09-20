@@ -59,22 +59,11 @@ $ff-carlito: 'Carlito', 'Arial', sans-serif;
 $ff-chalkduster: 'Chalkduster', 'Arial', sans-serif;
 $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
 
-.fs-48 {
-  font-size: var(--font-size-48);
+@each $s in [11, 12, 13, 14, 16, 18, 20, 24, 28, 32, 48] {
+  .fs-#{$s} {
+    font-size: var(--font-size-#{$s});
+  }
 }
-
-.fs-32 {
-  font-size: var(--font-size-32);
-}
-
-.fs-28 {
-  font-size: var(--font-size-28);
-}
-
-.fs-11 {
-  font-size: var(--font-size-11);
-}
-
 .fs-8 {
   font-size: 8px;
 }
@@ -103,6 +92,10 @@ $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
   color: var(--c-red);
 }
 
-.t-center {
+.ta-center {
   text-align: center;
+}
+
+.ta-right {
+  text-align: right;
 }

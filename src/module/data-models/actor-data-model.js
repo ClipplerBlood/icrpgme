@@ -28,9 +28,19 @@ export class ICRPGActorDataModel extends foundry.abstract.DataModel {
       heroCoin: f.boolean(),
       health: f.schema({
         hearts: f.number({ min: 1, max: 5 }),
-        total: f.number({ min: 0, max: 50 }),
+        max: f.number({ min: 0, max: 50 }),
         damage: f.number({ min: 0 }),
-        current: f.number({ min: 0 }),
+        value: f.number({ min: 0 }),
+      }),
+      weight: f.schema({
+        carried: f.schema({
+          max: f.number({ initial: 10 }),
+          value: f.number(),
+        }),
+        equipped: f.schema({
+          max: f.number({ initial: 10 }),
+          value: f.number(),
+        }),
       }),
     };
   }

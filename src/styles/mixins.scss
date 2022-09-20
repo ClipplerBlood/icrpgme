@@ -34,8 +34,20 @@
   }
 }
 
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    flex: 1;
+  }
+}
+
 .flex-row {
   @include flex-row;
+}
+
+.flex-col {
+  @include flex-col;
 }
 
 @mixin hover {

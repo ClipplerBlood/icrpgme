@@ -11,6 +11,7 @@
     max-width: 0;
     min-width: 100%;
   }
+
   header {
     background: #202020;
     border-bottom: none !important;
@@ -187,7 +188,7 @@
     input {
       @extend .ff-header;
       @include transparent-input;
-      @extend .t-center;
+      @extend .ta-center;
       font-size: 32px;
       height: auto;
     }
@@ -224,8 +225,8 @@
 
   .icrpg-defense-box {
     @extend .ff-header;
-    @extend .fs-8;
-    @extend .t-center;
+    @extend .ta-center;
+    font-size: 8px;
     color: var(--c-light-grey);
     position: absolute;
     transform: translate(15px, 7px);
@@ -241,8 +242,8 @@
     .icrpg-defense-loot {
       @include transparent-input;
       @extend .ff-header;
-      @extend .fs-11;
-      @extend .t-center;
+      @extend .ta-center;
+      font-size: 11px;
       color: var(--c-light-grey);
       display: inline-block;
       width: 20px;
@@ -269,7 +270,7 @@
     width: 42px;
     @include transparent-input;
     @extend .ff-header;
-    @extend .t-center;
+    @extend .ta-center;
     font-size: 32px;
     height: 32px;
   }
@@ -298,12 +299,18 @@
   scrollbar-gutter: stable;
   width: calc(100% + 15px);
   padding-right: 8px;
+
   & > div:not(.active) {
     display: none;
   }
 }
+
 .icrpg-sheet.actor .icrpg-tab-container {
   height: 468px;
+}
+
+.icrpg-sheet.item .icrpg-tab-container {
+  height: 240px;
 }
 
 .icrpg-sheet-nav {
@@ -384,6 +391,7 @@
   [data-target='name'] {
     user-select: none; /* Likely future */
   }
+
   [data-target='name']:hover {
     cursor: pointer !important;
     color: var(--c-red);
@@ -403,12 +411,14 @@
     outline: 1px solid gainsboro;
     margin-right: 8px;
   }
+
   [name='name'] {
     @include transparent-input();
     @extend .ff-header;
     font-size: 24px;
     height: 24px;
   }
+
   [name='system.description'] {
     @include transparent-input();
     @extend .ff-content;
@@ -416,5 +426,38 @@
     line-height: 1;
     min-height: 64px;
     font-size: 16px;
+  }
+
+  [data-tab='item-bonuses'] {
+    & > .flex-row {
+      font-family: $ff-flatbread;
+      gap: 4px;
+
+      & > .flex-col {
+        gap: 4px;
+        font-size: 18px;
+        height: fit-content;
+
+        & > .flex-row {
+          align-items: center;
+          gap: 4px;
+          font-size: 16px;
+          justify-content: flex-start;
+
+          input {
+            height: 16px;
+            @include transparent-input;
+            padding: 0;
+            flex: 0;
+            width: 80px;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .value-0 input,
+    .value-0 {
+      color: var(--c-light-grey) !important;
+    }
   }
 }

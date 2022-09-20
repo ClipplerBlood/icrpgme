@@ -12,6 +12,8 @@
     "story": "Story",
     "base": "Base",
     "loot": "Loot",
+    "attributes": "Attributes",
+    "effects": "Effects",
     "attributesShort": {
       "strength": "STR",
       "dexterity": "DEX",
@@ -36,6 +38,12 @@
       "guns": "Guns",
       "energy": "Energy & Magic",
       "ultimate": "Ultimate"
+    },
+    "weight": {
+      "weight": "Weight",
+      "item": "Item Weight",
+      "carriedCapacity": "Carried capacity",
+      "equippedCapacity": "Equipped capacity"
     },
     "dying": "Dying",
     "dyingSubtitle": "1d4 rnds 'til dead",

@@ -52,8 +52,8 @@
             {{>bonusRow bonusValue=system.weight name="system.weight" loc="ICRPG.weight.item"}}
           {{/if}}
           {{#with system.bonuses.weight as |weight| }}
-            {{>bonusRow bonusValue=weight.carried name="system.bonuses.effects.weight.carried" loc="ICRPG.weight.carriedCapacity"}}
-            {{>bonusRow bonusValue=weight.equipped name="system.bonuses.effects.weight.carried" loc="ICRPG.weight.equippedCapacity"}}
+            {{>bonusRow bonusValue=weight.carried name="system.bonuses.weight.carried" loc="ICRPG.weight.carriedCapacity"}}
+            {{>bonusRow bonusValue=weight.equipped name="system.bonuses.weight.equipped" loc="ICRPG.weight.equippedCapacity"}}
           {{/with}}
         </div>
 

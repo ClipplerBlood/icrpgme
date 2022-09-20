@@ -14,6 +14,37 @@ export function trimNewLineWhitespace(x) {
   return x.replace(/^(\s+)/gm, '');
 }
 
+/**
+ * Builds an object containing the INNER NUMERICAL differences between two objects. NOT COMMUTATIVE
+ * EG: {x: {xx: 1}, y: "z"} - {x: {xx: 0, xy: 0}, y: "k"} => {x: {xx: 1}}
+ * TODO: Array case, change doc
+ * @param a
+ * @param b
+ * @param op
+ */
+export function innerNumericalOperation(a, b, op = (x, y) => x - y) {
+  let result = {};
+  for (let key of Object.keys(a)) {
+    const va = a[key];
+    const vb = b[key];
+    if (va == null || vb == null) continue;
+    if (typeof va !== typeof vb) continue;
+    if (typeof va === 'object') {
+      const diff = innerNumericalOperation(va, vb, op);
+      if (diff == null || Object.keys(diff).length === 0) continue;
+      result[key] = mergeObject(result[key] ?? {}, diff);
+      continue;
+    }
+
+    const na = Number(va);
+    const nb = Number(vb);
+    if (isNaN(na) || isNaN(nb)) return;
+    result[key] = op(na, nb);
+  }
+  if (Object.keys(result).length === 0) return;
+  return result;
+}
+
 export const diceMap = {
   strength: '1d20',
   dexterity: '1d20',

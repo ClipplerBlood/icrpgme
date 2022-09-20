@@ -9,13 +9,13 @@ export class ICRPGActor extends Actor {
     for (let k of Object.keys(system.attributes)) {
       const att = system.attributes[k];
       att.total = att.base + att.lifeform + att.loot;
-      att.total = Math.clamped(att.total, -6, 6);
+      att.total = Math.clamped(att.total, -10, 10);
     }
 
     for (let k of Object.keys(system.effects)) {
       const eff = system.effects[k];
       eff.total = eff.base + eff.lifeform + eff.loot;
-      eff.total = Math.clamped(eff.total, -9, 9);
+      eff.total = Math.clamped(eff.total, -10, 10);
     }
 
     // Set defense

@@ -6,21 +6,24 @@
 
       <div style="margin-left: 4px;">
         <input type="text" data-target="name" value="{{item.name}}"
-               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
+               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}} style="width: calc(100% - 100px);">
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
             {{readonly isLocked}}>{{item.system.description}}</textarea>
-        {{log item.system.description}}
+          {{log item.system.description}}
         {{/unless}}
       </div>
 
-      <div class="grid-2" style="flex: 0; min-width: 128px; max-width: 128px; position: absolute; right: 0">
+      <div class="grid-2"
+           style="flex: 0; min-width: 110px; max-width: 110px; margin-left:4px; position: absolute; right: 0">
         <div class="icrpg-equipped-select {{checked item.system.equipped}}">
-          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly noDescription}}>
+          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly
+            noDescription}}>
         </div>
         <div class="icrpg-carried-select {{checked item.system.carried}}">
-          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly noDescription}}>
+          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly
+            noDescription}}>
         </div>
       </div>
 
@@ -31,7 +34,8 @@
 {{/inline}}
 
 {{#*inline "simpleItem"}}
-  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}" data-item-id="{{item._id}}"
+  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
     <div class="flex-row" style="align-items: flex-end; position: relative">
       <div style="margin-left: 4px;">
@@ -54,7 +58,7 @@
     <div class="flex-row" style="align-items: center;">
       <div class="icrpg-sheet-bar">{{localize "ICRPG.loot"}}</div>
       <div class="grid-2 ff-header t-center"
-           style="font-size: 10px; flex: 0; min-width: 128px; max-width: 128px; height: 18px; gap: 0">
+           style="font-size: 10px; flex: 0; min-width: 110px; max-width: 110px; margin-left: 4px; height: 18px; gap: 0">
         <div>
           <div style="height: 10px">{{localize "ICRPG.equipped"}}</div>
           <div style="color: var(--c-light-grey)">MAX 10</div>

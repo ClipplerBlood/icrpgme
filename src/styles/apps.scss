@@ -36,9 +36,11 @@
 
   input.icrpg-value {
     @include transparent-input(false);
+
     &:hover {
       color: #ddd;
     }
+
     &:focus {
       color: #111 !important;
     }
@@ -51,8 +53,18 @@
     top: 0;
     font-size: 20px;
     font-family: $ff-nusaliver;
-    text-shadow: 0 0 4px grey;
+    color: rgba(17, 17, 17, 0.45);
+
+    &:hover {
+      color: rgba(17, 17, 17, 0.68);
+    }
   }
+}
+
+.icrpg-app-timer,
+.icrpg-app-target {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
 }
 
 .icrpg-timer-container,
@@ -60,6 +72,8 @@
   height: 128px;
   width: 128px;
   background-size: 100% 100%;
+  -webkit-filter: blur(1px);
+  filter: blur(1px);
 }
 
 .icrpg-target-container {
@@ -77,15 +91,21 @@
     font-family: $ff-nusaliver;
     font-size: 20px;
     text-align: center;
-    text-shadow: 0 0 4px grey;
     color: #111;
   }
+
   .icrpg-easy-hard-selector {
+    color: rgba(17, 17, 17, 0.45);
+
+    & > div:hover {
+      color: rgba(17, 17, 17, 0.68);
+    }
+
     & > .checked {
-      color: var(--c-red);
-      text-shadow: 0 0 4px #111;
+      color: rgba(17, 17, 17, 0.89);
     }
   }
+
   .icrpg-easy-hard-number {
     position: absolute;
     right: -17px;
@@ -99,12 +119,12 @@
     font-family: $ff-nusaliver;
     font-size: 20px;
     text-align: center;
-    text-shadow: 0 0 4px grey;
     color: #111;
   }
 
   textarea.icrpg-timer-name {
     @include transparent-input(false);
+
     &:focus,
     &:hover {
       color: #111 !important;

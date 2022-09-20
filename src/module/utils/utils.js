@@ -35,7 +35,7 @@ Hooks.on('renderICRPGBaseApp', (app, html, data) => _onRenderInner(app, html, da
 // eslint-disable-next-line no-unused-vars
 function _onRenderInner(app, html, data) {
   _initializeAutosize(html);
-  html.find('nav > *:not(.active)').click(() => setTimeout(() => _initializeAutosize(html), 20));
+  html.find('nav > *').click(() => setTimeout(() => _initializeAutosize(html), 5));
   html.find('textarea').each((_, el) => {
     el.value = trimNewLineWhitespace(el.value);
   });

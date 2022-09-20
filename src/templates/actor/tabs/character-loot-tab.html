@@ -1,4 +1,4 @@
-{{#* inline "lootItem"}}
+{{#* inline "simpleItem"}}
   <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
        data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
@@ -6,48 +6,31 @@
 
       <div style="margin-left: 4px;">
         <input type="text" data-target="name" value="{{item.name}}"
-               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}} style="width: calc(100% - 100px);">
+               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}
+          {{#if showButtons}}style="width: calc(100% - 100px);"{{/if}}>
+
         {{#unless (or noDescription (and isLocked (not item.system.description)))}}
           <textarea data-target="system.description" autosize spellcheck="false"
                     placeholder="{{localize "Description"}}"
             {{readonly isLocked}}>{{item.system.description}}</textarea>
-          {{log item.system.description}}
         {{/unless}}
-      </div>
 
-      <div class="grid-2"
-           style="flex: 0; min-width: 110px; max-width: 110px; margin-left:4px; position: absolute; right: 0">
-        <div class="icrpg-equipped-select {{checked item.system.equipped}}">
-          <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly
-            noDescription}}>
-        </div>
-        <div class="icrpg-carried-select {{checked item.system.carried}}">
-          <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly
-            noDescription}}>
-        </div>
       </div>
-
+      {{#if showButtons}}
+        <div class="grid-2"
+             style="flex: 0; min-width: 110px; max-width: 110px; margin-left:4px; position: absolute; right: 0">
+          <div class="icrpg-equipped-select {{checked item.system.equipped}}">
+            <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly
+              noDescription}}>
+          </div>
+          <div class="icrpg-carried-select {{checked item.system.carried}}">
+            <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly
+              noDescription}}>
+          </div>
+        </div>
+      {{/if}}
     </div>
 
-    <div class="icrpg-sep-long"></div>
-  </div>
-{{/inline}}
-
-{{#*inline "simpleItem"}}
-  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
-       data-item-id="{{item._id}}"
-       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
-    <div class="flex-row" style="align-items: flex-end; position: relative">
-      <div style="margin-left: 4px;">
-        <input type="text" data-target="name" value="{{item.name}}"
-               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
-        {{#unless (or noDescription (and isLocked (not item.system.description)))}}
-          <textarea data-target="system.description" autosize spellcheck="false"
-                    placeholder="{{localize "Description"}}"
-            {{readonly isLocked}}>{{~item.system.description~}}</textarea>
-        {{/unless}}
-      </div>
-    </div>
     <div class="icrpg-sep-long"></div>
   </div>
 {{/inline}}
@@ -70,10 +53,10 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{~> lootItem item=item isLocked=../isLocked}}
+      {{~> simpleItem item=item isLocked=../isLocked showButtons=true}}
     {{/each}}
     {{#unless isLocked}}
-      {{~> lootItem noDescription=true}}
+      {{~> simpleItem noDescription=true showButtons=true}}
     {{/unless}}
 
   </div>

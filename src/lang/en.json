@@ -68,6 +68,9 @@
     "notifications": {
       "lockedSheet": "Locked sheet",
       "unlockedSheet": "Unlocked sheet"
+    },
+    "contextMenu": {
+      "openItem": "Open Item"
     }
   }
 }

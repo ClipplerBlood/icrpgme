@@ -1,6 +1,6 @@
 import { requestRollDialog } from '../dialog/roll-dialogs.js';
 import { postItemMessage } from '../chat/chat-item.js';
-import { trimNewLineWhitespace } from '../utils/utils.js';
+import { i18n, trimNewLineWhitespace } from '../utils/utils.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -85,17 +85,28 @@ export default class ICRPGActorSheet extends ActorSheet {
     });
 
     // Items context menu
-    ContextMenu.create(this, html, '.item-editable', [
+    let itemContextMenu = [
       {
-        name: 'Delete',
+        name: i18n('ICRPG.contextMenu.openItem'),
+        icon: '<i class="fas fa-scroll"></i>',
+        callback: (header) => {
+          const itemId = header.closest('[data-item-id]').data('itemId');
+          this.actor.items.get(itemId)?.sheet.render(true);
+        },
+      },
+    ];
+
+    if (!(this.isLocked ?? true))
+      itemContextMenu.push({
+        name: i18n('Delete'),
         icon: '<i class="fas fa-times"></i>',
         condition: this.actor.isOwner,
         callback: (header) => {
           const itemId = header.closest('[data-item-id]').data('itemId');
           this.actor.items.get(itemId)?.delete();
         },
-      },
-    ]);
+      });
+    ContextMenu.create(this, html, '.icrpg-actor-item-loot', itemContextMenu);
 
     // Item click
     html.find('.item-clickable input[data-target="name"]').click((ev) => {

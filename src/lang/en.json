@@ -44,7 +44,9 @@
     "hp": "HP",
     "tabs": {
       "character": "Character",
-      "lootAbilities": "Loot & Abilities"
+      "lootAbilities": "Loot & Abilities",
+      "item": "Item",
+      "bonuses": "Bonuses"
     },
     "abilities": "Abilities",
     "powers": "Powers",

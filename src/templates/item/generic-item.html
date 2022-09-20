@@ -1,0 +1,27 @@
+{{log this}}
+<form autocomplete="off">
+  <div>
+    <div class="flex-row" style="align-items: center">
+      <img alt="{{item.name}}" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+      <input type="text" name="name" value="{{item.name}}">
+    </div>
+  </div>
+  <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>
+  <section class="icrpg-tab-container">
+    <div data-group="primary-tabs" data-tab="primary">
+      <textarea name="system.description" autosize spellcheck="false"
+                placeholder="{{localize "Description"}}">{{system.description}}</textarea>
+    </div>
+    <div data-group="primary-tabs" data-tab="item-bonuses">
+      BONUSES
+    </div>
+  </section>
+
+  <nav class="icrpg-sheet-nav" data-group="primary-tabs">
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">
+      {{localize "ICRPG.tabs.item"}}</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="item-bonuses">
+      {{localize "ICRPG.tabs.bonuses"}}</a>
+  </nav>
+
+</form>

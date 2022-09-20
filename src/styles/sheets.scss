@@ -1,8 +1,10 @@
 @import 'mixins';
+@import 'typography';
 
-.icrpg-actor-sheet {
+.icrpg-sheet {
   .window-content {
     background: #202020 !important;
+    overflow: hidden;
   }
 
   #context-menu {
@@ -114,7 +116,7 @@
 }
 
 .icrpg-actor-main {
-  padding: 16px 0;
+  padding-top: 16px;
   display: flex;
 
   & > div {
@@ -291,9 +293,17 @@
 }
 
 .icrpg-tab-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  width: calc(100% + 15px);
+  padding-right: 8px;
   & > div:not(.active) {
     display: none;
   }
+}
+.icrpg-sheet.actor .icrpg-tab-container {
+  height: 468px;
 }
 
 .icrpg-sheet-nav {
@@ -377,5 +387,34 @@
   [data-target='name']:hover {
     cursor: pointer !important;
     color: var(--c-red);
+  }
+}
+
+// ========= ITEM SHEET =========
+.icrpg-sheet.item {
+  img {
+    height: 64px;
+    width: 64px;
+    background: gainsboro;
+    object-fit: cover;
+    flex: 0;
+    border-radius: 2px;
+    border: 3px solid;
+    outline: 1px solid gainsboro;
+    margin-right: 8px;
+  }
+  [name='name'] {
+    @include transparent-input();
+    @extend .ff-header;
+    font-size: 24px;
+    height: 24px;
+  }
+  [name='system.description'] {
+    @include transparent-input();
+    @extend .ff-content;
+    padding: 0;
+    line-height: 1;
+    min-height: 64px;
+    font-size: 16px;
   }
 }

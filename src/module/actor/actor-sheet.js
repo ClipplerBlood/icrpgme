@@ -5,7 +5,7 @@ import { i18n, trimNewLineWhitespace } from '../utils/utils.js';
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['icrpg-actor-sheet'],
+      classes: ['icrpg-sheet actor'],
       width: 920,
       height: 620,
       tabs: [
@@ -16,7 +16,8 @@ export default class ICRPGActorSheet extends ActorSheet {
           initial: 'primary',
         },
       ],
-      scrollY: [],
+      scrollY: ['.icrpg-tab-container'],
+      resizable: false,
     });
   }
 
@@ -119,7 +120,11 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Get default buttons, removing the sheet configuration
     let buttons = super._getHeaderButtons();
     buttons = buttons.filter((b) => b.class !== 'configure-sheet');
+    buttons = this._addLockedButton(buttons);
+    return buttons;
+  }
 
+  _addLockedButton(buttons) {
     // Callback
     const lockCb = (ev) => {
       ev.stopPropagation();
@@ -140,7 +145,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       ui.notifications.info(notification, { localize: true });
     };
 
-    // Add the button (TODO: refactor a bit)
+    // Add the button
     const isLocked = this.isLocked ?? true;
     buttons.unshift({
       label: '',

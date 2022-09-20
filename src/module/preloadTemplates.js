@@ -6,6 +6,9 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/actor/tabs/character-primary-tab.html',
     'systems/icrpgme/templates/actor/tabs/character-loot-tab.html',
 
+    // Item sheet
+    'systems/icrpgme/templates/item/generic-item.html',
+
     // Chat messages
     'systems/icrpgme/templates/chat/roll.html',
     'systems/icrpgme/templates/chat/item.html',

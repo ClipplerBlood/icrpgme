@@ -15,14 +15,17 @@ export function trimNewLineWhitespace(x) {
 }
 
 /**
- * Builds an object containing the INNER NUMERICAL differences between two objects. NOT COMMUTATIVE
- * EG: {x: {xx: 1}, y: "z"} - {x: {xx: 0, xy: 0}, y: "k"} => {x: {xx: 1}}
- * TODO: Array case, change doc
+ * Builds an object containing the INNER NUMERICAL result from the operator between two objects. NOT COMMUTATIVE
+ * EG : innerNumericalOperation(
+ *      {x: {xx: 1}, y: "z"},
+ *      {x: {xx: 0, xy: 0}, y: "k"},
+ *      (x,y) => x-y)
+ *  = {x: {xx: 1}}
  * @param a
  * @param b
- * @param op
+ * @param  {function} op
  */
-export function innerNumericalOperation(a, b, op = (x, y) => x - y) {
+export function innerNumericalOperation(a, b, op) {
   let result = {};
   for (let key of Object.keys(a)) {
     const va = a[key];

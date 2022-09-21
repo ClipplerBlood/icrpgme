@@ -1,23 +1,30 @@
 import { innerNumericalOperation } from '../utils/utils.js';
 
 export class ICRPGItem extends Item {
-  // Note: pre update operations occur only for the client who requested
   async _preUpdate(changes, options, user) {
     await super._preUpdate(changes, options, user);
-    this._applyParentChanges(this.system.bonuses, +1, changes.system?.bonuses);
+
+    // Handle equipping/unequipping
+    if (changes?.system?.equipped != null) {
+      const sign = changes.system.equipped ? +1 : -1;
+      this._applyParentChanges(this.system.bonuses, sign, changes.system?.bonuses);
+    }
+
+    // Handle plain bonus update
+    else if (this._isActive) this._applyParentChanges(this.system.bonuses, +1, changes.system?.bonuses);
   }
 
-  _preCreate(data, options, userId) {
-    super._preCreate(data, options, userId);
-    this._applyParentChanges(this.system.bonuses, +1);
+  async _preCreate(data, options, userId) {
+    await super._preCreate(data, options, userId);
+    if (this._isActive) this._applyParentChanges(this.system.bonuses, +1);
   }
 
-  _preDelete(options, user) {
-    super._preDelete(options, user);
-    this._applyParentChanges(this.system.bonuses, -1);
+  async _preDelete(options, user) {
+    await super._preDelete(options, user);
+    if (this._isActive) this._applyParentChanges(this.system.bonuses, -1);
   }
 
-  _applyParentChanges(bonusData, sign, bonusChanges = undefined) {
+  async _applyParentChanges(bonusData, sign, bonusChanges = undefined) {
     // If changes are provided, calculate the inner difference between the changes and the bonus data (used in _preUpdate)
     if (!this.parent) return;
     if (bonusChanges) bonusData = innerNumericalOperation(bonusChanges, bonusData, (x, y) => x - y);
@@ -28,6 +35,10 @@ export class ICRPGItem extends Item {
     return this.parent.update({
       system: innerNumericalOperation(sysDiff, this.parent.system, (x, y) => sign * x + y),
     });
+  }
+
+  get _isActive() {
+    return this.system.equipped || this.type !== 'loot';
   }
 
   _applySuffix(bonusData) {

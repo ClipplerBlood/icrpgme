@@ -27,7 +27,7 @@ export class ICRPGActorDataModel extends foundry.abstract.DataModel {
       dyingRounds: f.number({ min: 0, max: 9 }),
       heroCoin: f.boolean(),
       health: f.schema({
-        hearts: f.number({ min: 1, max: 5 }),
+        hearts: f.number({ min: 0, max: 5, initial: 1 }),
         max: f.number({ min: 0, max: 50 }),
         damage: f.number({ min: 0 }),
         value: f.number({ min: 0 }),

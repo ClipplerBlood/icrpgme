@@ -26,7 +26,7 @@ export class ICRPGItem extends Item {
     // Add the correct suffixes to the bonuses keys, then calculate the inner sum between the bonus data and the parent data
     let sysDiff = this._applySuffix(bonusData);
     return this.parent.update({
-      system: innerNumericalOperation(sysDiff, this.parent.system, (x, y) => x + sign * y),
+      system: innerNumericalOperation(sysDiff, this.parent.system, (x, y) => sign * x + y),
     });
   }
 

@@ -48,7 +48,7 @@ export class ICRPGActor extends Actor {
     // TODO refactor
     // Get the attribute, either in attributes or efforts
     const attribute = this.system[group][name];
-    if (!attribute) throw `Attribute ${group}.${name} not found in actor`;
+    if (attribute == null) throw `Attribute ${group}.${name} not found in actor`;
     const dice = diceMap[name];
 
     // Determine the modifier, depending on if actor or monster

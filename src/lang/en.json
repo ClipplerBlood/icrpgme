@@ -21,7 +21,8 @@
       "intelligence": "INT",
       "wisdom": "WIS",
       "charisma": "CHA",
-      "defense": "DEF"
+      "defense": "DEF",
+      "all": "STATS"
     },
     "attributesLong": {
       "strength": "Strength",
@@ -37,7 +38,16 @@
       "weapons": "Weapons & Tools",
       "guns": "Guns",
       "energy": "Energy & Magic",
-      "ultimate": "Ultimate"
+      "ultimate": "Ultimate",
+      "all": "Effort"
+    },
+    "monsterEffects": {
+      "basic": "BASIC EFFORT",
+      "weapons": "WEAPONS EFFORT",
+      "guns": "GUNS EFFORT",
+      "energy": "MAGIC EFFORT",
+      "ultimate": "ULTIMATE EFFORT",
+      "all": "EFFORT"
     },
     "weight": {
       "weight": "Weight",
@@ -81,6 +91,15 @@
     },
     "contextMenu": {
       "openItem": "Open Item"
-    }
+    },
+    "monsterSheet": {
+      "extraAction": "Extra Action",
+      "extraHealth": "Extra Health",
+      "allRolls": "All rolls",
+      "actionName": "Action Name",
+      "actionDescription": "Action Description",
+      "monsterDescription": "Monster Description"
+    },
+    "other": "Other"
   }
 }

@@ -1,18 +1,8 @@
 {
   "Actor": {
-    "types": ["character", "monster"],
-    "templates": {
-      "base": {}
-    },
-    "character": {
-      "templates": ["base"]
-    },
-    "monster": {
-      "templates": ["base"]
-    }
+    "types": ["character", "monster"]
   },
   "Item": {
-    "types": ["loot", "ability", "power", "augment"],
-    "templates": {}
+    "types": ["loot", "ability", "power", "augment"]
   }
 }

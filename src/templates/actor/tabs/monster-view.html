@@ -1,0 +1,50 @@
+<div class="grid-3">
+  <div class="col-2">
+    <div class="icrpg-hp-container" style="display: flex; height: 22px">
+      {{>heart index=0}}
+      {{>heart index=1}}
+      {{>heart index=2}}
+      {{>heart index=3}}
+      {{>heart index=4}}
+      {{>heart index=5}}
+      {{>heart index=6}}
+      {{>heart index=7}}
+      {{>heart index=8}}
+      {{>heart index=9}}
+      {{#if system.extraHealth}}
+        <div style="font-family: 'Carlito', sans-serif; font-size: 16px; font-weight: bold;">{{system.extraHealth}}</div>
+      {{/if}}
+    </div>
+
+    {{#*inline "attribute"}}
+      {{#if prop}}
+        <span>{{plusify prop}} {{localizeConcat locPrefix key}}</span>
+      {{/if}}
+    {{/inline}}
+
+    <div class="icrpg-monster-attributes view">
+      {{#each system.attributes as |prop key|}}
+        {{>attribute prop=prop key=key locPrefix="ICRPG.attributesShort."}}
+      {{/each}}
+      {{#each system.effects as |prop key|}}
+        {{>attribute prop=prop key=key locPrefix="ICRPG.monsterEffects."}}
+      {{/each}}
+      {{#if system.extraAction}}
+        <span>{{system.extraAction}}</span>
+      {{/if}}
+    </div>
+
+    <div class="icrpg-sep-monster-half" style="width: 80%;"></div>
+
+    <div class="icrpg-monster-actions-container">
+      {{#each system.monsterActions as |action index|}}
+        <div><b style="text-transform: uppercase">{{action.name}}: </b>{{action.description}}</div>
+      {{/each}}
+    </div>
+
+    <div class="icrpg-monster-description">{{system.description}}</div>
+  </div>
+  <div class="col-1 monster-image-container">
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}"/>
+  </div>
+</div>

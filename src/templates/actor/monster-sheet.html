@@ -1,0 +1,39 @@
+{{#* inline "selectableHeart"}}
+  <div class="icrpg-selectable-heart" data-index="{{index}}">
+    {{#if (gt system.health.hearts index)}}
+      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+    {{else}}
+      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp" style="filter: contrast(0)">
+    {{/if}}
+  </div>
+{{/inline}}
+
+{{#* inline "heart"}}
+  {{#if (gt system.health.hearts index)}}
+    <div class="icrpg-heart">
+      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+    </div>
+  {{/if}}
+{{/inline}}
+
+
+<form autocomplete="off" class="icrpg-monster-sheet">
+  <div class="icrpg-monster-header">
+    <input type="text" name="name" value="{{actor.name}}" {{readonly isLocked}}>
+  </div>
+
+  <section class="icrpg-tab-container">
+    <div data-group="primary-tabs" data-tab="primary">
+      {{#if isLocked}}
+        {{> "systems/icrpgme/templates/actor/tabs/monster-view.html"}}
+      {{else}}
+        {{> "systems/icrpgme/templates/actor/tabs/monster-edit.html"}}
+      {{/if}}
+    </div>
+  </section>
+
+  <nav class="icrpg-sheet-nav" data-group="primary-tabs" style="display: none">
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">{{localize "ICRPG.tabs.character"}}</a>
+  </nav>
+
+</form>

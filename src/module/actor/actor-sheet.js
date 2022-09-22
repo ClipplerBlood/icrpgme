@@ -22,7 +22,8 @@ export default class ICRPGActorSheet extends ActorSheet {
   }
 
   get template() {
-    return 'systems/icrpgme/templates/actor/character-sheet.html';
+    if (this.actor.type === 'character') return 'systems/icrpgme/templates/actor/character-sheet.html';
+    else return 'systems/icrpgme/templates/actor/monster-sheet.html';
   }
 
   async getData() {
@@ -51,6 +52,8 @@ export default class ICRPGActorSheet extends ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+    if (this.actor.type === 'character') this._activateCharacterListeners(html);
+    else if (this.actor.type === 'monster') this._activateMonsterListeners(html);
 
     // Hearts selector
     html.find('.icrpg-selectable-heart').click((ev) => {
@@ -64,7 +67,9 @@ export default class ICRPGActorSheet extends ActorSheet {
       if (ev.altKey) requestRollDialog(this.actor, rollName);
       else this.actor.roll(rollName);
     });
+  }
 
+  _activateCharacterListeners(html) {
     // Items editor
     html.find('.item-editable input, .item-editable textarea, input[type="checkbox"]').change((ev) => {
       const ct = $(ev.currentTarget);
@@ -116,6 +121,32 @@ export default class ICRPGActorSheet extends ActorSheet {
     });
   }
 
+  _activateMonsterListeners(html) {
+    // Monster Actions
+    html.find('.monster-action.edit input, .monster-action.edit textarea').on('change', (ev) => {
+      console.log(ev);
+      const ct = $(ev.currentTarget);
+      const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
+      const target = ct.closest('[data-target]').data('target');
+      const value = ct.val();
+
+      let monsterActions = this.actor.system.monsterActions;
+      console.log(actionIndex, target, value);
+      if (actionIndex < 0) {
+        monsterActions.push({
+          name: target === 'name' ? value : '',
+          description: '',
+        });
+      } else {
+        const action = monsterActions[actionIndex];
+        action.name = target === 'name' ? value : action.name;
+        action.description = target === 'description' ? value : action.description;
+      }
+      this.actor.update({ 'system.monsterActions': monsterActions });
+    });
+  }
+
+  // --------------------------------------------------------------------------
   _getHeaderButtons() {
     // Get default buttons, removing the sheet configuration
     let buttons = super._getHeaderButtons();

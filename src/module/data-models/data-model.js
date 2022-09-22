@@ -25,4 +25,8 @@ export const attributef = (m = 6) =>
     loot: bnf(m),
   });
 
+// Schema
 export const schema = (obj, options = {}) => new f.SchemaField(obj, options);
+
+// Array
+export const array = (element, options = {}) => new f.ArrayField(element, options);

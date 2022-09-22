@@ -1,0 +1,90 @@
+<div class="grid-3">
+  <div class="col-2">
+    <div class="icrpg-hp-container" style="display: flex; height: 32px">
+      {{>selectableHeart index=0}}
+      {{>selectableHeart index=1}}
+      {{>selectableHeart index=2}}
+      {{>selectableHeart index=3}}
+      {{>selectableHeart index=4}}
+      {{>selectableHeart index=5}}
+      {{>selectableHeart index=6}}
+      {{>selectableHeart index=7}}
+      {{>selectableHeart index=8}}
+      {{>selectableHeart index=9}}
+    </div>
+
+    <div class="icrpg-monster-attributes edit">
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.attributes"}}</div>
+        {{#each system.attributes as |prop key|}}
+          <div class="flex-row value-{{prop}}">
+            <input type="number" value="{{prop}}" name="system.attributes.{{key}}">
+            <div>{{localizeConcat "ICRPG.attributesShort." key}}</div>
+          </div>
+        {{/each}}
+      </div>
+
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.effects"}}</div>
+        {{#each system.effects as |prop key|}}
+          <div class="flex-row value-{{prop}}">
+            <input type="number" value="{{prop}}" name="system.effects.{{key}}">
+            <div>{{localizeConcat "ICRPG.effectDice." key}}</div>
+          </div>
+        {{/each}}
+      </div>
+
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.other"}}</div>
+        <div class="flex-row value-{{system.allRollsMod}}">
+          <input type="number" value="{{system.allRollsMod}}" name="system.allRollsMod">
+          <div>{{localize "ICRPG.monsterSheet.allRolls"}}</div>
+        </div>
+        <div class="flex-row">
+            <textarea name="system.extraAction" autosize
+                      placeholder="{{localize "ICRPG.monsterSheet.extraAction"}}">{{system.extraAction}}</textarea>
+        </div>
+        <div class="flex-row">
+            <textarea name="system.extraHealth" autosize
+                      placeholder="{{localize "ICRPG.monsterSheet.extraHealth"}}">{{system.extraHealth}}</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="icrpg-sep-monster-half" style="width: 80%;"></div>
+    <div class="icrpg-monster-actions-container">
+      {{#each system.monsterActions as |action index|}}
+        {{> actionEdit index=index action=action}}
+      {{/each}}
+      {{> actionEdit index=-1 noDescription=true}}
+    </div>
+
+    <div class="icrpg-monster-description">
+  <textarea name="system.description" autosize spellcheck="false"
+            placeholder="{{localize "ICRPG.monsterSheet.monsterDescription"}}">{{system.description}}</textarea>
+    </div>
+  </div>
+
+  <div class="col-1 monster-image-container">
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+  </div>
+
+</div>
+
+
+{{#* inline "actionEdit"}}
+  <div class="monster-action edit" data-action-index="{{index}}">
+    <input type="text" value="{{action.name}}" data-target="name"
+           placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
+    {{#unless noDescription}}
+      <textarea placeholder="{{localize "ICRPG.monsterSheet.actionDescription"}}" spellcheck="false" autosize
+                data-target="description">{{action.description}}</textarea>
+    {{/unless}}
+  </div>
+{{/inline}}
+
+
+
+

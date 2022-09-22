@@ -1,6 +1,7 @@
 @mixin transparent-input($color: var(--c-red)) {
   border: none;
   background: none;
+  padding: 0;
   &:focus,
   &:hover {
     border: none;
@@ -74,6 +75,13 @@
   background-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar-long.webp');
   background-size: 100% 100%;
   margin-top: -1px;
+}
+
+.icrpg-sep-monster-half {
+  width: 50%;
+  height: 10px;
+  background-image: url('../assets/ui/backgrounds/bg-bar-3.webp');
+  background-size: 100% 100%;
 }
 
 textarea[autosize] {

@@ -7,6 +7,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('localizationHas', (x) => game.i18n.has(x));
   Handlebars.registerHelper('localizeType', (d) => i18n(`${d.documentName.toUpperCase()}.Type${d.type.titleCase()}`));
   Handlebars.registerHelper('readonly', (x) => (x ? 'readonly' : ''));
+  Handlebars.registerHelper('plusify', (x) => (x > 0 ? '+' + x : String(x)));
 }
 
 function _localizeConcat(...args) {

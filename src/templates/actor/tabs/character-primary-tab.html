@@ -1,5 +1,5 @@
 {{#* inline "attributeBlock"}}
-  <div data-attribute="{{attributeName}}" class="icrpg-attribute-block">
+  <div data-attribute="{{attributeName}}" data-group="attributes" class="icrpg-attribute-block">
     {{#with (lookup system.attributes attributeName) as | attribute |}}
       <div class="ff-header" style="font-size: 48px">
         {{localizeConcat "ICRPG.attributesShort." ../attributeName}}
@@ -36,7 +36,7 @@
 {{/inline}}
 
 {{#* inline "effortBlock"}}
-  <div data-attribute="{{effortName}}" class="icrpg-attribute-block">
+  <div data-attribute="{{effortName}}" data-group="efforts" class="icrpg-attribute-block">
     {{#with (lookup system.efforts effortName) as | effort |}}
       <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
         {{localizeConcat "ICRPG.effortsLong." ../effortName}}

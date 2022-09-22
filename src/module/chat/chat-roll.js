@@ -2,7 +2,6 @@ import { _getBaseMessageData } from './chat-common.js';
 
 async function _renderRollMessage(messageData, options = {}) {
   const rolls = messageData.rolls;
-  console.log(rolls);
   if (rolls && game.dice3d) {
     for (let roll of rolls) {
       await game.dice3d.showForRoll(roll, game.user, true, messageData.whisper, messageData.blind);

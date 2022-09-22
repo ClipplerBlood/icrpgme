@@ -63,9 +63,10 @@ export default class ICRPGActorSheet extends ActorSheet {
 
     // Rolls
     html.find('[data-roll]').click((ev) => {
-      const rollName = $(ev.currentTarget).data('roll');
-      if (ev.altKey) requestRollDialog(this.actor, rollName);
-      else this.actor.roll(rollName);
+      const rollName = $(ev.currentTarget).closest('[data-roll]').data('roll');
+      const rollGroup = $(ev.currentTarget).closest('[data-group]').data('group');
+      if (ev.altKey) requestRollDialog(this.actor, rollName, rollGroup);
+      else this.actor.roll(rollName, rollGroup);
     });
   }
 
@@ -80,7 +81,6 @@ export default class ICRPGActorSheet extends ActorSheet {
 
       // Trim starting whitespace
       if (typeof value === 'string') value = trimNewLineWhitespace(value);
-      console.log(value);
 
       if (itemId) {
         this.actor.items.get(itemId).update({ [target]: value });
@@ -122,25 +122,28 @@ export default class ICRPGActorSheet extends ActorSheet {
   }
 
   _activateMonsterListeners(html) {
-    // Monster Actions
+    // Monster Actions edit
     html.find('.monster-action.edit input, .monster-action.edit textarea').on('change', (ev) => {
-      console.log(ev);
       const ct = $(ev.currentTarget);
       const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
       const target = ct.closest('[data-target]').data('target');
       const value = ct.val();
 
       let monsterActions = this.actor.system.monsterActions;
-      console.log(actionIndex, target, value);
       if (actionIndex < 0) {
+        // Create
         monsterActions.push({
           name: target === 'name' ? value : '',
           description: '',
         });
       } else {
+        // Update
         const action = monsterActions[actionIndex];
         action.name = target === 'name' ? value : action.name;
         action.description = target === 'description' ? value : action.description;
+
+        // Delete
+        if (!action.name.length) monsterActions.splice(actionIndex, 1);
       }
       this.actor.update({ 'system.monsterActions': monsterActions });
     });

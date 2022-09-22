@@ -22,9 +22,9 @@ export function createRollDialog(rollCallback) {
   d.render(true);
 }
 
-export function requestRollDialog(actor, rollName) {
+export function requestRollDialog(actor, rollName, rollGroup) {
   createRollDialog((html) => {
     const chosenMod = parseInt(html.find('[name="mod"]').val()) ?? 0;
-    actor.roll(rollName, { mod: chosenMod });
+    actor.roll(rollName, rollGroup, { mod: chosenMod });
   });
 }

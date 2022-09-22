@@ -51,8 +51,6 @@ export class ICRPGBaseApp extends Application {
   }
 
   static async create(icrpgID, callerID) {
-    console.log('calling create', icrpgID, callerID);
-
     // Create a new application
     const app = new this();
     app.icrpgID = icrpgID;

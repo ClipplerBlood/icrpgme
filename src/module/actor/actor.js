@@ -44,17 +44,17 @@ export class ICRPGActor extends Actor {
   ROLLS
    */
 
-  async roll(name, options = { mod: 0, targetOffset: 0 }) {
+  async roll(name, group, options = { mod: 0, targetOffset: 0 }) {
     // TODO refactor
     // Get the attribute, either in attributes or efforts
-    const attribute = this.system.attributes[name] ?? this.system.efforts[name];
-    if (!attribute) throw `Attribute ${name} not found in actor`;
+    const attribute = this.system[group][name];
+    if (!attribute) throw `Attribute ${group}.${name} not found in actor`;
     const dice = diceMap[name];
 
     // Determine the modifier, depending on if actor or monster
     let mod = parseInt(options.mod);
     if (this.type === 'character') mod += attribute.total;
-    else if (this.type === 'monster') mod = attribute + this.system;
+    else if (this.type === 'monster') mod = attribute + this.system[group].all + this.system.allRollsMod;
 
     // Only exception to mod: defense
     if (name === 'defense') mod -= 10;

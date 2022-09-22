@@ -13,7 +13,7 @@
     "base": "Base",
     "loot": "Loot",
     "attributes": "Attributes",
-    "effects": "Effects",
+    "efforts": "Efforts",
     "attributesShort": {
       "strength": "STR",
       "dexterity": "DEX",
@@ -33,7 +33,7 @@
       "charisma": "Charisma",
       "defense": "Defense"
     },
-    "effectDice": {
+    "effortsLong": {
       "basic": "Basic",
       "weapons": "Weapons & Tools",
       "guns": "Guns",
@@ -41,7 +41,7 @@
       "ultimate": "Ultimate",
       "all": "Effort"
     },
-    "monsterEffects": {
+    "monsterefforts": {
       "basic": "BASIC EFFORT",
       "weapons": "WEAPONS EFFORT",
       "guns": "GUNS EFFORT",

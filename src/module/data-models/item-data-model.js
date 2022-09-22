@@ -14,7 +14,7 @@ export class ICRPGItemBaseDataModel extends foundry.abstract.DataModel {
           charisma: f.bnf(10),
           defense: f.bnf(10),
         }),
-        effects: f.schema({
+        efforts: f.schema({
           basic: f.bnf(10),
           weapons: f.bnf(10),
           guns: f.bnf(10),

@@ -20,15 +20,15 @@ export class ICRPGActor extends Actor {
 
   prepareCharacter() {
     const system = this.system;
-    // Sum all the bonuses from attributes and effects
+    // Sum all the bonuses from attributes and efforts
     for (const k of Object.keys(system.attributes)) {
       const att = system.attributes[k];
       att.total = att.base + att.lifeform + att.loot;
       att.total = Math.clamped(att.total, -10, 10);
     }
 
-    for (const k of Object.keys(system.effects)) {
-      const eff = system.effects[k];
+    for (const k of Object.keys(system.efforts)) {
+      const eff = system.efforts[k];
       eff.total = eff.base + eff.lifeform + eff.loot;
       eff.total = Math.clamped(eff.total, -10, 10);
     }
@@ -46,8 +46,8 @@ export class ICRPGActor extends Actor {
 
   async roll(name, options = { mod: 0, targetOffset: 0 }) {
     // TODO refactor
-    // Get the attribute, either in attributes or effects
-    const attribute = this.system.attributes[name] ?? this.system.effects[name];
+    // Get the attribute, either in attributes or efforts
+    const attribute = this.system.attributes[name] ?? this.system.efforts[name];
     if (!attribute) throw `Attribute ${name} not found in actor`;
     const dice = diceMap[name];
 

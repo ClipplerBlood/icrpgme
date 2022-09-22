@@ -17,7 +17,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
         charisma: f.attributef(10),
         defense: f.attributef(20),
       }),
-      effects: f.schema({
+      efforts: f.schema({
         basic: f.attributef(10),
         weapons: f.attributef(10),
         guns: f.attributef(10),
@@ -49,7 +49,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
 export class ICRPGMonsterDataModel extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      // Attributes / effects are plain numbers instead of mods.
+      // Attributes / efforts are plain numbers instead of mods.
       // !!Underscore!!
       description: f.string(),
       attributes: f.schema({
@@ -62,7 +62,7 @@ export class ICRPGMonsterDataModel extends foundry.abstract.DataModel {
         charisma: f.bnf(10),
         // defense: f.bnf(20),
       }),
-      effects: f.schema({
+      efforts: f.schema({
         all: f.bnf(10),
         basic: f.bnf(10),
         weapons: f.bnf(10),

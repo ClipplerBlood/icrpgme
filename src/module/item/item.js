@@ -45,7 +45,7 @@ export class ICRPGItem extends Item {
     let bonuses = flattenObject(bonusData);
     let result = {};
     for (let [key, value] of Object.entries(bonuses)) {
-      if (key.includes('attributes') || key.includes('effects')) key += '.loot';
+      if (key.includes('attributes') || key.includes('efforts')) key += '.loot';
       else if (key.includes('weight')) key += '.max';
       result[key] = value;
     }

@@ -7,7 +7,7 @@
         {{localize loc}}
       {{else}}
         {{localizeConcatIf "ICRPG.attributesShort." bonusKey}}
-        {{localizeConcatIf "ICRPG.effectDice." bonusKey}}
+        {{localizeConcatIf "ICRPG.effortsLong." bonusKey}}
       {{/if}}
     </div>
   </div>
@@ -40,9 +40,9 @@
         </div>
 
         <div class="flex-col">
-          <div class="ff-header fs-18">{{localize "ICRPG.effects"}}</div>
-          {{#each system.bonuses.effects as |bonusValue bonusKey|}}
-            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.effects." bonusKey)}}
+          <div class="ff-header fs-18">{{localize "ICRPG.efforts"}}</div>
+          {{#each system.bonuses.efforts as |bonusValue bonusKey|}}
+            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.efforts." bonusKey)}}
           {{/each}}
         </div>
 

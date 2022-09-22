@@ -26,8 +26,8 @@
       {{#each system.attributes as |prop key|}}
         {{>attribute prop=prop key=key locPrefix="ICRPG.attributesShort."}}
       {{/each}}
-      {{#each system.effects as |prop key|}}
-        {{>attribute prop=prop key=key locPrefix="ICRPG.monsterEffects."}}
+      {{#each system.efforts as |prop key|}}
+        {{>attribute prop=prop key=key locPrefix="ICRPG.monsterefforts."}}
       {{/each}}
       {{#if system.extraAction}}
         <span>{{system.extraAction}}</span>

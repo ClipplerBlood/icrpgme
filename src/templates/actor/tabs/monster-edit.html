@@ -27,11 +27,11 @@
 
       <div>
         <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
-          "ICRPG.effects"}}</div>
-        {{#each system.effects as |prop key|}}
+          "ICRPG.efforts"}}</div>
+        {{#each system.efforts as |prop key|}}
           <div class="flex-row value-{{prop}}">
-            <input type="number" value="{{prop}}" name="system.effects.{{key}}">
-            <div>{{localizeConcat "ICRPG.effectDice." key}}</div>
+            <input type="number" value="{{prop}}" name="system.efforts.{{key}}">
+            <div>{{localizeConcat "ICRPG.effortsLong." key}}</div>
           </div>
         {{/each}}
       </div>

@@ -4,12 +4,14 @@ import { registerSystem } from './register-system.js';
 import registerHandlebarsHelpers from './utils/handlebars.js';
 import { integrateExternalModules } from './modules-integration.js';
 import { ICRPGToolsLayer } from './canvas/tools-layer.js';
+import * as playerMacros from './macros/player-macros.js';
 
 // Initialize system
 Hooks.once('init', async () => {
   console.log('icrpgme | Initializing icrpgme');
   game.icrpgme = {
     apps: new Map(),
+    macros: { ...playerMacros },
   };
 
   // Assign custom classes and constants here

@@ -12,10 +12,17 @@
     background-size: cover;
   }
 
-  //.icrpg-attribute-block {
-  //  .dice-container img{
-  //    height: 48px;
-  //    width: 48px;
-  //  }
-  //}
+  .icrpg-attribute-block {
+    .dice-container {
+      font-size: 24px;
+      height: 36px;
+      width: 36px;
+    }
+    .dice-container img {
+      height: 36px;
+      width: 36px;
+      left: auto;
+      top: auto;
+    }
+  }
 }

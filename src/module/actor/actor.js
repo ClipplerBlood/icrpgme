@@ -21,24 +21,21 @@ export class ICRPGActor extends Actor {
   prepareCharacter() {
     const system = this.system;
     // Sum all the bonuses from attributes and efforts
-    for (const k of Object.keys(system.attributes)) {
-      const att = system.attributes[k];
-      att.total = att.base + att.lifeform + att.loot;
-      att.total = Math.clamped(att.total, -10, 10);
+    for (const group of ['attributes', 'efforts']) {
+      for (const k of Object.keys(system.attributes)) {
+        const att = system[group][k];
+        att.total = att.base + att.lifeform + att.loot;
+        system[group][k].total = Math.clamped(att.total, -10, 10);
+      }
     }
-
-    for (const k of Object.keys(system.efforts)) {
-      const eff = system.efforts[k];
-      eff.total = eff.base + eff.lifeform + eff.loot;
-      eff.total = Math.clamped(eff.total, -10, 10);
-    }
-
     // Set defense
     const defense = system.attributes.defense;
     defense.total = 10 + defense.loot + system.attributes.constitution.total;
   }
 
-  prepareMonster() {}
+  prepareMonster() {
+    this.system.attributes.defense = 0;
+  }
 
   /*
   ROLLS

@@ -37,18 +37,20 @@ export async function rollAll(options = { autoClose: true }) {
       },
     },
     {
-      width: 460,
+      width: 360,
+      height: 380,
       classes: ['icrpg-roll-all-dialog'],
       template: 'systems/icrpgme/templates/dialog/roll-all-dialog.html',
     },
   );
   d.getData = () => {
-    const data = { attributes: {}, efforts: {} };
     if (!currentActor) return {};
+    const data = { name: currentActor.name, attributes: {}, efforts: {} };
     if (currentActor.type === 'character') {
       for (const group of ['attributes', 'efforts']) {
         for (const [k, v] of Object.entries(currentActor.system[group])) data[group][k] = v.total;
       }
+      // data.attributes.defense -= 10;
     } else if (currentActor.type === 'monster') {
       for (const group of ['attributes', 'efforts']) {
         for (const [k, v] of Object.entries(currentActor.system[group])) {
@@ -56,6 +58,7 @@ export async function rollAll(options = { autoClose: true }) {
           data[group][k] = v + currentActor.system[group].all + currentActor.system.allRollsMod;
         }
       }
+      data.attributes.defense = currentActor.system.attributes.all + currentActor.system.allRollsMod;
     }
     return data;
   };

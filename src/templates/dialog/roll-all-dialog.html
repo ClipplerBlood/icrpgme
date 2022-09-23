@@ -1,7 +1,7 @@
 {{#* inline "attributeBlock"}}
   <div data-attribute="{{attributeName}}" data-group="attributes" class="icrpg-attribute-block"
        style="margin-left: auto">
-    <div class="ff-header" style="font-size: 48px">
+    <div class="ff-header" style="font-size: 24px">
       {{localizeConcat "ICRPG.attributesShort." attributeName}}
     </div>
     <div class="dice-container" data-roll="{{attributeName}}">
@@ -15,7 +15,7 @@
 
 {{#* inline "effortBlock"}}
   <div data-attribute="{{effortName}}" data-group="efforts" class="icrpg-attribute-block" style="margin-left: auto">
-    <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
+    <div class="ff-header" style="font-size: 22px; text-align: right; width: 120px">
       {{localizeConcat "ICRPG.effortsLong." effortName}}
     </div>
     <div class="dice-container" style="margin-left: 2px" data-roll="{{effortName}}">
@@ -27,21 +27,29 @@
   </div>
 {{/inline}}
 
-<div style="display: flex; flex-direction: row; justify-content: space-around">
-  <div class="flex-col">
-    {{>attributeBlock attributeName="strength"}}
-    {{>attributeBlock attributeName="dexterity"}}
-    {{>attributeBlock attributeName="constitution"}}
-    {{>attributeBlock attributeName="intelligence"}}
-    {{>attributeBlock attributeName="wisdom"}}
-    {{>attributeBlock attributeName="charisma"}}
+<div style="padding: 8px">
+  <div style="font-family: 'Nusaliver', sans-serif; font-size: 26px">
+    {{defaultValue name (localize "ICRPG.name")}}
   </div>
+  <div class="icrpg-sep-long" style="margin-bottom: 4px"></div>
+  <div style="display: flex; flex-direction: row; justify-content: space-around">
+    <div class="flex-col" style="gap: 4px">
+      {{>attributeBlock attributeName="strength"}}
+      {{>attributeBlock attributeName="dexterity"}}
+      {{>attributeBlock attributeName="constitution"}}
+      {{>attributeBlock attributeName="intelligence"}}
+      {{>attributeBlock attributeName="wisdom"}}
+      {{>attributeBlock attributeName="charisma"}}
+      {{>attributeBlock attributeName="defense"}}
+    </div>
 
-  <div class="flex-col">
-    {{>effortBlock die="d4"  effortName="basic"}}
-    {{>effortBlock die="d6"  effortName="weapons"}}
-    {{>effortBlock die="d8"  effortName="guns"}}
-    {{>effortBlock die="d10" effortName="energy"}}
-    {{>effortBlock die="d12" effortName="ultimate"}}
+    <div class="flex-col" style="gap: 4px">
+      {{>effortBlock die="d4"  effortName="basic"}}
+      {{>effortBlock die="d6"  effortName="weapons"}}
+      {{>effortBlock die="d8"  effortName="guns"}}
+      {{>effortBlock die="d10" effortName="energy"}}
+      {{>effortBlock die="d12" effortName="ultimate"}}
+    </div>
   </div>
 </div>
+

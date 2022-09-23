@@ -87,7 +87,8 @@
     "hard": "Hard",
     "notifications": {
       "lockedSheet": "Locked sheet",
-      "unlockedSheet": "Unlocked sheet"
+      "unlockedSheet": "Unlocked sheet",
+      "selectOneCharacter": "No token selected"
     },
     "contextMenu": {
       "openItem": "Open Item"

@@ -1,0 +1,47 @@
+{{#* inline "attributeBlock"}}
+  <div data-attribute="{{attributeName}}" data-group="attributes" class="icrpg-attribute-block"
+       style="margin-left: auto">
+    <div class="ff-header" style="font-size: 48px">
+      {{localizeConcat "ICRPG.attributesShort." attributeName}}
+    </div>
+    <div class="dice-container" data-roll="{{attributeName}}">
+      {{#with (lookup attributes attributeName) as | attribute |}}
+        <span>{{defaultValue attribute 0}}</span>
+      {{/with}}
+      <img src="systems/icrpgme/assets/ui/dice-transparent/d20.webp">
+    </div>
+  </div>
+{{/inline}}
+
+{{#* inline "effortBlock"}}
+  <div data-attribute="{{effortName}}" data-group="efforts" class="icrpg-attribute-block" style="margin-left: auto">
+    <div class="ff-header" style="font-size: 28px; text-align: right; width: 200px">
+      {{localizeConcat "ICRPG.effortsLong." effortName}}
+    </div>
+    <div class="dice-container" style="margin-left: 2px" data-roll="{{effortName}}">
+      {{#with (lookup efforts effortName) as | effort |}}
+        <span>{{defaultValue effort 0}}</span>
+      {{/with}}
+      <img src="systems/icrpgme/assets/ui/dice-transparent/{{die}}.webp">
+    </div>
+  </div>
+{{/inline}}
+
+<div style="display: flex; flex-direction: row; justify-content: space-around">
+  <div class="flex-col">
+    {{>attributeBlock attributeName="strength"}}
+    {{>attributeBlock attributeName="dexterity"}}
+    {{>attributeBlock attributeName="constitution"}}
+    {{>attributeBlock attributeName="intelligence"}}
+    {{>attributeBlock attributeName="wisdom"}}
+    {{>attributeBlock attributeName="charisma"}}
+  </div>
+
+  <div class="flex-col">
+    {{>effortBlock die="d4"  effortName="basic"}}
+    {{>effortBlock die="d6"  effortName="weapons"}}
+    {{>effortBlock die="d8"  effortName="guns"}}
+    {{>effortBlock die="d10" effortName="energy"}}
+    {{>effortBlock die="d12" effortName="ultimate"}}
+  </div>
+</div>

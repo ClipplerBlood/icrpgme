@@ -1,0 +1,21 @@
+.icrpg-roll-all-dialog {
+  .window-content {
+    background: #202020 !important;
+    overflow: hidden;
+  }
+
+  .window-content > div {
+    outline: 2px solid black;
+    border: 2px solid rgba(128, 128, 128, 0.64);
+    padding: 16px;
+    background: url('../assets/ui/backgrounds/bg-sheet.png');
+    background-size: cover;
+  }
+
+  //.icrpg-attribute-block {
+  //  .dice-container img{
+  //    height: 48px;
+  //    width: 48px;
+  //  }
+  //}
+}

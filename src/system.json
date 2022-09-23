@@ -20,7 +20,15 @@
   "scripts": [],
   "esmodules": ["module/icrpgme.js"],
   "styles": ["styles/icrpgme.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "icrpg-macros",
+      "label": "ICRPG Macros",
+      "system": "icrpgme",
+      "path": "packs/macros.db",
+      "type": "Macro"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

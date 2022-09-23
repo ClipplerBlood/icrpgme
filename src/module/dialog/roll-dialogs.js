@@ -5,16 +5,19 @@ export function createRollDialog(rollCallback, options = { initialMod: 0 }) {
   const d = new Dialog({
     title: i18n('ICRPG.roll.roll'),
     content: `
-    <div class="flex-row"><input type="number" name="mod" value="${im}"><div>${i18n('ICRPG.roll.modifier')}</div></div>
+    <div class="flex-row" style="margin: 16px">
+    <div>${i18n('ICRPG.roll.modifier')}</div>
+    <input type="number" name="mod" value="${im}">
+    </div>
     `,
     buttons: {
       roll: {
-        icon: '<i class="fas fa-d20">',
+        icon: '<i class="fas fa-d20"></i>',
         label: i18n('ICRPG.roll.roll'),
         callback: rollCallback,
       },
       cancel: {
-        icon: '<i class="fas fa-d20">',
+        icon: '<i class="fas fa-times"></i>',
         label: i18n('Cancel'),
         callback: () => {},
       },

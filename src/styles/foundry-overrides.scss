@@ -40,4 +40,18 @@ header.window-header {
 
 .app .window-content {
   background-image: url('../assets/ui/backgrounds/bg-sheet.png');
+  background-size: cover;
+}
+
+#hotbar .macro .macro-key {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15px;
+  line-height: 1;
+  padding: 0 4px;
+  font-weight: bold;
+  pointer-events: none;
+  color: black;
+  background: none;
 }

@@ -20,6 +20,9 @@ export async function preloadTemplates() {
     // Apps
     'systems/icrpgme/templates/app/target-app.html',
     'systems/icrpgme/templates/app/timer-app.html',
+
+    // Dialog
+    'systems/icrpgme/templates/dialog/roll-all-dialog.html',
   ];
 
   Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.html';

@@ -23,6 +23,7 @@
     {{/inline}}
 
     <div class="icrpg-monster-attributes view">
+      {{>attribute prop=system.allRollsMod key='allRolls' locPrefix="ICRPG.monsterSheet."}}
       {{#each system.attributes as |prop key|}}
         {{>attribute prop=prop key=key locPrefix="ICRPG.attributesShort."}}
       {{/each}}

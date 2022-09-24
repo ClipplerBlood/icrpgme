@@ -9,6 +9,14 @@ export class ICRPGTargetApp extends ICRPGBaseApp {
     });
   }
 
+  static get width() {
+    return 150;
+  }
+
+  static get height() {
+    return 150;
+  }
+
   static async defaultValue() {
     return {
       target: 10,

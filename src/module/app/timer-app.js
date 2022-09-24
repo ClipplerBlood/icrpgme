@@ -10,7 +10,13 @@ export class ICRPGTimerApp extends ICRPGBaseApp {
       title: 'ICRPG APP', // Needed otherwise it can break
     });
   }
+  static get width() {
+    return 128;
+  }
 
+  static get height() {
+    return 150;
+  }
   static async defaultValue() {
     const timerRoll = new Roll('1d4', { label: i18n('ICRPG.timer') });
     await timerRoll.roll({ async: true });

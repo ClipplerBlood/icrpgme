@@ -7,7 +7,7 @@ export class ICRPGToolsLayer extends CanvasLayer {
   static register() {
     Hooks.once('ready', async () => renderStoredApps());
     Hooks.once('init', async () => game.socket.on('system.icrpgme', icrpgAppsListener));
-
+    Hooks.once('ready', () => addEventListener('resize', icrpgResizeListener));
     Hooks.on('getSceneControlButtons', (controls) => {
       if (!game.user.isGM) return;
       controls.push({
@@ -71,4 +71,11 @@ function getAppClassByName(className) {
     default:
       return ICRPGBaseApp;
   }
+}
+
+function icrpgResizeListener(_event) {
+  game.icrpgme.apps.forEach((app) => {
+    const position = app.constructor.getStoredData(app.icrpgID)?.position;
+    if (position) app.setRelativePosition(position);
+  });
 }

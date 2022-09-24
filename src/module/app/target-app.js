@@ -5,8 +5,6 @@ export class ICRPGTargetApp extends ICRPGBaseApp {
     return mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/app/target-app.html',
       classes: ['icrpg-app-target'],
-      height: 128,
-      width: 128,
       title: 'ICRPG APP', // Needed otherwise it can break
     });
   }

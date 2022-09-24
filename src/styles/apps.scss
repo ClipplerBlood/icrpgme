@@ -4,6 +4,7 @@
 .icrpg-app-timer,
 .icrpg-app-target {
   background: transparent;
+  //background: purple;
   box-shadow: none;
 
   .window-content {
@@ -18,6 +19,8 @@
 
   .window-header {
     display: none;
+    width: 0;
+    min-width: 0;
   }
 
   .icrpg-value {
@@ -85,9 +88,15 @@
 }
 
 .icrpg-app-target {
+  .window-content {
+    width: 140px;
+    height: 140px;
+  }
+
   .icrpg-easy-hard-text,
   .icrpg-easy-hard-number,
   .icrpg-easy-hard-selector {
+    width: 128px;
     font-family: $ff-nusaliver;
     font-size: 20px;
     text-align: center;
@@ -108,9 +117,10 @@
 
   .icrpg-easy-hard-number {
     position: absolute;
-    right: -17px;
+    left: 107px;
     top: 19px;
     font-size: 29px;
+    width: 0;
   }
 }
 

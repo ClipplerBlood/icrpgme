@@ -7,8 +7,6 @@ export class ICRPGTimerApp extends ICRPGBaseApp {
     return mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/app/timer-app.html',
       classes: ['icrpg-app-timer'],
-      height: 128,
-      width: 128,
       title: 'ICRPG APP', // Needed otherwise it can break
     });
   }

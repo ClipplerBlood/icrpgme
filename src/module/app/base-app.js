@@ -90,12 +90,19 @@ export class ICRPGBaseApp extends Application {
     return mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/app/target-app.html',
       classes: ['icrpg-app'],
-      height: 128,
-      width: 128,
       title: 'ICRPG APP', // Needed otherwise it can break
+      width: this.width,
+      height: this.width,
     });
   }
 
+  static get width() {
+    return 200;
+  }
+
+  static get height() {
+    return 200;
+  }
   async getData() {
     const content = super.getData();
     content.value = this.constructor.getStoredData(this.icrpgID)?.value ?? this.constructor.defaultValue();
@@ -117,6 +124,7 @@ export class ICRPGBaseApp extends Application {
 
     // Dragging
     const handle = html.find('.drag-handle').get(0);
+    const defaultOptions = this.constructor.defaultOptions;
     const draggable = new Draggable(this, html, handle, false);
     draggable._onDragMouseUp = (event) => {
       Draggable.prototype._onDragMouseUp.call(draggable, event);
@@ -125,7 +133,28 @@ export class ICRPGBaseApp extends Application {
       });
     };
     draggable._onDragMouseMove = (event) => {
-      Draggable.prototype._onDragMouseMove.call(draggable, event);
+      event.preventDefault();
+
+      // Limit dragging to 30 updates per second
+      const now = Date.now();
+      if (now - this._moveTime < 1000 / 60) return;
+      this._moveTime = now;
+
+      // Update application position
+
+      const position = {
+        left: draggable.position.left + (event.clientX - draggable._initial.x),
+        top: draggable.position.top + (event.clientY - draggable._initial.y),
+        width: defaultOptions.width,
+        height: defaultOptions.height,
+      };
+
+      console.log(draggable._initial, position, event.clientX, event.clientY, this.position.left);
+      if (this.isColliding(position)) return;
+      delete position.width;
+      delete position.height;
+      this.setPosition(position);
+
       game.socket.emit('system.icrpgme', {
         icrpgID: this.icrpgID,
         action: 'position',
@@ -136,27 +165,62 @@ export class ICRPGBaseApp extends Application {
 
     html.find('.close').click(() => {
       this.constructor.deleteStoredData(this.icrpgID);
+      game.icrpgme.apps.delete(this.icrpgID);
       this.close();
     });
   }
 
   getRelativePosition() {
-    const _do = this.constructor.defaultOptions;
-    return {
-      left: this.position.left / (window.innerWidth - _do.width),
-      top: this.position.top / (window.innerHeight - _do.height),
-      width: this.element.width,
-    };
+    const pos = this.position;
+    return rectAbsToRel(pos);
   }
 
-  setRelativePosition(position) {
-    const _do = this.constructor.defaultOptions;
-    const left = Math.min(position.left * (window.innerWidth - _do.width), window.innerWidth - _do.width - 300);
-    if (!position) return;
-    return this.setPosition({
-      left: left,
-      top: position.top * (window.innerHeight - _do.height),
-      width: position.width,
-    });
+  setRelativePosition(relativePosition) {
+    if (!relativePosition) return;
+    let pos = duplicate(relativePosition);
+    pos = rectRelToAbs(pos);
+    if (this.isColliding(pos)) return;
+
+    pos.left = Math.min(pos.left, window.innerWidth - pos.width - 320);
+    pos.top = Math.min(pos.top, window.innerHeight - pos.height - 120);
+    this.setPosition({ left: pos.left, top: pos.top });
   }
+
+  isColliding(r1 = undefined) {
+    return false;
+    r1 = r1 ?? this.position;
+    for (const [id, app] of game.icrpgme.apps) {
+      if (id === this.icrpgID) continue;
+      const r2 = app.position;
+      if (intersectRect(r1, r2)) return true;
+    }
+    return false;
+  }
+}
+
+function intersectRect(r1, r2) {
+  return !(
+    r2.left > r1.left + r1.width ||
+    r2.left + r2.width < r1.left ||
+    r2.top > r1.top + r1.height ||
+    r2.top + r2.height < r1.top
+  );
+}
+
+function rectAbsToRel(rect) {
+  return {
+    top: rect.top / window.innerHeight,
+    left: rect.left / window.innerWidth,
+    height: rect.height,
+    width: rect.width,
+  };
+}
+
+function rectRelToAbs(rect) {
+  return {
+    top: rect.top * window.innerHeight,
+    left: rect.left * window.innerWidth,
+    height: rect.height,
+    width: rect.width,
+  };
 }

@@ -22,7 +22,7 @@ export class ICRPGActor extends Actor {
     const system = this.system;
     // Sum all the bonuses from attributes and efforts
     for (const group of ['attributes', 'efforts']) {
-      for (const k of Object.keys(system.attributes)) {
+      for (const k of Object.keys(system[group])) {
         const att = system[group][k];
         att.total = att.base + att.lifeform + att.loot;
         system[group][k].total = Math.clamped(att.total, -10, 10);
@@ -35,6 +35,69 @@ export class ICRPGActor extends Actor {
 
   prepareMonster() {
     this.system.attributes.defense = 0;
+  }
+
+  async _preCreate(data, options, userId) {
+    await super._preCreate(data, options, userId);
+    if (this.type === 'character') {
+      data.img = 'systems/icrpgme/assets/cards/character/trigo.webp';
+    } else if (this.type === 'monster') {
+      data.img = 'systems/icrpgme/assets/cards/monster/skeleton.webp';
+    }
+  }
+
+  _applyDefaultTokenSettings(data, { _fromCompendium = false } = {}) {
+    const prototypeToken = {
+      bar1: { attribute: 'health' },
+    };
+    if (this.type === 'character') {
+      prototypeToken.actorLink = true;
+      prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/character/trigo.webp' };
+    } else if (this.type === 'monster') {
+      prototypeToken.actorLink = false;
+      prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.CONTROL;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER;
+      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/skeleton.webp' };
+    }
+
+    return this.updateSource({ prototypeToken });
+  }
+
+  async _preUpdate(changed, options, user) {
+    await super._preUpdate(changed, options, user);
+
+    // If changing health, recalculate everything in it
+    const newHealth = changed.system?.health;
+    if (newHealth != null) {
+      // Compute the values
+      const oldHealth = this.system.health;
+      const hearts = newHealth.hearts ?? oldHealth.hearts;
+      const maxHP = newHealth.max ?? oldHealth.max;
+
+      // If VALUE, then compute damage
+      let value, damage;
+      if (newHealth.value != null && newHealth.damage == null) {
+        value = newHealth.value;
+        damage = maxHP - value;
+      }
+      // If DAMAGE, then compute value
+      else if (newHealth.damage != null && newHealth.value == null) {
+        damage = newHealth.damage;
+        value = maxHP - value;
+      }
+      // If BOTH, idk
+      else throw `Updating both hp damage and value ${newHealth}`;
+      changed.system.health = {
+        max: maxHP,
+        hearts: hearts,
+        damage: damage,
+        value: value,
+      };
+    }
   }
 
   /*

@@ -146,13 +146,16 @@
 
   .icrpg-img-container {
     height: $w - 2 * $m;
+    display: flex;
 
     img {
       height: 100%;
+      margin-left: auto;
+      margin-right: auto;
       background: gainsboro;
       border-radius: 8px;
-      @include hover;
-      object-fit: cover;
+      width: 100%;
+      object-fit: scale-down;
     }
   }
 

@@ -44,9 +44,9 @@
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "background": "systems/icrpgme/assets/world-bg.png",
-  "initiative": "<inititative roll formula for your system>",
+  "initiative": "1d20",
   "gridDistance": 1,
   "gridUnits": "m",
-  "primaryTokenAttribute": "<optionally the attribute to use as primary resource in tokens by default>",
-  "secondaryTokenAttribute": "<optionally the attribute to use as secondary resource in tokens by default>"
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": null
 }

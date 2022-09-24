@@ -5,6 +5,8 @@ import { ICRPGItemBaseDataModel, ICRPGItemLootDataModel } from './data-models/it
 import { ICRPGRollMessage } from './chat/chat-message.js';
 import { ICRPGItemSheet } from './item/item-sheet.js';
 import { ICRPGItem } from './item/item.js';
+import { ICRPGCombatTracker } from './combat/combat-tracker.js';
+import { ICRPGCombat } from './combat/combat.js';
 
 export function registerSystem() {
   // Actor registration
@@ -25,4 +27,8 @@ export function registerSystem() {
 
   // ChatMessage registration
   CONFIG.ChatMessage.documentClass = ICRPGRollMessage;
+
+  // Combat registration
+  CONFIG.ui.combat = ICRPGCombatTracker;
+  CONFIG.Combat.documentClass = ICRPGCombat;
 }

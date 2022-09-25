@@ -80,7 +80,8 @@
     "canvasTooltips": {
       "tools": "ICRPG Tools",
       "target": "Target",
-      "timer": "Timer"
+      "timer": "Timer",
+      "indexCard": "Index Card"
     },
     "timer": "Timer",
     "easy": "Easy",

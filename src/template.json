@@ -1,6 +1,21 @@
 {
   "Actor": {
-    "types": ["character", "monster"]
+    "types": ["character", "monster"],
+    "templates": {
+      "base": {
+        "health": {
+          "value": 0,
+          "damage": 0,
+          "max": 10
+        }
+      }
+    },
+    "character": {
+      "templates": ["base"]
+    },
+    "monster": {
+      "templates": ["base"]
+    }
   },
   "Item": {
     "types": ["loot", "ability", "power", "augment"]

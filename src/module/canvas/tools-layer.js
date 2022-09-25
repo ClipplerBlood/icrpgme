@@ -2,6 +2,7 @@ import { ICRPGBaseApp } from '../app/base-app.js';
 import { i18n } from '../utils/utils.js';
 import { ICRPGTargetApp } from '../app/target-app.js';
 import { ICRPGTimerApp } from '../app/timer-app.js';
+import { createIndexCard } from './index-card.js';
 
 export class ICRPGToolsLayer extends CanvasLayer {
   static register() {
@@ -28,6 +29,12 @@ export class ICRPGToolsLayer extends CanvasLayer {
             name: 'icrpg-timer',
             title: i18n('ICRPG.canvasTooltips.timer'),
             onClick: () => ICRPGTimerApp.create(randomID(), game.user.id),
+          },
+          {
+            icon: 'fas fa-scroll',
+            name: 'icrpg-card',
+            title: i18n('ICRPG.canvasTooltips.indexCard'),
+            onClick: () => createIndexCard(),
           },
         ],
       });

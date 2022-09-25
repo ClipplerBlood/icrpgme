@@ -5,6 +5,7 @@
   --color-border-highlight-alt: var(--c-red);
   --color-shadow-primary: transparent;
   --color-shadow-highlight: transparent;
+  --color-bg-option: #ddd;
 }
 
 input,
@@ -60,4 +61,9 @@ img#logo {
   content: url('../assets/bases/offline runehammer logo.jpg');
   height: auto;
   border: 2px solid #222;
+}
+
+.prosemirror {
+  --color-control-bg: #ddd;
+  --color-hover-bg: #eee;
 }

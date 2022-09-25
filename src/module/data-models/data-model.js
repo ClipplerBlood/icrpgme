@@ -30,3 +30,6 @@ export const schema = (obj, options = {}) => new f.SchemaField(obj, options);
 
 // Array
 export const array = (element, options = {}) => new f.ArrayField(element, options);
+
+// Html
+export const html = (obj = {}) => new f.HTMLField({ ...{ initial: '' }, ...obj });

@@ -26,6 +26,16 @@
     background: url('../assets/ui/backgrounds/bg-sheet.png');
     background-size: cover;
   }
+
+  .editor {
+    min-height: 450px;
+    max-height: 450px;
+    margin-top: 16px;
+    border: 4px solid #222;
+    padding: 8px;
+    background: #eee;
+    border-radius: 3px;
+  }
 }
 
 .icrpg-sheet-header {
@@ -280,6 +290,37 @@
   }
 }
 
+.icrpg-mastery-selector {
+  display: flex;
+
+  .ff-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    height: 24px;
+    padding: 0 8px;
+    background-image: url('../assets/ui/backgrounds/bg-bar.webp');
+    margin-right: 16px;
+  }
+  div {
+    z-index: 1;
+  }
+  .icrpg-sep-long {
+    width: calc(27px * 20);
+    position: absolute;
+    z-index: 0;
+  }
+
+  img {
+    @include hover;
+    border: none;
+    height: 24px;
+    width: 24px;
+  }
+}
+
 .icrpg-sheet-nav {
   display: flex;
   width: calc(100% - 50px);
@@ -375,19 +416,23 @@
   }
 
   .icrpg-equipped-select {
-    background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle.webp');
+    //background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle.webp');
+    background-image: url('/systems/icrpgme/assets/ui/mastery.webp');
   }
 
   .icrpg-equipped-select.checked {
-    background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle-on.webp');
+    //background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle-on.webp');
+    background-image: url('/systems/icrpgme/assets/ui/mastery-on.webp');
   }
 
   .icrpg-carried-select {
-    background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle.webp');
+    //background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle.webp');
+    background-image: url('/systems/icrpgme/assets/ui/mastery.webp');
   }
 
   .icrpg-carried-select.checked {
-    background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
+    //background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
+    background-image: url('/systems/icrpgme/assets/ui/mastery-on.webp');
   }
 }
 

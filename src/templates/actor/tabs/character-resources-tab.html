@@ -1,0 +1,39 @@
+<div style="padding-top: 16px">
+  {{#*inline "mastery"}}
+    <div class="icrpg-discrete-selector" data-target='system.mastery' data-index="{{index}}">
+      {{#if (gt system.mastery index)}}
+        <img class="select-circle" src="systems/icrpgme/assets/ui/mastery-on.webp">
+      {{else}}
+        <img class="select-circle" src="systems/icrpgme/assets/ui/mastery.webp">
+      {{/if}}
+    </div>
+  {{/inline}}
+
+  <div class="icrpg-mastery-selector">
+    <div class="ff-header">{{localize "ICRPG.mastery"}}</div>
+    <div style="display: flex; gap: 4px; align-items: center">
+      {{>mastery index=0}}
+      {{>mastery index=1}}
+      {{>mastery index=2}}
+      {{>mastery index=3}}
+      {{>mastery index=4}}
+      {{>mastery index=5}}
+      {{>mastery index=6}}
+      {{>mastery index=7}}
+      {{>mastery index=8}}
+      {{>mastery index=9}}
+      {{>mastery index=10}}
+      {{>mastery index=11}}
+      {{>mastery index=12}}
+      {{>mastery index=13}}
+      {{>mastery index=14}}
+      {{>mastery index=15}}
+      {{>mastery index=16}}
+      {{>mastery index=17}}
+      {{>mastery index=18}}
+      {{>mastery index=19}}
+      <div class="icrpg-sep-long"></div>
+    </div>
+  </div>
+
+</div>

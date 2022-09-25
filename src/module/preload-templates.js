@@ -5,6 +5,8 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/actor/character-sheet.html',
     'systems/icrpgme/templates/actor/tabs/character-primary-tab.html',
     'systems/icrpgme/templates/actor/tabs/character-loot-tab.html',
+    'systems/icrpgme/templates/actor/tabs/character-resources-tab.html',
+
     // Monster sheet
     'systems/icrpgme/templates/actor/monster-sheet.html',
     'systems/icrpgme/templates/actor/tabs/monster-edit.html',

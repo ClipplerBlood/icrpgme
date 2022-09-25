@@ -31,6 +31,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     content.system = this.actor.system;
     content = this.prepareItems(content);
     content.isLocked = this.isLocked ?? true;
+    content.system.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, { async: true });
     return content;
   }
 
@@ -118,6 +119,15 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('.item-clickable input[data-target="name"]').click((ev) => {
       const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
       postItemMessage(this.actor, itemId);
+    });
+
+    // Discrete selector (Mastery, resources, ecc)
+    html.find('.icrpg-discrete-selector').click((ev) => {
+      const index = $(ev.currentTarget).closest('[data-index]').data('index');
+      const target = $(ev.currentTarget).closest('[data-target]').data('target');
+      let value = index + 1;
+      if (getProperty(this.actor, target) === value) value -= 1;
+      this.actor.update({ [target]: value });
     });
   }
 

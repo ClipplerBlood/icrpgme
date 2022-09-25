@@ -7,7 +7,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
       world: f.string(),
       lifeform: f.string(),
       story: f.string(),
-      description: f.string(),
+      notes: f.html(),
       attributes: f.schema({
         strength: f.attributef(10),
         dexterity: f.attributef(10),
@@ -32,6 +32,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
       }),
       dyingRounds: f.number({ min: 0, max: 9 }),
       heroCoin: f.boolean(),
+      mastery: f.number({ min: 0, max: 20 }),
       weight: f.schema({
         carried: f.schema({
           max: f.number({ initial: 10 }),

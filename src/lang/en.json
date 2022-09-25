@@ -59,10 +59,13 @@
     "dyingSubtitle": "1d4 rnds 'til dead",
     "defenseSubtitle": "10+DEF = Enemy to hit roll",
     "herocoin": "Hero Coin",
+    "mastery": "Mastery",
     "hp": "HP",
     "tabs": {
       "character": "Character",
       "lootAbilities": "Loot & Abilities",
+      "notes": "Notes",
+      "resources": "Resources",
       "item": "Item",
       "bonuses": "Bonuses"
     },

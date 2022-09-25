@@ -61,42 +61,42 @@
 
   </div>
 
-<div>
-  {{#if (or (not isLocked) abilities.length)}}
-    <div class="icrpg-sheet-bar">{{localize "ICRPG.abilities"}}</div>
-    <div data-item-type="ability">
-      {{#each abilities as | item |}}
-        {{~> simpleItem item=item isLocked=../isLocked}}
-      {{/each}}
-      {{#unless isLocked}}
-        {{~> simpleItem noDescription=true}}
-      {{/unless}}
-    </div>
-  {{/if}}
+  <div>
+    {{#if (or (not isLocked) abilities.length)}}
+      <div class="icrpg-sheet-bar">{{localize "ICRPG.abilities"}}</div>
+      <div data-item-type="ability">
+        {{#each abilities as | item |}}
+          {{~> simpleItem item=item isLocked=../isLocked}}
+        {{/each}}
+        {{#unless isLocked}}
+          {{~> simpleItem noDescription=true}}
+        {{/unless}}
+      </div>
+    {{/if}}
 
-  {{#if (or (not isLocked) powers.length)}}
-    <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
-    <div data-item-type="power">
-      {{#each powers as | item |}}
-        {{~> simpleItem item=item isLocked=../isLocked}}
-      {{/each}}
-      {{#unless isLocked}}
-        {{~> simpleItem noDescription=true}}
-      {{/unless}}
-    </div>
-  {{/if}}
+    {{#if (or (not isLocked) powers.length)}}
+      <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.powers"}}</div>
+      <div data-item-type="power">
+        {{#each powers as | item |}}
+          {{~> simpleItem item=item isLocked=../isLocked}}
+        {{/each}}
+        {{#unless isLocked}}
+          {{~> simpleItem noDescription=true}}
+        {{/unless}}
+      </div>
+    {{/if}}
 
-  {{#if (or (not isLocked) augments.length)}}
-    <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
-    <div data-item-type="augment">
-      {{#each augments as | item |}}
-        {{~> simpleItem item=item isLocked=../isLocked}}
-      {{/each}}
-      {{#unless isLocked}}
-        {{~> simpleItem noDescription=true}}
-      {{/unless}}
-    </div>
+    {{#if (or (not isLocked) augments.length)}}
+      <div class="icrpg-sheet-bar" style="margin-top: 4px">{{localize "ICRPG.augments"}}</div>
+      <div data-item-type="augment">
+        {{#each augments as | item |}}
+          {{~> simpleItem item=item isLocked=../isLocked}}
+        {{/each}}
+        {{#unless isLocked}}
+          {{~> simpleItem noDescription=true}}
+        {{/unless}}
+      </div>
+
+    {{/if}}
   </div>
-  {{/if}}
-
 </div>

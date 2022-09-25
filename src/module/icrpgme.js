@@ -1,10 +1,11 @@
 import { registerSettings } from './settings.js';
-import { preloadTemplates } from './preloadTemplates.js';
+import { preloadTemplates } from './preload-templates.js';
 import { registerSystem } from './register-system.js';
 import registerHandlebarsHelpers from './utils/handlebars.js';
 import { integrateExternalModules } from './modules-integration.js';
 import { ICRPGToolsLayer } from './canvas/tools-layer.js';
 import * as playerMacros from './macros/player-macros.js';
+import { registerFonts } from './register-fonts.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -39,6 +40,7 @@ Hooks.once('ready', async () => {
 
 // Add any additional hooks if necessary
 integrateExternalModules();
+registerFonts();
 
 // Register the custom apps
 ICRPGToolsLayer.register();

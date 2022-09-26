@@ -85,7 +85,22 @@ export default class ICRPGActorSheet extends ActorSheet {
       if (typeof value === 'string') value = trimNewLineWhitespace(value);
 
       if (itemId) {
-        this.actor.items.get(itemId).update({ [target]: value });
+        const item = this.actor.items.get(itemId);
+        if (target === 'system.carried' && value) {
+          const current = this.actor.system.weight.carried;
+          if (current.value + item.system.weight > current.max) {
+            ui.notifications.warn(i18n('ICRPG.notifications.maxCarried'));
+            return;
+          }
+        }
+        if (target === 'system.equipped' && value) {
+          const current = this.actor.system.weight.equipped;
+          if (current.value + item.system.weight > current.max) {
+            ui.notifications.warn(i18n('ICRPG.notifications.maxEquipped'));
+            return;
+          }
+        }
+        item.update({ [target]: value });
       } else {
         if (typeof value === 'boolean' || !itemType) return;
         this.actor.createEmbeddedDocuments('Item', [{ type: itemType, [target]: value }]);

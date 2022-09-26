@@ -35,6 +35,11 @@ export class ICRPGActor extends Actor {
     // Set defense
     const defense = system.attributes.defense;
     defense.total = 10 + defense.loot + system.attributes.constitution.total;
+    // Set weights
+    const sum = (acc, i) => acc + i.system.weight;
+    system.weight.carried.value = this.items.filter((i) => i.system.carried).reduce(sum, 0);
+    system.weight.equipped.value = this.items.filter((i) => i.system.equipped).reduce(sum, 0);
+    console.log(system.weight.carried.value, system.weight.equipped.value);
   }
 
   prepareMonster() {

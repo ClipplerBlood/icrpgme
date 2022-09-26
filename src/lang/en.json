@@ -58,6 +58,7 @@
     "dying": "Dying",
     "dyingSubtitle": "1d4 rnds 'til dead",
     "defenseSubtitle": "10+DEF = Enemy to hit roll",
+    "newResourceName": "New Resource Name",
     "herocoin": "Hero Coin",
     "mastery": "Mastery",
     "hp": "HP",
@@ -95,7 +96,9 @@
     "notifications": {
       "lockedSheet": "Locked sheet",
       "unlockedSheet": "Unlocked sheet",
-      "selectOneCharacter": "No token selected"
+      "selectOneCharacter": "No token selected",
+      "maxCarried": "Max carried capacity reached!",
+      "maxEquipped": "Max equipped capacity reached!"
     },
     "contextMenu": {
       "openItem": "Open Item"

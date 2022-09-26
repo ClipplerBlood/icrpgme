@@ -317,6 +317,15 @@
   }
 }
 
+input[type='number'].icrpg-max-carry {
+  @include transparent-input();
+  width: 20px;
+  text-align: center;
+  color: var(--c-light-grey);
+  padding: 0;
+  height: 13px;
+}
+
 .icrpg-discrete-selector {
   z-index: 1;
 
@@ -329,17 +338,21 @@
 }
 
 .icrpg-resource-tracker {
+  background-image: url('../assets/ui/backgrounds/bg-bar.webp');
+  width: fit-content;
+  margin-bottom: 4px;
+
   & > * {
     display: inline-block;
     width: auto !important;
+    color: white;
   }
   div.ff-header,
   input.ff-header {
     height: 24px;
-    padding: 0 8px;
-    background-image: url('../assets/ui/backgrounds/bg-bar.webp');
+    padding-left: 8px;
     color: white;
-    text-align: center;
+    text-align: left;
     font-family: $ff-flatbread;
   }
   div.ff-header {
@@ -353,6 +366,7 @@
   }
   input[type='number'] {
     font-family: $ff-flatbread;
+    color: white;
   }
 }
 .icrpg-sheet-nav {

@@ -82,13 +82,17 @@ export class ICRPGActor extends Actor {
     // If changing health, recalculate everything in it
     const newHealth = changed.system?.health;
     if (newHealth != null) {
+      // If only hearts (or maxHP) return
+      if ((newHealth.hearts != null || newHealth.max != null) && newHealth.damage == null && newHealth.value == null)
+        return;
+
       // Compute the values
       const oldHealth = this.system.health;
       const hearts = newHealth.hearts ?? oldHealth.hearts;
       const maxHP = newHealth.max ?? oldHealth.max;
+      let value, damage;
 
       // If VALUE, then compute damage
-      let value, damage;
       if (newHealth.value != null && newHealth.damage == null) {
         value = newHealth.value;
         damage = maxHP - value;

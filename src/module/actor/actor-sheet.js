@@ -163,7 +163,7 @@ export default class ICRPGActorSheet extends ActorSheet {
           max: 1,
         });
       } else {
-        if ((target === 'max' && parseInt(value) <= 0) || (target === 'name' && value.length === 0))
+        if ((target === 'max' && parseInt(value) <= 0) || String(value).length === 0)
           resources.splice(resourceIndex, 1);
         else resources[resourceIndex][target] = value;
       }

@@ -52,8 +52,11 @@
 }
 
 @mixin hover {
+  transition: 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
+    transform: scale(1.1, 1.1);
+    transition: 0.2s ease-in-out;
   }
 }
 

@@ -15,7 +15,11 @@ export class ICRPGActor extends Actor {
 
     // Set health
     system.health.max = system.health.hearts * 10;
-    system.health.value = system.health.max - system.health.damage;
+    if (game.settings.get('icrpgme', 'trackDamage')) {
+      system.health.value = system.health.max - system.health.damage;
+    } else {
+      system.health.damage = system.health.max - system.health.value;
+    }
   }
 
   prepareCharacter() {

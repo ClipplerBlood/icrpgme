@@ -4,16 +4,14 @@
 
 export function registerSettings() {
   // Register any custom system settings here
-  game.settings.register('icrpgme', 'targets', {
-    name: 'Targets',
-    hint: 'Object storing information relative to targets',
+  game.settings.register('icrpgme', 'trackDamage', {
+    name: 'ICRPG.settings.trackDamageName',
+    hint: 'ICRPG.settings.trackDamageHint',
     scope: 'world',
-    config: false,
-    requiresReload: false,
-
-    type: Object,
-    default: {},
-    onChange: (value) => console.log(value),
+    config: true,
+    requiresReload: true,
+    type: Boolean,
+    default: true,
   });
 
   game.settings.register('icrpgme', 'appData', {

@@ -32,6 +32,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     content = this.prepareItems(content);
     content.isLocked = this.isLocked ?? true;
     content.system.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, { async: true });
+    content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     return content;
   }
 

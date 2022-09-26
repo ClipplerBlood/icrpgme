@@ -61,6 +61,8 @@
     "herocoin": "Hero Coin",
     "mastery": "Mastery",
     "hp": "HP",
+    "damage": "Damage",
+    "currentHP": "Current HP",
     "tabs": {
       "character": "Character",
       "lootAbilities": "Loot & Abilities",
@@ -104,6 +106,10 @@
       "actionName": "Action Name",
       "actionDescription": "Action Description",
       "monsterDescription": "Monster Description"
+    },
+    "settings": {
+      "trackDamageName": "Track Damage",
+      "trackDamageHint": "Track damage (additive) instead of current HP (subtractive) in the character sheet."
     },
     "other": "Other"
   }

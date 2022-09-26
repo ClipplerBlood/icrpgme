@@ -118,8 +118,13 @@
           </div>
         </div>
         <div style="display: inline">
-          <input type="number" name="system.health.damage"
-                 value="{{system.health.damage}}" min="0" max="{{system.health.max}}">
+          {{#if trackDamage}}
+            <input type="number" name="system.health.damage" data-tooltip="{{localize "ICRPG.damage"}}"
+                   value="{{system.health.damage}}" min="0" max="{{system.health.max}}">
+          {{else}}
+            <input type="number" name="system.health.value" data-tooltip="{{localize "ICRPG.currentHP"}}"
+                   value="{{system.health.value}}" min="0" max="{{system.health.max}}">
+          {{/if}}
         </div>
       </div>
 

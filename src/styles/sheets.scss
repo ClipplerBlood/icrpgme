@@ -290,9 +290,8 @@
   }
 }
 
-.icrpg-mastery-selector {
+.icrpg-discrete-selector-container {
   display: flex;
-
   .ff-header {
     display: flex;
     justify-content: center;
@@ -304,14 +303,22 @@
     background-image: url('../assets/ui/backgrounds/bg-bar.webp');
     margin-right: 16px;
   }
-  div {
-    z-index: 1;
+
+  & > div:not(.ff-header) {
+    display: flex;
+    gap: 4px;
+    align-items: center;
   }
+
   .icrpg-sep-long {
     width: calc(27px * 20);
     position: absolute;
     z-index: 0;
   }
+}
+
+.icrpg-discrete-selector {
+  z-index: 1;
 
   img {
     @include hover;
@@ -321,6 +328,33 @@
   }
 }
 
+.icrpg-resource-tracker {
+  & > * {
+    display: inline-block;
+    width: auto !important;
+  }
+  div.ff-header,
+  input.ff-header {
+    height: 24px;
+    padding: 0 8px;
+    background-image: url('../assets/ui/backgrounds/bg-bar.webp');
+    color: white;
+    text-align: center;
+    font-family: $ff-flatbread;
+  }
+  div.ff-header {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    @include transparent-input();
+  }
+  input[type='number'] {
+    font-family: $ff-flatbread;
+  }
+}
 .icrpg-sheet-nav {
   display: flex;
   width: calc(100% - 50px);
@@ -417,22 +451,22 @@
 
   .icrpg-equipped-select {
     //background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle.webp');
-    background-image: url('/systems/icrpgme/assets/ui/mastery.webp');
+    background-image: url('/systems/icrpgme/assets/ui/selector.webp');
   }
 
   .icrpg-equipped-select.checked {
     //background-image: url('/systems/icrpgme/assets/ui/loot-equipped-circle-on.webp');
-    background-image: url('/systems/icrpgme/assets/ui/mastery-on.webp');
+    background-image: url('/systems/icrpgme/assets/ui/selector-on.webp');
   }
 
   .icrpg-carried-select {
     //background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle.webp');
-    background-image: url('/systems/icrpgme/assets/ui/mastery.webp');
+    background-image: url('/systems/icrpgme/assets/ui/selector.webp');
   }
 
   .icrpg-carried-select.checked {
     //background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
-    background-image: url('/systems/icrpgme/assets/ui/mastery-on.webp');
+    background-image: url('/systems/icrpgme/assets/ui/selector-on.webp');
   }
 }
 

@@ -61,6 +61,7 @@
     "herocoin": "Hero Coin",
     "mastery": "Mastery",
     "hp": "HP",
+    "sp": "SP",
     "damage": "Damage",
     "currentHP": "Current HP",
     "tabs": {

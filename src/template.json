@@ -11,7 +11,11 @@
       }
     },
     "character": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "sp": {
+        "value": 0,
+        "max": 10
+      }
     },
     "monster": {
       "templates": ["base"]

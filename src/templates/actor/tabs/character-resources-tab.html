@@ -1,39 +1,84 @@
-<div style="padding-top: 16px">
-  {{#*inline "mastery"}}
-    <div class="icrpg-discrete-selector" data-target='system.mastery' data-index="{{index}}">
-      {{#if (gt system.mastery index)}}
-        <img class="select-circle" src="systems/icrpgme/assets/ui/mastery-on.webp">
-      {{else}}
-        <img class="select-circle" src="systems/icrpgme/assets/ui/mastery.webp">
-      {{/if}}
-    </div>
-  {{/inline}}
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}">
+    {{#if (gt value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}
 
-  <div class="icrpg-mastery-selector">
+{{#*inline "selectorValue"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}"
+       data-resource-index="{{resourceIndex}}">
+    {{#if (gt resource.value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}
+
+{{#*inline "selectorMax"}}
+  <div class="icrpg-discrete-selector max" data-target='{{target}}' data-index="{{index}}"
+       data-tooltip="{{inc index}}" data-resource-index="{{resourceIndex}}"
+       {{#if (lt resource.max index)}}style="filter: opacity(0.5)"{{/if}}>
+    {{#if (gt resource.value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}
+
+<div style="padding-top: 16px">
+
+  <div class="icrpg-discrete-selector-container">
     <div class="ff-header">{{localize "ICRPG.mastery"}}</div>
-    <div style="display: flex; gap: 4px; align-items: center">
-      {{>mastery index=0}}
-      {{>mastery index=1}}
-      {{>mastery index=2}}
-      {{>mastery index=3}}
-      {{>mastery index=4}}
-      {{>mastery index=5}}
-      {{>mastery index=6}}
-      {{>mastery index=7}}
-      {{>mastery index=8}}
-      {{>mastery index=9}}
-      {{>mastery index=10}}
-      {{>mastery index=11}}
-      {{>mastery index=12}}
-      {{>mastery index=13}}
-      {{>mastery index=14}}
-      {{>mastery index=15}}
-      {{>mastery index=16}}
-      {{>mastery index=17}}
-      {{>mastery index=18}}
-      {{>mastery index=19}}
+    <div>
+      {{#times 20}}
+        {{>selector index=@index target="system.mastery" value=system.mastery}}
+      {{/times}}
       <div class="icrpg-sep-long"></div>
     </div>
   </div>
+
+  <div class="icrpg-resource-tracker">
+    <div class="ff-header">{{localize "ICRPG.sp"}}</div>
+    <input type="number" name="system.sp.value" value="{{system.sp.value}}" min="0" max="{{system.sp.max}}" autosize
+           style="text-align: right">
+    <div>/</div>
+    <input type="number" name="system.sp.max" value="{{system.sp.max}}" {{readonly isLocked}} min="0" max="50" autosize
+           style="text-align: left">
+  </div>
+
+  {{#each system.resources as |resource index|}}
+    <div class="icrpg-resource-tracker" data-resource-index="{{index}}">
+      <input type="text" class="ff-header" data-target="name" autosize {{readonly ../isLocked}} value="{{resource.name}}">
+      <input type="number" data-target="value" value="{{resource.value}}" min="0" max="{{resource.max}}" autosize
+             style="text-align: right">
+      <div>/</div>
+      <input type="number" data-target="max" value="{{resource.max}}" {{readonly ../isLocked}} autosize min="0" max="100"
+             style="text-align: left">
+    </div>
+  {{/each}}
+  {{#unless isLocked}}
+    <div class="icrpg-resource-tracker" data-resource-index="-1">
+      <input type="text" class="ff-header" data-target="name" autosize placeholder="Resource Name"
+             value="">
+    </div>
+  {{/unless}}
+
+
+
+  <!--  <div class="icrpg-discrete-selector-container">
+    <div class="ff-header">{{localize "ICRPG.sp"}}</div>
+    <div>
+      {{#times system.sp.max}}
+    {{>selector index=@index target="system.sp.value" value=system.sp.value}}
+  {{/times}}
+      <div class="icrpg-sep-long"></div>
+    </div>
+  </div>-->
 
 </div>

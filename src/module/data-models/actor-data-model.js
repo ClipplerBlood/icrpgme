@@ -33,6 +33,17 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
       dyingRounds: f.number({ min: 0, max: 9 }),
       heroCoin: f.boolean(),
       mastery: f.number({ min: 0, max: 20 }),
+      sp: f.schema({
+        value: f.number(),
+        max: f.number({ initial: 10 }),
+      }),
+      resources: f.array(
+        f.schema({
+          name: f.string(),
+          value: f.number(),
+          max: f.number({ initial: 1 }),
+        }),
+      ),
       weight: f.schema({
         carried: f.schema({
           max: f.number({ initial: 10 }),

@@ -122,13 +122,38 @@ export default class ICRPGActorSheet extends ActorSheet {
       postItemMessage(this.actor, itemId);
     });
 
-    // Discrete selector (Mastery, resources, ecc)
+    // Discrete selector (Mastery)
     html.find('.icrpg-discrete-selector').click((ev) => {
       const index = $(ev.currentTarget).closest('[data-index]').data('index');
       const target = $(ev.currentTarget).closest('[data-target]').data('target');
       let value = index + 1;
       if (getProperty(this.actor, target) === value) value -= 1;
       this.actor.update({ [target]: value });
+    });
+
+    // Resource tracker edit
+    html.find('.icrpg-resource-tracker input').on('change', (ev) => {
+      const ct = $(ev.currentTarget);
+      const resourceIndex = ct.closest('[data-resource-index]').data('resourceIndex');
+      if (resourceIndex == null) return;
+      const resources = this.actor.system.resources;
+      const target = ct.closest('[data-target]').data('target');
+      const value = ct.val();
+      console.log(resources, target, value);
+      if (resourceIndex < 0) {
+        console.assert(target === 'name');
+        resources.push({
+          name: value,
+          value: 0,
+          max: 1,
+        });
+      } else {
+        if ((target === 'max' && parseInt(value) <= 0) || (target === 'name' && value.length === 0))
+          resources.splice(resourceIndex, 1);
+        else resources[resourceIndex][target] = value;
+      }
+      console.log(ev);
+      this.actor.update({ 'system.resources': resources });
     });
   }
 

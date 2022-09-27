@@ -88,11 +88,13 @@
       "tools": "ICRPG Tools",
       "target": "Target",
       "timer": "Timer",
-      "indexCard": "Index Card"
+      "indexCard": "Index Card",
+      "shuffle": "Shuffle"
     },
     "timer": "Timer",
     "easy": "Easy",
     "hard": "Hard",
+    "initiative": "Initiative",
     "notifications": {
       "lockedSheet": "Locked sheet",
       "unlockedSheet": "Unlocked sheet",
@@ -115,6 +117,8 @@
       "trackDamageName": "Track Damage",
       "trackDamageHint": "Track damage (additive) instead of current HP (subtractive) in the character sheet."
     },
-    "other": "Other"
+    "other": "Other",
+    "gamemaster": "Gamemaster",
+    "players": "Players"
   }
 }

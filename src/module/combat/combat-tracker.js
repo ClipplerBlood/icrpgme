@@ -7,13 +7,16 @@ export class ICRPGCombatTracker extends CombatTracker {
 
   async getData() {
     const content = await super.getData();
-    content.turns = this._enrichTurns(content.turns);
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
+    content.turns = this._enrichTurns(content.turns);
+    // Split turns into player combatants (also includes NPCS) [init >= 50] and GM combatants
+    content.playerTurns = content.turns.filter((t) => parseInt(t.initiative) >= 50);
+    content.gmTurns = content.turns.filter((t) => parseInt(t.initiative) < 50);
     return content;
   }
 
   _enrichTurns(turns) {
-    const combatants = this.viewed.combatants;
+    const combatants = this.viewed?.combatants;
     if (!combatants) return turns;
 
     return turns.map((turn) => {
@@ -67,9 +70,11 @@ export class ICRPGCombatTracker extends CombatTracker {
         const w = 16 * (Math.clamped(dmg, 0, 10) / 10);
         dmg -= 10;
         el.style.width = Math.ceil(w) + 'px';
-        console.log(el);
       });
     });
+
+    // Toolbar buttons
+    html.find('[data-control="shuffle"]').click(() => this.viewed.shuffleCombatants());
   }
 
   _getEntryContextOptions() {

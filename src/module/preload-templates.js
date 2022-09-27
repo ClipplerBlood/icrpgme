@@ -25,6 +25,9 @@ export async function preloadTemplates() {
 
     // Dialog
     'systems/icrpgme/templates/dialog/roll-all-dialog.html',
+
+    // Combat tracker
+    'systems/icrpgme/templates/combat/combat-tracker.html',
   ];
 
   Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.html';

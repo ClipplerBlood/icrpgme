@@ -133,14 +133,14 @@
           <div class="ff-header c-white ta-center">{{localize "ICRPG.attributesLong.defense"}}</div>
           <div class="ff-header c-grey fs-8 ta-center" style="margin-bottom: 4px">{{localize
             "ICRPG.defenseSubtitle"}}</div>
-          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-roll="defense">
+          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-group="attributes" data-roll="defense">
           <div class="icrpg-defense-box">
             <div>{{localize "ICRPG.attributesShort.constitution"}} + {{localize "ICRPG.loot"}}</div>
             <div class="icrpg-defense-con">{{system.attributes.constitution.total}}</div>
             <input class="icrpg-defense-loot " type="number"
                    name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
                    min="-10" max="10" {{readonly isLocked}}>
-            <div class="icrpg-defense-total hoverable"
+            <div class="icrpg-defense-total hoverable" data-group="attributes"
                  data-roll="defense">{{system.attributes.defense.total}}</div>
           </div>
         </div>

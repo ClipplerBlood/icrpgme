@@ -154,7 +154,6 @@ export default class ICRPGActorSheet extends ActorSheet {
       const resources = this.actor.system.resources;
       const target = ct.closest('[data-target]').data('target');
       const value = ct.val();
-      console.log(resources, target, value);
       if (resourceIndex < 0) {
         console.assert(target === 'name');
         resources.push({
@@ -167,7 +166,6 @@ export default class ICRPGActorSheet extends ActorSheet {
           resources.splice(resourceIndex, 1);
         else resources[resourceIndex][target] = value;
       }
-      console.log(ev);
       this.actor.update({ 'system.resources': resources });
     });
   }

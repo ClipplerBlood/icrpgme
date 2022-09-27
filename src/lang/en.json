@@ -84,7 +84,7 @@
       "easy": "Easy",
       "hard": "Hard"
     },
-    "canvasTooltips": {
+    "tooltips": {
       "tools": "ICRPG Tools",
       "target": "Target",
       "timer": "Timer",

@@ -20,6 +20,8 @@ export class ICRPGActor extends Actor {
     } else {
       system.health.damage = system.health.max - system.health.value;
     }
+    system.health.value = Math.clamped(system.health.value, 0, system.health.max);
+    system.health.damage = Math.clamped(system.health.damage, 0, system.health.max);
   }
 
   prepareCharacter() {
@@ -39,7 +41,6 @@ export class ICRPGActor extends Actor {
     const sum = (acc, i) => acc + i.system.weight;
     system.weight.carried.value = this.items.filter((i) => i.system.carried).reduce(sum, 0);
     system.weight.equipped.value = this.items.filter((i) => i.system.equipped).reduce(sum, 0);
-    console.log(system.weight.carried.value, system.weight.equipped.value);
   }
 
   prepareMonster() {

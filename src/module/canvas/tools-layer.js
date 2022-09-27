@@ -13,7 +13,7 @@ export class ICRPGToolsLayer extends CanvasLayer {
       if (!game.user.isGM) return;
       controls.push({
         name: 'icrpgme-tools',
-        title: i18n('ICRPG.canvasTooltips.tools'),
+        title: i18n('ICRPG.tooltips.tools'),
         layer: 'controls',
         icon: 'fas fa-toolbox',
         visible: true,
@@ -21,19 +21,19 @@ export class ICRPGToolsLayer extends CanvasLayer {
           {
             icon: 'fas fa-dice-d20',
             name: 'icrpg-target',
-            title: i18n('ICRPG.canvasTooltips.target'),
+            title: i18n('ICRPG.tooltips.target'),
             onClick: () => ICRPGTargetApp.create(randomID(), game.user.id),
           },
           {
             icon: 'fas fa-hourglass',
             name: 'icrpg-timer',
-            title: i18n('ICRPG.canvasTooltips.timer'),
+            title: i18n('ICRPG.tooltips.timer'),
             onClick: () => ICRPGTimerApp.create(randomID(), game.user.id),
           },
           {
             icon: 'fas fa-scroll',
             name: 'icrpg-card',
-            title: i18n('ICRPG.canvasTooltips.indexCard'),
+            title: i18n('ICRPG.tooltips.indexCard'),
             onClick: () => createIndexCard(),
           },
         ],

@@ -67,7 +67,6 @@ export async function rollAll(options = { autoClose: true }) {
   const updateDialog = async (token, isActive) => {
     if (!isActive) return;
     currentActor = token.actor;
-    console.log(currentActor);
     d.render();
   };
   Hooks.on('controlToken', updateDialog);

@@ -1,0 +1,58 @@
+@import 'typography';
+
+#combat-tracker {
+  h4 {
+    font-family: $ff-flatbread;
+    font-size: 16px;
+  }
+
+  li.combatant .token-name {
+    min-width: 150px;
+  }
+
+  .hearts-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 2px;
+    position: relative;
+
+    & > div {
+      position: relative;
+      width: 16px;
+      height: 16px;
+    }
+    img {
+      width: 16px;
+      height: 16px;
+      flex: 0;
+      position: absolute;
+      filter: drop-shadow(1px 1px 2px var(--color-shadow-dark));
+    }
+
+    .bar-effect {
+      width: 16px;
+      position: absolute;
+      height: 16px;
+      right: 0;
+      backdrop-filter: saturate(0);
+    }
+  }
+
+  .hp-field {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 40px;
+    margin-right: 2px;
+
+    input[type='text'] {
+      //font-family: $ff-carlito;
+      color: white;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+}

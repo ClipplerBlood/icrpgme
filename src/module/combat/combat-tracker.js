@@ -1,3 +1,5 @@
+import { initializeDraggableCombatTracker } from './combat-tracker-draggable.js';
+
 export class ICRPGCombatTracker extends CombatTracker {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -119,3 +121,5 @@ export class ICRPGCombatTracker extends CombatTracker {
     ];
   }
 }
+
+initializeDraggableCombatTracker();

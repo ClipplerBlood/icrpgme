@@ -25,14 +25,13 @@
 
     <div class="encounter-controls flexrow {{#if hasCombat}}combat{{/if}}">
       {{#if user.isGM}}
-        <a class="combat-button combat-control" data-tooltip="ICRPG.tooltips.shuffle" data-control="shuffle"
-           {{#unless turns}}disabled{{/unless}}>
-          <i class="fas fa-random"></i>
-        </a>
-
         <a class="combat-button combat-control" data-tooltip="COMBAT.RollAll" data-control="rollAll"
            {{#unless turns}}disabled{{/unless}}>
           <i class="fas fa-dice-d20"></i>
+        </a>
+        <a class="combat-button combat-control" data-tooltip="ICRPG.tooltips.shuffle" data-control="shuffle"
+           {{#unless turns}}disabled{{/unless}}>
+          <i class="fas fa-random"></i>
         </a>
       {{/if}}
 
@@ -74,14 +73,19 @@
             {{/times}}
           </div>
         </div>
+
+        {{#if user.isGM}}
+          <div class="drag-handle">
+            <i class="fas fa-bars"></i>
+          </div>
+        {{/if}}
+
         {{#if turn.owner}}
           <div class="hp-field">
             {{#if trackDamage}}
-              <input type="text" data-tooltip="ICRPG.damage" data-target="system.health.damage"
-                     value="{{turn.health.damage}}">
+              <input type="text" data-target="system.health.damage" value="{{turn.health.damage}}">
             {{else}}
-              <input type="text" data-tooltip="ICRPG.currentHP" data-target="system.health.value"
-                     value="{{turn.health.value}}">
+              <input type="text" data-target="system.health.value" value="{{turn.health.value}}">
             {{/if}}
           </div>
         {{/if}}
@@ -92,14 +96,14 @@
       <li class="icrpg-combat-divider">{{localize "ICRPG.players"}}</li>
     {{/if}}
     {{#each playerTurns as |turn|}}
-      {{>liTurn turn=turn trackDamage=../trackDamage}}
+      {{>liTurn turn=turn trackDamage=../trackDamage user=../user}}
     {{/each}}
 
     {{#if gmTurns.length}}
       <li class="icrpg-combat-divider">{{localize "ICRPG.gamemaster"}}</li>
     {{/if}}
     {{#each gmTurns as |turn|}}
-      {{>liTurn turn=turn trackDamage=../trackDamage}}
+      {{>liTurn turn=turn trackDamage=../trackDamage user=../user}}
     {{/each}}
   </ol>
 

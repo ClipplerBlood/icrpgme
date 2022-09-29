@@ -49,11 +49,15 @@ export class ICRPGActor extends Actor {
 
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);
+    let img;
     if (this.type === 'character') {
-      data.img = 'systems/icrpgme/assets/cards/character/trigo.webp';
+      img = 'systems/icrpgme/assets/cards/character/trigo.webp';
     } else if (this.type === 'monster') {
-      data.img = 'systems/icrpgme/assets/cards/monster/skeleton.webp';
+      img = 'systems/icrpgme/assets/cards/monster/skeleton.webp';
+    } else if (this.type === 'obstacle') {
+      img = 'systems/icrpgme/assets/bases/block.webp';
     }
+    if (img) this.updateSource({ img: img });
   }
 
   _applyDefaultTokenSettings(data, { _fromCompendium = false } = {}) {

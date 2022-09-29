@@ -1,9 +1,12 @@
 import { postRollMessage } from '../chat/chat-roll.js';
+import { i18n } from '../utils/utils.js';
+import { ICRPGActor } from '../actor/actor.js';
 
 export class ICRPGCombat extends Combat {
   getInitiativeValue(combatant) {
-    let init = Math.round(Math.random() * 50);
-    if (combatant.actor.type === 'character' && !combatant.isNPC) init += 50;
+    let init = Math.round(Math.random() * 20);
+    if (combatant.actor.type === 'character' && !combatant.isNPC) init += 40;
+    else if (combatant.actor.type === 'monster') init += 20;
     return init;
   }
 
@@ -85,6 +88,42 @@ export class ICRPGCombat extends Combat {
       maxTurnIndex = lastPlayerTurnIndex + 1;
     }
     this.update({ turn: maxTurnIndex });
+  }
+
+  async addObstacle() {
+    // Folder for storing the obstacle
+    const folderName = i18n('ICRPG.obstacles');
+    let folder = game.folders.find((f) => f.name === folderName);
+    if (!folder) {
+      folder = await Folder.create({ name: folderName, type: ICRPGActor.documentName });
+    }
+
+    // Create the obstacle
+    let obstacleName = i18n('ACTOR.TypeObstacle');
+    let actor = await Actor.create({
+      name: obstacleName,
+      type: 'obstacle',
+      folder: folder.id,
+    });
+
+    // Create the token at the center of the window (snapped)
+    const [x, y] = [window.innerWidth / 2, window.innerHeight / 2];
+    const t = canvas.stage.worldTransform;
+    const data = canvas.grid.getSnappedPosition((x - t.tx) / canvas.stage.scale.x, (y - t.ty) / canvas.stage.scale.y);
+    const td = await actor.getTokenDocument(data);
+
+    const scene = this.scene ?? game.scenes.viewed;
+    const token = (await scene.createEmbeddedDocuments('Token', [td]))[0];
+
+    // Add the combatant
+    this.createEmbeddedDocuments('Combatant', [
+      {
+        tokenId: token.id,
+        sceneId: scene.id,
+        actorId: token.actorId,
+        hidden: token.hidden,
+      },
+    ]);
   }
 }
 

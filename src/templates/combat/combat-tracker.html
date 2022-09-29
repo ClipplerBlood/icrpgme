@@ -58,7 +58,6 @@
   </header>
 
   <ol id="combat-tracker" class="directory-list">
-    {{log this}}
     {{#* inline "liTurn"}}
       <li class="combatant actor directory-item flexrow {{turn.css}}" data-combatant-id="{{turn.id}}">
         <img class="token-image" data-src="{{turn.img}}" alt="{{turn.name}}" />
@@ -103,6 +102,18 @@
       <li class="icrpg-combat-divider">{{localize "ICRPG.gamemaster"}}</li>
     {{/if}}
     {{#each gmTurns as |turn|}}
+      {{>liTurn turn=turn trackDamage=../trackDamage user=../user}}
+    {{/each}}
+
+    {{#if (and hasCombat (or obstacles.length user.isGM))}}
+      <li class="icrpg-combat-divider">{{localize "ICRPG.obstacles"}}
+        <a class="combat-control" data-tooltip="ICRPG.tooltips.addObstacle" data-control="addObstacle"
+           style="position: absolute; right: 21px;">
+          <i class="fas fa-plus"></i>
+        </a>
+      </li>
+    {{/if}}
+    {{#each obstacles as |turn|}}
       {{>liTurn turn=turn trackDamage=../trackDamage user=../user}}
     {{/each}}
   </ol>

@@ -1,3 +1,5 @@
+@import 'typography';
+
 :root {
   --color-text-light-highlight: #eee;
   --color-text-light-heading: #ddd;
@@ -66,4 +68,9 @@ img#logo {
 .prosemirror {
   --color-control-bg: #ddd;
   --color-hover-bg: #eee;
+}
+
+.directory .directory-item h3,
+.directory .directory-item h4 {
+  font-family: $ff-flatbread;
 }

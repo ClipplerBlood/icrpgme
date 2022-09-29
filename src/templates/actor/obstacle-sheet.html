@@ -1,0 +1,41 @@
+{{#* inline "selectableHeart"}}
+  <div class="icrpg-selectable-heart" data-index="{{index}}">
+    {{#if (gt system.health.hearts index)}}
+      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+    {{else}}
+      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp" style="filter: contrast(0)">
+    {{/if}}
+  </div>
+{{/inline}}
+
+<form autocomplete="off" class="icrpg-monster-sheet">
+  <div class="icrpg-monster-header">
+    <input type="text" name="name" value="{{actor.name}}">
+  </div>
+
+  <section class="icrpg-tab-container" style="height: 580px !important;">
+    <div data-group="primary-tabs" data-tab="primary">
+      <div class="icrpg-hp-container" style="display: flex; height: 32px">
+        {{>selectableHeart index=0}}
+        {{>selectableHeart index=1}}
+        {{>selectableHeart index=2}}
+        {{>selectableHeart index=3}}
+        {{>selectableHeart index=4}}
+        {{>selectableHeart index=5}}
+        {{>selectableHeart index=6}}
+        {{>selectableHeart index=7}}
+        {{>selectableHeart index=8}}
+        {{>selectableHeart index=9}}
+      </div>
+      <div class="monster-image-container">
+        <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" style="width: 100%"/>
+      </div>
+    </div>
+  </section>
+
+  <nav class="icrpg-sheet-nav" data-group="primary-tabs" style="display: none">
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">{{localize "ICRPG.tabs.character"}}</a>
+  </nav>
+
+</form>
+

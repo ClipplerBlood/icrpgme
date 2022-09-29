@@ -12,8 +12,15 @@ export class ICRPGCombatTracker extends CombatTracker {
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     content.turns = this._enrichTurns(content.turns);
     // Split turns into player combatants (also includes NPCS) [init >= 50] and GM combatants
-    content.playerTurns = content.turns.filter((t) => parseInt(t.initiative) >= 50);
-    content.gmTurns = content.turns.filter((t) => parseInt(t.initiative) < 50);
+    content.playerTurns = [];
+    content.gmTurns = [];
+    content.obstacles = [];
+    content.turns.forEach((t) => {
+      const init = parseInt(t.initiative);
+      if (init < 20) content.obstacles.push(t);
+      else if (init < 40) content.gmTurns.push(t);
+      else content.playerTurns.push(t);
+    });
     return content;
   }
 
@@ -24,7 +31,7 @@ export class ICRPGCombatTracker extends CombatTracker {
     return turns.map((turn) => {
       const combatant = combatants.get(turn.id);
       const actor = combatant.actor;
-      turn.health = actor.system.health;
+      turn.health = actor?.system?.health;
       return turn;
     });
   }
@@ -123,3 +130,13 @@ export class ICRPGCombatTracker extends CombatTracker {
 }
 
 initializeDraggableCombatTracker();
+Hooks.on('updateActor', async (actor, changes, _options, _userID) => {
+  game.combats.apps.forEach((a) => a.render());
+  if (!game.user.isGM) return;
+
+  if (actor.type === 'obstacle' && changes.name != null) {
+    game.combats.forEach((combat) => {
+      combat.combatants.filter((c) => c.actor.uuid === actor.uuid).forEach((c) => c.update({ name: changes.name }));
+    });
+  }
+});

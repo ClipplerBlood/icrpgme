@@ -1,5 +1,9 @@
 import ICRPGActorSheet from './actor/actor-sheet.js';
-import { ICRPGCharacterDataModel, ICRPGMonsterDataModel } from './data-models/actor-data-model.js';
+import {
+  ICRPGCharacterDataModel,
+  ICRPGMonsterDataModel,
+  ICRPGObstacleDataModel,
+} from './data-models/actor-data-model.js';
 import { ICRPGActor } from './actor/actor.js';
 import { ICRPGItemBaseDataModel, ICRPGItemLootDataModel } from './data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
@@ -12,6 +16,7 @@ export function registerSystem() {
   // Actor registration
   CONFIG.Actor.systemDataModels['character'] = ICRPGCharacterDataModel;
   CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
+  CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;

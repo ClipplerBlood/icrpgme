@@ -22,8 +22,11 @@ export default class ICRPGActorSheet extends ActorSheet {
   }
 
   get template() {
-    if (this.actor.type === 'character') return 'systems/icrpgme/templates/actor/character-sheet.html';
-    else return 'systems/icrpgme/templates/actor/monster-sheet.html';
+    const t = this.actor.type;
+    if (t === 'character') return 'systems/icrpgme/templates/actor/character-sheet.html';
+    else if (t === 'monster') return 'systems/icrpgme/templates/actor/monster-sheet.html';
+    else if (t === 'obstacle') return 'systems/icrpgme/templates/actor/obstacle-sheet.html';
+    return '';
   }
 
   async getData() {
@@ -203,7 +206,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Get default buttons, removing the sheet configuration
     let buttons = super._getHeaderButtons();
     buttons = buttons.filter((b) => b.class !== 'configure-sheet');
-    buttons = this._addLockedButton(buttons);
+    if (this.actor.type !== 'obstacle') buttons = this._addLockedButton(buttons);
     return buttons;
   }
 
@@ -238,5 +241,11 @@ export default class ICRPGActorSheet extends ActorSheet {
     });
 
     return buttons;
+  }
+
+  async _render(force = false, options = {}) {
+    const t = this.actor.type;
+    if (t === 'obstacle') options = mergeObject(options, { width: 420, height: 700 });
+    return super._render(force, options);
   }
 }

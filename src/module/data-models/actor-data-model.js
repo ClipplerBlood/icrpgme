@@ -103,3 +103,17 @@ export class ICRPGMonsterDataModel extends foundry.abstract.DataModel {
     };
   }
 }
+
+export class ICRPGObstacleDataModel extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return {
+      description: f.string(),
+      health: f.schema({
+        hearts: f.number({ min: 0, max: 10, initial: 1 }),
+        max: f.number({ min: 0, max: 100 }),
+        damage: f.number({ min: 0 }),
+        value: f.number({ min: 0 }),
+      }),
+    };
+  }
+}

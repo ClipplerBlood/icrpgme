@@ -12,6 +12,9 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/actor/tabs/monster-edit.html',
     'systems/icrpgme/templates/actor/tabs/monster-view.html',
 
+    // Obstacle sheet
+    'systems/icrpgme/templates/actor/obstacle-sheet.html',
+
     // Item sheet
     'systems/icrpgme/templates/item/generic-item.html',
 

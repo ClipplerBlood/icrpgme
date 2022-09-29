@@ -1,6 +1,7 @@
 {
   "ACTOR.TypeCharacter": "Character",
   "ACTOR.TypeMonster": "Monster",
+  "ACTOR.TypeObstacle": "Obstacle",
   "ITEM.TypeLoot": "Loot",
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypePower": "Power",
@@ -89,7 +90,8 @@
       "target": "Target",
       "timer": "Timer",
       "indexCard": "Index Card",
-      "shuffle": "Shuffle"
+      "shuffle": "Shuffle",
+      "addObstacle": "Add Obstacle"
     },
     "timer": "Timer",
     "easy": "Easy",
@@ -119,6 +121,7 @@
     },
     "other": "Other",
     "gamemaster": "Gamemaster",
-    "players": "Players"
+    "players": "Players",
+    "obstacles": "Obstacles"
   }
 }

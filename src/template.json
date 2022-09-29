@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "monster"],
+    "types": ["character", "monster", "obstacle"],
     "templates": {
       "base": {
         "health": {
@@ -18,6 +18,9 @@
       }
     },
     "monster": {
+      "templates": ["base"]
+    },
+    "obstacle": {
       "templates": ["base"]
     }
   },

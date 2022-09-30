@@ -1,96 +1,56 @@
-<!--
-SPDX-FileCopyrightText: 2022 Johannes Loher
+# Index Card RPG: Master Edition – Foundry VTT
+<p align="center">
+  Play ICRPG: Master Edition with a polished UI and a smooth user experience! <br>
+  Build your characters in a matter of minutes, using the same character sheets as the paper version! <br>
+  Discover the game in the <a href="https://www.runehammer.online/online-store">official Runehammer website</a>.
+</p>
 
-SPDX-License-Identifier: MIT
--->
+## Features
+- Easy to use **character & monster sheets** using the same layout as the official paper sheets.
+- Easy to use **macros** to speed up play! No more asking "wait, how do I roll this?"
+- **Quick character creation**. You don't need huge compendiums of items to build you characters. Simply fill the character with all your LOOTS, and it's done!
+- Two modes of usage: players can either fill in their sheets bonuses manually or the GM can create items in advance for players to drag and drop into their characters.
+- Custom **combat tracker** and initiative system, respecting the "table order" nature of ICRPG. You can even track obstacles for your encounters
+- GM toolbox: **targets and timers**. From the sidebar the GM can quickly create a target or timer for their scenes which will be shared with all other players
+- Heaps of **free token images and cards** for your games
+- **Custom Foundry skin**, specifically made to match the ICRPG vibes.
 
-# icrpgme
-
-Please add your description here.
+## Screenshots
 
 ## Installation
+To install the system directly from Foundry, search for `Index Card RPG: Master Edition` in the "Install System" section
+([official guide](https://foundryvtt.com/article/tutorial/)).
 
-Please add your installation instructions here.
+Alternatively you  can install the system directly by copying the manifest link below and pasting it into the manifest link input box:
+`https://github.com/ClipplerBlood/icrpgme/releases/latest/download/system.json`
 
-## Development
+## Strongly suggested & compatible modules:
 
-### Prerequisites
+- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice/) 3d dice rolls for your games, giving more importance to the rolls. Also includes a custom ICRPG red dice template
+- [Dice Tray](https://foundryvtt.com/packages/dice-calculator): adds shortcuts to quickly roll dice.
+- [Combat Chat](https://foundryvtt.com/packages/combat-chat): adds the chat in the combat tracker, so you can have both open at the same time.
 
-In order to build this system, recent versions of `node` and `npm` are
-required. Most likely, using `yarn` also works, but only `npm` is officially
-supported. We recommend using the latest lts version of `node`. If you use `nvm`
-to manage your `node` versions, you can simply run
+## System design choices
+This system has been consciously developed with "low automation" in mind. This choice has been motivated by the fact that automation in VTTs more often than not becomes a burden on the GM and players,
+with a lot of stuff to configure prior to the game or even during the game.
 
-```
-nvm install
-```
+For example, when making a roll attempt, the target isn't automatically compared against the result to determine its success.
+The reason is for play speed: in a game you can have multiple targets (e.g. party split in different scenes) and in game scenes targets can vary very often (e.g. abilities making hard or easy rolls for particular situations).
 
-in the project's root directory.
-
-You also need to install the project's dependencies. To do so, run
-
-```
-npm install
-```
-
-### Building
-
-You can build the project by running
-
-```
-npm run build
-```
-
-Alternatively, you can run
-
-```
-npm run build:watch
-```
-
-to watch for changes and automatically build as necessary.
-
-### Linking the built project to Foundry VTT
-
-In order to provide a fluent development experience, it is recommended to link
-the built system to your local Foundry VTT installation's data folder. In
-order to do so, first add a file called `foundryconfig.json` to the project root
-with the following content:
-
-```
-{
-  "dataPath": ["/absolute/path/to/your/FoundryVTT"]
-}
-```
-
-(if you are using Windows, make sure to use `\` as a path separator instead of
-`/`)
-
-Then run
-
-```
-npm run link-project
-```
-
-On Windows, creating symlinks requires administrator privileges, so
-unfortunately you need to run the above command in an administrator terminal for
-it to work.
-
-You can also link to multiple data folders by specifying multiple paths in the
-`dataPath` array.
-
-### Creating a release
-
-The workflow works basically the same as the workflow of the [League Basic JS Module Template], please follow the
-instructions given there.
+## Troubleshooting and bug reports
+Submit any issues or feature requests [here](https://github.com/ClipplerBlood/icrpgme/issues/new)
+Alternatively you also can contact me on discord at ClipplerBlood#8146
 
 ## Licensing
 
 This project is being developed under the terms of the
-[LIMITED LICENSE AGREEMENT FOR MODULE DEVELOPMENT] for Foundry Virtual Tabletop.
+[LIMITED LICENSE AGREEMENT FOR MODULE DEVELOPMENT] for Foundry Virtual Tabletop and the [RUNEHAMMER LICENSE](https://forums.runehammer.online/t/content-creation-regulations/204).
 
-Please add your licensing information here. Add your chosen license as
-`LICENSE` file to the project root and mention it here.  If you don't know which
-license to choose, take a look at [Choose an open source license].
+The project is built with permission from the ICRPG creator Brandish Gilhelm (aka Hankerin Ferinale). All assets and designs have permission to be used and published.
+
+Bases, cards and tokens included in this system are part of the free [ICRPG CORE Online Play Assets](https://www.facebook.com/Runehammer.Games/posts/1449015628537373/) bundle.
+
+For developing and redistribution of this project, look at `LICENSE` file for further details.
 
 [League Basic JS Module Template]: https://github.com/League-of-Foundry-Developers/FoundryVTT-Module-Template
 [LIMITED LICENSE AGREEMENT FOR MODULE DEVELOPMENT]: https://foundryvtt.com/article/license/

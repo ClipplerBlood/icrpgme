@@ -1,17 +1,18 @@
 {
   "id": "icrpgme",
   "title": "Index Card RPG: Master Edition",
-  "description": "Something",
+  "description": "Play Index Card RPG on Foundry, without compromises on style and features",
   "authors": [
     {
-      "name": "Clipplerblood"
+      "name": "Clipplerblood",
+      "discord": "ClipplerBlood#8146"
     }
   ],
   "url": "This is auto replaced",
   "license": "<please choose an appropriate license. https://choosealicense.com/ is a great place to get more information if you are unsure>",
-  "readme": "<optionally the URL to your readme>",
-  "bugs": "<optionally the URL to your issue list>",
-  "changelog": "<optionally the URL to your changelog>",
+  "readme": "https://github.com/ClipplerBlood/icrpgme/blob/master/README.md",
+  "bugs": "https://github.com/ClipplerBlood/icrpgme/issues",
+  "changelog": "https://github.com/ClipplerBlood/icrpgme/blob/master/CHANGELOG.md",
   "version": "This is auto replaced",
   "compatibility": {
     "minimum": "10",

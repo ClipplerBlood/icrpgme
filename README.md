@@ -23,20 +23,20 @@
 
 ## Screenshots
 
-<h3 align="center">Character Sheets</h2>
+<h3 align="center">Character Sheets</h3>
 <p align="center">
   <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/character-sheet-1.png" width=720 />
   <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/character-sheet-2.png" width=720 />
 </p>
-<h3 align="center">Monster Sheets</h2>
+<h3 align="center">Monster Sheets</h3>
 <p align="center">
   <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/creature-sheet.png" width=720 />
 </p>
-<h3 align="center">Targets and Timers</h2>
+<h3 align="center">Targets and Timers</h3>
 <p align="center">
   <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/target-timer.png" width=300 />
 </p>
-<h3 align="center">Combat Tracker</h2>
+<h3 align="center">Combat Tracker</h3>
 <p align="center">
   <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/tracker-chat.png" height=720 />
 </p>

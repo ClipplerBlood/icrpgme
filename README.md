@@ -1,4 +1,10 @@
-# Index Card RPG: Master Edition – Foundry VTT
+
+<h1 align="center">
+  Index Card RPG: Master Edition – Foundry VTT
+</h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/src/assets/world-bg.png" width="256" />
+</p>
 <p align="center">
   Play ICRPG: Master Edition with a polished UI and a smooth user experience! <br>
   Build your characters in a matter of minutes, using the same character sheets as the paper version! <br>

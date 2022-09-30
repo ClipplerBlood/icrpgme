@@ -3,7 +3,7 @@
   Index Card RPG: Master Edition – Foundry VTT
 </h1>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/src/assets/world-bg.png" width="256" />
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/src/assets/world-bg.png" width="720" />
 </p>
 <p align="center">
   Play ICRPG: Master Edition with a polished UI and a smooth user experience! <br>
@@ -22,6 +22,25 @@
 - **Custom Foundry skin**, specifically made to match the ICRPG vibes.
 
 ## Screenshots
+
+<h3 align="center">Character Sheets</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/character-sheet-1.png" width=720 />
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/character-sheet-2.png" width=720 />
+</p>
+<h3 align="center">Monster Sheets</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/creature-sheet.png" width=720 />
+</p>
+<h3 align="center">Targets and Timers</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/target-timer.png" width=300 />
+</p>
+<h3 align="center">Combat Tracker</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/.github/screnshots/tracker-chat.png" height=720 />
+</p>
+
 
 ## Installation
 To install the system directly from Foundry, search for `Index Card RPG: Master Edition` in the "Install System" section

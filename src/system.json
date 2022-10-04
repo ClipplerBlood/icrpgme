@@ -38,7 +38,12 @@
     }
   ],
   "relationships": {
-    "requires": [],
+    "requires": [
+      {
+        "id": "sketch-tiles",
+        "type": "module"
+      }
+    ],
     "conflicts": []
   },
   "socket": true,

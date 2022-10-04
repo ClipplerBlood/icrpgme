@@ -3,7 +3,7 @@ import { preloadTemplates } from './preload-templates.js';
 import { registerSystem } from './register-system.js';
 import registerHandlebarsHelpers from './utils/handlebars.js';
 import { integrateExternalModules } from './modules-integration.js';
-import { ICRPGToolsLayer } from './canvas/tools-layer.js';
+import { registerICRPGTools } from './register-tools.js';
 import * as playerMacros from './macros/player-macros.js';
 import { registerFonts } from './register-fonts.js';
 
@@ -43,4 +43,4 @@ integrateExternalModules();
 registerFonts();
 
 // Register the custom apps
-ICRPGToolsLayer.register();
+registerICRPGTools();

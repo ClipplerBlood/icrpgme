@@ -97,20 +97,21 @@
       </div>
 
       {{#* inline "selectableHeart"}}
-        <div class="icrpg-selectable-heart" data-index="{{index}}">
+        <div class="{{#if isLocked}}icrpg-heart{{else}}icrpg-selectable-heart{{/if}}" data-index="{{index}}">
           {{#if (gt system.health.hearts index)}}
             <img class="select-circle" src="systems/icrpgme/assets/ui/select-circle.webp">
           {{/if}}
           <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
         </div>
       {{/inline}}
+
       <div class="icrpg-hp-container">
         <div style="display: flex">
-          {{>selectableHeart index=0}}
-          {{>selectableHeart index=1}}
-          {{>selectableHeart index=2}}
-          {{>selectableHeart index=3}}
-          {{>selectableHeart index=4}}
+          {{>selectableHeart index=0 isLocked=isLocked}}
+          {{>selectableHeart index=1 isLocked=isLocked}}
+          {{>selectableHeart index=2 isLocked=isLocked}}
+          {{>selectableHeart index=3 isLocked=isLocked}}
+          {{>selectableHeart index=4 isLocked=isLocked}}
           <div style="margin-left: auto; margin-right: 4px">
             <img class="heart" src="systems/icrpgme/assets/ui/heart-grey.webp"
                  style="display: inline;height: 10px;width: 10px;top: -2px;position: relative;margin-right: 3px;">

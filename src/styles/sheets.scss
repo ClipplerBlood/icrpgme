@@ -272,6 +272,8 @@
     //transform: translate(4px, 5px);
     left: 4px;
     top: 5px;
+  }
+  .icrpg-selectable-heart .heart {
     @include hover;
   }
 

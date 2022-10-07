@@ -171,6 +171,13 @@ export default class ICRPGActorSheet extends ActorSheet {
       }
       this.actor.update({ 'system.resources': resources });
     });
+
+    // Locked input animation
+    html.find('[data-tab="primary"] input[readonly]').click(() => {
+      const lock = this.element.find('.fa-lock');
+      lock.addClass('shake');
+      setTimeout(() => lock.removeClass('shake'), 500);
+    });
   }
 
   _activateMonsterListeners(html) {
@@ -221,10 +228,19 @@ export default class ICRPGActorSheet extends ActorSheet {
       this.isLocked = _isLocked;
       ct.prop('value', !_isLocked);
 
-      const fas = $(ev.currentTarget).find('i.fas');
-      fas.toggleClass('fa-lock');
-      fas.toggleClass('fa-unlock');
-      fas.toggleClass('c-red');
+      if (_isLocked) {
+        ct.removeClass('c-red');
+        // ct.html(`<i class="fas fa-lock"></i>${i18n('ICRPG.locked')}`);
+        ev.currentTarget.innerHTML = `<i class="fas fa-lock"></i>${i18n('ICRPG.locked')}`;
+      } else {
+        ct.addClass('c-red');
+        ev.currentTarget.innerHTML = `<i class="fas fa-unlock"></i><strong>${i18n('ICRPG.unlocked')}</strong>`;
+        // ct.html(`<i class="fas fa-unlock"></i>${i18n('ICRPG.unlocked')}`);
+      }
+
+      // const fas = $(ev.currentTarget).find('i.fas');
+      // fas.toggleClass('fa-lock');
+      // fas.toggleClass('fa-unlock');
       this.render();
 
       const notification = _isLocked ? 'ICRPG.notifications.lockedSheet' : 'ICRPG.notifications.unlockedSheet';
@@ -234,7 +250,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Add the button
     const isLocked = this.isLocked ?? true;
     buttons.unshift({
-      label: '',
+      label: isLocked ? 'ICRPG.locked' : 'ICRPG.unlocked',
       class: isLocked ? 'sheet-lock' : 'sheet-unlock',
       icon: isLocked ? 'fas fa-lock' : 'fas fa-lock-open c-red',
       onclick: lockCb,

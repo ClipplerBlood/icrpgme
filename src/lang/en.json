@@ -97,6 +97,8 @@
     "easy": "Easy",
     "hard": "Hard",
     "initiative": "Initiative",
+    "locked": "Locked",
+    "unlocked": "Unlocked",
     "notifications": {
       "lockedSheet": "Locked sheet",
       "unlockedSheet": "Unlocked sheet",

@@ -1,13 +1,18 @@
 import * as f from './data-model.js';
+import { i18n } from '../utils/utils.js';
 
 export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
   static defineSchema() {
+    const initialNote = `<h1><span style="font-family: FlatBread, Modesto Condensed, sans-serif">${i18n(
+      'ICRPG.tabs.notes',
+    )}</span></h1>`;
+
     return {
       type: f.string(),
       world: f.string(),
       lifeform: f.string(),
       story: f.string(),
-      notes: f.html(),
+      notes: f.html({ initial: initialNote }),
       attributes: f.schema({
         strength: f.attributef(10),
         dexterity: f.attributef(10),

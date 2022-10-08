@@ -1,9 +1,14 @@
 import { i18n } from './utils.js';
 
 export function sendDevMessages() {
-  $.getJSON('https://raw.githubusercontent.com/ClipplerBlood/icrpgme/dev-msg/src/dev-messages.json', function (data) {
-    if (data.messages === undefined || data.messages === null || data.messages.length === undefined) return;
-    data.messages.forEach(_sendMsg);
+  $.ajax({
+    cache: false,
+    url: 'https://raw.githubusercontent.com/ClipplerBlood/icrpgme/dev-msg/src/dev-messages.json',
+    dataType: 'json',
+    success: function (data) {
+      if (data.messages === undefined || data.messages === null || data.messages.length === undefined) return;
+      data.messages.forEach(_sendMsg);
+    },
   });
 }
 

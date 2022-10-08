@@ -6,6 +6,7 @@ import { integrateExternalModules } from './modules-integration.js';
 import { registerICRPGTools } from './register-tools.js';
 import * as playerMacros from './macros/player-macros.js';
 import { registerFonts } from './register-fonts.js';
+import { sendDevMessages } from './utils/dev-messages.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -35,7 +36,7 @@ Hooks.once('setup', async () => {
 
 // When ready
 Hooks.once('ready', async () => {
-  // Do anything once the system is ready
+  sendDevMessages();
 });
 
 // Add any additional hooks if necessary

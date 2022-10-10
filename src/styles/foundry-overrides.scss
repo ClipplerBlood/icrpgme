@@ -75,3 +75,14 @@ img#logo {
 .directory .directory-item h4 {
   font-family: $ff-flatbread;
 }
+
+#sidebar #items .item {
+  height: 32px;
+  h4 {
+    height: 32px;
+    line-height: 32px;
+  }
+  img {
+    display: none;
+  }
+}

@@ -15,10 +15,14 @@ export function sendDevMessages() {
 function _sendMsg(msgData) {
   const isGM = game.user.isGM;
   if (msgData.gmOnly && !isGM) return;
+
+  const receivedDevMsgIndex = game.user.getFlag('icrpgme', 'receivedDevMsgIndex') ?? -1;
+  if (receivedDevMsgIndex >= msgData.index) return;
+  game.user.setFlag('icrpgme', 'receivedDevMsgIndex', msgData.index);
+
   ChatMessage.create({
     speaker: ChatMessage.getSpeaker({ alias: i18n('FONTS.TypeSystem') }),
     whisper: [game.user],
     content: msgData.message,
   });
-  console.log(msgData);
 }

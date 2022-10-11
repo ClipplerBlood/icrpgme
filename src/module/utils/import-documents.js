@@ -58,3 +58,5 @@ const macroSlots = {
   'Effort Magic': 14,
   'Effort Ultimate': 15,
 };
+
+// async function importGuide() {}

@@ -61,7 +61,7 @@ header.window-header {
 }
 
 img#logo {
-  content: url('../assets/bases/offline runehammer logo.jpg');
+  content: url('../assets/ui/offline runehammer logo.jpg');
   height: auto;
   border: 2px solid #222;
 }
@@ -84,5 +84,39 @@ img#logo {
   }
   img {
     display: none;
+  }
+}
+
+// Journal / System guide
+.journal-sheet-container {
+  background: #202020;
+}
+.sheet.journal-entry .pages-list .page-heading .page-title {
+  font-family: $ff-flatbread;
+}
+.sheet.journal-entry .pages-list .h2 .heading-link {
+  font-family: $ff-nusaliver;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.sheet.journal-entry .pages-list .headings li:last-child {
+  margin-bottom: 0;
+}
+.journal-entry-page h1 {
+  font-family: $ff-flatbread;
+  background: url('../assets/ui/backgrounds/bg-bar-red.webp') no-repeat bottom;
+  background-size: contain;
+  border-bottom: none;
+  padding-bottom: 5px;
+  padding-left: 16px;
+}
+.sheet.journal-entry .journal-entry-content {
+  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
+  background-size: cover;
+}
+.journal-page-content {
+  h2 {
+    text-transform: uppercase;
+    border-bottom: none;
   }
 }

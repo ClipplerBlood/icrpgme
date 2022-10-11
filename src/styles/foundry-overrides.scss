@@ -91,6 +91,7 @@ img#logo {
 .journal-sheet-container {
   background: #202020;
 }
+
 .sheet.journal-entry .pages-list .page-heading .page-title {
   font-family: $ff-flatbread;
 }
@@ -102,6 +103,14 @@ img#logo {
 .sheet.journal-entry .pages-list .headings li:last-child {
   margin-bottom: 0;
 }
+
+.sheet.journal-entry .journal-entry-content {
+  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
+  background-size: cover;
+}
+
+// Also for editor
+.editor-content h1,
 .journal-entry-page h1 {
   font-family: $ff-flatbread;
   background: url('../assets/ui/backgrounds/bg-bar-red.webp') no-repeat bottom;
@@ -110,13 +119,22 @@ img#logo {
   padding-bottom: 5px;
   padding-left: 16px;
 }
-.sheet.journal-entry .journal-entry-content {
-  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
-  background-size: cover;
+
+.editor-content h2,
+.journal-page-content h2 {
+  text-transform: uppercase;
+  border-bottom: none;
+  font-family: $ff-nusaliver;
 }
-.journal-page-content {
-  h2 {
-    text-transform: uppercase;
-    border-bottom: none;
-  }
+
+.editor-content p,
+.journal-page-content p {
+  font-family: $ff-carlito;
+  font-size: var(--font-size-16);
+  line-height: 1.1;
+}
+
+.editor-content li > p,
+.journal-page-content li > p {
+  margin: 0.35em 0;
 }

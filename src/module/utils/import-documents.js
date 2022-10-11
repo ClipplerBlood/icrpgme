@@ -1,6 +1,7 @@
 export async function importDocuments() {
   if (game.user.isGM) {
     await importMacros();
+    await importGuide();
   }
   await macrosToHotbar();
 }
@@ -59,4 +60,18 @@ const macroSlots = {
   'Effort Ultimate': 15,
 };
 
-// async function importGuide() {}
+/**
+ * Imports the guide
+ */
+async function importGuide() {
+  const packGuide = game.packs.get('icrpgme.icrpg-guide');
+  // Same mechanism as import macros. TODO: move this to function?
+  for (const guide of packGuide.index) {
+    const match = game.journal.find((j) => j.flags?.icrpgme?.compendiumSourceId === guide._id);
+    if (match) continue;
+
+    const updateData = { 'flags.icrpgme.compendiumSourceId': guide._id };
+    await game.journal.importFromCompendium(packGuide, guide._id, updateData);
+  }
+  return Promise.resolve(true);
+}

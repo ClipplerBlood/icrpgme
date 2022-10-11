@@ -28,6 +28,13 @@
       "system": "icrpgme",
       "path": "packs/icrpg-macros.db",
       "type": "Macro"
+    },
+    {
+      "name": "icrpg-guide",
+      "label": "ICRPG Guide",
+      "system": "icrpgme",
+      "path": "packs/icrpg-guide.db",
+      "type": "JournalEntry"
     }
   ],
   "languages": [

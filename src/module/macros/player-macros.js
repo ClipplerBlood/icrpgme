@@ -1,4 +1,3 @@
-import { requestRollDialog } from '../dialog/roll-dialogs.js';
 import { i18n } from '../utils/utils.js';
 
 function getSelectedActors(options = { warn: true }) {
@@ -12,7 +11,7 @@ function getSelectedActors(options = { warn: true }) {
 export function rollSelected(rollGroup, rollName, mod = 0, showDialog = false) {
   const selectedActors = getSelectedActors();
   if (showDialog) {
-    selectedActors.forEach((actor) => requestRollDialog(actor, rollName, rollGroup, { initialMod: mod }));
+    // selectedActors.forEach((actor) => requestRollDialog(actor, rollName, rollGroup, { initialMod: mod }));
   } else {
     selectedActors.forEach((actor) => actor.roll(rollName, rollGroup, { mod: mod }));
   }

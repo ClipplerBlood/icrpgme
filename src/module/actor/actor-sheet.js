@@ -1,4 +1,3 @@
-import { requestRollDialog } from '../dialog/roll-dialogs.js';
 import { postItemMessage } from '../chat/chat-item.js';
 import { i18n, trimNewLineWhitespace } from '../utils/utils.js';
 
@@ -70,8 +69,9 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('[data-roll]').click((ev) => {
       const rollName = $(ev.currentTarget).closest('[data-roll]').data('roll');
       const rollGroup = $(ev.currentTarget).closest('[data-group]').data('group');
-      if (ev.altKey) requestRollDialog(this.actor, rollName, rollGroup);
-      else this.actor.roll(rollName, rollGroup);
+      // if (ev.altKey) requestRollDialog(this.actor, rollName, rollGroup);
+      // else this.actor.roll(rollName, rollGroup);
+      this.actor.roll(rollName, rollGroup);
     });
   }
 

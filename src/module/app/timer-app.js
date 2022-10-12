@@ -1,6 +1,4 @@
 import { ICRPGBaseApp } from './base-app.js';
-import { postRollMessage } from '../chat/chat-roll';
-import { i18n } from '../utils/utils.js';
 
 export class ICRPGTimerApp extends ICRPGBaseApp {
   static get defaultOptions() {
@@ -18,14 +16,18 @@ export class ICRPGTimerApp extends ICRPGBaseApp {
     return 150;
   }
   static async defaultValue() {
-    const timerRoll = new Roll('1d4', { label: i18n('ICRPG.timer') });
-    await timerRoll.roll({ async: true });
-    const timerValue = timerRoll.total;
-    await postRollMessage(undefined, timerRoll);
     return {
-      timer: timerValue,
+      timer: 4,
       name: '',
     };
+    // const timerRoll = new Roll('1d4', { label: i18n('ICRPG.timer') });
+    // await timerRoll.roll({ async: true });
+    // const timerValue = timerRoll.total;
+    // await postRollMessage(undefined, timerRoll);
+    // return {
+    //   timer: timerValue,
+    //   name: '',
+    // };
   }
 
   activateListeners(html) {

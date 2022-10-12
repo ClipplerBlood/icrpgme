@@ -119,7 +119,9 @@
     },
     "settings": {
       "trackDamageName": "Track Damage",
-      "trackDamageHint": "Track damage (additive) instead of current HP (subtractive) in the character sheet."
+      "trackDamageHint": "Track damage (additive) instead of current HP (subtractive) in the character sheet.",
+      "showMonsterHPName": "Show Monsters HP to players",
+      "showMonsterHPHint": "When on, all players can see the HP of monsters and NPCs in the combat tracker."
     },
     "other": "Other",
     "gamemaster": "Gamemaster",

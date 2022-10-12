@@ -10,8 +10,10 @@ export class ICRPGCombatTracker extends CombatTracker {
   async getData() {
     const content = await super.getData();
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
+    content.showMonsterHP = game.settings.get('icrpgme', 'showMonsterHP');
     content.turns = this._enrichTurns(content.turns);
-    // Split turns into player combatants (also includes NPCS) [init >= 50] and GM combatants
+
+    // Split turns into player combatants (also includes NPCS) and GM combatants
     content.playerTurns = [];
     content.gmTurns = [];
     content.obstacles = [];

@@ -120,7 +120,6 @@ export class ICRPGBaseApp extends Application {
 
   activateListeners(html) {
     super.activateListeners(html);
-    if (!game.user.isGM) return;
 
     // Dragging
     const handle = html.find('.drag-handle').get(0);
@@ -128,13 +127,13 @@ export class ICRPGBaseApp extends Application {
     draggable._onDragMouseUp = (event) => {
       // Call the default function, then save the position to the storage
       Draggable.prototype._onDragMouseUp.call(draggable, event);
-      this.constructor.setStoredData(this.icrpgID, {
-        position: this.getRelativePosition(),
-      });
+      // this.constructor.setStoredData(this.icrpgID, {
+      //   position: this.getRelativePosition(),
+      // });
     };
-
     draggable._onDragMouseMove = (event) => this._onDragMouseMove(event, draggable);
 
+    if (!game.user.isGM) return;
     html.find('.close').click(() => {
       this.constructor.deleteStoredData(this.icrpgID);
       game.icrpgme.apps.delete(this.icrpgID);
@@ -216,13 +215,13 @@ export class ICRPGBaseApp extends Application {
       this.setPosition(position);
     }
 
-    // Emit the change
-    game.socket.emit('system.icrpgme', {
-      icrpgID: this.icrpgID,
-      action: 'position',
-      className: this.name,
-      position: this.getRelativePosition(),
-    });
+    // // Emit the change
+    // game.socket.emit('system.icrpgme', {
+    //   icrpgID: this.icrpgID,
+    //   action: 'position',
+    //   className: this.name,
+    //   position: this.getRelativePosition(),
+    // });
   }
 }
 

@@ -6,7 +6,7 @@ import { ICRPGTimerApp } from './app/timer-app.js';
 export function registerICRPGTools() {
   Hooks.once('ready', async () => renderStoredApps());
   Hooks.once('init', async () => game.socket.on('system.icrpgme', icrpgAppsListener));
-  Hooks.once('ready', () => addEventListener('resize', icrpgResizeListener));
+  Hooks.once('ready', () => addEventListener('resize', icrpgViewportResizeListener));
   Hooks.on('getSceneControlButtons', (controls) => {
     if (!game.user.isGM) return;
     controls.push({
@@ -38,15 +38,16 @@ export function registerICRPGTools() {
     });
   });
 }
+
 export function icrpgAppsListener(data) {
   // Remember that the socket 'on' function does not run for the emitter client
   const icrpgID = data.icrpgID;
   if (!icrpgID) return;
   const cls = getAppClassByName(data.className);
   switch (data.action) {
-    case 'position':
-      cls.getApp(icrpgID)?.setRelativePosition(data.position);
-      break;
+    // case 'position':
+    //   cls.getApp(icrpgID)?.setRelativePosition(data.position);
+    //   break;
     case 'create':
       cls.create(icrpgID, undefined);
       break;
@@ -76,7 +77,7 @@ function getAppClassByName(className) {
   }
 }
 
-function icrpgResizeListener(_event) {
+function icrpgViewportResizeListener(_event) {
   game.icrpgme.apps.forEach((app) => {
     const position = app.constructor.getStoredData(app.icrpgID)?.position;
     if (position) app.setRelativePosition(position);

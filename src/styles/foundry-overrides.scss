@@ -71,6 +71,11 @@ img#logo {
   --color-hover-bg: #eee;
 }
 
+.directory .directory-item img {
+  object-fit: contain;
+  object-position: center;
+}
+
 .directory .directory-item h3,
 .directory .directory-item h4 {
   font-family: $ff-flatbread;
@@ -120,21 +125,35 @@ img#logo {
   padding-left: 16px;
 }
 
-.editor-content h2,
-.journal-page-content h2 {
-  text-transform: uppercase;
-  border-bottom: none;
-  font-family: $ff-nusaliver;
-}
+.editor-content,
+.journal-page-content {
+  h2 {
+    text-transform: uppercase;
+    border-bottom: none;
+    font-family: $ff-nusaliver;
+  }
 
-.editor-content p,
-.journal-page-content p {
-  font-family: $ff-carlito;
-  font-size: var(--font-size-16);
-  line-height: 1.1;
-}
+  p {
+    font-family: $ff-carlito;
+    font-size: var(--font-size-16);
+    line-height: 1.1;
+  }
 
-.editor-content li > p,
-.journal-page-content li > p {
-  margin: 0.35em 0;
+  li > p {
+    margin: 0.35em 0;
+  }
+
+  img {
+    border: none;
+  }
+
+  .center {
+    display: block;
+    margin: 0 auto;
+  }
+  .center-contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

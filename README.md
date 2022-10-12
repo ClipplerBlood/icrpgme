@@ -18,8 +18,9 @@
 - Two modes of usage: players can either fill in their sheets bonuses manually or the GM can create items in advance for players to drag and drop into their characters.
 - Custom **combat tracker** and initiative system, respecting the "table order" nature of ICRPG. You can even track obstacles for your encounters
 - GM toolbox: **targets and timers**. From the sidebar the GM can quickly create a target or timer for their scenes which will be shared with all other players
-- Heaps of **free token images and cards** for your games
+- Heaps of **free token images and cards** for your games made by Runehammer himself.
 - **Custom Foundry skin**, specifically made to match the ICRPG vibes.
+- Comprehensive **System Guide**. You can find it in the "journals" section or in the compendiums.
 
 ## Screenshots
 

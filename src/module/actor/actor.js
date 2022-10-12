@@ -53,7 +53,7 @@ export class ICRPGActor extends Actor {
     if (this.type === 'character') {
       img = 'systems/icrpgme/assets/cards/character/trigo.webp';
     } else if (this.type === 'monster') {
-      img = 'systems/icrpgme/assets/cards/monster/skeleton.webp';
+      img = 'systems/icrpgme/assets/cards/monster/flaming%20skull.webp';
     } else if (this.type === 'obstacle') {
       img = 'systems/icrpgme/assets/bases/block.webp';
     }
@@ -75,7 +75,7 @@ export class ICRPGActor extends Actor {
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.CONTROL;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER;
-      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/skeleton.webp' };
+      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp' };
     }
 
     return this.updateSource({ prototypeToken });
@@ -115,6 +115,21 @@ export class ICRPGActor extends Actor {
         damage: damage,
         value: value,
       };
+    }
+
+    // Handle changing the actor image with the included art
+    if (changed.img != null) {
+      const isSystemImage = (img) =>
+        img.startsWith('systems/icrpgme/assets/cards') || img.startsWith('systems/icrpgme/assets/tokens');
+      // If the changed image is a default one, change the prototype token with the corresponding
+      if (changed.img.startsWith('systems/icrpgme/assets/cards/')) {
+        const tokenImg = changed.img.replace('systems/icrpgme/assets/cards/', 'systems/icrpgme/assets/tokens/');
+        changed.prototypeToken = { texture: { src: tokenImg } };
+      }
+      // If the changed image is not a default one and the prototype is a default, override the prototype with the new
+      else if (!isSystemImage(changed.img) && isSystemImage(this.prototypeToken?.texture.src)) {
+        changed.prototypeToken = { texture: { src: changed.img } };
+      }
     }
   }
 

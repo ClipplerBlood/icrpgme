@@ -20,6 +20,16 @@ export function registerSettings() {
     default: true,
   });
 
+  game.settings.register('icrpgme', 'useTokenHearts', {
+    name: 'ICRPG.settings.useTokenHeartsName',
+    hint: 'ICRPG.settings.useTokenHeartsHint',
+    scope: 'world',
+    config: true,
+    requiresReload: true,
+    type: Boolean,
+    default: true,
+  });
+
   game.settings.register('icrpgme', 'appData', {
     name: 'apps',
     hint: 'Object [id -> appData] of stored apps. Appdata: {position: {top: <>, left: <>}}',

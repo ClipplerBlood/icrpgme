@@ -68,14 +68,19 @@ export class ICRPGActor extends Actor {
       prototypeToken.actorLink = true;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
-      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
       prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/character/trigo.webp' };
     } else if (this.type === 'monster') {
       prototypeToken.actorLink = false;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.CONTROL;
-      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER;
       prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp' };
+    } else if (this.type === 'obstacle') {
+      prototypeToken.actorLink = false;
+      prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
     }
 
     return this.updateSource({ prototypeToken });

@@ -11,6 +11,7 @@ import { ICRPGItemSheet } from './item/item-sheet.js';
 import { ICRPGItem } from './item/item.js';
 import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
+import { ICRPGToken } from './combat/token.js';
 
 export function registerSystem() {
   // Actor registration
@@ -36,4 +37,7 @@ export function registerSystem() {
   // Combat registration
   CONFIG.ui.combat = ICRPGCombatTracker;
   CONFIG.Combat.documentClass = ICRPGCombat;
+
+  // Token
+  CONFIG.Token.objectClass = ICRPGToken;
 }

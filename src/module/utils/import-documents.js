@@ -71,7 +71,8 @@ async function importGuide() {
     if (match) continue;
 
     const updateData = { 'flags.icrpgme.compendiumSourceId': guide._id };
-    await game.journal.importFromCompendium(packGuide, guide._id, updateData);
+    const g = await game.journal.importFromCompendium(packGuide, guide._id, updateData);
+    await g.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER });
   }
   return Promise.resolve(true);
 }

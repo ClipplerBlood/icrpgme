@@ -27,7 +27,7 @@ export async function rollAll(options = { autoClose: true }) {
         html.find('[data-roll]').click((ev) => {
           const rollName = $(ev.currentTarget).closest('[data-roll]').data('roll');
           const rollGroup = $(ev.currentTarget).closest('[data-group]').data('group');
-          getSelectedActors()[0]?.roll(rollName, rollGroup);
+          currentActor?.roll(rollName, rollGroup);
           if (options.autoClose) d.close();
         }),
       close: () => {
@@ -42,6 +42,7 @@ export async function rollAll(options = { autoClose: true }) {
       template: 'systems/icrpgme/templates/dialog/roll-all-dialog.html',
     },
   );
+
   d.getData = () => {
     if (!currentActor) return {};
     const data = { name: currentActor.name, attributes: {}, efforts: {} };
@@ -65,6 +66,7 @@ export async function rollAll(options = { autoClose: true }) {
 
   const updateDialog = async (token, isActive) => {
     if (!isActive) return;
+    if (token.actor.type === 'obstacle') return;
     currentActor = token.actor;
     d.render();
   };

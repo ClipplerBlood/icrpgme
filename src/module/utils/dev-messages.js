@@ -3,7 +3,7 @@ import { i18n } from './utils.js';
 export function sendDevMessages() {
   $.ajax({
     cache: false,
-    url: 'https://raw.githubusercontent.com/ClipplerBlood/icrpgme/dev-msg/src/dev-messages.json',
+    url: 'https://raw.githubusercontent.com/ClipplerBlood/icrpgme/master/src/dev-messages.json',
     dataType: 'json',
     success: function (data) {
       if (data.messages === undefined || data.messages === null || data.messages.length === undefined) return;

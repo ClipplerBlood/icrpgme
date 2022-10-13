@@ -9,11 +9,11 @@ export class ICRPGTimerApp extends ICRPGBaseApp {
     });
   }
   static get width() {
-    return 128;
+    return 100;
   }
 
   static get height() {
-    return 150;
+    return 120;
   }
   static async defaultValue() {
     return {

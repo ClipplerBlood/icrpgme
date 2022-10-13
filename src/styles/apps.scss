@@ -9,8 +9,8 @@
 
   .window-content {
     background: transparent !important;
-    height: 128px;
-    width: 128px;
+    height: 100px;
+    width: 100px;
     display: block;
     overflow: visible;
     padding: 0;
@@ -30,9 +30,9 @@
     width: 80px;
     border: none;
     background: none;
-    font-size: 46px;
-    left: 20px;
-    top: 35px;
+    font-size: 30px;
+    left: -3px;
+    top: 23px;
     text-align: center;
     color: #ddd;
   }
@@ -72,8 +72,8 @@
 
 .icrpg-timer-container,
 .icrpg-target-container {
-  height: 128px;
-  width: 128px;
+  height: 80px;
+  width: 80px;
   background-size: 100% 100%;
   -webkit-filter: blur(1px);
   filter: blur(1px);
@@ -89,18 +89,21 @@
 
 .icrpg-app-target {
   .window-content {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
   }
 
   .icrpg-easy-hard-text,
   .icrpg-easy-hard-number,
   .icrpg-easy-hard-selector {
-    width: 128px;
+    width: 110px;
     font-family: $ff-nusaliver;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: #111;
+    left: -12px;
+    top: -3px;
+    position: relative;
   }
 
   .icrpg-easy-hard-selector {
@@ -117,9 +120,9 @@
 
   .icrpg-easy-hard-number {
     position: absolute;
-    left: 107px;
-    top: 19px;
-    font-size: 29px;
+    left: 69px;
+    top: 11px;
+    font-size: 20px;
     width: 0;
   }
 }
@@ -127,11 +130,17 @@
 .icrpg-app-timer {
   .icrpg-timer-name {
     font-family: $ff-nusaliver;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: #111;
+    left: -10px;
+    top: 2px;
+    position: relative;
   }
 
+  .close {
+    left: -8px;
+  }
   textarea.icrpg-timer-name {
     @include transparent-input(false);
 

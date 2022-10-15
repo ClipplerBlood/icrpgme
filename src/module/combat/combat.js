@@ -4,7 +4,7 @@ import { ICRPGActor } from '../actor/actor.js';
 
 export class ICRPGCombat extends Combat {
   getInitiativeValue(combatant) {
-    let init = Math.round(Math.random() * 20);
+    let init = Math.floor(Math.random() * 20);
     if (combatant.actor.type === 'character' && !combatant.isNPC) init += 40;
     else if (combatant.actor.type !== 'obstacle') init += 20;
     return init;

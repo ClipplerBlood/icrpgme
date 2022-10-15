@@ -722,3 +722,12 @@ form.icrpg-monster-sheet {
     padding-top: 5px;
   }
 }
+
+// Quick insert
+.icrpg-quick-insert {
+  float: right;
+  margin-right: 8px;
+  font-size: 14px;
+  line-height: 16px;
+  @include hover;
+}

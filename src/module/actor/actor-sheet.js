@@ -1,5 +1,6 @@
 import { postItemMessage } from '../chat/chat-item.js';
 import { i18n, trimNewLineWhitespace } from '../utils/utils.js';
+import { prepareQuickInsertSheet } from '../modules-integration.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -178,6 +179,9 @@ export default class ICRPGActorSheet extends ActorSheet {
       lock.addClass('shake');
       setTimeout(() => lock.removeClass('shake'), 500);
     });
+
+    // QuickInsert
+    prepareQuickInsertSheet(this, html);
   }
 
   _activateMonsterListeners(html) {

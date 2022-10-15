@@ -23,7 +23,7 @@ export async function importTOML(tomlString) {
 
 async function importList(cls, list, type, folderName, folderType, folderParent = undefined) {
   if (list == null || list.length === 0) return;
-  const folder = await Folder.create({ name: folderName, type: folderType, parent: folderParent });
+  const folder = await Folder.create({ name: folderName, type: folderType, parent: folderParent, sorting: 'm' });
   for (const i of list) {
     if (i.name == null || i.name.length === 0) continue;
     cls.create({
@@ -38,7 +38,7 @@ async function importList(cls, list, type, folderName, folderType, folderParent 
 async function importTypes(datum) {
   console.log(datum);
   for (const type of datum) {
-    const baseFolder = await Folder.create({ name: type.name, type: ITEM_DN });
+    const baseFolder = await Folder.create({ name: type.name, type: ITEM_DN, sorting: 'm' });
     importList(Item, type['starting_ability'], 'ability', 'Starting Abilities', ITEM_DN, baseFolder.id);
     importList(Item, type['starting_loot'], 'loot', 'Starting Loot', ITEM_DN, baseFolder.id);
     importList(Item, type['milestone_ability'], 'ability', 'Milestone Abilities', ITEM_DN, baseFolder.id);

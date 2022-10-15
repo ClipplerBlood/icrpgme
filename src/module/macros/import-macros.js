@@ -1,7 +1,9 @@
 import * as TOML from '@ltd/j-toml';
 import { ICRPGItem } from '../item/item.js';
+import { ICRPGActor } from '../actor/actor.js';
 
 const ITEM_DN = ICRPGItem.documentName;
+const ACTOR_DN = ICRPGActor.documentName;
 
 export async function importTOML(tomlString) {
   const data = TOML.parse(tomlString, { joiner: '\n', bigint: false });
@@ -10,6 +12,10 @@ export async function importTOML(tomlString) {
   for (const k of Object.keys(data)) {
     if (k === 'type') {
       importTypes(data[k]);
+      continue;
+    }
+    if (k === 'monster') {
+      importMonster(data[k]);
       continue;
     }
 
@@ -43,5 +49,18 @@ async function importTypes(datum) {
     importList(Item, type['starting_loot'], 'loot', 'Starting Loot', ITEM_DN, baseFolder.id);
     importList(Item, type['milestone_ability'], 'ability', 'Milestone Abilities', ITEM_DN, baseFolder.id);
     importList(Item, type['mastery_ability'], 'ability', 'Mastery', ITEM_DN, baseFolder.id);
+  }
+}
+
+async function importMonster(datum) {
+  console.log(datum);
+  const folder = await Folder.create({ name: 'MONSTERS', type: ACTOR_DN, sorting: 'm' });
+  for (const monster of datum) {
+    Actor.create({
+      type: 'monster',
+      folder: folder.id,
+      name: monster.name,
+      system: monster.system,
+    });
   }
 }

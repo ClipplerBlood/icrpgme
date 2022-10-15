@@ -5,6 +5,7 @@ import registerHandlebarsHelpers from './utils/handlebars.js';
 import { integrateExternalModules } from './modules-integration.js';
 import { registerICRPGTools } from './register-tools.js';
 import * as playerMacros from './macros/player-macros.js';
+import * as importMacros from './macros/import-macros.js';
 import { registerFonts } from './register-fonts.js';
 import { sendDevMessages } from './utils/dev-messages.js';
 import { importDocuments } from './utils/import-documents.js';
@@ -14,7 +15,7 @@ Hooks.once('init', async () => {
   console.log('icrpgme | Initializing icrpgme');
   game.icrpgme = {
     apps: new Map(),
-    macros: { ...playerMacros },
+    macros: { ...playerMacros, ...importMacros },
   };
 
   // Assign custom classes and constants here

@@ -52,5 +52,7 @@
     "*.(js|cjs|mjs)": "eslint --fix",
     "*.(json|yml|scss)": "prettier --write"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@ltd/j-toml": "^1.35.2"
+  }
 }

@@ -52,7 +52,8 @@ Alternatively you  can install the system directly by copying the manifest link 
 
 ## Strongly suggested & compatible modules:
 
-- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice/) 3d dice rolls for your games, giving more importance to the rolls. Also includes a custom ICRPG red dice template
+- [Dice So Nice!](https://foundryvtt.com/packages/dice-so-nice/): 3d dice rolls for your games, giving more importance to the rolls. Also includes a custom ICRPG red dice template
+- [Quick Insert](https://foundryvtt.com/packages/quick-insert): adds shortcuts to quickly search for items. If installed, ICRPG:ME character sheets will have quick insert buttons for faster loot/abilities insertion.
 - [Dice Tray](https://foundryvtt.com/packages/dice-calculator): adds shortcuts to quickly roll dice.
 - [Combat Chat](https://foundryvtt.com/packages/combat-chat): adds the chat in the combat tracker, so you can have both open at the same time.
 

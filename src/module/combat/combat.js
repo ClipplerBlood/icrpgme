@@ -132,3 +132,16 @@ Hooks.on('preCreateCombatant', (combatant, _data, _options, userId) => {
   if (game.userId !== userId) return;
   combatant.updateSource({ initiative: game.combat.getInitiativeValue(combatant) });
 });
+
+// When a combatant changes name or img, update the token and actor accordingly
+Hooks.on('updateCombatant', async (combatant, changed, _options, userId) => {
+  if (game.userId !== userId) return;
+  if (changed.name != null) {
+    await combatant.actor.update({ name: changed.name });
+    await combatant.token.update({ name: changed.name });
+  }
+  if (changed.img != null) {
+    await combatant.token.update({ 'texture.src': changed.img });
+    await combatant.actor.update({ img: changed.img });
+  }
+});

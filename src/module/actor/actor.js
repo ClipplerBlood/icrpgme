@@ -86,6 +86,16 @@ export class ICRPGActor extends Actor {
     return this.updateSource({ prototypeToken });
   }
 
+  /**
+   * Handles the changing of damage and hp value
+   * + the changing of the actor image
+   * + the changing of actor name
+   * @param changed
+   * @param options
+   * @param user
+   * @returns {Promise<void>}
+   * @private
+   */
   async _preUpdate(changed, options, user) {
     await super._preUpdate(changed, options, user);
 
@@ -135,6 +145,12 @@ export class ICRPGActor extends Actor {
       else if (!isSystemImage(changed.img) && isSystemImage(this.prototypeToken?.texture.src)) {
         changed.prototypeToken = { texture: { src: changed.img } };
       }
+    }
+
+    // Actor name and prototype token
+    if (changed.name != null) {
+      changed.prototypeToken = changed.prototypeToken ?? {};
+      changed.prototypeToken.name = changed.name;
     }
   }
 

@@ -1,11 +1,6 @@
 /* globals PIXI */
 
 export class ICRPGToken extends Token {
-  constructor(...args) {
-    super(...args);
-    this.useTokenHearts = game.settings.get('icrpgme', 'useTokenHearts');
-  }
-
   /**
    * Draw a single resource bar, given provided data
    * @param {number} number       The Bar number
@@ -15,7 +10,7 @@ export class ICRPGToken extends Token {
    */
   _drawBar(number, bar, data) {
     // If not health, skip
-    if (data.attribute !== 'health' || !this.useTokenHearts) return super._drawBar(number, bar, data);
+    if (data.attribute !== 'health' || !useTokenHearts) return super._drawBar(number, bar, data);
 
     // Grab actor data
     let hp = this.actor.system.health.value;
@@ -54,10 +49,14 @@ export class ICRPGToken extends Token {
 }
 
 // Load all textures once init
+let useTokenHearts = true;
 let textureHeart = {};
 Hooks.once('init', async () => {
   for (let i = 0; i <= 10; i++) {
     textureHeart[i] = await loadTexture(`systems/icrpgme/assets/ui/token-bar/token-heart-${i}.webp`);
   }
-  setTimeout(() => canvas.draw(), 500);
+  useTokenHearts = game.settings.get('icrpgme', 'useTokenHearts');
+  setTimeout(() => {
+    if (canvas.scene) canvas.draw();
+  }, 500);
 });

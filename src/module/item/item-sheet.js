@@ -30,7 +30,7 @@ export class ICRPGItemSheet extends ItemSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
-    buttons = this._addLockedButton(buttons);
+    if (this.item.isOwner) buttons = this._addLockedButton(buttons);
     return buttons;
   }
 

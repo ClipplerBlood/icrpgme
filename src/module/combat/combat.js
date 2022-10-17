@@ -11,6 +11,19 @@ export class ICRPGCombat extends Combat {
   }
 
   /**
+   * Begin the combat encounter, advancing to round 1 and turn 1
+   * If turn already determined by the ICRPG initiative roll, use it
+   * @returns {Promise<Combat>}
+   */
+  async startCombat() {
+    this._playCombatSound('startEncounter');
+    const updateData = { round: 1 };
+    if (this.turn == null) updateData.turn = 0;
+    Hooks.callAll('combatStart', this, updateData);
+    return this.update(updateData);
+  }
+
+  /**
    * Roll initiative for one or multiple Combatants within the Combat document
    * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
    * @param {object} [options={}]     Additional options which modify how initiative rolls are created or presented.

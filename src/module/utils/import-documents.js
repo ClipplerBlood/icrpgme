@@ -18,7 +18,10 @@ async function importMacros() {
     const match = game.macros.find((m) => m.flags?.icrpgme?.compendiumSourceId === macro._id);
     if (match) continue;
 
-    const updateData = { 'flags.icrpgme.compendiumSourceId': macro._id };
+    const updateData = {
+      'flags.icrpgme.compendiumSourceId': macro._id,
+      'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
+    };
     const p = game.macros.importFromCompendium(packMacros, macro._id, updateData);
     importPromises.push(p);
   }
@@ -70,7 +73,10 @@ async function importGuide() {
     const match = game.journal.find((j) => j.flags?.icrpgme?.compendiumSourceId === guide._id);
     if (match) continue;
 
-    const updateData = { 'flags.icrpgme.compendiumSourceId': guide._id };
+    const updateData = {
+      'flags.icrpgme.compendiumSourceId': guide._id,
+      'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
+    };
     const g = await game.journal.importFromCompendium(packGuide, guide._id, updateData);
     await g.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER });
   }

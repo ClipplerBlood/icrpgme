@@ -27,6 +27,12 @@ module.exports = {
       'error',
       { vars: 'local', args: 'after-used', ignoreRestSiblings: false, argsIgnorePattern: '^_' },
     ],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 
   overrides: [

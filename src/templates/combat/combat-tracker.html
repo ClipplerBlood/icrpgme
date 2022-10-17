@@ -63,7 +63,7 @@
         <img class="token-image" data-src="{{turn.img}}" alt="{{turn.name}}" />
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
-          <div class="hearts-container {{#if hideHP}}hidden{{/if}}">
+          <div class="hearts-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
             {{#times turn.health.hearts}}
               <div data-heart-index="{{@index}}">
                 <img src="systems/icrpgme/assets/ui/heart-red.webp">

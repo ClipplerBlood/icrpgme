@@ -22,7 +22,9 @@ function initDiceSoNice(dice3d) {
 }
 
 /* globals QuickInsert */
-
+function isQuickInsertOn() {
+  return game.modules.get('quick-insert')?.active && QuickInsert != null;
+}
 /**
  * Adds the quick insert functionality to the character sheet
  * @param {ICRPGActorSheet} actorSheet
@@ -30,7 +32,7 @@ function initDiceSoNice(dice3d) {
  */
 export function prepareQuickInsertSheet(actorSheet, html) {
   const isLocked = actorSheet.isLocked ?? true;
-  if (QuickInsert == null || isLocked) return;
+  if (!isQuickInsertOn() || isLocked) return;
   html
     .find('[data-item-type].icrpg-sheet-bar')
     .append(`<i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>`);
@@ -47,7 +49,7 @@ export function prepareQuickInsertSheet(actorSheet, html) {
  * @param _itemType
  */
 function quickInsertItem(actor, _itemType) {
-  if (QuickInsert == null) return;
+  if (!isQuickInsertOn()) return;
   QuickInsert.open({
     // All fields are optional
     // spawnCSS: {

@@ -1,5 +1,5 @@
 {{#* inline "simpleItem"}}
-  <div class="icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
        data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
     <div class="flex-row" style="align-items: flex-end; position: relative">
@@ -37,7 +37,7 @@
 
 <div class="grid-2" style="gap: 8px; margin-top: 16px">
 
-  <div data-item-type="loot">
+  <div data-item-type="loot" class="item-list">
     <div class="flex-row" style="align-items: center;">
       <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.loot"}}</div>
       <div class="grid-2 ff-header ta-center"
@@ -70,7 +70,7 @@
   <div>
     {{#if (or (not isLocked) abilities.length)}}
       <div class="icrpg-sheet-bar" data-item-type="ability">{{localize "ICRPG.abilities"}}</div>
-      <div data-item-type="ability">
+      <div data-item-type="ability" class="item-list">
         {{#each abilities as | item |}}
           {{~> simpleItem item=item isLocked=../isLocked}}
         {{/each}}
@@ -82,7 +82,7 @@
 
     {{#if (or (not isLocked) powers.length)}}
       <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="power">{{localize "ICRPG.powers"}}</div>
-      <div data-item-type="power">
+      <div data-item-type="power" class="item-list">
         {{#each powers as | item |}}
           {{~> simpleItem item=item isLocked=../isLocked}}
         {{/each}}
@@ -94,7 +94,7 @@
 
     {{#if (or (not isLocked) augments.length)}}
       <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="augment">{{localize "ICRPG.augments"}}</div>
-      <div data-item-type="augment">
+      <div data-item-type="augment" class="item-list">
         {{#each augments as | item |}}
           {{~> simpleItem item=item isLocked=../isLocked}}
         {{/each}}

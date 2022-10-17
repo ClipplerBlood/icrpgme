@@ -24,6 +24,37 @@ export class ICRPGCombat extends Combat {
   }
 
   /**
+   * Advance the combat to the next turn
+   * @returns {Promise<Combat>}
+   */
+  async nextTurn() {
+    let turn = this.turn ?? -1;
+
+    // Determine the next turn number
+    let next = null;
+    for (let [i, t] of this.turns.entries()) {
+      if (i <= turn) continue;
+      // Skip defeated and obstacles
+      if (this.settings.skipDefeated && t.isDefeated) continue;
+      if (t.actor.type === 'obstacle') continue;
+      next = i;
+      break;
+    }
+
+    // Maybe advance to the next round
+    let round = this.round;
+    if (this.round === 0 || next === null || next >= this.turns.length) {
+      return this.nextRound();
+    }
+
+    // Update the document, passing data through a hook first
+    const updateData = { round, turn: next };
+    const updateOptions = { advanceTime: CONFIG.time.turnTime, direction: 1 };
+    Hooks.callAll('combatTurn', this, updateData, updateOptions);
+    return this.update(updateData, updateOptions);
+  }
+
+  /**
    * Roll initiative for one or multiple Combatants within the Combat document
    * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
    * @param {object} [options={}]     Additional options which modify how initiative rolls are created or presented.

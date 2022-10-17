@@ -47,11 +47,15 @@ export default class ICRPGActorSheet extends ActorSheet {
       itemsByType.has(type) ? itemsByType.get(type).push(item) : itemsByType.set(type, [item]);
     }
 
-    // Then for each type construct the items list
-    content.loots = itemsByType.get('loot');
-    content.abilities = itemsByType.get('ability');
-    content.powers = itemsByType.get('power');
-    content.augments = itemsByType.get('augment');
+    // Then for each type construct the items list, sorting it
+    const sort = (list) => {
+      list?.sort((a, b) => a.sort - b.sort);
+      return list;
+    };
+    content.loots = sort(itemsByType.get('loot'));
+    content.abilities = sort(itemsByType.get('ability'));
+    content.powers = sort(itemsByType.get('power'));
+    content.augments = sort(itemsByType.get('augment'));
     return content;
   }
 

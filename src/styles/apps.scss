@@ -1,152 +1,98 @@
 @import 'mixins';
 @import 'typography';
 
-.icrpg-app-timer,
-.icrpg-app-target {
-  background: transparent;
-  //background: purple;
-  box-shadow: none;
+.timer-target-container {
+  $size: 80px;
+  //background: #202020;
+  //background: #202020b0;
+  //backdrop-filter: blur(3px);
+  //box-shadow: 0 0 10px var(--color-shadow-dark);
+  width: auto;
+  float: right;
+  border-radius: 4px;
+  color: white;
+  font-family: $ff-nusaliver;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2px;
+  position: absolute;
+  flex-wrap: wrap;
+  max-width: 50vw;
 
-  .window-content {
-    background: transparent !important;
-    height: 100px;
-    width: 100px;
-    display: block;
-    overflow: visible;
-    padding: 0;
+  .target,
+  .timer {
+    filter: drop-shadow(2px 4px 6px black);
     position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: $size + 5px;
   }
 
-  .window-header {
-    display: none;
-    width: 0;
-    min-width: 0;
+  .target {
+    width: $size + 10px;
   }
 
-  .icrpg-value {
-    font-family: $ff-nusaliver;
+  .timer {
+    width: $size;
+  }
+
+  img {
     position: absolute;
-    height: auto;
-    width: 80px;
     border: none;
-    background: none;
-    font-size: 30px;
-    left: -3px;
-    top: 23px;
-    text-align: center;
-    color: #ddd;
-  }
-
-  input.icrpg-value {
-    @include transparent-input(false);
-
-    &:hover {
-      color: #ddd;
-    }
-
-    &:focus {
-      color: #111 !important;
-    }
-  }
-
-  .close {
-    @include hover;
-    position: absolute;
-    left: 0;
     top: 0;
-    font-size: 20px;
-    font-family: $ff-nusaliver;
-    color: rgba(17, 17, 17, 0.45);
-
-    &:hover {
-      color: rgba(17, 17, 17, 0.68);
-    }
+    z-index: 0;
+    width: auto;
+    filter: blur(1px);
   }
-}
-
-.icrpg-app-timer,
-.icrpg-app-target {
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(5px 5px 5px #222);
-}
-
-.icrpg-timer-container,
-.icrpg-target-container {
-  height: 80px;
-  width: 80px;
-  background-size: 100% 100%;
-  -webkit-filter: blur(1px);
-  filter: blur(1px);
-}
-
-.icrpg-target-container {
-  background-image: url('../assets/ui/dice-red/target.webp');
-}
-
-.icrpg-timer-container {
-  background-image: url('../assets/ui/dice-red/d4.webp');
-}
-
-.icrpg-app-target {
-  .window-content {
-    width: 100px;
-    height: 100px;
+  .target img {
+    height: $size;
+  }
+  .timer img {
+    height: $size - 5px;
   }
 
-  .icrpg-easy-hard-text,
-  .icrpg-easy-hard-number,
-  .icrpg-easy-hard-selector {
-    width: 110px;
-    font-family: $ff-nusaliver;
-    font-size: 18px;
-    text-align: center;
-    color: #111;
-    left: -12px;
-    top: -3px;
+  input {
+    @include transparent-input();
     position: relative;
   }
-
-  .icrpg-easy-hard-selector {
-    color: rgba(17, 17, 17, 0.45);
-
-    & > div:hover {
-      color: rgba(17, 17, 17, 0.68);
-    }
-
-    & > .checked {
-      color: rgba(17, 17, 17, 0.89);
-    }
-  }
-
-  .icrpg-easy-hard-number {
-    position: absolute;
-    left: 69px;
-    top: 11px;
-    font-size: 20px;
-    width: 0;
-  }
-}
-
-.icrpg-app-timer {
-  .icrpg-timer-name {
-    font-family: $ff-nusaliver;
-    font-size: 18px;
+  input.value {
+    width: $size - 10px;
+    font-size: 30px;
+    height: 30px;
+    top: 25px;
+    color: white;
     text-align: center;
-    color: #111;
-    left: -10px;
-    top: 2px;
-    position: relative;
-  }
-
-  .close {
-    left: -8px;
-  }
-  textarea.icrpg-timer-name {
-    @include transparent-input(false);
 
     &:focus,
     &:hover {
-      color: #111 !important;
+      color: black !important;
     }
+    &:read-only:focus,
+    &:read-only:hover {
+      color: white !important;
+    }
+  }
+
+  input.name {
+    bottom: -42px;
+    text-align: center;
+  }
+  .target input.name {
+    width: $size;
+  }
+
+  .target-mod {
+    color: black;
+    position: absolute;
+    right: 0;
+    top: 12px;
+    font-size: 20px;
+  }
+
+  nav#context-menu {
+    min-width: $size;
+    width: $size;
+    max-width: $size;
+    font-family: var(--font-primary);
   }
 }

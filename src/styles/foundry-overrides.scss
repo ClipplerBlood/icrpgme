@@ -173,3 +173,15 @@ img#logo {
     align-items: center;
   }
 }
+
+// Compendium
+li.compendium-folder > .compendium-folder-header {
+  font-family: $ff-flatbread;
+}
+.compendium.directory .directory-list .directory-item {
+  line-height: 28px;
+  height: 28px;
+  img {
+    display: none;
+  }
+}

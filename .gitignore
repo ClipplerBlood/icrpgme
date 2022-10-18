@@ -30,3 +30,4 @@ dist
 
 # Junit results
 junit.xml
+/content/

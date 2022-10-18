@@ -41,7 +41,6 @@ function dragStartEvent(ev) {
   const el = ev.target;
   /** @type {Element} */
   const c = el.matches(combatantMatch) ? el : el.closest(combatantMatch);
-  console.log(el);
   if (!c) return false;
 
   const d = c.dataset;

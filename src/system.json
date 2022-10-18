@@ -53,7 +53,7 @@
     ],
     "conflicts": []
   },
-  "socket": true,
+  "socket": false,
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "background": "systems/icrpgme/assets/world-bg.png",

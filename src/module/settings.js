@@ -32,17 +32,6 @@ export function registerSettings() {
     default: true,
   });
 
-  game.settings.register('icrpgme', 'appData', {
-    name: 'apps',
-    hint: 'Object [id -> appData] of stored apps. Appdata: {position: {top: <>, left: <>}}',
-    scope: 'world',
-    config: false,
-    requiresReload: false,
-    type: Object,
-    default: {},
-    onChange: (value) => console.log(value),
-  });
-
   game.settings.register('icrpgme', 'timers', {
     name: 'icrpg-timers',
     hint: 'ICRPG Timers',

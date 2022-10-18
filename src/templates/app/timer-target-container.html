@@ -12,7 +12,7 @@
       </div>
       {{#if (gt @index 0)}}
         <input type="text" class="name" data-target="name" value="{{target.name}}" {{readonly (not ../user.isGM)}}
-               autocomplete="off" spellcheck="false">
+               autocomplete="off" spellcheck="false" {{#if ../user.isGM}}placeholder="{{localize "ICRPG.name"}}"{{/if}}>
       {{/if}}
     </div>
   {{/each}}
@@ -21,7 +21,7 @@
       <img src="systems/icrpgme/assets/ui/dice-red/d4.webp">
       <input type="number" class="value" data-target="value" value="{{timer.value}}" {{readonly (not ../user.isGM)}}>
       <input type="text" class="name" data-target="name" value="{{timer.name}}" {{readonly (not ../user.isGM)}}
-             autocomplete="off" spellcheck="false">
+             autocomplete="off" spellcheck="false" {{#if ../user.isGM}}placeholder="{{localize "ICRPG.name"}}"{{/if}}>
     </div>
   {{/each}}
 </div>

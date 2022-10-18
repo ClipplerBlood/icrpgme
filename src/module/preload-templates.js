@@ -23,8 +23,6 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/chat/item.html',
 
     // Apps
-    'systems/icrpgme/templates/app/target-app.html',
-    'systems/icrpgme/templates/app/timer-app.html',
     'systems/icrpgme/templates/app/timer-target-container.html',
 
     // Dialog

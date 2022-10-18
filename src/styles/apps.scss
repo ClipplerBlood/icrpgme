@@ -2,17 +2,15 @@
 @import 'typography';
 
 .timer-target-container {
-  $height: 80px;
-
+  $size: 80px;
   //background: #202020;
   //background: #202020b0;
   //backdrop-filter: blur(3px);
+  //box-shadow: 0 0 10px var(--color-shadow-dark);
   width: auto;
-  //height: $height;
   float: right;
   border-radius: 4px;
   color: white;
-  //box-shadow: 0 0 10px var(--color-shadow-dark);
   font-family: $ff-nusaliver;
   display: flex;
   flex-direction: row-reverse;
@@ -27,17 +25,15 @@
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    height: $height + 5px;
+    height: $size + 5px;
   }
 
   .target {
-    width: $height + 10px;
-    //background-image: url("../assets/ui/dice-red/target.webp");
+    width: $size + 10px;
   }
 
   .timer {
-    width: $height;
-    //background-image: url("../assets/ui/dice-red/d4.webp");
+    width: $size;
   }
 
   img {
@@ -49,10 +45,10 @@
     filter: blur(1px);
   }
   .target img {
-    height: $height;
+    height: $size;
   }
   .timer img {
-    height: $height - 5px;
+    height: $size - 5px;
   }
 
   input {
@@ -60,7 +56,7 @@
     position: relative;
   }
   input.value {
-    width: $height - 10px;
+    width: $size - 10px;
     font-size: 30px;
     height: 30px;
     top: 25px;
@@ -82,7 +78,7 @@
     text-align: center;
   }
   .target input.name {
-    width: $height;
+    width: $size;
   }
 
   .target-mod {
@@ -94,161 +90,9 @@
   }
 
   nav#context-menu {
-    min-width: $height;
-    width: $height;
-    max-width: $height;
+    min-width: $size;
+    width: $size;
+    max-width: $size;
     font-family: var(--font-primary);
-  }
-}
-
-// OLD
-.icrpg-app-timer,
-.icrpg-app-target {
-  background: transparent;
-  //background: purple;
-  box-shadow: none;
-
-  .window-content {
-    background: transparent !important;
-    height: 100px;
-    width: 100px;
-    display: block;
-    overflow: visible;
-    padding: 0;
-    position: relative;
-  }
-
-  .window-header {
-    display: none;
-    width: 0;
-    min-width: 0;
-  }
-
-  .icrpg-value {
-    font-family: $ff-nusaliver;
-    position: absolute;
-    height: auto;
-    width: 80px;
-    border: none;
-    background: none;
-    font-size: 30px;
-    left: -3px;
-    top: 23px;
-    text-align: center;
-    color: #ddd;
-  }
-
-  input.icrpg-value {
-    @include transparent-input(false);
-
-    &:hover {
-      color: #ddd;
-    }
-
-    &:focus {
-      color: #111 !important;
-    }
-  }
-
-  .close {
-    @include hover;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 20px;
-    font-family: $ff-nusaliver;
-    color: rgba(17, 17, 17, 0.45);
-
-    &:hover {
-      color: rgba(17, 17, 17, 0.68);
-    }
-  }
-}
-
-.icrpg-app-timer,
-.icrpg-app-target {
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(5px 5px 5px #222);
-}
-
-.icrpg-timer-container,
-.icrpg-target-container {
-  height: 80px;
-  width: 80px;
-  background-size: 100% 100%;
-  -webkit-filter: blur(1px);
-  filter: blur(1px);
-}
-
-.icrpg-target-container {
-  background-image: url('../assets/ui/dice-red/target.webp');
-}
-
-.icrpg-timer-container {
-  background-image: url('../assets/ui/dice-red/d4.webp');
-}
-
-.icrpg-app-target {
-  .window-content {
-    width: 100px;
-    height: 100px;
-  }
-
-  .icrpg-easy-hard-text,
-  .icrpg-easy-hard-number,
-  .icrpg-easy-hard-selector {
-    width: 110px;
-    font-family: $ff-nusaliver;
-    font-size: 18px;
-    text-align: center;
-    color: #111;
-    left: -12px;
-    top: -3px;
-    position: relative;
-  }
-
-  .icrpg-easy-hard-selector {
-    color: rgba(17, 17, 17, 0.45);
-
-    & > div:hover {
-      color: rgba(17, 17, 17, 0.68);
-    }
-
-    & > .checked {
-      color: rgba(17, 17, 17, 0.89);
-    }
-  }
-
-  .icrpg-easy-hard-number {
-    position: absolute;
-    left: 69px;
-    top: 11px;
-    font-size: 20px;
-    width: 0;
-  }
-}
-
-.icrpg-app-timer {
-  .icrpg-timer-name {
-    font-family: $ff-nusaliver;
-    font-size: 18px;
-    text-align: center;
-    color: #111;
-    left: -10px;
-    top: 2px;
-    position: relative;
-  }
-
-  .close {
-    left: -8px;
-  }
-
-  textarea.icrpg-timer-name {
-    @include transparent-input(false);
-
-    &:focus,
-    &:hover {
-      color: #111 !important;
-    }
   }
 }

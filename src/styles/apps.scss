@@ -1,6 +1,107 @@
 @import 'mixins';
 @import 'typography';
 
+.timer-target-container {
+  $height: 80px;
+
+  //background: #202020;
+  //background: #202020b0;
+  //backdrop-filter: blur(3px);
+  width: auto;
+  //height: $height;
+  float: right;
+  border-radius: 4px;
+  color: white;
+  //box-shadow: 0 0 10px var(--color-shadow-dark);
+  font-family: $ff-nusaliver;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2px;
+  position: absolute;
+  flex-wrap: wrap;
+  max-width: 50vw;
+
+  .target,
+  .timer {
+    filter: drop-shadow(2px 4px 6px black);
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: $height + 5px;
+  }
+
+  .target {
+    width: $height + 10px;
+    //background-image: url("../assets/ui/dice-red/target.webp");
+  }
+
+  .timer {
+    width: $height;
+    //background-image: url("../assets/ui/dice-red/d4.webp");
+  }
+
+  img {
+    position: absolute;
+    border: none;
+    top: 0;
+    z-index: 0;
+    width: auto;
+    filter: blur(1px);
+  }
+  .target img {
+    height: $height;
+  }
+  .timer img {
+    height: $height - 5px;
+  }
+
+  input {
+    @include transparent-input();
+    position: relative;
+  }
+  input.value {
+    width: $height - 10px;
+    font-size: 30px;
+    height: 30px;
+    top: 25px;
+    color: white;
+    text-align: center;
+
+    &:focus,
+    &:hover {
+      color: black !important;
+    }
+    &:read-only:focus,
+    &:read-only:hover {
+      color: white !important;
+    }
+  }
+
+  input.name {
+    bottom: -42px;
+    text-align: center;
+  }
+  .target input.name {
+    width: $height;
+  }
+
+  .target-mod {
+    color: black;
+    position: absolute;
+    right: 0;
+    top: 12px;
+    font-size: 20px;
+  }
+
+  nav#context-menu {
+    min-width: $height;
+    width: $height;
+    max-width: $height;
+    font-family: var(--font-primary);
+  }
+}
+
+// OLD
 .icrpg-app-timer,
 .icrpg-app-target {
   background: transparent;
@@ -141,6 +242,7 @@
   .close {
     left: -8px;
   }
+
   textarea.icrpg-timer-name {
     @include transparent-input(false);
 

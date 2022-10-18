@@ -2,6 +2,14 @@ import { ICRPGBaseApp } from './app/base-app.js';
 import { i18n } from './utils/utils.js';
 import { ICRPGTargetApp } from './app/target-app.js';
 import { ICRPGTimerApp } from './app/timer-app.js';
+import { TimerTargetContainer } from './app/timer-target-app.js';
+
+Hooks.once('ready', () => {
+  const app = TimerTargetContainer.create();
+  if (app.targets.length === 0 && game.user.isGM) app.addTarget();
+});
+
+Hooks.on('collapseSidebar', () => game.icrpgme.timerTargetContainer?.render());
 
 export function registerICRPGTools() {
   Hooks.once('ready', async () => renderStoredApps());
@@ -20,13 +28,13 @@ export function registerICRPGTools() {
           icon: 'fas fa-dice-d20',
           name: 'icrpg-target',
           title: i18n('ICRPG.tooltips.target'),
-          onClick: () => ICRPGTargetApp.create(randomID(), game.user.id),
+          onClick: () => game.icrpgme.timerTargetContainer.addTarget(),
         },
         {
           icon: 'fas fa-hourglass',
           name: 'icrpg-timer',
           title: i18n('ICRPG.tooltips.timer'),
-          onClick: () => ICRPGTimerApp.create(randomID(), game.user.id),
+          onClick: () => game.icrpgme.timerTargetContainer.addTimer(),
         },
         {
           icon: 'fa-duotone fa-cards-blank',

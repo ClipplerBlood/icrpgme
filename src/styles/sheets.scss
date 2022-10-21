@@ -678,6 +678,7 @@ form.icrpg-monster-sheet {
     font-style: italic;
     margin-top: 16px;
     font-size: 16px;
+    white-space: pre-line;
 
     textarea {
       @include transparent-input();

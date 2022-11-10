@@ -1,5 +1,5 @@
 import { postItemMessage } from '../chat/chat-item.js';
-import { i18n, trimNewLineWhitespace } from '../utils/utils.js';
+import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
 import { prepareQuickInsertSheet } from '../modules-integration.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
@@ -202,7 +202,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('.monster-action.edit input, .monster-action.edit textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);
       const index = ct.closest('[data-action-index]').data('actionIndex');
-      const update = this._onArrayEdit(this.actor.system.monsterActions, ev, index);
+      const update = onArrayEdit(this.actor.system.monsterActions, ev, index);
       this.actor.update({ 'system.monsterActions': update });
     });
   }
@@ -213,7 +213,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       const ct = $(ev.currentTarget);
       const index = ct.closest('[data-chunk-index]').data('chunkIndex');
       const defaultEntry = { health: { hearts: 1, max: 10, damage: 0, value: 10 } };
-      const update = this._onArrayEdit(this.actor.system.chunks, ev, index, defaultEntry);
+      const update = onArrayEdit(this.actor.system.chunks, ev, index, defaultEntry);
       this.actor.update({ 'system.chunks': update });
     });
 
@@ -221,29 +221,9 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('.vehicle-maneuver.edit input, .vehicle-maneuver textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);
       const index = ct.closest('[data-maneuver-index]').data('maneuverIndex');
-      const update = this._onArrayEdit(this.actor.system.maneuvers, ev, index);
+      const update = onArrayEdit(this.actor.system.maneuvers, ev, index);
       this.actor.update({ 'system.maneuvers': update });
     });
-  }
-
-  _onArrayEdit(array, ev, index, defaultNewEntryVal = {}) {
-    const ct = $(ev.currentTarget);
-    const target = ct.closest('[data-target]').data('target');
-    const value = ct.val();
-
-    if (index < 0) {
-      // Create
-      array.push(mergeObject(defaultNewEntryVal, { name: target === 'name' ? value : '', description: '' }));
-    } else {
-      // Update
-      const datum = array[index];
-      datum.name = target === 'name' ? value : datum.name;
-      datum.description = target === 'description' ? value : datum.description;
-
-      // Delete
-      if (!datum.name.length) array.splice(index, 1);
-    }
-    return array;
   }
 
   // --------------------------------------------------------------------------

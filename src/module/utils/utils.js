@@ -15,6 +15,34 @@ export function trimNewLineWhitespace(x) {
 }
 
 /**
+ * Utility function that handles changes in array properties of actors and items sheets
+ * @param array original array
+ * @param ev event firing the operation in the sheet
+ * @param index index of modified entry. Negative indices indicate creation
+ * @param defaultNewEntryVal default value for new entries
+ * @return {*} the changed array
+ */
+export function onArrayEdit(array, ev, index, defaultNewEntryVal = {}) {
+  const ct = $(ev.currentTarget);
+  const target = ct.closest('[data-target]').data('target');
+  const value = ct.val();
+
+  if (index < 0) {
+    // Create
+    array.push(mergeObject(defaultNewEntryVal, { name: target === 'name' ? value : '', description: '' }));
+  } else {
+    // Update
+    const datum = array[index];
+    datum.name = target === 'name' ? value : datum.name;
+    datum.description = target === 'description' ? value : datum.description;
+
+    // Delete
+    if (!datum.name.length) array.splice(index, 1);
+  }
+  return array;
+}
+
+/**
  * Builds an object containing the INNER NUMERICAL result from the operator between two objects. NOT COMMUTATIVE
  * EG : innerNumericalOperation(
  *      {x: {xx: 1}, y: "z"},

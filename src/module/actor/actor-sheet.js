@@ -217,6 +217,16 @@ export default class ICRPGActorSheet extends ActorSheet {
       this.actor.update({ 'system.chunks': update });
     });
 
+    // Chunk Hearts selector
+    // Toggles between 1 heart and half
+    html.find('.icrpg-selectable-heart').click((ev) => {
+      const chunkIndex = $(ev.currentTarget).closest('[data-chunk-index]').data('chunkIndex');
+      const chunks = this.actor.system.chunks;
+      const currentHearts = chunks[chunkIndex].health.hearts;
+      chunks[chunkIndex].health.hearts = currentHearts === 1 ? 0.5 : 1;
+      this.actor.update({ 'system.chunks': chunks });
+    });
+
     // Vehicle Maneuvers edit
     html.find('.vehicle-maneuver.edit input, .vehicle-maneuver textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);

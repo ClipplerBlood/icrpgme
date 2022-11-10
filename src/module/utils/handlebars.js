@@ -40,7 +40,6 @@ function _times(n, block) {
 function _healthImageChooser(actor, heartIndex) {
   const heartMaxHp = (heartIndex + 1) * 10;
   const actorMaxHp = actor.system.health.max;
-  console.log(actorMaxHp, heartIndex);
   if (actor.type === 'character') {
     if (actorMaxHp >= heartMaxHp) return 'systems/icrpgme/assets/ui/char-heart-red.webp';
     else if (actorMaxHp >= heartMaxHp - 5) return 'systems/icrpgme/assets/ui/char-heart-half-red.webp';

@@ -201,73 +201,49 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Monster Actions edit
     html.find('.monster-action.edit input, .monster-action.edit textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);
-      const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
-      const target = ct.closest('[data-target]').data('target');
-      const value = ct.val();
-
-      let monsterActions = this.actor.system.monsterActions;
-      if (actionIndex < 0) {
-        // Create
-        monsterActions.push({
-          name: target === 'name' ? value : '',
-          description: '',
-        });
-      } else {
-        // Update
-        const action = monsterActions[actionIndex];
-        action.name = target === 'name' ? value : action.name;
-        action.description = target === 'description' ? value : action.description;
-
-        // Delete
-        if (!action.name.length) monsterActions.splice(actionIndex, 1);
-      }
-      this.actor.update({ 'system.monsterActions': monsterActions });
+      const index = ct.closest('[data-action-index]').data('actionIndex');
+      const update = this._onArrayEdit(this.actor.system.monsterActions, ev, index);
+      this.actor.update({ 'system.monsterActions': update });
     });
   }
 
   _activateVehicleListeners(html) {
-    // TODO: merge code for editing monster actions and vehicle chunks
     // Vehicle Chunk edit
     html.find('.vehicle-chunk.edit input, .vehicle-chunk.edit textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);
-      const chunkIndex = ct.closest('[data-chunk-index]').data('chunkIndex');
-      const target = ct.closest('[data-target]').data('target');
-      const value = ct.val();
-
-      let chunks = this.actor.system.chunks;
-      if (chunkIndex < 0) {
-        // Create
-        chunks.push({
-          name: target === 'name' ? value : '',
-          description: '',
-          health: {
-            hearts: 1,
-            max: 10,
-            damage: 0,
-            value: 10,
-          },
-        });
-      } else {
-        // Update
-        const chunk = chunks[chunkIndex];
-        chunk.name = target === 'name' ? value : chunk.name;
-        chunk.description = target === 'description' ? value : chunk.description;
-
-        // Delete
-        if (!chunk.name.length) chunks.splice(chunkIndex, 1);
-      }
-      this.actor.update({ 'system.chunks': chunks });
+      const index = ct.closest('[data-chunk-index]').data('chunkIndex');
+      const defaultEntry = { health: { hearts: 1, max: 10, damage: 0, value: 10 } };
+      const update = this._onArrayEdit(this.actor.system.chunks, ev, index, defaultEntry);
+      this.actor.update({ 'system.chunks': update });
     });
 
-    // Chunk Hearts selector
-    // Toggles between 1 heart and half
-    html.find('.icrpg-selectable-heart').click((ev) => {
-      const chunkIndex = $(ev.currentTarget).closest('[data-chunk-index]').data('chunkIndex');
-      const chunks = this.actor.system.chunks;
-      const currentHearts = chunks[chunkIndex].health.hearts;
-      chunks[chunkIndex].health.hearts = currentHearts === 1 ? 0.5 : 1;
-      this.actor.update({ 'system.chunks': chunks });
+    // Vehicle Maneuvers edit
+    html.find('.vehicle-maneuver.edit input, .vehicle-maneuver textarea').on('change', (ev) => {
+      const ct = $(ev.currentTarget);
+      const index = ct.closest('[data-maneuver-index]').data('maneuverIndex');
+      const update = this._onArrayEdit(this.actor.system.maneuvers, ev, index);
+      this.actor.update({ 'system.maneuvers': update });
     });
+  }
+
+  _onArrayEdit(array, ev, index, defaultNewEntryVal = {}) {
+    const ct = $(ev.currentTarget);
+    const target = ct.closest('[data-target]').data('target');
+    const value = ct.val();
+
+    if (index < 0) {
+      // Create
+      array.push(mergeObject(defaultNewEntryVal, { name: target === 'name' ? value : '', description: '' }));
+    } else {
+      // Update
+      const datum = array[index];
+      datum.name = target === 'name' ? value : datum.name;
+      datum.description = target === 'description' ? value : datum.description;
+
+      // Delete
+      if (!datum.name.length) array.splice(index, 1);
+    }
+    return array;
   }
 
   // --------------------------------------------------------------------------

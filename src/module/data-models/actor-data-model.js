@@ -139,6 +139,12 @@ export class ICRPGVehicleDataModel extends foundry.abstract.DataModel {
           description: f.string(),
         }),
       ),
+      maneuvers: f.array(
+        f.schema({
+          name: f.string(),
+          description: f.string(),
+        }),
+      ),
       health: f.schema({
         hearts: f.number({ min: 0, integer: false }),
         max: f.number({ min: 0 }),

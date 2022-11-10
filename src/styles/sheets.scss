@@ -771,10 +771,12 @@ form.icrpg-monster-sheet {
     font-family: $ff-carlito;
     font-size: 16px;
 
+    .vehicle-maneuver,
     .vehicle-chunk {
       padding-left: 8px;
       margin-right: 8px;
     }
+    .vehicle-maneuver.edit,
     .vehicle-chunk.edit {
       border-bottom: 2px solid;
     }

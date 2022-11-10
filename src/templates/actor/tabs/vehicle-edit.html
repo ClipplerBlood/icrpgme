@@ -11,6 +11,14 @@
       {{/each}}
       {{> chunkEdit index=-1 noDescription=true}}
     </div>
+
+    <div class="icrpg-vehicle-chunks-container" style="margin-top: 16px;">
+      <h2>{{localize "ICRPG.vehicleSheet.maneuvers"}}</h2>
+      {{#each system.maneuvers as |maneuver index|}}
+        {{> maneuverEdit index=index maneuver=maneuver}}
+      {{/each}}
+      {{> maneuverEdit index=-1 noDescription=true}}
+    </div>
   </div>
 
   <div class="col-1 vehicle-image-container">
@@ -39,6 +47,22 @@
       </div>
       <textarea placeholder="{{localize "ICRPG.vehicleSheet.chunkDescription"}}" spellcheck="false" autosize
                 data-target="description">{{chunk.description}}</textarea>
+    {{/if}}
+  </div>
+{{/inline}}
+
+{{#* inline "maneuverEdit"}}
+  <div class="vehicle-maneuver edit" data-maneuver-index="{{index}}">
+    {{#if noDescription}}
+      <input type="text" value="{{maneuver.name}}" data-target="name"
+             placeholder="{{localize "ICRPG.vehicleSheet.maneuverName"}}">
+    {{else}}
+      <div class="flexrow">
+        <input type="text" value="{{maneuver.name}}" data-target="name"
+               placeholder="{{localize "ICRPG.vehicleSheet.maneuverName"}}">
+      </div>
+      <textarea placeholder="{{localize "ICRPG.vehicleSheet.maneuverDescription"}}" spellcheck="false" autosize
+                data-target="description">{{maneuver.description}}</textarea>
     {{/if}}
   </div>
 {{/inline}}

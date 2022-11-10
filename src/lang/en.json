@@ -122,7 +122,10 @@
       "vehicleDescription": "Vehicle Description",
       "chunkName": "Chunk Name",
       "chunkDescription": "Chunk Description",
-      "chunks": "Chunks"
+      "chunks": "Chunks",
+      "maneuvers": "Maneuvers",
+      "maneuverName": "Maneuver Name",
+      "maneuverDescription": "Maneuver Description"
     },
     "settings": {
       "trackDamageName": "Track Damage",

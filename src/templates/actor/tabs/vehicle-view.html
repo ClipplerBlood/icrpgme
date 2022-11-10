@@ -9,6 +9,15 @@
         {{> chunkView index=index chunk=chunk}}
       {{/each}}
     </div>
+
+    {{#if system.maneuvers.length}}
+      <div class="icrpg-vehicle-chunks-container" style="margin-top: 16px">
+        <h2>{{localize "ICRPG.vehicleSheet.maneuvers"}}</h2>
+        {{#each system.maneuvers as |maneuver index|}}
+          {{> maneuverView index=index maneuver=maneuver}}
+        {{/each}}
+      </div>
+    {{/if}}
   </div>
 
   <div class="col-1 vehicle-image-container">
@@ -29,6 +38,14 @@
           {{/if}}
         </div>
       </div>
+    </div>
+  </div>
+{{/inline}}
+
+{{#* inline "maneuverView"}}
+  <div class="vehicle-chunk" data-maneuver-index="{{index}}">
+    <div class="flexrow">
+      <div><b style="text-transform: uppercase">{{maneuver.name}}: </b>{{maneuver.description}}</div>
     </div>
   </div>
 {{/inline}}

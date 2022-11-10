@@ -115,8 +115,60 @@
         {{/if}}
       </li>
     {{/if}}
+
     {{#each obstacles as |turn|}}
       {{>liTurn turn=turn trackDamage=../trackDamage user=../user}}
+    {{/each}}
+
+    {{#if vehicles.length}}
+      <li class="icrpg-combat-divider">{{localize "ICRPG.vehicles"}}</li>
+    {{/if}}
+    {{#each vehicles as |turn|}}
+      <li class="combatant actor directory-item flexrow vehicle {{turn.css}}" data-combatant-id="{{turn.id}}">
+        <img class="token-image" data-src="{{turn.img}}" alt="{{turn.name}}" />
+        <div class="token-name flexcol">
+          <h4>{{turn.name}}</h4>
+          <div class="hearts-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
+            {{#times turn.health.hearts}}
+              <div data-heart-index="{{@index}}">
+                <img src="systems/icrpgme/assets/ui/heart-red.webp">
+                <div class="bar-effect"></div>
+              </div>
+            {{/times}}
+          </div>
+        </div>
+
+        {{#if ../user.isGM}}
+          <div class="drag-handle">
+            <i class="fas fa-bars"></i>
+          </div>
+        {{/if}}
+
+        <div class="turn-chunks">
+          {{#each turn.chunks as |chunk index|}}
+            <div class="flexrow" data-chunk-index="{{index}}">
+              <h4>{{chunk.name}}</h4>
+
+              <div class="hearts-container chunk-heart-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
+                <div data-heart-index="0">
+                  <img src="systems/icrpgme/assets/ui/heart-red.webp">
+                  <div class="bar-effect"></div>
+                </div>
+              </div>
+
+              {{#if turn.owner}}
+                <div class="hp-field">
+                  {{#if ../../trackDamage}}
+                    <input type="text" data-target="damage" value="{{chunk.health.damage}}">
+                  {{else}}
+                    <input type="text" data-target="value" value="{{chunk.health.value}}">
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      </li>
     {{/each}}
   </ol>
 

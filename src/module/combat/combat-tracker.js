@@ -17,10 +17,17 @@ export class ICRPGCombatTracker extends CombatTracker {
     content.playerTurns = [];
     content.gmTurns = [];
     content.obstacles = [];
+    content.vehicles = [];
+
+    const vehicleIds = this.viewed.combatants.filter((c) => c.actor.type === 'vehicle').map((c) => c.id);
+    const obstaclesIds = this.viewed.combatants.filter((c) => c.actor.type === 'obstacle').map((c) => c.id);
+
     content.turns.forEach((t) => {
+      if (vehicleIds.includes(t.id)) return content.vehicles.push(t);
+      if (obstaclesIds.includes(t.id)) return content.obstacles.push(t);
+
       const init = parseInt(t.initiative);
-      if (init < 20) content.obstacles.push(t);
-      else if (init < 40) content.gmTurns.push(t);
+      if (init < 40) content.gmTurns.push(t);
       else content.playerTurns.push(t);
     });
     return content;
@@ -34,6 +41,9 @@ export class ICRPGCombatTracker extends CombatTracker {
       const combatant = combatants.get(turn.id);
       const actor = combatant.actor;
       turn.health = actor?.system?.health;
+      if (actor?.type === 'vehicle') {
+        turn.chunks = actor.system.chunks;
+      }
       return turn;
     });
   }
@@ -58,25 +68,43 @@ export class ICRPGCombatTracker extends CombatTracker {
       const newValue = String(ct.val());
       const target = ct.closest('[data-target]').data('target');
       const combatantId = ct.closest('[data-combatant-id]').data('combatantId');
+      const chunkIndex = ct.closest('[data-chunk-index]').data('chunkIndex');
 
       // Get actor and old (hp) value
       const actor = this.viewed.combatants.get(combatantId).actor;
       const oldValue = getProperty(actor, target);
+      let finalValue;
 
       // If newvalue has length 0, reset it in the html to the old
       if (newValue.length === 0) ct.val(oldValue);
       // If newvalue includes a + or -, update additive
-      else if (newValue.includes('+') || newValue.includes('-'))
-        actor.update({ [target]: oldValue + parseInt(newValue) });
+      else if (newValue.includes('+') || newValue.includes('-')) finalValue = oldValue + parseInt(newValue);
       // Otherwise, do a normal update
-      else actor.update({ [target]: parseInt(newValue) });
+      else finalValue = parseInt(newValue);
+      if (finalValue == null) return;
+
+      // If we have a chunk index, then it's a vehicle. So use the actor's method for editing chunk HP
+      if (chunkIndex != null) actor.setChunkHealth(chunkIndex, { [target]: finalValue });
+      // Otherwise, standard actor update
+      else actor.update({ [target]: finalValue });
     });
 
-    // Hearts HP progress bar
+    // Hearts HP progress bar (everything but chunks)
     html.find('.hearts-container').each((_, hc) => {
       const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
       const c = this.viewed.combatants.get(cid);
       let dmg = c.actor.system.health.damage;
+      let maxHpOffset = c.actor.system.health.max % 10; // The damage offset. 10 -> 0; 5 -> 5.
+
+      // If chunk, use the chunk dmg instead of the global
+      const chunkIndex = $(hc).closest('[data-chunk-index]').data('chunkIndex');
+      if (chunkIndex != null) {
+        const chunk = c.actor.system.chunks[chunkIndex];
+        dmg = chunk.health.damage;
+        maxHpOffset = chunk.health.max % 10;
+      }
+      dmg += maxHpOffset; // Sum the offset to the damage, ensuring that the displayed heart maximum is 10
+
       $($(hc).find('[data-heart-index] .bar-effect').get().reverse()).each((_, el) => {
         const w = 16 * (Math.clamped(dmg, 0, 10) / 10);
         dmg -= 10;

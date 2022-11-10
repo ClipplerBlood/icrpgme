@@ -126,34 +126,8 @@ export class ICRPGActor extends Actor {
     // If changing health, recalculate everything in it
     const newHealth = changed.system?.health;
     if (newHealth != null) {
-      // If only hearts (or maxHP) return
-      if ((newHealth.hearts != null || newHealth.max != null) && newHealth.damage == null && newHealth.value == null)
-        return;
-
-      // Compute the values
-      const oldHealth = this.system.health;
-      const hearts = newHealth.hearts ?? oldHealth.hearts;
-      const maxHP = newHealth.max ?? oldHealth.max;
-      let value, damage;
-
-      // If VALUE, then compute damage
-      if (newHealth.value != null && newHealth.damage == null) {
-        value = newHealth.value;
-        damage = maxHP - value;
-      }
-      // If DAMAGE, then compute value
-      else if (newHealth.damage != null && newHealth.value == null) {
-        damage = newHealth.damage;
-        value = maxHP - value;
-      }
-      // If BOTH, idk
-      else throw `Updating both hp damage and value ${newHealth}`;
-      changed.system.health = {
-        max: maxHP,
-        hearts: hearts,
-        damage: damage,
-        value: value,
-      };
+      const healthUpdate = this.handleHealthUpdate(newHealth, this.system.health);
+      if (healthUpdate) changed.system.health = healthUpdate;
     }
 
     // Handle changing the actor image with the included art
@@ -176,6 +150,42 @@ export class ICRPGActor extends Actor {
       changed.prototypeToken = changed.prototypeToken ?? {};
       changed.prototypeToken.name = changed.name;
     }
+  }
+
+  /**
+   * Handles the updating between DAMAGE and HP VALUE
+   * @param newHealth
+   * @param oldHealth
+   * @return the new health object, correctly calculated
+   */
+  handleHealthUpdate(newHealth, oldHealth) {
+    if (!newHealth) return;
+
+    // Compute the values
+    const hearts = newHealth.hearts ?? oldHealth.hearts;
+    const maxHP = newHealth.max ?? oldHealth.max;
+    let value, damage;
+
+    // If VALUE, then compute damage
+    if (newHealth.value != null && newHealth.damage == null) {
+      value = newHealth.value;
+      damage = maxHP - value;
+    }
+    // If DAMAGE, then compute value
+    else if (newHealth.damage != null && newHealth.value == null) {
+      damage = newHealth.damage;
+      value = maxHP - value;
+    }
+    // If BOTH, idk
+    else throw `Updating both hp damage and value ${newHealth}`;
+    return { hearts: hearts, max: maxHP, damage, value };
+  }
+
+  async setChunkHealth(chunkIndex, newHealth) {
+    if (this.type !== 'vehicle') return;
+    const chunks = this.system.chunks;
+    chunks[chunkIndex].health = this.handleHealthUpdate(newHealth, chunks[chunkIndex].health);
+    return this.update({ 'system.chunks': chunks });
   }
 
   /*

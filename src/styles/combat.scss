@@ -83,6 +83,43 @@
       transition: 0.2s ease-in-out;
     }
   }
+
+  li.vehicle {
+    .drag-handle {
+      margin-right: 40px;
+    }
+    .turn-chunks {
+      flex-basis: 100%;
+
+      .flexrow {
+        margin-left: 0;
+        align-items: center;
+        border-left: 2px solid var(--c-red);
+        padding: 2px 0;
+      }
+      .hearts-container {
+        flex: 0;
+        margin-right: 8px;
+        margin-left: 8px;
+        top: -2px;
+      }
+
+      .hp-field {
+        flex: 0;
+      }
+      .hp-field input {
+        height: 24px;
+      }
+
+      h4 {
+        line-height: 1;
+        margin-bottom: 0;
+        text-align: left;
+        padding-left: 8px;
+        font-size: 15px;
+      }
+    }
+  }
 }
 
 ol#combat-tracker li.combatant.drag-hover {

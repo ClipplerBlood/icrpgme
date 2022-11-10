@@ -135,6 +135,7 @@
     "other": "Other",
     "gamemaster": "Gamemaster",
     "players": "Players",
-    "obstacles": "Obstacles"
+    "obstacles": "Obstacles",
+    "vehicles": "Vehicles"
   }
 }

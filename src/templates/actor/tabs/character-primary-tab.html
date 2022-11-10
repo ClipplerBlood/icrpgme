@@ -98,10 +98,7 @@
 
       {{#* inline "selectableHeart"}}
         <div class="{{#if isLocked}}icrpg-heart{{else}}icrpg-selectable-heart{{/if}}" data-index="{{index}}">
-          {{#if (gt system.health.hearts index)}}
-            <img class="select-circle" src="systems/icrpgme/assets/ui/select-circle.webp">
-          {{/if}}
-          <img class="heart" src="systems/icrpgme/assets/ui/heart-black.webp">
+          <img class="heart" src="{{healthImageChooser actor index}}">
         </div>
       {{/inline}}
 

@@ -69,7 +69,14 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Hearts selector
     html.find('.icrpg-selectable-heart').click((ev) => {
       const heartIndex = $(ev.currentTarget).closest('[data-index]').data('index');
-      this.actor.update({ 'system.health.hearts': heartIndex + 1 });
+      const currentHearts = this.actor.system.health.hearts;
+      const newHearts = heartIndex + 1;
+
+      let finalHearts;
+      if (newHearts !== currentHearts) finalHearts = newHearts;
+      else finalHearts = currentHearts - 0.5;
+
+      this.actor.update({ 'system.health.hearts': finalHearts });
     });
 
     // Rolls

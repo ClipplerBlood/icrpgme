@@ -11,6 +11,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('times', _times);
   // Handlebars.registerHelper('sum', (x, y) => x + y);
   Handlebars.registerHelper('inc', (x) => x + 1);
+  Handlebars.registerHelper('healthImageChooser', _healthImageChooser);
 }
 
 function _localizeConcat(...args) {
@@ -34,4 +35,19 @@ function _times(n, block) {
     accum += block.fn(this);
   }
   return accum;
+}
+
+function _healthImageChooser(actor, heartIndex) {
+  const heartMaxHp = (heartIndex + 1) * 10;
+  const actorMaxHp = actor.system.health.max;
+  console.log(actorMaxHp, heartIndex);
+  if (actor.type === 'character') {
+    if (actorMaxHp >= heartMaxHp) return 'systems/icrpgme/assets/ui/char-heart-red.webp';
+    else if (actorMaxHp >= heartMaxHp - 5) return 'systems/icrpgme/assets/ui/char-heart-half-red.webp';
+    else return 'systems/icrpgme/assets/ui/char-heart-grey.webp';
+  } else {
+    if (actorMaxHp >= heartMaxHp) return 'systems/icrpgme/assets/ui/heart-red.webp';
+    else if (actorMaxHp >= heartMaxHp - 5) return 'systems/icrpgme/assets/ui/heart-half-red.webp';
+    else return 'systems/icrpgme/assets/ui/char-heart-grey-2.webp';
+  }
 }

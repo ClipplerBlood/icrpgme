@@ -160,6 +160,9 @@ export class ICRPGActor extends Actor {
    */
   handleHealthUpdate(newHealth, oldHealth) {
     if (!newHealth) return;
+    // If only hearts (or maxHP) return
+    if ((newHealth.hearts != null || newHealth.max != null) && newHealth.damage == null && newHealth.value == null)
+      return newHealth;
 
     // Compute the values
     const hearts = newHealth.hearts ?? oldHealth.hearts;

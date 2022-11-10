@@ -1,17 +1,13 @@
 {{#* inline "selectableHeart"}}
   <div class="icrpg-selectable-heart" data-index="{{index}}">
-    {{#if (gt system.health.hearts index)}}
-      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
-    {{else}}
-      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp" style="filter: contrast(0)">
-    {{/if}}
+    <img class="heart" src="{{healthImageChooser actor index}}">
   </div>
 {{/inline}}
 
 {{#* inline "heart"}}
   {{#if (gt system.health.hearts index)}}
     <div class="icrpg-heart">
-      <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+      <img class="heart" src="{{healthImageChooser actor index}}">
     </div>
   {{/if}}
 {{/inline}}

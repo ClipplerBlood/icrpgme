@@ -30,7 +30,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
         ultimate: f.attributef(10),
       }),
       health: f.schema({
-        hearts: f.number({ min: 0, max: 5, initial: 1 }),
+        hearts: f.number({ min: 0, max: 5, initial: 1, integer: false }),
         max: f.number({ min: 0, max: 50 }),
         damage: f.number({ min: 0 }),
         value: f.number({ min: 0 }),
@@ -91,7 +91,7 @@ export class ICRPGMonsterDataModel extends foundry.abstract.DataModel {
 
       // Health goes up to 100 (10 hearts)
       health: f.schema({
-        hearts: f.number({ min: 0, max: 10, initial: 0 }),
+        hearts: f.number({ min: 0, max: 10, initial: 0, integer: false }),
         max: f.number({ min: 0, max: 100 }),
         damage: f.number({ min: 0 }),
         value: f.number({ min: 0 }),

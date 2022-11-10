@@ -11,6 +11,9 @@ export class ICRPGActor extends Actor {
       case 'monster':
         this.prepareMonster();
         break;
+      case 'vehicle':
+        this.prepareVehicle();
+        break;
     }
 
     // Set health
@@ -47,6 +50,22 @@ export class ICRPGActor extends Actor {
     this.system.attributes.defense = 0;
   }
 
+  prepareVehicle() {
+    this.system.health = { hearts: 0, max: 0, damage: 0, value: 0 };
+    this.system.chunks.forEach((chunk) => {
+      chunk.health.max = 10 * chunk.health.hearts;
+      if (game.settings.get('icrpgme', 'trackDamage')) {
+        chunk.health.value = chunk.health.max - (chunk.health.damage ?? 0);
+      } else {
+        chunk.health.damage = chunk.health.max - (chunk.health.value ?? 0);
+      }
+      chunk.health.value = Math.clamped(chunk.health.value, 0, chunk.health.max);
+      chunk.health.damage = Math.clamped(chunk.health.damage, 0, chunk.health.max);
+
+      for (const [k, v] of Object.entries(chunk.health)) this.system.health[k] += v;
+    });
+  }
+
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);
     let img;
@@ -78,6 +97,11 @@ export class ICRPGActor extends Actor {
       prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp' };
     } else if (this.type === 'obstacle') {
       prototypeToken.actorLink = false;
+      prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
+    } else if (this.type === 'vehicle') {
+      prototypeToken.actorLink = true;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;

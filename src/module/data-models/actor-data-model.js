@@ -122,3 +122,29 @@ export class ICRPGObstacleDataModel extends foundry.abstract.DataModel {
     };
   }
 }
+
+export class ICRPGVehicleDataModel extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return {
+      description: f.string(),
+      chunks: f.array(
+        f.schema({
+          health: f.schema({
+            hearts: f.number({ min: 0, max: 5, initial: 1, integer: false }),
+            max: f.number({ min: 0, max: 50 }),
+            damage: f.number({ min: 0 }),
+            value: f.number({ min: 0 }),
+          }),
+          name: f.string(),
+          description: f.string(),
+        }),
+      ),
+      health: f.schema({
+        hearts: f.number({ min: 0, integer: false }),
+        max: f.number({ min: 0 }),
+        damage: f.number({ min: 0 }),
+        value: f.number({ min: 0 }),
+      }),
+    };
+  }
+}

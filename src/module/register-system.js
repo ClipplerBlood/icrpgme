@@ -3,6 +3,7 @@ import {
   ICRPGCharacterDataModel,
   ICRPGMonsterDataModel,
   ICRPGObstacleDataModel,
+  ICRPGVehicleDataModel,
 } from './data-models/actor-data-model.js';
 import { ICRPGActor } from './actor/actor.js';
 import { ICRPGItemBaseDataModel, ICRPGItemLootDataModel } from './data-models/item-data-model.js';
@@ -18,6 +19,7 @@ export function registerSystem() {
   CONFIG.Actor.systemDataModels['character'] = ICRPGCharacterDataModel;
   CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
   CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
+  CONFIG.Actor.systemDataModels['vehicle'] = ICRPGVehicleDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;

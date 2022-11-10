@@ -1,0 +1,44 @@
+<div class="grid-3">
+  <div class="col-2">
+    <div class="vehicle-description">
+    <textarea name="system.description" autosize spellcheck="false"
+              placeholder="{{localize "ICRPG.vehicleSheet.vehicleDescription"}}">{{system.description}}</textarea>
+    </div>
+    <div class="icrpg-vehicle-chunks-container">
+      <h2>{{localize "ICRPG.vehicleSheet.chunks"}}</h2>
+      {{#each system.chunks as |chunk index|}}
+        {{> chunkEdit index=index chunk=chunk}}
+      {{/each}}
+      {{> chunkEdit index=-1 noDescription=true}}
+    </div>
+  </div>
+
+  <div class="col-1 vehicle-image-container">
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+  </div>
+</div>
+
+{{#* inline "chunkEdit"}}
+  <div class="vehicle-chunk edit" data-chunk-index="{{index}}">
+    {{#if noDescription}}
+      <input type="text" value="{{chunk.name}}" data-target="name"
+             placeholder="{{localize "ICRPG.vehicleSheet.chunkName"}}">
+    {{else}}
+      <div class="flexrow">
+        <input type="text" value="{{chunk.name}}" data-target="name"
+               placeholder="{{localize "ICRPG.vehicleSheet.chunkName"}}">
+        <div class="icrpg-hp-container" style="display: flex; height: 24px">
+          <div class="icrpg-selectable-heart">
+            {{#if (eq chunk.health.hearts 0.5)}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-half-red.webp">
+            {{else}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <textarea placeholder="{{localize "ICRPG.vehicleSheet.chunkDescription"}}" spellcheck="false" autosize
+                data-target="description">{{chunk.description}}</textarea>
+    {{/if}}
+  </div>
+{{/inline}}

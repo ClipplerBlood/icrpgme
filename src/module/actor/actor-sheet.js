@@ -26,6 +26,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     if (t === 'character') return 'systems/icrpgme/templates/actor/character-sheet.html';
     else if (t === 'monster') return 'systems/icrpgme/templates/actor/monster-sheet.html';
     else if (t === 'obstacle') return 'systems/icrpgme/templates/actor/obstacle-sheet.html';
+    else if (t === 'vehicle') return 'systems/icrpgme/templates/actor/vehicle-sheet.html';
     return '';
   }
 
@@ -63,6 +64,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     super.activateListeners(html);
     if (this.actor.type === 'character') this._activateCharacterListeners(html);
     else if (this.actor.type === 'monster') this._activateMonsterListeners(html);
+    else if (this.actor.type === 'vehicle') return this._activateVehicleListeners(html);
 
     // Hearts selector
     html.find('.icrpg-selectable-heart').click((ev) => {
@@ -213,6 +215,51 @@ export default class ICRPGActorSheet extends ActorSheet {
         if (!action.name.length) monsterActions.splice(actionIndex, 1);
       }
       this.actor.update({ 'system.monsterActions': monsterActions });
+    });
+  }
+
+  _activateVehicleListeners(html) {
+    // TODO: merge code for editing monster actions and vehicle chunks
+    // Vehicle Chunk edit
+    html.find('.vehicle-chunk.edit input, .vehicle-chunk.edit textarea').on('change', (ev) => {
+      const ct = $(ev.currentTarget);
+      const chunkIndex = ct.closest('[data-chunk-index]').data('chunkIndex');
+      const target = ct.closest('[data-target]').data('target');
+      const value = ct.val();
+
+      let chunks = this.actor.system.chunks;
+      if (chunkIndex < 0) {
+        // Create
+        chunks.push({
+          name: target === 'name' ? value : '',
+          description: '',
+          health: {
+            hearts: 1,
+            max: 10,
+            damage: 0,
+            value: 10,
+          },
+        });
+      } else {
+        // Update
+        const chunk = chunks[chunkIndex];
+        chunk.name = target === 'name' ? value : chunk.name;
+        chunk.description = target === 'description' ? value : chunk.description;
+
+        // Delete
+        if (!chunk.name.length) chunks.splice(chunkIndex, 1);
+      }
+      this.actor.update({ 'system.chunks': chunks });
+    });
+
+    // Chunk Hearts selector
+    // Toggles between 1 heart and half
+    html.find('.icrpg-selectable-heart').click((ev) => {
+      const chunkIndex = $(ev.currentTarget).closest('[data-chunk-index]').data('chunkIndex');
+      const chunks = this.actor.system.chunks;
+      const currentHearts = chunks[chunkIndex].health.hearts;
+      chunks[chunkIndex].health.hearts = currentHearts === 1 ? 0.5 : 1;
+      this.actor.update({ 'system.chunks': chunks });
     });
   }
 

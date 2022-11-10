@@ -1,0 +1,34 @@
+<div class="grid-3">
+  <div class="col-2">
+    {{# if system.description}}
+      <div class="vehicle-description">{{system.description}}</div>
+    {{/if}}
+    <div class="icrpg-vehicle-chunks-container">
+      <h2>{{localize "ICRPG.vehicleSheet.chunks"}}</h2>
+      {{#each system.chunks as |chunk index|}}
+        {{> chunkView index=index chunk=chunk}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="col-1 vehicle-image-container">
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" />
+  </div>
+</div>
+
+{{#* inline "chunkView"}}
+  <div class="vehicle-chunk" data-chunk-index="{{index}}">
+    <div class="flexrow">
+      <div><b style="text-transform: uppercase">{{chunk.name}}: </b>{{chunk.description}}</div>
+      <div class="icrpg-hp-container" style="display: flex; height: 24px">
+        <div class="icrpg-heart">
+          {{#if (eq chunk.health.hearts 0.5)}}
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-half-red.webp">
+          {{else}}
+            <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/inline}}

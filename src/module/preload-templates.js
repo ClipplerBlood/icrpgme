@@ -15,6 +15,11 @@ export async function preloadTemplates() {
     // Obstacle sheet
     'systems/icrpgme/templates/actor/obstacle-sheet.html',
 
+    // Vehicle
+    'systems/icrpgme/templates/actor/vehicle-sheet.html',
+    'systems/icrpgme/templates/actor/tabs/vehicle-edit.html',
+    'systems/icrpgme/templates/actor/tabs/vehicle-view.html',
+
     // Item sheet
     'systems/icrpgme/templates/item/generic-item.html',
 

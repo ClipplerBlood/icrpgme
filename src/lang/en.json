@@ -2,6 +2,7 @@
   "ACTOR.TypeCharacter": "Character",
   "ACTOR.TypeMonster": "Monster",
   "ACTOR.TypeObstacle": "Obstacle",
+  "ACTOR.TypeVehicle": "Vehicle",
   "ITEM.TypeLoot": "Loot",
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypePower": "Power",
@@ -116,6 +117,12 @@
       "actionName": "Action Name",
       "actionDescription": "Action Description",
       "monsterDescription": "Monster Description"
+    },
+    "vehicleSheet": {
+      "vehicleDescription": "Vehicle Description",
+      "chunkName": "Chunk Name",
+      "chunkDescription": "Chunk Description",
+      "chunks": "Chunks"
     },
     "settings": {
       "trackDamageName": "Track Damage",

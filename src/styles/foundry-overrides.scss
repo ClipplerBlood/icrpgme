@@ -20,6 +20,7 @@ button {
 #chat-controls .roll-type-select {
   background: #eee;
 }
+
 .chat-message .table-draw .table-results .table-result img.result-image {
   background: gainsboro;
 }
@@ -31,6 +32,7 @@ a.content-link {
   align-items: center;
   font-family: $ff-flatbread;
   padding-top: 3px;
+
   i {
     position: relative;
     top: -2px;
@@ -88,7 +90,7 @@ img#logo {
 }
 
 .directory .directory-item img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
@@ -99,10 +101,12 @@ img#logo {
 
 #sidebar #items .item {
   height: 32px;
+
   h4 {
     height: 32px;
     line-height: 32px;
   }
+
   img {
     display: none;
   }
@@ -116,11 +120,19 @@ img#logo {
 .sheet.journal-entry .pages-list .page-heading .page-title {
   font-family: $ff-flatbread;
 }
+
 .sheet.journal-entry .pages-list .h2 .heading-link {
   font-family: $ff-nusaliver;
   text-transform: uppercase;
   font-size: 12px;
 }
+
+.sheet.journal-entry .pages-list .h3 .heading-link {
+  font-family: $ff-nusaliver;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
 .sheet.journal-entry .pages-list .headings li:last-child {
   margin-bottom: 0;
 }
@@ -143,20 +155,61 @@ img#logo {
 
 .editor-content,
 .journal-page-content {
-  h2 {
+  h2,
+  h3 {
     text-transform: uppercase;
     border-bottom: none;
     font-family: $ff-nusaliver;
+    background: url(../assets/ui/backgrounds/bg-bar-4.webp) no-repeat bottom;
+    padding-bottom: 9px;
+    background-size: contain;
   }
 
-  p {
+  h3 {
+    text-align: center;
+  }
+
+  h4 {
+    color: var(--c-red);
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  li,
+  p,
+  h4 {
     font-family: $ff-carlito;
     font-size: var(--font-size-16);
     line-height: 1.1;
   }
 
+  p {
+    margin-bottom: var(--font-size-16);
+  }
+
   li > p {
     margin: 0.35em 0;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  hr {
+    background: url(../assets/ui/backgrounds/bg-bar-4.webp) no-repeat bottom;
+    background-size: contain;
+    height: 8px;
+    border: none;
+  }
+
+  hr + h3 {
+    padding-bottom: 16px;
+  }
+
+  h2 > span {
+    color: var(--c-red);
+    font-weight: bold;
+    text-transform: none;
   }
 
   img {
@@ -167,10 +220,137 @@ img#logo {
     display: block;
     margin: 0 auto;
   }
+
   .center-contents {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .character-types {
+    h2 {
+      margin-bottom: 0;
+    }
+
+    h5 {
+      border-bottom: none;
+      font-family: $ff-nusaliver;
+      font-size: 1.5em;
+      background: none;
+      text-align: left;
+      padding-bottom: 0;
+      margin-top: 12px !important;
+      margin-bottom: -8px !important;
+
+      span {
+        text-transform: none;
+        font-style: italic;
+        font-size: 0.8em;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .character-types-mastery {
+      overflow: auto;
+
+      & > div {
+        overflow: auto;
+      }
+
+      img {
+        max-width: 260px;
+      }
+
+      h5 {
+        color: var(--c-red);
+      }
+    }
+  }
+
+  .basic-loot {
+    overflow: auto;
+
+    img {
+      max-width: 120px;
+      margin: 8px;
+    }
+
+    h2 {
+      text-align: center;
+
+      span {
+        text-transform: none;
+        font-style: italic;
+        color: black;
+      }
+    }
+  }
+
+  table {
+    font-family: $ff-carlito;
+    font-size: 1.1em;
+    border: none;
+
+    tr {
+      border: none;
+    }
+
+    td,
+    th {
+      border: none;
+      padding-left: 4px;
+    }
+
+    th {
+      text-align: left;
+      font-family: $ff-nusaliver;
+      font-size: 1.2em;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(173, 173, 173, 0.5);
+    }
+
+    tr:nth-child(odd) {
+      background: rgba(247, 247, 247, 0.5);
+    }
+    //tr:first-child {
+    //  background: none;
+    //}
+  }
+
+  .encounter-architecture {
+    .header {
+      background: #bbb;
+      position: relative;
+      padding-top: 10px;
+
+      h3 {
+        background: none;
+        padding: 0 0 0 16px;
+        text-align: left;
+        display: inline-block;
+        font-size: 26px;
+      }
+      p {
+        display: block;
+        background: url(../assets/ui/dice-red/target.webp) no-repeat;
+        background-size: contain;
+        height: 64px;
+        width: 64px;
+        font-size: 26px;
+        padding-top: 17px;
+        padding-left: 9px;
+        font-family: $ff-nusaliver;
+        color: white;
+        float: right;
+        top: -34px;
+        position: relative;
+      }
+    }
   }
 }
 
@@ -178,9 +358,11 @@ img#logo {
 li.compendium-folder > .compendium-folder-header {
   font-family: $ff-flatbread;
 }
+
 .compendium.directory .directory-list .directory-item {
   line-height: 28px;
   height: 28px;
+
   img {
     display: none;
   }

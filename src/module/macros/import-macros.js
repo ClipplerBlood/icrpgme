@@ -48,6 +48,7 @@ async function importTypes(datum) {
     importList(Item, type['starting_ability'], 'ability', 'Starting Abilities', ITEM_DN, baseFolder.id);
     importList(Item, type['starting_loot'], 'loot', 'Starting Loot', ITEM_DN, baseFolder.id);
     importList(Item, type['milestone_ability'], 'ability', 'Milestone Abilities', ITEM_DN, baseFolder.id);
+    importList(Item, type['milestone_loot'], 'loot', 'Milestone Rewards', ITEM_DN, baseFolder.id);
     importList(Item, type['mastery_ability'], 'ability', 'Mastery', ITEM_DN, baseFolder.id);
   }
 }

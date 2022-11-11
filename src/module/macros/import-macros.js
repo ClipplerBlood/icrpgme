@@ -22,6 +22,7 @@ export async function importTOML(tomlString) {
     let cls = Item;
     let type = 'loot';
     if (k === 'power') type = 'power';
+    if (k === 'ability') type = 'ability';
 
     let folderType = ITEM_DN;
     importList(cls, data[k], type, k, folderType);

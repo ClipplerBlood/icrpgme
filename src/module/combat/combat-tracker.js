@@ -14,6 +14,7 @@ export class ICRPGCombatTracker extends CombatTracker {
 
   async getData() {
     const content = await super.getData();
+    const combatants = this.viewed?.combatants ?? [];
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     content.showMonsterHP = game.settings.get('icrpgme', 'showMonsterHP');
     content.turns = this._enrichTurns(content.turns);
@@ -24,8 +25,8 @@ export class ICRPGCombatTracker extends CombatTracker {
     content.obstacles = [];
     content.vehicles = [];
 
-    const vehicleIds = this.viewed.combatants.filter((c) => c.actor.type === 'vehicle').map((c) => c.id);
-    const obstaclesIds = this.viewed.combatants.filter((c) => c.actor.type === 'obstacle').map((c) => c.id);
+    const vehicleIds = combatants.filter((c) => c.actor.type === 'vehicle').map((c) => c.id);
+    const obstaclesIds = combatants.filter((c) => c.actor.type === 'obstacle').map((c) => c.id);
 
     content.turns.forEach((t) => {
       if (vehicleIds.includes(t.id)) return content.vehicles.push(t);

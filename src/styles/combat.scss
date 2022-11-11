@@ -90,6 +90,13 @@
     padding-bottom: 4px;
   }
 
+  li.icrpg-combat-divider:not(:first-of-type) {
+    padding-top: 8px !important;
+    margin-top: 8px !important;
+    border-top: 1px solid #000000;
+    box-shadow: inset -10px 15px 1px -15px #ffffff;
+  }
+
   .collapse-toggle {
     i {
       filter: opacity(0.2);

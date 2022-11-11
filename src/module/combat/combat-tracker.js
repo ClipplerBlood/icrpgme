@@ -7,6 +7,11 @@ export class ICRPGCombatTracker extends CombatTracker {
     });
   }
 
+  constructor() {
+    super();
+    this.isIdCollapsed = new Map();
+  }
+
   async getData() {
     const content = await super.getData();
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
@@ -41,9 +46,16 @@ export class ICRPGCombatTracker extends CombatTracker {
       const combatant = combatants.get(turn.id);
       const actor = combatant.actor;
       turn.health = actor?.system?.health;
+
+      // Handle vehicle
       if (actor?.type === 'vehicle') {
         turn.chunks = actor.system.chunks;
       }
+
+      // Set collapsed state
+      if (!this.isIdCollapsed.has(combatant.id)) this.isIdCollapsed.set(combatant.id, true);
+      turn.collapsed = this.isIdCollapsed.get(combatant.id);
+
       return turn;
     });
   }
@@ -114,6 +126,27 @@ export class ICRPGCombatTracker extends CombatTracker {
 
     // Toolbar buttons
     html.find('[data-control="shuffle"]').click(() => this.viewed.shuffleCombatants());
+
+    // Collapse buttons
+    html.find('.collapse-toggle').click((ev) => {
+      ev.stopImmediatePropagation();
+      const ct = $(ev.currentTarget);
+      const li = ct.closest('li[data-combatant-id]');
+      const id = li.data('combatantId');
+      const isCurrentlyCollapsed = this.isIdCollapsed.get(id) ?? true;
+      this.isIdCollapsed.set(id, !isCurrentlyCollapsed);
+      const collapsable = li.find('.collapsable');
+      const icon = ct.find('i');
+      if (isCurrentlyCollapsed) {
+        collapsable.slideDown(200);
+        icon.removeClass('fa-chevron-down');
+        icon.addClass('fa-chevron-up');
+      } else {
+        collapsable.slideUp(200);
+        icon.removeClass('fa-chevron-up');
+        icon.addClass('fa-chevron-down');
+      }
+    });
   }
 
   _getEntryContextOptions() {

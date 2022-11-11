@@ -71,6 +71,14 @@
     padding-bottom: 4px;
   }
 
+  .collapse-toggle {
+    i {
+      filter: opacity(0.2);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
   .drag-handle {
     flex: 0;
     width: 40px;

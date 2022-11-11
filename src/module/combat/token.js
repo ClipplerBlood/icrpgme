@@ -51,12 +51,12 @@ export class ICRPGToken extends Token {
 // Load all textures once init
 let useTokenHearts = true;
 let textureHeart = {};
-Hooks.once('init', async () => {
+Hooks.once('ready', async () => {
   for (let i = 0; i <= 10; i++) {
     textureHeart[i] = await loadTexture(`systems/icrpgme/assets/ui/token-bar/token-heart-${i}.webp`);
   }
   useTokenHearts = game.settings.get('icrpgme', 'useTokenHearts');
   setTimeout(() => {
     if (canvas.scene) canvas.draw();
-  }, 500);
+  }, 10);
 });

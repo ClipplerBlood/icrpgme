@@ -138,13 +138,23 @@
           </div>
         </div>
 
+        {{#if turn.owner}}
+          <div class="collapse-toggle">
+            {{#if turn.collapsed}}
+              <i class="fas fa-chevron-down"></i>
+            {{else}}
+              <i class="fas fa-chevron-up"></i>
+            {{/if}}
+          </div>
+        {{/if}}
+
         {{#if ../user.isGM}}
           <div class="drag-handle">
             <i class="fas fa-bars"></i>
           </div>
         {{/if}}
 
-        <div class="turn-chunks">
+        <div class="turn-chunks collapsable" {{#if turn.collapsed}}style="display: none"{{/if}}>
           {{#each turn.chunks as |chunk index|}}
             <div class="flexrow" data-chunk-index="{{index}}">
               <h4>{{chunk.name}}</h4>

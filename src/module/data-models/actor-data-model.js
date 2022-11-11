@@ -105,6 +105,10 @@ export class ICRPGMonsterDataModel extends foundry.abstract.DataModel {
           description: f.string(),
         }),
       ),
+      sp: f.schema({
+        value: f.number(),
+        max: f.number({ initial: 10 }),
+      }),
     };
   }
 }

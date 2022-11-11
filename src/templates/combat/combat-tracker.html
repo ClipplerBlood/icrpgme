@@ -73,6 +73,16 @@
           </div>
         </div>
 
+        {{#if turn.showResources}}
+          <div class="collapse-toggle">
+            {{#if turn.collapsed}}
+              <i class="fas fa-chevron-down"></i>
+            {{else}}
+              <i class="fas fa-chevron-up"></i>
+            {{/if}}
+          </div>
+        {{/if}}
+
         {{#if user.isGM}}
           <div class="drag-handle">
             <i class="fas fa-bars"></i>
@@ -88,6 +98,45 @@
             {{/if}}
           </div>
         {{/if}}
+
+        {{#if showResources}}
+          <div class="resources collapsable" {{#if turn.collapsed}}style="display: none"{{/if}}>
+            {{#if (eq turn.type "character")}}
+              <div class="flexrow" data-target="system.mastery">
+                <h4>{{localize "ICRPG.mastery"}}</h4>
+                <div class="resource-bar-container">
+                  <div class="resource-bar"></div>
+                </div>
+                <div class="resource-field">
+                  <input type="number" value="{{turn.mastery}}" min="0" max="20">
+                </div>
+              </div>
+            {{/if}}
+
+            <div class="flexrow" data-target="system.sp">
+              <h4>{{localize "ICRPG.sp"}}</h4>
+              <div class="resource-bar-container">
+                <div class="resource-bar"></div>
+              </div>
+              <div class="resource-field">
+                <input type="number" value="{{turn.sp.value}}" min="0" max="{{turn.sp.max}}">
+              </div>
+            </div>
+
+            {{#each turn.resources as |resource index|}}
+              <div class="flexrow" data-resource-index="{{index}}" data-target="system.resources.{{index}}">
+                <h4>{{resource.name}}</h4>
+                <div class="resource-bar-container">
+                  <div class="resource-bar"></div>
+                </div>
+                <div class="resource-field">
+                  <input type="number" value="{{resource.value}}" min="0" max="{{resource.max}}">
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
       </li>
     {{/inline}}
 

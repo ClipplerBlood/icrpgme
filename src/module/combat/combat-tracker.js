@@ -46,6 +46,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const combatant = combatants.get(turn.id);
       const actor = combatant.actor;
       turn.health = actor?.system?.health;
+      turn.type = actor.type;
 
       // Handle vehicle
       if (actor?.type === 'vehicle') {
@@ -56,6 +57,13 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (!this.isIdCollapsed.has(combatant.id)) this.isIdCollapsed.set(combatant.id, true);
       turn.collapsed = this.isIdCollapsed.get(combatant.id);
 
+      // Resources
+      turn.showResources = turn.owner && ['character', 'monster'].includes(turn.type);
+      if (turn.showResources) {
+        turn.mastery = actor.system.mastery;
+        turn.sp = actor.system.sp;
+        turn.resources = actor.system.resources;
+      }
       return turn;
     });
   }
@@ -101,6 +109,34 @@ export class ICRPGCombatTracker extends CombatTracker {
       else actor.update({ [target]: finalValue });
     });
 
+    // Resource input
+    html.find('.resource-field input').on('change', (ev) => {
+      // Grab data from html
+      const ct = $(ev.currentTarget);
+      let newValue = parseInt(ct.val());
+      let target = ct.closest('[data-target]').data('target');
+      const combatantId = ct.closest('[data-combatant-id]').data('combatantId');
+      const actor = this.viewed.combatants.get(combatantId).actor;
+
+      // If mastery, simple update
+      if (target.includes('mastery')) {
+        return actor.update({ [target]: Math.clamped(0, newValue, 20) });
+      }
+
+      // If SP
+      if (target.includes('sp')) {
+        const resource = getProperty(actor, target);
+        target += `.value`;
+        return actor.update({ [target]: Math.clamped(newValue, 0, resource.max) });
+      }
+
+      // If generic
+      const resources = actor.system.resources;
+      const index = ct.closest('[data-resource-index]').data('resourceIndex');
+      resources[index].value = Math.clamped(newValue, 0, resources[index].max);
+      actor.update({ 'system.resources': resources });
+    });
+
     // Hearts HP progress bar (everything but chunks)
     html.find('.hearts-container').each((_, hc) => {
       const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
@@ -122,6 +158,28 @@ export class ICRPGCombatTracker extends CombatTracker {
         dmg -= 10;
         el.style.width = Math.ceil(w) + 'px';
       });
+    });
+
+    // Resources progress bar
+    html.find('.resource-bar-container').each((_, barContainer) => {
+      barContainer = $(barContainer);
+      const bar = barContainer.find('.resource-bar');
+      const target = barContainer.closest('[data-target]').data('target');
+      const combatantId = barContainer.closest('[data-combatant-id]').data('combatantId');
+      const actor = this.viewed.combatants.get(combatantId).actor;
+
+      let resource = getProperty(actor, target);
+      let percentage;
+      if (target.includes('mastery')) percentage = (resource / 20) * 100;
+      else if (target.includes('sp')) percentage = (resource.value / resource.max) * 100;
+      else {
+        const index = barContainer.closest('[data-resource-index]').data('resourceIndex');
+        resource = actor.system.resources[index];
+        percentage = (resource.value / resource.max) * 100;
+      }
+      percentage += `%`;
+
+      bar.css('width', percentage);
     });
 
     // Toolbar buttons

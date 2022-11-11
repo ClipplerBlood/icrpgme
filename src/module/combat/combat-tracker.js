@@ -92,7 +92,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const chunkIndex = ct.closest('[data-chunk-index]').data('chunkIndex');
 
       // Get actor and old (hp) value
-      const actor = this.viewed.combatants.get(combatantId).actor;
+      const actor = this.viewed?.combatants.get(combatantId).actor;
       const oldValue = getProperty(actor, target);
       let finalValue;
 
@@ -117,7 +117,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       let newValue = parseInt(ct.val());
       let target = ct.closest('[data-target]').data('target');
       const combatantId = ct.closest('[data-combatant-id]').data('combatantId');
-      const actor = this.viewed.combatants.get(combatantId).actor;
+      const actor = this.viewed?.combatants.get(combatantId).actor;
 
       // If mastery, simple update
       if (target.includes('mastery')) {
@@ -141,7 +141,7 @@ export class ICRPGCombatTracker extends CombatTracker {
     // Hearts HP progress bar (everything but chunks)
     html.find('.hearts-container').each((_, hc) => {
       const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
-      const c = this.viewed.combatants.get(cid);
+      const c = this.viewed?.combatants.get(cid);
       let dmg = c.actor.system.health.damage;
       let maxHpOffset = c.actor.system.health.max % 10; // The damage offset. 10 -> 0; 5 -> 5.
 
@@ -167,7 +167,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const bar = barContainer.find('.resource-bar');
       const target = barContainer.closest('[data-target]').data('target');
       const combatantId = barContainer.closest('[data-combatant-id]').data('combatantId');
-      const actor = this.viewed.combatants.get(combatantId).actor;
+      const actor = this.viewed?.combatants.get(combatantId).actor;
 
       let resource = getProperty(actor, target);
       let percentage;
@@ -184,7 +184,7 @@ export class ICRPGCombatTracker extends CombatTracker {
     });
 
     // Toolbar buttons
-    html.find('[data-control="shuffle"]').click(() => this.viewed.shuffleCombatants());
+    html.find('[data-control="shuffle"]').click(() => this.viewed?.shuffleCombatants());
 
     // Collapse buttons
     html.find('.collapse-toggle').click((ev) => {
@@ -219,7 +219,7 @@ export class ICRPGCombatTracker extends CombatTracker {
         name: 'COMBAT.PingCombatant',
         icon: '<i class="fa-solid fa-bullseye-arrow"></i>',
         callback: (li) => {
-          const c = this.viewed.combatants.get(li.data('combatant-id'));
+          const c = this.viewed?.combatants.get(li.data('combatant-id'));
           if (c) return this._onPingCombatant(c);
         },
       },
@@ -227,7 +227,7 @@ export class ICRPGCombatTracker extends CombatTracker {
         name: 'COMBAT.ToggleVis',
         icon: '<i class="fas fa-eye-slash"></i>',
         callback: (li) => {
-          const c = this.viewed.combatants.get(li.data('combatant-id'));
+          const c = this.viewed?.combatants.get(li.data('combatant-id'));
           if (c) return c.update({ hidden: !c.hidden });
         },
       },
@@ -243,7 +243,7 @@ export class ICRPGCombatTracker extends CombatTracker {
         name: 'COMBAT.CombatantRemove',
         icon: '<i class="fas fa-trash"></i>',
         callback: (li) => {
-          const c = this.viewed.combatants.get(li.data('combatant-id'));
+          const c = this.viewed?.combatants.get(li.data('combatant-id'));
           if (c) return c.delete();
         },
       },

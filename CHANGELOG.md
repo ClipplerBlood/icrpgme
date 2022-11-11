@@ -1,3 +1,6 @@
+## [1.1.1] Hotfix
+- Fixed error when combat tracker was empty
+
 ## [1.1.0] Vehicles and Resources update 🏎️🛩️
 - Added **vehicle actor type** with custom sheet. Vehicle chunks HP can be edited directly in the Combat Tracker
 - Added **resource tracking** in Combat Tracker. You can now edit resources such as Mastery, SP or custom ones directly from the tracker.

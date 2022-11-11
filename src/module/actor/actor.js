@@ -68,15 +68,19 @@ export class ICRPGActor extends Actor {
 
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);
-    let img;
+    if (data?.img != null) return; // Avoid update if image already is set, like when importing or converting to compendium
+    let img, tokenImg;
     if (this.type === 'character') {
       img = 'systems/icrpgme/assets/cards/character/trigo.webp';
+      tokenImg = 'systems/icrpgme/assets/tokens/character/trigo.webp';
     } else if (this.type === 'monster') {
       img = 'systems/icrpgme/assets/cards/monster/flaming%20skull.webp';
+      tokenImg = 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp';
     } else if (this.type === 'obstacle') {
       img = 'systems/icrpgme/assets/bases/block.webp';
+      tokenImg = 'systems/icrpgme/assets/bases/block.webp';
     }
-    if (img) this.updateSource({ img: img });
+    if (img) this.updateSource({ img: img, 'prototypeToken.texture.src': tokenImg });
   }
 
   _applyDefaultTokenSettings(data, { _fromCompendium = false } = {}) {
@@ -88,13 +92,11 @@ export class ICRPGActor extends Actor {
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
-      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/character/trigo.webp' };
     } else if (this.type === 'monster') {
       prototypeToken.actorLink = false;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.OWNER;
-      prototypeToken.texture = { src: 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp' };
     } else if (this.type === 'obstacle') {
       prototypeToken.actorLink = false;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;

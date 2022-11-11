@@ -180,7 +180,7 @@ export class ICRPGActor extends Actor {
       value = maxHP - value;
     }
     // If BOTH, idk
-    else throw `Updating both hp damage and value ${newHealth}`;
+    else console.warn(`Updating both hp damage and value ${newHealth}`);
     return { hearts: hearts, max: maxHP, damage, value };
   }
 

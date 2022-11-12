@@ -26,6 +26,7 @@ export async function preloadTemplates() {
     // Chat messages
     'systems/icrpgme/templates/chat/roll.html',
     'systems/icrpgme/templates/chat/item.html',
+    'systems/icrpgme/templates/chat/action.html',
 
     // Apps
     'systems/icrpgme/templates/app/timer-target-container.html',

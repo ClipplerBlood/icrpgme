@@ -310,6 +310,6 @@ export default class ICRPGActorSheet extends ActorSheet {
     const entryIndex = ct.closest('[data-entry-index]').data('entryIndex');
     const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
     if (itemId) return this.actor.useItem(itemId, { index: entryIndex });
-    if (actionIndex) return true;
+    if (actionIndex != null) return this.actor.useAction(actionIndex);
   }
 }

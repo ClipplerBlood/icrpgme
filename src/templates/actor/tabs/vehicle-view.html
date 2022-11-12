@@ -43,9 +43,11 @@
 {{/inline}}
 
 {{#* inline "maneuverView"}}
-  <div class="vehicle-chunk" data-maneuver-index="{{index}}">
+  <div class="vehicle-chunk" data-action-index="{{index}}">
     <div class="flexrow">
-      <div><b style="text-transform: uppercase">{{maneuver.name}}: </b>{{maneuver.description}}</div>
+      <div>
+        <b class="clickable-action" style="text-transform: uppercase">{{maneuver.name}}: </b>{{maneuver.description}}
+      </div>
     </div>
   </div>
 {{/inline}}

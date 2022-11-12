@@ -1,6 +1,6 @@
 import { diceMap, plusifyMod } from '../utils/utils.js';
 import { postRollMessage } from '../chat/chat-roll.js';
-import { postItemMessage } from '../chat/chat-item.js';
+import { postArrayActionMessage, postItemMessage } from '../chat/chat-item.js';
 
 export class ICRPGActor extends Actor {
   prepareDerivedData() {
@@ -229,6 +229,17 @@ export class ICRPGActor extends Actor {
     const item = this.items.get(itemId);
     if (!item) throw 'Item not found in actor';
 
-    postItemMessage(this.actor, item, options);
+    postItemMessage(this, item, options);
+  }
+
+  useAction(actionIndex, _options = {}) {
+    let array;
+    if (this.type === 'monster') array = this.system.monsterActions;
+    if (this.type === 'vehicle') array = this.system.maneuvers;
+
+    let entry = array?.[actionIndex];
+    if (!entry) return;
+
+    postArrayActionMessage(this, entry);
   }
 }

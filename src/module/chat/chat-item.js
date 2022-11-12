@@ -22,3 +22,19 @@ export async function postItemMessage(
 
   return ChatMessage.create(messageData, chatOptions);
 }
+
+export async function postArrayActionMessage(
+  actor,
+  { name, description },
+  chatOptions = { temporary: false },
+  messageData = {},
+) {
+  messageData = mergeObject(_getBaseMessageData(actor), messageData);
+  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/action.html', {
+    actor: actor,
+    name,
+    description,
+    messageData: messageData,
+  });
+  return ChatMessage.create(messageData, chatOptions);
+}

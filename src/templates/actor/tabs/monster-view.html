@@ -39,7 +39,9 @@
 
     <div class="icrpg-monster-actions-container">
       {{#each system.monsterActions as |action index|}}
-        <div><b style="text-transform: uppercase">{{action.name}}: </b>{{action.description}}</div>
+        <div data-action-index="{{index}}">
+          <b class="clickable-action" style="text-transform: uppercase">{{action.name}}: </b>{{action.description}}
+        </div>
       {{/each}}
     </div>
 

@@ -84,10 +84,10 @@
       <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="power">{{localize "ICRPG.powers"}}</div>
       <div data-item-type="power" class="item-list">
         {{#each powers as | item |}}
-          {{~> simpleItem item=item isLocked=../isLocked}}
+          {{~> powerItem item=item isLocked=../isLocked}}
         {{/each}}
         {{#unless isLocked}}
-          {{~> simpleItem noDescription=true}}
+          {{~> powerItem noDescription=true}}
         {{/unless}}
       </div>
     {{/if}}
@@ -106,3 +106,52 @@
     {{/if}}
   </div>
 </div>
+
+
+{{#* inline "powerItem"}}
+  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    <div class="flex-row" style="align-items: flex-end; position: relative">
+
+      <div style="margin-left: 4px;">
+        <input type="text" data-target="name" value="{{item.name}}"
+               placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}>
+
+        {{#unless (or noDescription (and isLocked (not item.system.description)))}}
+          <textarea data-target="system.description" autosize spellcheck="false"
+                    placeholder="{{localize "Description"}}"
+            {{readonly isLocked}}>{{item.system.description}}</textarea>
+        {{/unless}}
+        {{#each item.system.spCosts as |entry index|}}
+          <div class="power-cost" data-entry-index="{{index}}">
+            <b class="clickable-action">{{localize "ICRPG.spCost"}} {{entry.cost}}:</b> {{entry.description}}
+          </div>
+        {{/each}}
+
+      </div>
+      {{#unless noDescription}}
+        <div class="icrpg-discrete-selector-container">
+          <div>
+            {{#times 4}}
+              {{>selector index=@index target="system.mastery" value=system.mastery}}
+            {{/times}}
+          </div>
+        </div>
+      {{/unless}}
+    </div>
+
+    <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}">
+    {{#if (gt value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}
+

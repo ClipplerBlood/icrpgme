@@ -6,7 +6,11 @@ import {
   ICRPGVehicleDataModel,
 } from './data-models/actor-data-model.js';
 import { ICRPGActor } from './actor/actor.js';
-import { ICRPGItemBaseDataModel, ICRPGItemLootDataModel } from './data-models/item-data-model.js';
+import {
+  ICRPGItemBaseDataModel,
+  ICRPGItemLootDataModel,
+  ICRPGItemPowerDataModel,
+} from './data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
 import { ICRPGItemSheet } from './item/item-sheet.js';
 import { ICRPGItem } from './item/item.js';
@@ -27,7 +31,7 @@ export function registerSystem() {
   // Item registration
   CONFIG.Item.systemDataModels['loot'] = ICRPGItemLootDataModel;
   CONFIG.Item.systemDataModels['ability'] = ICRPGItemBaseDataModel;
-  CONFIG.Item.systemDataModels['power'] = ICRPGItemBaseDataModel;
+  CONFIG.Item.systemDataModels['power'] = ICRPGItemPowerDataModel;
   CONFIG.Item.systemDataModels['augment'] = ICRPGItemBaseDataModel;
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });

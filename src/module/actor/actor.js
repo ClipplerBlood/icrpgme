@@ -1,5 +1,6 @@
 import { diceMap, plusifyMod } from '../utils/utils.js';
 import { postRollMessage } from '../chat/chat-roll.js';
+import { postItemMessage } from '../chat/chat-item.js';
 
 export class ICRPGActor extends Actor {
   prepareDerivedData() {
@@ -221,5 +222,13 @@ export class ICRPGActor extends Actor {
     let formula = `@dice ${plusifyMod(mod)}`;
     const roll = new Roll(formula, { dice: dice, mod: mod, name: name });
     postRollMessage(this, roll);
+  }
+
+  async useItem(itemId, options = {}) {
+    // If the item is a string, then treat it as an ID
+    const item = this.items.get(itemId);
+    if (!item) throw 'Item not found in actor';
+
+    postItemMessage(this.actor, item, options);
   }
 }

@@ -2,7 +2,45 @@
   {{localizeType item}}: {{item.name}}
 </div>
 
-<!--The following must be compacted like so, otherwise white spaces get added-->
-<div class="icrpg-chat-description">{{#if (and item.img (ne item.img 'icons/svg/item-bag.svg'))}}
-  <img class="icrpg-chat-item-img" src="{{item.img}}">{{/if}}{{item.system.description}}</div>
+<div class="icrpg-chat-body {{item.type}}">
+  {{#if (and item.img (ne item.img 'icons/svg/item-bag.svg'))}}
+    <img class="icrpg-chat-item-img" src="{{item.img}}">{{/if}}
+
+  {{#if (eq item.type "power")}}
+    <div class="icrpg-chat-description"><b><i>{{~item.system.description~}}</i></b></div>
+
+    {{#if itemOptions.index includeZero=true}}
+      {{#with (lookup item.system.spCosts itemOptions.index)}}
+        <div class="icrpg-chat-description"><b>{{localize "ICRPG.spCost"}} {{cost}}: </b>{{description}}</div>
+      {{/with}}
+    {{else}}
+      {{#each item.system.spCosts}}
+        <div class="icrpg-chat-description"><b>{{localize "ICRPG.spCost"}} {{cost}}: </b>{{description}}</div>
+      {{/each}}
+    {{/if}}
+
+    <div class="icrpg-discrete-selector-container" data-tooltip="ICRPG.mastery">
+      <div>
+        {{#times 4}}
+          {{>selector index=@index value=item.system.mastery}}
+        {{/times}}
+        <div class="icrpg-sep-long"></div>
+      </div>
+    </div>
+
+  {{else}}
+    <div class="icrpg-chat-description">{{~item.system.description~}}</div>
+  {{/if}}
+</div>
+
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector">
+    {{#if (gt value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}
 

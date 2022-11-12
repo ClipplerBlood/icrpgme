@@ -139,6 +139,8 @@
     "gamemaster": "Gamemaster",
     "players": "Players",
     "obstacles": "Obstacles",
-    "vehicles": "Vehicles"
+    "vehicles": "Vehicles",
+    "spCost": "SP COST",
+    "mastered": "Mastered"
   }
 }

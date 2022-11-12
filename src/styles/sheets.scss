@@ -273,6 +273,7 @@
     left: 4px;
     top: 5px;
   }
+
   .icrpg-selectable-heart .heart {
     @include hover;
   }
@@ -297,6 +298,7 @@
 
 .icrpg-discrete-selector-container {
   display: flex;
+
   .ff-header {
     display: flex;
     justify-content: center;
@@ -336,7 +338,9 @@ input[type='number'].icrpg-max-carry {
 
   img {
     @include hover;
-    border: none;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
     height: 24px;
     width: 24px;
   }
@@ -354,6 +358,7 @@ input[type='number'].icrpg-max-carry {
     width: auto !important;
     color: white;
   }
+
   div.ff-header,
   input.ff-header {
     height: 24px;
@@ -362,6 +367,7 @@ input[type='number'].icrpg-max-carry {
     text-align: left;
     font-family: $ff-flatbread;
   }
+
   div.ff-header {
     display: inline-flex;
     justify-content: center;
@@ -371,14 +377,17 @@ input[type='number'].icrpg-max-carry {
   input {
     @include transparent-input();
   }
+
   input[type='number'] {
     font-family: $ff-flatbread;
     color: white;
   }
+
   ::placeholder {
     color: var(--c-light-grey);
   }
 }
+
 .icrpg-sheet-nav {
   display: flex;
   width: calc(100% - 50px);
@@ -446,7 +455,7 @@ input[type='number'].icrpg-max-carry {
     @include transparent-input;
     @extend .ff-content;
     padding: 0;
-    line-height: 1;
+    line-height: 1.1;
   }
 
   ::placeholder {
@@ -493,6 +502,27 @@ input[type='number'].icrpg-max-carry {
     //background-image: url('/systems/icrpgme/assets/ui/loot-carried-circle-on.webp');
     background-image: url('/systems/icrpgme/assets/ui/selector-on.webp');
   }
+
+  .icrpg-discrete-selector-container {
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+
+    .icrpg-discrete-selector img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  .power-cost {
+    font-size: 12px;
+    font-family: $ff-carlito;
+    line-height: 1.2;
+
+    &:last-child {
+      margin-bottom: 4px;
+    }
+  }
 }
 
 .item-clickable {
@@ -508,7 +538,7 @@ input[type='number'].icrpg-max-carry {
 
 // ========= ITEM SHEET =========
 .icrpg-sheet.item {
-  img {
+  img[data-edit='img'] {
     height: 64px;
     width: 64px;
     background: gainsboro;
@@ -776,10 +806,12 @@ form.icrpg-monster-sheet {
       padding-left: 8px;
       margin-right: 8px;
     }
+
     .vehicle-maneuver.edit,
     .vehicle-chunk.edit {
       border-bottom: 2px solid;
     }
+
     .icrpg-hp-container {
       flex: 0;
       margin-right: 4px;
@@ -791,6 +823,7 @@ form.icrpg-monster-sheet {
         left: 0;
       }
     }
+
     input {
       @include transparent-input();
       font-family: $ff-carlito;
@@ -820,5 +853,52 @@ form.icrpg-monster-sheet {
 
   .icrpg-monster-header {
     margin-left: 0;
+  }
+}
+
+// ========= ITEM SHEET EXTRAS (power, spell, etc) =========
+.icrpg-sheet.item {
+  .item-description {
+    font-family: $ff-carlito;
+    font-size: var(--font-size-16);
+    line-height: 1.2;
+  }
+}
+
+.icrpg-sheet .clickable-action {
+  @include hover();
+}
+
+.icrpg-sheet.item form.power {
+  .power-cost {
+    font-size: var(--font-size-16);
+
+    input[type='number'] {
+      @include transparent-input();
+      display: inline-block;
+      width: 30px;
+      text-align: left;
+      height: 20px;
+      margin-left: 4px;
+      font-weight: bold;
+      padding: 0;
+      font-size: var(--font-size-16);
+    }
+
+    textarea {
+      @include transparent-input();
+      font-family: $ff-carlito;
+      font-size: var(--font-size-16);
+    }
+  }
+
+  .item-description {
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .icrpg-discrete-selector-container {
+    margin-top: 8px;
   }
 }

@@ -1,4 +1,5 @@
 @import 'typography';
+@import 'mixins';
 
 textarea#chat-message,
 .chat-message {
@@ -10,6 +11,7 @@ textarea#chat-message,
     font-family: $ff-nusaliver;
   }
 }
+
 .icrpg-chat-title {
 }
 
@@ -86,8 +88,38 @@ img.icrpg-chat-item-img {
   outline: 1px solid #999;
 }
 
-.icrpg-chat-description {
-  white-space: pre-line;
+.icrpg-chat-body {
   line-height: 1.1;
   display: table; // Weird fix
+  position: relative;
+
+  .icrpg-chat-description {
+    white-space: pre-line;
+  }
+
+  .icrpg-discrete-selector-container {
+    position: relative;
+    justify-content: flex-end;
+    margin-right: 4px;
+
+    .icrpg-discrete-selector img {
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        @include no-hover;
+      }
+    }
+  }
+}
+
+.icrpg-chat-body.power {
+  .icrpg-chat-description:not(:first-child) {
+    margin-top: 4px;
+  }
+
+  .icrpg-discrete-selector-container .icrpg-sep-long {
+    width: 80px;
+    background-size: cover;
+  }
 }

@@ -1,4 +1,3 @@
-import { postItemMessage } from '../chat/chat-item.js';
 import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
 import { prepareQuickInsertSheet } from '../modules-integration.js';
 
@@ -62,6 +61,9 @@ export default class ICRPGActorSheet extends ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
+    html.find('.clickable-action').click((ev) => this._onUse(ev));
+
     if (this.actor.type === 'character') this._activateCharacterListeners(html);
     else if (this.actor.type === 'monster') this._activateMonsterListeners(html);
     else if (this.actor.type === 'vehicle') return this._activateVehicleListeners(html);
@@ -151,16 +153,29 @@ export default class ICRPGActorSheet extends ActorSheet {
     // Item click
     html.find('.item-clickable input[data-target="name"]').click((ev) => {
       const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
-      postItemMessage(this.actor, itemId);
+      this.actor.useItem(itemId);
     });
 
     // Discrete selector (Mastery)
-    html.find('.icrpg-discrete-selector').click((ev) => {
+    html.find('[data-tab="resources"] .icrpg-discrete-selector').click((ev) => {
       const index = $(ev.currentTarget).closest('[data-index]').data('index');
       const target = $(ev.currentTarget).closest('[data-target]').data('target');
       let value = index + 1;
       if (getProperty(this.actor, target) === value) value -= 1;
       this.actor.update({ [target]: value });
+    });
+
+    // Item discrete selector
+    html.find('[data-item-id] .icrpg-discrete-selector').click((ev) => {
+      const index = $(ev.currentTarget).closest('[data-index]').data('index');
+      const target = $(ev.currentTarget).closest('[data-target]').data('target');
+      const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
+      const item = this.actor.items.get(itemId);
+      if (!item) return;
+
+      let value = index + 1;
+      if (getProperty(item, target) === value) value -= 1;
+      item.update({ [target]: value });
     });
 
     // Resource tracker edit
@@ -212,8 +227,12 @@ export default class ICRPGActorSheet extends ActorSheet {
     html.find('.vehicle-chunk.edit input, .vehicle-chunk.edit textarea').on('change', (ev) => {
       const ct = $(ev.currentTarget);
       const index = ct.closest('[data-chunk-index]').data('chunkIndex');
-      const defaultEntry = { health: { hearts: 1, max: 10, damage: 0, value: 10 } };
-      const update = onArrayEdit(this.actor.system.chunks, ev, index, defaultEntry);
+      const defaultEntryConstructor = (val) => ({
+        name: val,
+        description: '',
+        health: { hearts: 1, max: 10, damage: 0, value: 10 },
+      });
+      const update = onArrayEdit(this.actor.system.chunks, ev, index, defaultEntryConstructor);
       this.actor.update({ 'system.chunks': update });
     });
 
@@ -250,27 +269,18 @@ export default class ICRPGActorSheet extends ActorSheet {
     const lockCb = (ev) => {
       ev.stopPropagation();
       ev.stopImmediatePropagation();
-
       const ct = $(ev.currentTarget);
       const _isLocked = ct.prop('value') ?? false;
       this.isLocked = _isLocked;
       ct.prop('value', !_isLocked);
-
       if (_isLocked) {
         ct.removeClass('c-red');
-        // ct.html(`<i class="fas fa-lock"></i>${i18n('ICRPG.locked')}`);
         ev.currentTarget.innerHTML = `<i class="fas fa-lock"></i>${i18n('ICRPG.locked')}`;
       } else {
         ct.addClass('c-red');
         ev.currentTarget.innerHTML = `<i class="fas fa-unlock"></i><strong>${i18n('ICRPG.unlocked')}</strong>`;
-        // ct.html(`<i class="fas fa-unlock"></i>${i18n('ICRPG.unlocked')}`);
       }
-
-      // const fas = $(ev.currentTarget).find('i.fas');
-      // fas.toggleClass('fa-lock');
-      // fas.toggleClass('fa-unlock');
       this.render();
-
       const notification = _isLocked ? 'ICRPG.notifications.lockedSheet' : 'ICRPG.notifications.unlockedSheet';
       ui.notifications.info(notification, { localize: true });
     };
@@ -291,5 +301,15 @@ export default class ICRPGActorSheet extends ActorSheet {
     const t = this.actor.type;
     if (t === 'obstacle') options = mergeObject(options, { width: 420, height: 700 });
     return super._render(force, options);
+  }
+
+  _onUse(ev) {
+    if (!(this.isLocked ?? true)) return;
+    const ct = $(ev.currentTarget);
+    const itemId = ct.closest('[data-item-id]').data('itemId');
+    const entryIndex = ct.closest('[data-entry-index]').data('entryIndex');
+    const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
+    if (itemId) return this.actor.useItem(itemId, { index: entryIndex });
+    if (actionIndex) return true;
   }
 }

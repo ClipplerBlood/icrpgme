@@ -1,7 +1,7 @@
 {{#*inline "bonusRow"}}
   <div class="flex-row value-{{bonusValue}}">
     <input type="number" min="-10" max="10" value="{{bonusValue}}"
-           name="{{name}}">
+           name="{{name}}" {{readonly isLocked}}>
     <div>
       {{#if loc}}
         {{localize loc}}
@@ -13,7 +13,7 @@
   </div>
 {{/inline}}
 
-<form autocomplete="off">
+<form autocomplete="off" class="{{item.type}}">
   <div>
     <div class="flex-row" style="align-items: center">
       <img alt="{{item.name}}" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
@@ -24,8 +24,32 @@
   <section class="icrpg-tab-container">
 
     <div data-group="primary-tabs" data-tab="primary">
+      {{#if isLocked}}
+        <div class="item-description">{{system.description}}</div>
+      {{else}}
       <textarea name="system.description" autosize spellcheck="false"
                 placeholder="{{localize "Description"}}">{{system.description}}</textarea>
+      {{/if}}
+
+      <!-- ===  POWER === -->
+      {{#if (eq item.type "power")}}
+        {{#each system.spCosts as |entry index|}}
+          {{>powerCostAction entry=entry index=index isLocked=../isLocked noDescription=false}}
+        {{/each}}
+        {{#unless isLocked}}
+          {{>powerCostAction entry=entry index=-1 isLocked=../isLocked noDescription=true}}
+        {{/unless}}
+
+        <div class="icrpg-discrete-selector-container">
+          <div class="ff-header">{{localize "ICRPG.mastery"}}</div>
+          <div>
+            {{#times 4}}
+              {{>selector index=@index target="system.mastery" value=system.mastery}}
+            {{/times}}
+            <div class="icrpg-sep-long"></div>
+          </div>
+        </div>
+      {{/if}}
     </div>
 
 
@@ -35,25 +59,25 @@
         <div class="flex-col">
           <div class="ff-header fs-18">{{localize "ICRPG.attributes"}}</div>
           {{#each system.bonuses.attributes as |bonusValue bonusKey|}}
-            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.attributes." bonusKey)}}
+            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.attributes." bonusKey) isLocked=../isLocked}}
           {{/each}}
         </div>
 
         <div class="flex-col">
           <div class="ff-header fs-18">{{localize "ICRPG.efforts"}}</div>
           {{#each system.bonuses.efforts as |bonusValue bonusKey|}}
-            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.efforts." bonusKey)}}
+            {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.efforts." bonusKey) isLocked=../isLocked}}
           {{/each}}
         </div>
 
         <div class="flex-col">
           <div class="ff-header fs-18">{{localize "ICRPG.weight.weight"}}</div>
           {{#if (eq item.type "loot")}}
-            {{>bonusRow bonusValue=system.weight name="system.weight" loc="ICRPG.weight.item"}}
+            {{>bonusRow bonusValue=system.weight name="system.weight" loc="ICRPG.weight.item" isLocked=../isLocked}}
           {{/if}}
           {{#with system.bonuses.weight as |weight| }}
-            {{>bonusRow bonusValue=weight.carried name="system.bonuses.weight.carried" loc="ICRPG.weight.carriedCapacity"}}
-            {{>bonusRow bonusValue=weight.equipped name="system.bonuses.weight.equipped" loc="ICRPG.weight.equippedCapacity"}}
+            {{>bonusRow bonusValue=weight.carried name="system.bonuses.weight.carried" loc="ICRPG.weight.carriedCapacity" isLocked=../isLocked}}
+            {{>bonusRow bonusValue=weight.equipped name="system.bonuses.weight.equipped" loc="ICRPG.weight.equippedCapacity" isLocked=../isLocked}}
           {{/with}}
         </div>
 
@@ -70,3 +94,32 @@
   </nav>
 
 </form>
+
+
+{{#* inline "powerCostAction"}}
+  {{#if isLocked}}
+    <div class="power-cost" data-entry-index="{{index}}">
+      <b>{{localize "ICRPG.spCost"}} {{entry.cost}}:</b> {{entry.description}}
+    </div>
+  {{else}}
+    <div class="power-cost edit" data-entry-index="{{index}}">
+      <b>{{localize "ICRPG.spCost"}}:</b>
+      <input type="number" min="0" data-target="cost" value="{{entry.cost}}" placeholder="0">
+      {{#unless noDescription}}
+        <textarea placeholder="{{localize "Description"}}" spellcheck="false" autosize
+                  data-target="description">{{entry.description}}</textarea>
+      {{/unless}}
+    </div>
+  {{/if}}
+{{/inline}}
+
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}">
+    {{#if (gt value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
+  </div>
+{{/inline}}

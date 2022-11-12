@@ -60,6 +60,15 @@
   }
 }
 
+@mixin no-hover {
+  transition: none;
+  &:hover {
+    cursor: default;
+    transform: none;
+    transition: none;
+  }
+}
+
 @mixin hover-red {
   &:hover {
     cursor: pointer;

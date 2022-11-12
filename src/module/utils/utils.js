@@ -19,25 +19,35 @@ export function trimNewLineWhitespace(x) {
  * @param array original array
  * @param ev event firing the operation in the sheet
  * @param index index of modified entry. Negative indices indicate creation
- * @param defaultNewEntryVal default value for new entries
+ * @param {function} defaultNewEntryConstructor function to build the entry from a new single value
+ * @param {string} deletionTarget property that when length 0 indicates entry deletion
  * @return {*} the changed array
  */
-export function onArrayEdit(array, ev, index, defaultNewEntryVal = {}) {
+export function onArrayEdit(
+  array,
+  ev,
+  index,
+  defaultNewEntryConstructor = (val) => ({
+    name: val,
+    description: '',
+  }),
+  deletionTarget = 'name',
+) {
   const ct = $(ev.currentTarget);
   const target = ct.closest('[data-target]').data('target');
   const value = ct.val();
 
   if (index < 0) {
     // Create
-    array.push(mergeObject(defaultNewEntryVal, { name: target === 'name' ? value : '', description: '' }));
+    array.push(defaultNewEntryConstructor(value));
   } else {
     // Update
     const datum = array[index];
-    datum.name = target === 'name' ? value : datum.name;
-    datum.description = target === 'description' ? value : datum.description;
+    datum[target] = value;
 
     // Delete
-    if (!datum.name.length) array.splice(index, 1);
+    const isDeleteOperation = String(datum[deletionTarget] ?? '').length === 0;
+    if (isDeleteOperation) array.splice(index, 1);
   }
   return array;
 }

@@ -41,3 +41,14 @@ export class ICRPGItemLootDataModel extends ICRPGItemBaseDataModel {
     return { ...baseSchema, ...lootSchema };
   }
 }
+
+export class ICRPGItemPowerDataModel extends ICRPGItemBaseDataModel {
+  static defineSchema() {
+    const baseSchema = super.defineSchema();
+    const powerSchema = {
+      spCosts: f.array(f.schema({ cost: f.number({ min: 0 }), description: f.string() })),
+      mastery: f.number({ min: 0, max: 4 }),
+    };
+    return { ...baseSchema, ...powerSchema };
+  }
+}

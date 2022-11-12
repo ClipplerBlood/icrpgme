@@ -27,20 +27,38 @@
         <div class="icrpg-sep-long"></div>
       </div>
     </div>
+  {{else if (eq item.type "spell")}}
+    <div class="icrpg-chat-description">{{~item.system.description~}}</div>
+  <div class="ff-content" style="font-size: var(--font-size-14); line-height: 1.2">
+    {{#if item.system.target}}
+      <div class="tt-u"><b>{{localize "ICRPG.spell.target"}}: {{item.system.target}}</b></div>
+    {{/if}}
+    {{#if item.system.duration}}
+      <div class="tt-u"><b>{{localize "ICRPG.spell.duration"}}: {{item.system.duration}}</b></div>
+    {{/if}}
+    {{#if item.system.flavorText}}
+      <div style="margin-bottom: 2px"><i>{{item.system.flavorText}}</i></div>
+    {{/if}}
+    {{#if (or item.system.spellType item.system.spellLevel)}}
+      <div
+        style="font-family: 'nusaliver', sans-serif; text-transform: uppercase; font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px; color: var(--c-red); text-align: right">
+        <b>{{item.system.spellType}} {{romanize item.system.spellLevel}}</b>
+      </div>
 
+    {{/if}}
   {{else}}
     <div class="icrpg-chat-description">{{~item.system.description~}}</div>
   {{/if}}
 </div>
 
 
-{{#*inline "selector"}}
-  <div class="icrpg-discrete-selector">
-    {{#if (gt value index)}}
-      <img src="systems/icrpgme/assets/ui/selector-on.webp">
-    {{else}}
-      <img src="systems/icrpgme/assets/ui/selector.webp">
-    {{/if}}
-  </div>
-{{/inline}}
+  {{#*inline "selector"}}
+    <div class="icrpg-discrete-selector">
+      {{#if (gt value index)}}
+        <img src="systems/icrpgme/assets/ui/selector-on.webp">
+      {{else}}
+        <img src="systems/icrpgme/assets/ui/selector.webp">
+      {{/if}}
+    </div>
+  {{/inline}}
 

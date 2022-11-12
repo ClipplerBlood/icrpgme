@@ -52,3 +52,17 @@ export class ICRPGItemPowerDataModel extends ICRPGItemBaseDataModel {
     return { ...baseSchema, ...powerSchema };
   }
 }
+
+export class ICRPGItemSpellDataModel extends ICRPGItemLootDataModel {
+  static defineSchema() {
+    const baseSchema = super.defineSchema();
+    const spellSchema = {
+      spellType: f.string(),
+      spellLevel: f.boolean(),
+      duration: f.string(),
+      target: f.string(),
+      flavorText: f.string(),
+    };
+    return { ...baseSchema, ...spellSchema };
+  }
+}

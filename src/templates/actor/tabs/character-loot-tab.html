@@ -59,7 +59,11 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{~> simpleItem item=item isLocked=../isLocked showButtons=true}}
+      {{#if (eq item.type "spell")}}
+        {{~> spellItem item=item isLocked=../isLocked showButtons=true}}
+      {{else}}
+        {{~> simpleItem item=item isLocked=../isLocked showButtons=true}}
+      {{/if}}
     {{/each}}
     {{#unless isLocked}}
       {{~> simpleItem noDescription=true showButtons=true}}
@@ -152,6 +156,61 @@
     {{else}}
       <img src="systems/icrpgme/assets/ui/selector.webp">
     {{/if}}
+  </div>
+{{/inline}}
+
+
+{{#* inline "spellItem"}}
+  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    <div class="flex-row" style="align-items: flex-end; position: relative">
+
+      <div style="margin-left: 4px;">
+        <div class="flexrow {{#if isLocked}}clickable-action{{/if}}" style="align-items: center">
+          {{#if (or item.system.spellType item.system.spellLevel)}}
+            <b class="tt-u ff-content" style="font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px;">
+              {{item.system.spellType}} {{romanize item.system.spellLevel}}:
+            </b>
+          {{/if}}
+          <input type="text" data-target="name" value="{{item.name}}"
+                 placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}
+            {{#if showButtons}}style="width: calc(100% - 100px);"{{/if}}>
+        </div>
+        {{#unless (or noDescription (and isLocked (not item.system.description)))}}
+          <textarea data-target="system.description" autosize spellcheck="false"
+                    placeholder="{{localize "Description"}}"
+            {{readonly isLocked}}>{{item.system.description}}</textarea>
+          <div class="ff-content" style="font-size: 13px; line-height: 1.2">
+            {{#if item.system.target}}
+              <div class="tt-u"><b>{{localize "ICRPG.spell.target"}}: {{item.system.target}}</b></div>
+            {{/if}}
+            {{#if item.system.duration}}
+              <div class="tt-u"><b>{{localize "ICRPG.spell.duration"}}: {{item.system.duration}}</b></div>
+            {{/if}}
+            {{#if item.system.flavorText}}
+              <div style="margin-bottom: 2px"><i>{{item.system.flavorText}}</i></div>
+            {{/if}}
+          </div>
+        {{/unless}}
+
+      </div>
+      {{#if showButtons}}
+        <div class="grid-2"
+             style="flex: 0; min-width: 110px; max-width: 110px; margin-left:4px; position: absolute; right: 0">
+          <div class="icrpg-equipped-select {{checked item.system.equipped}}">
+            <input type="checkbox" data-target="system.equipped" {{checked item.system.equipped}} {{readonly
+              noDescription}}>
+          </div>
+          <div class="icrpg-carried-select {{checked item.system.carried}}">
+            <input type="checkbox" data-target="system.carried" {{checked item.system.carried}} {{readonly
+              noDescription}}>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="icrpg-sep-long"></div>
   </div>
 {{/inline}}
 

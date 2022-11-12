@@ -10,6 +10,7 @@ import {
   ICRPGItemBaseDataModel,
   ICRPGItemLootDataModel,
   ICRPGItemPowerDataModel,
+  ICRPGItemSpellDataModel,
 } from './data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
 import { ICRPGItemSheet } from './item/item-sheet.js';
@@ -24,6 +25,7 @@ export function registerSystem() {
   CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
   CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
   CONFIG.Actor.systemDataModels['vehicle'] = ICRPGVehicleDataModel;
+  CONFIG.Actor.systemDataModels['spell'] = ICRPGItemSpellDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;

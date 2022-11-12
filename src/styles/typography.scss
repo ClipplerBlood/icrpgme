@@ -62,6 +62,10 @@ $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
 @each $s in [11, 12, 13, 14, 16, 18, 20, 24, 28, 32, 48] {
   .fs-#{$s} {
     font-size: var(--font-size-#{$s});
+    input,
+    textarea {
+      font-size: var(--font-size-#{$s});
+    }
   }
 }
 .fs-8 {
@@ -74,10 +78,18 @@ $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
 
 .ff-content {
   font-family: $ff-carlito;
+  input,
+  textarea {
+    font-family: $ff-carlito;
+  }
 }
 
 .ff-special {
   font-family: $ff-nusaliver;
+  input,
+  textarea {
+    font-family: $ff-nusaliver;
+  }
 }
 
 .c-white {
@@ -98,4 +110,8 @@ $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
 
 .ta-right {
   text-align: right;
+}
+
+.tt-u {
+  text-transform: uppercase;
 }

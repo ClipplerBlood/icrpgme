@@ -1,4 +1,4 @@
-import { i18n } from './utils.js';
+import { i18n, romanize } from './utils.js';
 
 export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('defaultValue', (x, y) => (x ? x : y));
@@ -12,6 +12,7 @@ export default function registerHandlebarsHelpers() {
   // Handlebars.registerHelper('sum', (x, y) => x + y);
   Handlebars.registerHelper('inc', (x) => x + 1);
   Handlebars.registerHelper('healthImageChooser', _healthImageChooser);
+  Handlebars.registerHelper('romanize', romanize);
 }
 
 function _localizeConcat(...args) {

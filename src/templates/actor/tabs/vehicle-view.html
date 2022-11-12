@@ -28,7 +28,7 @@
 {{#* inline "chunkView"}}
   <div class="vehicle-chunk" data-chunk-index="{{index}}">
     <div class="flexrow">
-      <div><b style="text-transform: uppercase">{{chunk.name}}: </b>{{chunk.description}}</div>
+      <div><b class="tt-u">{{chunk.name}}: </b>{{chunk.description}}</div>
       <div class="icrpg-hp-container" style="display: flex; height: 24px">
         <div class="icrpg-heart">
           {{#if (eq chunk.health.hearts 0.5)}}
@@ -46,7 +46,7 @@
   <div class="vehicle-chunk" data-action-index="{{index}}">
     <div class="flexrow">
       <div>
-        <b class="clickable-action" style="text-transform: uppercase">{{maneuver.name}}: </b>{{maneuver.description}}
+        <b class="clickable-action tt-u">{{maneuver.name}}: </b>{{maneuver.description}}
       </div>
     </div>
   </div>

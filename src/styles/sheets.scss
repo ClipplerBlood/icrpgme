@@ -515,7 +515,7 @@ input[type='number'].icrpg-max-carry {
   }
 
   .power-cost {
-    font-size: 12px;
+    font-size: 13px;
     font-family: $ff-carlito;
     line-height: 1.2;
 
@@ -865,8 +865,11 @@ form.icrpg-monster-sheet {
   }
 }
 
-.icrpg-sheet .clickable-action {
-  @include hover();
+.icrpg-sheet .clickable-action:hover {
+  @include hover-red();
+  input {
+    color: var(--c-red);
+  }
 }
 
 .icrpg-sheet.item form.power {
@@ -900,5 +903,66 @@ form.icrpg-monster-sheet {
 
   .icrpg-discrete-selector-container {
     margin-top: 8px;
+  }
+}
+
+.icrpg-sheet.item form.spell {
+  textarea {
+    min-height: 32px;
+  }
+
+  .spell-description {
+    font-family: $ff-carlito;
+    font-size: var(--font-size-16);
+
+    textarea,
+    input {
+      @include transparent-input();
+      font-family: $ff-carlito;
+      font-size: var(--font-size-16);
+    }
+
+    .flexrow b {
+      flex: 0;
+      align-items: center;
+      padding-top: 1px;
+
+      input {
+        margin-left: 4px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .spell-description.view {
+    .tt-u:first-of-type {
+      margin-top: 4px;
+    }
+
+    .tt-u + .tt-u {
+      margin-top: -8px;
+    }
+  }
+
+  .spell-item-header {
+    img:last-of-type {
+      height: 64px;
+      width: 64px;
+      flex: 0;
+      margin-right: 8px;
+      border: none;
+    }
+    .flexrow {
+      align-items: center;
+      position: relative;
+    }
+    .spell-info {
+      font-size: var(--font-size-18);
+      color: var(--c-red);
+      font-family: $ff-nusaliver;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
   }
 }

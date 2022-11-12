@@ -25,6 +25,6 @@
     }
   },
   "Item": {
-    "types": ["loot", "ability", "power", "augment"]
+    "types": ["loot", "ability", "power", "augment", "spell"]
   }
 }

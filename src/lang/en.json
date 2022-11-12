@@ -7,6 +7,7 @@
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypePower": "Power",
   "ITEM.TypeAugment": "Augment",
+  "ITEM.TypeSpell": "Spell",
   "ICRPG": {
     "name": "Name",
     "world": "World",
@@ -141,6 +142,13 @@
     "obstacles": "Obstacles",
     "vehicles": "Vehicles",
     "spCost": "SP COST",
-    "mastered": "Mastered"
+    "mastered": "Mastered",
+    "spell": {
+      "duration": "Duration",
+      "target": "Target",
+      "type": "Type",
+      "level": "Level",
+      "flavorText": "Other notes"
+    }
   }
 }

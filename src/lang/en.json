@@ -106,7 +106,12 @@
       "unlockedSheet": "Unlocked sheet",
       "selectOneCharacter": "No token selected",
       "maxCarried": "Max carried capacity reached!",
-      "maxEquipped": "Max equipped capacity reached!"
+      "maxEquipped": "Max equipped capacity reached!",
+      "spellbookViewMode": {
+        "all": "Filter: ALL items",
+        "items": "Filter: LOOT only",
+        "spells": "Filter: SPELLS only"
+      }
     },
     "contextMenu": {
       "openItem": "Open Item"

@@ -754,13 +754,25 @@ form.icrpg-monster-sheet {
   }
 }
 
-// Quick insert
-.icrpg-quick-insert {
+// Quick insert and bar buttons
+.bar-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   float: right;
   margin-right: 8px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 16px;
-  @include hover;
+
+  i {
+    @include hover;
+  }
+  .spellbook-view-toggle img {
+    @include hover;
+    height: 16px;
+    width: 16px;
+    border: none;
+  }
 }
 
 // ========= VEHICLE SHEET =========

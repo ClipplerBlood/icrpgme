@@ -22,7 +22,7 @@ function initDiceSoNice(dice3d) {
 }
 
 /* globals QuickInsert */
-function isQuickInsertOn() {
+export function isQuickInsertOn() {
   return game.modules.get('quick-insert')?.active && QuickInsert != null;
 }
 /**
@@ -31,11 +31,6 @@ function isQuickInsertOn() {
  * @param {JQuery} html
  */
 export function prepareQuickInsertSheet(actorSheet, html) {
-  const isLocked = actorSheet.isLocked ?? true;
-  if (!isQuickInsertOn() || isLocked) return;
-  html
-    .find('[data-item-type].icrpg-sheet-bar')
-    .append(`<i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>`);
   html.find('.icrpg-quick-insert').click((ev) => {
     const ct = $(ev.currentTarget);
     const itemType = ct.closest('[data-item-type]').data('itemType');

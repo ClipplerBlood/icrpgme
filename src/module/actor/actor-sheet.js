@@ -1,5 +1,5 @@
 import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
-import { prepareQuickInsertSheet } from '../modules-integration.js';
+import { isQuickInsertOn, prepareQuickInsertSheet } from '../modules-integration.js';
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -34,6 +34,8 @@ export default class ICRPGActorSheet extends ActorSheet {
     content.system = this.actor.system;
     content = this.prepareItems(content);
     content.isLocked = this.isLocked ?? true;
+    content.isQuickInsertOn = isQuickInsertOn();
+    content.spellbookViewMode = this.actor.getFlag('icrpgme', 'spellbookViewMode') ?? 'all';
     content.system.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, { async: true });
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     return content;
@@ -211,6 +213,16 @@ export default class ICRPGActorSheet extends ActorSheet {
 
     // QuickInsert
     prepareQuickInsertSheet(this, html);
+
+    // Spellbook view toggle
+    html.find('.spellbook-view-toggle').click(() => {
+      let mode = this.actor.getFlag('icrpgme', 'spellbookViewMode') ?? 'all';
+      if (mode === 'all') mode = 'spells';
+      else if (mode === 'spells') mode = 'items';
+      else mode = 'all';
+      ui.notifications.info('ICRPG.notifications.spellbookViewMode.' + mode, { localize: true });
+      this.actor.setFlag('icrpgme', 'spellbookViewMode', mode);
+    });
   }
 
   _activateMonsterListeners(html) {

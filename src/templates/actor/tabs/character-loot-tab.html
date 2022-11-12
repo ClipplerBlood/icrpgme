@@ -35,11 +35,30 @@
   </div>
 {{/inline}}
 
+{{#* inline "barButtons"}}
+  <div class="bar-buttons">
+    {{#if filter}}
+      <div class="spellbook-view-toggle">
+        {{#if (eq spellbookViewMode "spells")}}
+          <img src="/systems/icrpgme/assets/ui/magic-red.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.spells">
+        {{else if (eq spellbookViewMode "items")}}
+          <img src="/systems/icrpgme/assets/ui/magic-white-crossed.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.items">
+        {{else}}
+          <img src="/systems/icrpgme/assets/ui/magic-white.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.all">
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if (and (not isLocked) isQuickInsertOn)}}
+      <i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>
+    {{/if}}
+  </div>
+{{/inline}}
+
 <div class="grid-2" style="gap: 8px; margin-top: 16px">
 
   <div data-item-type="loot" class="item-list">
     <div class="flex-row" style="align-items: center;">
-      <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.loot"}}</div>
+      <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.loot"}} {{>barButtons filter=true}}</div>
       <div class="grid-2 ff-header ta-center"
            style="font-size: 10px; flex: 0; min-width: 110px; max-width: 110px; margin-left: 4px; height: 18px; gap: 0">
         <div>
@@ -59,9 +78,9 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{#if (eq item.type "spell")}}
+      {{#if (and (eq item.type "spell") (or (eq ../spellbookViewMode "spells") (eq ../spellbookViewMode "all")))}}
         {{~> spellItem item=item isLocked=../isLocked showButtons=true}}
-      {{else}}
+      {{else if (or (eq ../spellbookViewMode "items") (eq ../spellbookViewMode "all"))}}
         {{~> simpleItem item=item isLocked=../isLocked showButtons=true}}
       {{/if}}
     {{/each}}
@@ -73,7 +92,7 @@
 
   <div>
     {{#if (or (not isLocked) abilities.length)}}
-      <div class="icrpg-sheet-bar" data-item-type="ability">{{localize "ICRPG.abilities"}}</div>
+      <div class="icrpg-sheet-bar" data-item-type="ability">{{localize "ICRPG.abilities"}} {{>barButtons}}</div>
       <div data-item-type="ability" class="item-list">
         {{#each abilities as | item |}}
           {{~> simpleItem item=item isLocked=../isLocked}}
@@ -85,7 +104,8 @@
     {{/if}}
 
     {{#if (or (not isLocked) powers.length)}}
-      <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="power">{{localize "ICRPG.powers"}}</div>
+      <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="power">{{localize
+        "ICRPG.powers"}} {{>barButtons}}</div>
       <div data-item-type="power" class="item-list">
         {{#each powers as | item |}}
           {{~> powerItem item=item isLocked=../isLocked}}
@@ -97,7 +117,8 @@
     {{/if}}
 
     {{#if (or (not isLocked) augments.length)}}
-      <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="augment">{{localize "ICRPG.augments"}}</div>
+      <div class="icrpg-sheet-bar" style="margin-top: 4px" data-item-type="augment">{{localize
+        "ICRPG.augments"}} {{>barButtons}}</div>
       <div data-item-type="augment" class="item-list">
         {{#each augments as | item |}}
           {{~> simpleItem item=item isLocked=../isLocked}}

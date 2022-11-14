@@ -730,12 +730,14 @@ form.icrpg-monster-sheet {
   }
 }
 
+.editor-content h2.icrpg-monster-header,
+.journal-page-content h2.icrpg-monster-header,
 .icrpg-monster-header {
   $m: 8px;
   font-family: $ff-nusaliver;
   font-size: 28px;
   width: calc(100% + 2 * $m);
-  background-image: url('../assets/ui/backgrounds/bg-monster-header.webp');
+  background-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-monster-header.webp');
   background-size: 100% 100%;
   margin-left: -$m;
   padding-left: $m;

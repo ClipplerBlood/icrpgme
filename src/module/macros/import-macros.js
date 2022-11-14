@@ -21,8 +21,7 @@ export async function importTOML(tomlString) {
 
     let cls = Item;
     let type = 'loot';
-    if (k === 'power') type = 'power';
-    if (k === 'ability') type = 'ability';
+    if (['power', 'ability', 'spell'].includes(k)) type = k;
 
     let folderType = ITEM_DN;
     importList(cls, data[k], type, k, folderType);
@@ -34,8 +33,9 @@ async function importList(cls, list, type, folderName, folderType, folderParent 
   const folder = await Folder.create({ name: folderName, type: folderType, parent: folderParent, sorting: 'm' });
   for (const i of list) {
     if (i.name == null || i.name.length === 0) continue;
+    const t = i.type ?? type;
     cls.create({
-      type: type,
+      type: t,
       folder: folder.id,
       name: i.name,
       system: i.system,
@@ -50,6 +50,7 @@ async function importTypes(datum) {
     importList(Item, type['starting_ability'], 'ability', 'Starting Abilities', ITEM_DN, baseFolder.id);
     importList(Item, type['starting_loot'], 'loot', 'Starting Loot', ITEM_DN, baseFolder.id);
     importList(Item, type['milestone_ability'], 'ability', 'Milestone Abilities', ITEM_DN, baseFolder.id);
+    importList(Item, type['milestone_spell'], 'spell', 'Milestone Abilities', ITEM_DN, baseFolder.id);
     importList(Item, type['milestone_loot'], 'loot', 'Milestone Rewards', ITEM_DN, baseFolder.id);
     importList(Item, type['mastery_ability'], 'ability', 'Mastery', ITEM_DN, baseFolder.id);
   }

@@ -341,7 +341,7 @@ img#logo {
       }
       p {
         display: block;
-        background: url(../assets/ui/dice-red/target.webp) no-repeat;
+        background: url('/systems/icrpgme/assets/ui/dice-red/target.webp') no-repeat;
         background-size: contain;
         height: 64px;
         width: 64px;
@@ -354,6 +354,39 @@ img#logo {
         top: -34px;
         position: relative;
       }
+    }
+  }
+
+  .journal-monsters-page {
+    font-size: var(--font-size-16);
+    h2 {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    img.monster-image {
+      float: right;
+      max-width: 200px;
+      max-height: 200px;
+      mix-blend-mode: multiply;
+    }
+    .hp-box img {
+      width: 20px;
+    }
+    .hp-box {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .monster-props {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-style: italic;
+    }
+    .monster-action + div:not(.monster-action) {
+      margin-top: 8px;
     }
   }
 }

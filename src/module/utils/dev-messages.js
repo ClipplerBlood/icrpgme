@@ -14,7 +14,11 @@ export function sendDevMessages() {
 
 function _sendMsg(msgData) {
   const isGM = game.user.isGM;
+  if (msgData == null) return;
   if (msgData.gmOnly && !isGM) return;
+  if (msgData.disabled) return;
+  if (msgData.minVersion && isNewerVersion(game.system.version, msgData.minVersion)) return;
+  if (msgData.maxVersion && isNewerVersion(msgData.maxVersion, game.system.version)) return;
 
   const receivedDevMsgIndex = game.user.getFlag('icrpgme', 'receivedDevMsgIndex') ?? -1;
   if (receivedDevMsgIndex >= msgData.index) return;

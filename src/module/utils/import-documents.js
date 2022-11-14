@@ -66,19 +66,22 @@ const macroSlots = {
 /**
  * Imports the guide
  */
-async function importGuide() {
+export async function importGuide(force = false) {
   const packGuide = game.packs.get('icrpgme.icrpg-guide');
-  // Same mechanism as import macros. TODO: move this to function?
   for (const guide of packGuide.index) {
     const match = game.journal.find((j) => j.flags?.icrpgme?.compendiumSourceId === guide._id);
-    if (match) continue;
-
-    const updateData = {
-      'flags.icrpgme.compendiumSourceId': guide._id,
-      'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
-    };
-    const g = await game.journal.importFromCompendium(packGuide, guide._id, updateData);
-    await g.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER });
+    if (match) {
+      if (!force) continue;
+      const doc = await packGuide.getDocument(guide._id);
+      if (doc) await match.update(doc.toObject());
+    } else {
+      const updateData = {
+        'flags.icrpgme.compendiumSourceId': guide._id,
+        'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
+      };
+      const g = await game.journal.importFromCompendium(packGuide, guide._id, updateData);
+      await g.update({ 'ownership.default': CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER });
+    }
   }
   return Promise.resolve(true);
 }

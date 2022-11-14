@@ -9,6 +9,7 @@ import * as importMacros from './macros/import-macros.js';
 import { registerFonts } from './register-fonts.js';
 import { sendDevMessages } from './utils/dev-messages.js';
 import { importDocuments } from './utils/import-documents.js';
+import { handleMigrations } from './migration.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -38,8 +39,9 @@ Hooks.once('setup', async () => {
 
 // When ready
 Hooks.once('ready', async () => {
+  await handleMigrations();
   sendDevMessages();
-  importDocuments();
+  await importDocuments();
 });
 
 // Add any additional hooks if necessary

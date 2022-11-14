@@ -64,4 +64,14 @@ export function registerSettings() {
     default: [],
     onChange: () => TimerTargetContainer._onUpdate(),
   });
+
+  game.settings.register('icrpgme', 'lastVersion', {
+    name: 'lastVersion',
+    hint: 'lastVersion',
+    scope: 'world',
+    config: false,
+    requiresReload: false,
+    type: String,
+    default: '0.1',
+  });
 }

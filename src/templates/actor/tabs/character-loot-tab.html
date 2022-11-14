@@ -40,16 +40,21 @@
     {{#if filter}}
       <div class="spellbook-view-toggle">
         {{#if (eq spellbookViewMode "spells")}}
-          <img src="/systems/icrpgme/assets/ui/magic-red.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.spells">
+          <img src="/systems/icrpgme/assets/ui/magic-red.webp"
+               data-tooltip="ICRPG.notifications.spellbookViewMode.spells">
         {{else if (eq spellbookViewMode "items")}}
-          <img src="/systems/icrpgme/assets/ui/magic-white-crossed.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.items">
+          <img src="/systems/icrpgme/assets/ui/magic-white-crossed.webp"
+               data-tooltip="ICRPG.notifications.spellbookViewMode.items">
         {{else}}
-          <img src="/systems/icrpgme/assets/ui/magic-white.webp" data-tooltip="ICRPG.notifications.spellbookViewMode.all">
+          <img src="/systems/icrpgme/assets/ui/magic-white.webp"
+               data-tooltip="ICRPG.notifications.spellbookViewMode.all">
         {{/if}}
       </div>
     {{/if}}
     {{#if (and (not isLocked) isQuickInsertOn)}}
-      <i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>
+      <div style="margin-left: 8px;">
+        <i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>
+      </div>
     {{/if}}
   </div>
 {{/inline}}

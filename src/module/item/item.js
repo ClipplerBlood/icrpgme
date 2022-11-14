@@ -11,7 +11,8 @@ export class ICRPGItem extends Item {
     }
 
     // Handle plain bonus update
-    else if (this._isActive) this._applyParentChanges(this.system.bonuses, +1, changes.system?.bonuses);
+    else if (this._isActive && changes?.system?.bonuses)
+      this._applyParentChanges(this.system.bonuses, +1, changes.system.bonuses);
   }
 
   async _preCreate(data, options, userId) {
@@ -32,9 +33,8 @@ export class ICRPGItem extends Item {
 
     // Add the correct suffixes to the bonuses keys, then calculate the inner sum between the bonus data and the parent data
     let sysDiff = this._applySuffix(bonusData);
-    return this.parent.update({
-      system: innerNumericalOperation(sysDiff, this.parent.system, (x, y) => sign * x + y),
-    });
+    const system = innerNumericalOperation(sysDiff, this.parent.system, (x, y) => sign * x + y);
+    return this.parent.update({ system });
   }
 
   get _isActive() {

@@ -725,7 +725,7 @@ form.icrpg-monster-sheet {
     max-height: calc(100%);
 
     img {
-      border: 4px solid;
+      border: none; // 4px solid;
     }
   }
 }

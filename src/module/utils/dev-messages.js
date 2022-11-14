@@ -28,5 +28,6 @@ function _sendMsg(msgData) {
     speaker: ChatMessage.getSpeaker({ alias: i18n('FONTS.TypeSystem') }),
     whisper: [game.user],
     content: msgData.message,
+    timestamp: msgData.timestamp,
   });
 }

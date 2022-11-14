@@ -18,6 +18,16 @@
   position: absolute;
   flex-wrap: wrap;
   max-width: 50vw;
+  top: 8px;
+
+  &.bg-enabled {
+    padding: 12px 20px 20px 20px;
+    background: #ffffff80;
+    backdrop-filter: blur(2px) saturate(0);
+    top: 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--color-shadow-dark);
+  }
 
   .target,
   .timer {

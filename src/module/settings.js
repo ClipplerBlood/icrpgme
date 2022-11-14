@@ -32,6 +32,17 @@ export function registerSettings() {
     default: true,
   });
 
+  game.settings.register('icrpgme', 'useBackground', {
+    name: 'ICRPG.settings.useBackgroundName',
+    hint: 'ICRPG.settings.useBackgroundHint',
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: false,
+    onChange: () => TimerTargetContainer._onUpdate(),
+  });
+
+  // === === === === HIDDEN
   game.settings.register('icrpgme', 'timers', {
     name: 'icrpg-timers',
     hint: 'ICRPG Timers',

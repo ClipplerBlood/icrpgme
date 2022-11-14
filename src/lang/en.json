@@ -139,7 +139,9 @@
       "showMonsterHPName": "Show Monsters HP to players",
       "showMonsterHPHint": "When on, all players can see the HP of monsters and NPCs in the combat tracker.",
       "useTokenHeartsName": "Use Token Hearts",
-      "useTokenHeartsHint": "Replace the Token HP bar with hearts."
+      "useTokenHeartsHint": "Replace the Token HP bar with hearts.",
+      "useBackgroundName": "Use Background",
+      "useBackgroundHint": "When on, the Target & Timer app will have a background for increased legibility on dark scenes."
     },
     "other": "Other",
     "gamemaster": "Gamemaster",

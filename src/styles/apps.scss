@@ -22,9 +22,10 @@
 
   &.bg-enabled {
     padding: 12px 20px 20px 20px;
-    background: #ffffff80;
-    backdrop-filter: blur(2px) saturate(0);
-    top: 6px;
+    background-image: url(../assets/ui/backgrounds/bg-sheet.png);
+    background-size: cover;
+    outline: 4px solid #202020c2;
+    top: 9px;
     border-radius: 4px;
     box-shadow: 0 0 12px var(--color-shadow-dark);
   }

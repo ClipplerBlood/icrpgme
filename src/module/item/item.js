@@ -52,3 +52,8 @@ export class ICRPGItem extends Item {
     return expandObject(result);
   }
 }
+
+Hooks.on('preCreateItem', (doc) => {
+  if (!doc.actor) return;
+  if (doc.actor.type !== 'character') return false;
+});

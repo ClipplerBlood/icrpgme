@@ -83,9 +83,9 @@
       </div>
     </div>
     {{#each loots as | item |}}
-      {{#if (and (eq item.type "spell") (or (eq ../spellbookViewMode "spells") (eq ../spellbookViewMode "all")))}}
+      {{#if (eq item.type "spell")}}
         {{~> spellItem item=item isLocked=../isLocked showButtons=true}}
-      {{else if (or (eq ../spellbookViewMode "items") (eq ../spellbookViewMode "all"))}}
+      {{else}}
         {{~> simpleItem item=item isLocked=../isLocked showButtons=true}}
       {{/if}}
     {{/each}}
@@ -194,11 +194,7 @@
 
       <div style="margin-left: 4px;">
         <div class="flexrow {{#if isLocked}}clickable-action{{/if}}" style="align-items: center">
-          {{#if (or item.system.spellType item.system.spellLevel)}}
-            <b class="tt-u ff-content" style="font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px;">
-              {{item.system.spellType}} {{romanize item.system.spellLevel}}:
-            </b>
-          {{/if}}
+          {{{spellPrefix item}}}
           <input type="text" data-target="name" value="{{item.name}}"
                  placeholder="{{localize "ICRPG.name"}}" {{readonly isLocked}}
             {{#if showButtons}}style="width: calc(100% - 100px);"{{/if}}>

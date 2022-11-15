@@ -31,11 +31,12 @@ export default class ICRPGActorSheet extends ActorSheet {
 
   async getData() {
     let content = super.getData();
+    content.spellbookViewMode = this.actor.getFlag('icrpgme', 'spellbookViewMode') ?? 'all';
     content.system = this.actor.system;
     content = this.prepareItems(content);
     content.isLocked = this.isLocked ?? true;
     content.isQuickInsertOn = isQuickInsertOn();
-    content.spellbookViewMode = this.actor.getFlag('icrpgme', 'spellbookViewMode') ?? 'all';
+
     content.system.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, { async: true });
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     return content;
@@ -54,7 +55,11 @@ export default class ICRPGActorSheet extends ActorSheet {
       list?.sort((a, b) => a.sort - b.sort);
       return list;
     };
-    content.loots = [...(itemsByType.get('loot') ?? []), ...(itemsByType.get('spell') ?? [])];
+
+    if (content.spellbookViewMode === 'spells') content.loots = itemsByType.get('spell') ?? [];
+    else if (content.spellbookViewMode === 'items') content.loots = itemsByType.get('loot') ?? [];
+    else content.loots = [...(itemsByType.get('loot') ?? []), ...(itemsByType.get('spell') ?? [])];
+
     content.loots = sort(content.loots);
     content.abilities = sort(itemsByType.get('ability'));
     content.powers = sort(itemsByType.get('power'));

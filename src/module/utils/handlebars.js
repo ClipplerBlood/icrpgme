@@ -13,6 +13,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('inc', (x) => x + 1);
   Handlebars.registerHelper('healthImageChooser', _healthImageChooser);
   Handlebars.registerHelper('romanize', romanize);
+  Handlebars.registerHelper('spellPrefix', _spellPrefix);
 }
 
 function _localizeConcat(...args) {
@@ -50,4 +51,15 @@ function _healthImageChooser(actor, heartIndex) {
     else if (actorMaxHp >= heartMaxHp - 5) return 'systems/icrpgme/assets/ui/heart-half-red.webp';
     else return 'systems/icrpgme/assets/ui/char-heart-grey-2.webp';
   }
+}
+
+function _spellPrefix(spell) {
+  const system = spell.system;
+  let prefix = '';
+  prefix += system.spellType ?? '';
+  prefix += ' ' + romanize(system.spellLevel) ?? '';
+  prefix = prefix.trim();
+  if (prefix.length === 0) return '';
+  const html = `<b class="tt-u ff-content" style="font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px;">${prefix}:</b>`;
+  return new Handlebars.SafeString(html);
 }

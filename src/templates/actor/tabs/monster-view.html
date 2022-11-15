@@ -12,7 +12,8 @@
       {{>heart index=8}}
       {{>heart index=9}}
       {{#if system.extraHealth}}
-        <div style="font-family: 'Carlito', sans-serif; font-size: 16px; font-weight: bold;">{{system.extraHealth}}</div>
+        <div
+          style="font-family: 'Carlito', sans-serif; font-size: 16px; font-weight: bold;">{{system.extraHealth}}</div>
       {{/if}}
     </div>
 
@@ -48,6 +49,7 @@
     <div class="icrpg-monster-description">{{system.description}}</div>
   </div>
   <div class="col-1 monster-image-container">
-    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}"/>
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}"
+         {{#if actor.flags.icrpgme.blendImg}}style="mix-blend-mode: multiply"{{/if}}/>
   </div>
 </div>

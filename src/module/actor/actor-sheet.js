@@ -292,10 +292,8 @@ export default class ICRPGActorSheet extends ActorSheet {
       this.isLocked = _isLocked;
       ct.prop('value', !_isLocked);
       if (_isLocked) {
-        ct.removeClass('c-red');
         ev.currentTarget.innerHTML = `<i class="fas fa-lock"></i>${i18n('ICRPG.locked')}`;
       } else {
-        ct.addClass('c-red');
         ev.currentTarget.innerHTML = `<i class="fas fa-unlock"></i><strong>${i18n('ICRPG.unlocked')}</strong>`;
       }
       this.render();
@@ -329,5 +327,10 @@ export default class ICRPGActorSheet extends ActorSheet {
     const actionIndex = ct.closest('[data-action-index]').data('actionIndex');
     if (itemId) return this.actor.useItem(itemId, { index: entryIndex });
     if (actionIndex != null) return this.actor.useAction(actionIndex);
+  }
+
+  _onToggleMinimize(ev) {
+    if (ev.target.matches('.sheet-lock')) return;
+    super._onToggleMinimize(ev);
   }
 }

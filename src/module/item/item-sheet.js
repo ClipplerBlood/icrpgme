@@ -95,4 +95,9 @@ export class ICRPGItemSheet extends ItemSheet {
       this.document.update({ 'system.spCosts': update });
     });
   }
+
+  _onToggleMinimize(ev) {
+    if (ev.target.matches('.sheet-lock')) return;
+    super._onToggleMinimize(ev);
+  }
 }

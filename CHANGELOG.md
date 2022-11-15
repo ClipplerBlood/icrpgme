@@ -7,6 +7,8 @@
 - Defense now is capped to 20
 - Roll table results now correctly display the dice roll
 - Added setting that enables **Target & Timer background** to increase their legibility in dark scenes.
+- Added current equipped and carried **WEIGHT** in the locked character sheet view.
+- Now the sheet doesn't minimize when rapidly clicking on the sheet lock button.
 
 ## [1.1.1] Hotfix
 - Fixed error when combat tracker was empty

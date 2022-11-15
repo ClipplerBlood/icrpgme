@@ -37,8 +37,13 @@
 
 {{#* inline "barButtons"}}
   <div class="bar-buttons">
+    {{#if (and (not isLocked) isQuickInsertOn)}}
+      <div>
+        <i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>
+      </div>
+    {{/if}}
     {{#if filter}}
-      <div class="spellbook-view-toggle">
+      <div class="spellbook-view-toggle" style="margin-left: 8px;">
         {{#if (eq spellbookViewMode "spells")}}
           <img src="/systems/icrpgme/assets/ui/magic-red.webp"
                data-tooltip="ICRPG.notifications.spellbookViewMode.spells">
@@ -51,11 +56,6 @@
         {{/if}}
       </div>
     {{/if}}
-    {{#if (and (not isLocked) isQuickInsertOn)}}
-      <div style="margin-left: 8px;">
-        <i class="fa-solid fa-magnifying-glass icrpg-quick-insert"></i>
-      </div>
-    {{/if}}
   </div>
 {{/inline}}
 
@@ -66,20 +66,31 @@
       <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.loot"}} {{>barButtons filter=true}}</div>
       <div class="grid-2 ff-header ta-center"
            style="font-size: 10px; flex: 0; min-width: 110px; max-width: 110px; margin-left: 4px; height: 18px; gap: 0">
-        <div>
-          <div style="height: 10px">{{localize "ICRPG.equipped"}}</div>
-          <div style="color: var(--c-light-grey)">MAX <input class="icrpg-max-carry" type="number"
-                                                             name="system.weight.equipped.max"
-                                                             value="{{system.weight.equipped.max}}" {{readonly
-              isLocked}}></div>
-        </div>
-        <div>
-          <div style="height: 10px">{{localize "ICRPG.carried"}}</div>
-          <div style="color: var(--c-light-grey)">MAX <input class="icrpg-max-carry" type="number"
-                                                             name="system.weight.carried.max"
-                                                             value="{{system.weight.carried.max}}" {{readonly
-              isLocked}}></div>
-        </div>
+        {{#if isLocked}}
+          <div>
+            <div style="height: 10px">{{localize "ICRPG.equipped"}}</div>
+            <div class="c-grey">{{system.weight.equipped.value}} / {{system.weight.equipped.max}}</div>
+          </div>
+          <div>
+            <div style="height: 10px">{{localize "ICRPG.carried"}}</div>
+            <div class="c-grey">{{system.weight.carried.value}} / {{system.weight.carried.max}}</div>
+          </div>
+        {{else}}
+          <div>
+            <div style="height: 10px">{{localize "ICRPG.equipped"}}</div>
+            <div style="color: var(--c-light-grey)">MAX <input class="icrpg-max-carry" type="number"
+                                                               name="system.weight.equipped.max"
+                                                               value="{{system.weight.equipped.max}}" {{readonly
+                isLocked}}></div>
+          </div>
+          <div>
+            <div style="height: 10px">{{localize "ICRPG.carried"}}</div>
+            <div style="color: var(--c-light-grey)">MAX <input class="icrpg-max-carry" type="number"
+                                                               name="system.weight.carried.max"
+                                                               value="{{system.weight.carried.max}}" {{readonly
+                isLocked}}></div>
+          </div>
+        {{/if}}
       </div>
     </div>
     {{#each loots as | item |}}
@@ -92,7 +103,6 @@
     {{#unless isLocked}}
       {{~> simpleItem noDescription=true showButtons=true}}
     {{/unless}}
-
   </div>
 
   <div>

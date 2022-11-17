@@ -389,6 +389,11 @@ img#logo {
       margin-top: 8px;
     }
   }
+  .table-journal {
+    p {
+      margin-bottom: 2px;
+    }
+  }
 }
 
 // Compendium
@@ -404,3 +409,19 @@ li.compendium-folder > .compendium-folder-header {
 //    display: none;
 //  }
 //}
+
+// Scrollbar
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #921e20;
+  border: none;
+}
+
+// Scene nav
+#navigation {
+  .scene.nav-item {
+    .scene-name {
+      font-family: $ff-flatbread;
+    }
+  }
+}

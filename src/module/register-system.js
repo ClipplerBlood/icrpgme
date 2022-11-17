@@ -25,7 +25,6 @@ export function registerSystem() {
   CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
   CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
   CONFIG.Actor.systemDataModels['vehicle'] = ICRPGVehicleDataModel;
-  CONFIG.Actor.systemDataModels['spell'] = ICRPGItemSpellDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;
@@ -35,6 +34,7 @@ export function registerSystem() {
   CONFIG.Item.systemDataModels['ability'] = ICRPGItemBaseDataModel;
   CONFIG.Item.systemDataModels['power'] = ICRPGItemPowerDataModel;
   CONFIG.Item.systemDataModels['augment'] = ICRPGItemBaseDataModel;
+  CONFIG.Item.systemDataModels['spell'] = ICRPGItemSpellDataModel;
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;

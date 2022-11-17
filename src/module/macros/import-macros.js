@@ -23,22 +23,22 @@ export async function importTOML(tomlString) {
     let type = 'loot';
     if (['power', 'ability', 'spell'].includes(k)) type = k;
 
-    let folderType = ITEM_DN;
-    importList(cls, data[k], type, k, folderType);
+    importList(cls, data[k], type, k, ITEM_DN);
   }
 }
 
 async function importList(cls, list, type, folderName, folderType, folderParent = undefined) {
   if (list == null || list.length === 0) return;
   const folder = await Folder.create({ name: folderName, type: folderType, parent: folderParent, sorting: 'm' });
-  for (const i of list) {
-    if (i.name == null || i.name.length === 0) continue;
-    const t = i.type ?? type;
+  for (const [index, entry] of list.entries()) {
+    if (entry.name == null || entry.name.length === 0) continue;
+    const t = entry.type ?? type;
     cls.create({
       type: t,
       folder: folder.id,
-      name: i.name,
-      system: i.system,
+      name: entry.name,
+      system: entry.system,
+      sort: index,
     });
   }
 }

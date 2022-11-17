@@ -136,7 +136,7 @@ function _initializeAutosize(html) {
 }
 
 export function romanize(num) {
-  if (isNaN(num)) return NaN;
+  if (isNaN(num)) return '';
   // prettier-ignore
   var digits = String(+num).split(''),
     key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',

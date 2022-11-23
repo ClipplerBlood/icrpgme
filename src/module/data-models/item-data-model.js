@@ -58,7 +58,7 @@ export class ICRPGItemSpellDataModel extends ICRPGItemLootDataModel {
     const baseSchema = super.defineSchema();
     const spellSchema = {
       spellType: f.string(),
-      spellLevel: f.boolean(),
+      spellLevel: f.number(),
       duration: f.string(),
       target: f.string(),
       flavorText: f.string(),

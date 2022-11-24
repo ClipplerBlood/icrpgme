@@ -239,7 +239,7 @@ img#logo {
     h5 {
       border-bottom: none;
       font-family: $ff-nusaliver;
-      font-size: 1.5em;
+      font-size: 1.3em;
       background: none;
       text-align: left;
       padding-bottom: 0;
@@ -256,6 +256,12 @@ img#logo {
     p {
       margin-bottom: 0;
     }
+    p + p {
+      margin-top: 2px;
+    }
+    p + h5 {
+      margin-top: 1.2rem !important;
+    }
 
     .character-types-mastery {
       overflow: auto;
@@ -265,7 +271,8 @@ img#logo {
       }
 
       img {
-        max-width: 260px;
+        max-width: 230px;
+        max-height: 230px;
       }
 
       h5 {

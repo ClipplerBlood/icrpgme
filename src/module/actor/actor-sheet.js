@@ -283,6 +283,7 @@ export default class ICRPGActorSheet extends ActorSheet {
   }
 
   _addLockedButton(buttons) {
+    if (!this.isEditable) return buttons;
     // Callback
     const lockCb = (ev) => {
       ev.stopPropagation();

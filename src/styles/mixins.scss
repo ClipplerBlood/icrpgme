@@ -11,12 +11,15 @@
 
   @if $color {
     &:focus:not([readonly]),
-    &:hover:not([readonly]) {
+    &:focus:not([readonly]),
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) {
       color: $color;
     }
   }
 
-  &[readonly] {
+  &[readonly],
+  &[disabled] {
     &:hover {
       cursor: default;
     }
@@ -87,6 +90,15 @@
   background-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar-long.webp');
   background-size: 100% 100%;
   margin-top: -1px;
+}
+
+.icrpg-sep-red {
+  height: 12px;
+  width: auto;
+  background-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar-red.webp');
+  background-size: 100% 100%;
+  margin-bottom: 8px;
+  margin-top: 64px;
 }
 
 .icrpg-sep-monster-half {

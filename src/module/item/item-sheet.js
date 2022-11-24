@@ -37,6 +37,7 @@ export class ICRPGItemSheet extends ItemSheet {
   }
 
   _addLockedButton(buttons) {
+    if (!this.isEditable) return buttons;
     // Callback
     const lockCb = (ev) => {
       ev.stopPropagation();

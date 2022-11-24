@@ -144,10 +144,7 @@ export default class ICRPGActorSheet extends ActorSheet {
           this.actor.items.get(itemId)?.sheet.render(true);
         },
       },
-    ];
-
-    if (!(this.isLocked ?? true))
-      itemContextMenu.push({
+      {
         name: i18n('Delete'),
         icon: '<i class="fas fa-times"></i>',
         condition: this.actor.isOwner,
@@ -155,7 +152,9 @@ export default class ICRPGActorSheet extends ActorSheet {
           const itemId = header.closest('[data-item-id]').data('itemId');
           this.actor.items.get(itemId)?.delete();
         },
-      });
+      },
+    ];
+
     ContextMenu.create(this, html, '.icrpg-actor-item-loot', itemContextMenu);
 
     // Item click

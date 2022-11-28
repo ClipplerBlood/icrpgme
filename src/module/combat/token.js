@@ -46,6 +46,14 @@ export class ICRPGToken extends Token {
       bar.addChild(hpSprite);
     }
   }
+
+  displayFloatingText(content) {
+    const textStyle = { fontSize: 22 };
+    return canvas.interface.createScrollingText(this.center, content, {
+      anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+      ...textStyle,
+    });
+  }
 }
 
 // Load all textures once init
@@ -59,4 +67,52 @@ Hooks.once('ready', async () => {
   setTimeout(() => {
     if (canvas.scene) canvas.draw();
   }, 10);
+});
+
+/**
+ * Actor floating text hooks
+ */
+
+function displayActorFloatingText(actor, content) {
+  if (!content || content.length === 0) return;
+  if (content instanceof Array) content = content.join('\n');
+  actor?.getActiveTokens().forEach((t) => t.displayFloatingText(content));
+}
+
+const fmt = (loc, data) => game.i18n.format('ICRPG.tokenFloatingText.' + loc, data);
+
+Hooks.on('updateActor', (actor, diff, context, _userId) => {
+  const { heroCoin, dyingRounds, mastery, sp, resources } = diff.system ?? {};
+  const content = [];
+
+  if (heroCoin != null) content.push(fmt(heroCoin ? 'herocoinAdd' : 'herocoinUse', {}));
+  if (mastery != null) content.push(fmt('mastery', { x: mastery }));
+  if (sp != null) content.push(fmt('sp', actor.system.sp));
+  if (dyingRounds != null) content.push(fmt('dying', { x: dyingRounds }).toUpperCase());
+  if (resources != null && context.updateResourceIndex != null)
+    content.push(fmt('resource', resources[context.updateResourceIndex]).toUpperCase());
+
+  displayActorFloatingText(actor, content);
+});
+
+Hooks.on('updateItem', (item, diff, _context, _userId) => {
+  if (!item.parent || !diff.system) return;
+  const actor = item.parent;
+  const { equipped, carried, mastery } = diff.system;
+  const content = [];
+
+  if (equipped != null) content.push(fmt(equipped ? 'itemEquip' : 'itemUnequip', item).toUpperCase());
+  if (carried != null) content.push(fmt(carried ? 'itemCarry' : 'itemUncarry', item).toUpperCase());
+  if (mastery != null && item.type === 'power') content.push(fmt('powerMastery', { name: item.name, mastery }));
+  displayActorFloatingText(actor, content);
+});
+
+Hooks.on('createItem', (item, _context, _userId) => {
+  if (!item.parent) return;
+  displayActorFloatingText(item.parent, fmt('itemCreate', item).toUpperCase());
+});
+
+Hooks.on('deleteItem', (item, _context, _userId) => {
+  if (!item.parent) return;
+  displayActorFloatingText(item.parent, fmt('itemDelete', item).toUpperCase());
 });

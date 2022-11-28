@@ -205,7 +205,7 @@ export default class ICRPGActorSheet extends ActorSheet {
           resources.splice(resourceIndex, 1);
         else resources[resourceIndex][target] = value;
       }
-      this.actor.update({ 'system.resources': resources });
+      this.actor.update({ 'system.resources': resources }, { updateResourceIndex: resourceIndex });
     });
 
     // Locked input animation

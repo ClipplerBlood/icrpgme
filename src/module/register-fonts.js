@@ -21,4 +21,13 @@ export function registerFonts() {
   };
 
   CONFIG.defaultFontFamily = 'Carlito';
+
+  // Canvas fonts
+  CONFIG.canvasTextStyle.fontFamily = 'Nusaliver';
+  CONFIG.canvasTextStyle.fontVariant = 'small-caps';
+  CONFIG.canvasTextStyle.strokeThickness = 2;
+  CONFIG.canvasTextStyle.fontSize = 30;
+  CONFIG.canvasTextStyle.dropShadowBlur = 0;
+  CONFIG.canvasTextStyle.dropShadowDistance = 3;
+  CONFIG.canvasTextStyle.dropShadowAngle = 0.5;
 }

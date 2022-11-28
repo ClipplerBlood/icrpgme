@@ -135,7 +135,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const resources = actor.system.resources;
       const index = ct.closest('[data-resource-index]').data('resourceIndex');
       resources[index].value = Math.clamped(newValue, 0, resources[index].max);
-      actor.update({ 'system.resources': resources });
+      actor.update({ 'system.resources': resources }, { updateResourceIndex: index });
     });
 
     // Hearts HP progress bar (everything but chunks)

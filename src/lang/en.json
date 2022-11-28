@@ -156,6 +156,21 @@
       "type": "Type",
       "level": "Level",
       "flavorText": "Other notes"
+    },
+    "tokenFloatingText": {
+      "herocoinAdd": "Added Hero Coin",
+      "herocoinUse": "Used Hero Coin!!",
+      "dying": "{x} rnds 'til dead",
+      "mastery": "{x}/20 Mastery",
+      "sp": "{value}/{max} SP",
+      "resource": "{value}/{max} {name}",
+      "itemEquip": "Equipped \n {name}",
+      "itemUnequip": "Unequipped \n {name}",
+      "itemCarry": "Carrying \n {name}",
+      "itemUncarry": "Ditched \n {name}",
+      "itemCreate": "Added \n {name}",
+      "itemDelete": "Removed \n {name}",
+      "powerMastery": "{name} \n {mastery}/4 Mastery"
     }
   }
 }

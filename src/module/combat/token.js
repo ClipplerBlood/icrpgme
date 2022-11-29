@@ -89,8 +89,10 @@ Hooks.on('updateActor', (actor, diff, context, _userId) => {
   if (mastery != null) content.push(fmt('mastery', { x: mastery }));
   if (sp != null) content.push(fmt('sp', actor.system.sp));
   if (dyingRounds != null) content.push(fmt('dying', { x: dyingRounds }).toUpperCase());
-  if (resources != null && context.updateResourceIndex != null)
-    content.push(fmt('resource', resources[context.updateResourceIndex]).toUpperCase());
+  if (resources != null && context.updateResourceIndex != null) {
+    const res = resources[context.updateResourceIndex];
+    if (res.value != null && res.max != null && res.name) content.push(fmt('resource', res).toUpperCase());
+  }
 
   displayActorFloatingText(actor, content);
 });

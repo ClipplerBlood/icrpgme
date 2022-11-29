@@ -335,16 +335,17 @@ img#logo {
 
   .encounter-architecture {
     .header {
-      background: #bbb;
+      background: #00000026;
       position: relative;
-      padding-top: 10px;
+      padding-top: 5px;
 
       h3 {
         background: none;
         padding: 0 0 0 16px;
         text-align: left;
         display: inline-block;
-        font-size: 26px;
+        font-size: 32px;
+        margin-bottom: 0;
       }
       p {
         display: block;

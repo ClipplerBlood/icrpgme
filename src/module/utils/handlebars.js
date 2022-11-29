@@ -49,7 +49,7 @@ function _healthImageChooser(actor, heartIndex) {
   } else {
     if (actorMaxHp >= heartMaxHp) return 'systems/icrpgme/assets/ui/heart-red.webp';
     else if (actorMaxHp >= heartMaxHp - 5) return 'systems/icrpgme/assets/ui/heart-half-red.webp';
-    else return 'systems/icrpgme/assets/ui/char-heart-grey-2.webp';
+    else return 'systems/icrpgme/assets/ui/heart-grey-2.webp';
   }
 }
 
@@ -60,6 +60,6 @@ function _spellPrefix(spell) {
   prefix += ' ' + romanize(system.spellLevel) ?? '';
   prefix = prefix.trim();
   if (prefix.length === 0) return '';
-  const html = `<b class="tt-u ff-content" style="font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px;">${prefix}:</b>`;
+  const html = `<b class="tt-u ff-content" style="font-size: 0.95rem; flex: 0; white-space: nowrap; margin-right: 4px;">${prefix}:</b>`;
   return new Handlebars.SafeString(html);
 }

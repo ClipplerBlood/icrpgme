@@ -442,6 +442,9 @@ input[type='number'].icrpg-max-carry {
 .icrpg-actor-item-loot {
   margin-top: 4px;
 
+  .flex-row {
+    padding: 2px;
+  }
   input {
     @include transparent-input;
     @extend .ff-content;
@@ -449,13 +452,16 @@ input[type='number'].icrpg-max-carry {
     height: 15px;
     text-transform: uppercase;
     padding: 0;
+    font-size: 0.95rem;
   }
 
   textarea {
     @include transparent-input;
     @extend .ff-content;
     padding: 0;
-    line-height: 1.1;
+    font-size: 0.9rem;
+    line-height: 1.05;
+    color: #141414;
   }
 
   ::placeholder {
@@ -515,9 +521,9 @@ input[type='number'].icrpg-max-carry {
   }
 
   .power-cost {
-    font-size: 13px;
+    font-size: 0.9rem;
     font-family: $ff-carlito;
-    line-height: 1.2;
+    line-height: 1.05;
 
     &:last-child {
       margin-bottom: 4px;

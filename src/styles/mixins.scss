@@ -10,10 +10,8 @@
   }
 
   @if $color {
-    &:focus:not([readonly]),
-    &:focus:not([readonly]),
-    &:hover:not([disabled]),
-    &:hover:not([disabled]) {
+    &:not(:read-only, :disabled):focus,
+    &:not(:read-only, :disabled):hover {
       color: $color;
     }
   }

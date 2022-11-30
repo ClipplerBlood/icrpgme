@@ -276,7 +276,7 @@ export default class ICRPGActorSheet extends ActorSheet {
   _getHeaderButtons() {
     // Get default buttons, removing the sheet configuration
     let buttons = super._getHeaderButtons();
-    buttons = buttons.filter((b) => b.class !== 'configure-sheet');
+    if (game.settings.get('icrpgme', 'hideSheetButton')) buttons = buttons.filter((b) => b.class !== 'configure-sheet');
     if (this.actor.isOwner && this.actor.type !== 'obstacle') buttons = this._addLockedButton(buttons);
     return buttons;
   }

@@ -32,6 +32,7 @@ export class ICRPGItemSheet extends ItemSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
+    if (game.settings.get('icrpgme', 'hideSheetButton')) buttons = buttons.filter((b) => b.class !== 'configure-sheet');
     if (this.item.isOwner) buttons = this._addLockedButton(buttons);
     return buttons;
   }

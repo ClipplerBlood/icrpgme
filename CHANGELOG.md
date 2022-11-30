@@ -12,6 +12,8 @@
 - When the sheet is locked, hovering on a not editable resource doesn't color the text red.
 - Fixed spells' levels not accepting numbers different from 1.
 - Right-clicking on an item shows the delete option even if the sheet is locked.
+- Improved the **DiceSoNice** preset, with bigger and bolder numbers.
+- Added a **SETTING** to show or hide the "Sheet" header button in actor and item sheets. Useful if you want to use 3rd party sheets.
 
 
 ## [1.2.0] Spells and Powers 🪄🦸

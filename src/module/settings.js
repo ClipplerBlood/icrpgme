@@ -42,6 +42,16 @@ export function registerSettings() {
     onChange: () => TimerTargetContainer._onUpdate(),
   });
 
+  game.settings.register('icrpgme', 'hideSheetButton', {
+    name: 'ICRPG.settings.hideSheetButtonName',
+    hint: 'ICRPG.settings.hideSheetButtonHint',
+    scope: 'world',
+    config: true,
+    requiresReload: true,
+    type: Boolean,
+    default: true,
+  });
+
   // === === === === HIDDEN
   game.settings.register('icrpgme', 'timers', {
     name: 'icrpg-timers',

@@ -141,7 +141,9 @@
       "useTokenHeartsName": "Use Token Hearts",
       "useTokenHeartsHint": "Replace the Token HP bar with hearts.",
       "useBackgroundName": "Use Background",
-      "useBackgroundHint": "When on, the Target & Timer app will have a background for increased legibility on dark scenes."
+      "useBackgroundHint": "When on, the Target & Timer app will have a background for increased legibility on dark scenes.",
+      "hideSheetButtonName": "Hide \"Sheet\" header buttons",
+      "hideSheetButtonHint": "When on, hides the button to configure which sheet to use in actor and item sheets, reducing clutter."
     },
     "other": "Other",
     "gamemaster": "Gamemaster",

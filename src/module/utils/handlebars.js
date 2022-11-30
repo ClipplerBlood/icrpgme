@@ -14,6 +14,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('healthImageChooser', _healthImageChooser);
   Handlebars.registerHelper('romanize', romanize);
   Handlebars.registerHelper('spellPrefix', _spellPrefix);
+  Handlebars.registerHelper('wrapAmpersand', (x) => x.replace('&', '\n&'));
 }
 
 function _localizeConcat(...args) {

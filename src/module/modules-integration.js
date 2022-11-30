@@ -10,12 +10,24 @@ function initDiceSoNice(dice3d) {
       category: 'System',
       description: 'ICRPG',
       foreground: '#ffffff',
-      background: '#C02025FF',
-      outline: '#C02025FF',
-      // edge: '#202020',
-      material: 'plastic',
-      font: 'Arial',
+      background: '#b22227',
+      outline: '#b22227',
+      edge: '#b22227',
+      material: 'wood',
+      font: 'Uberlin',
       default: true,
+      fontScale: {
+        d2: 2,
+        d3: 1.8,
+        d4: 1.5,
+        d5: 1.2,
+        d6: 1.8,
+        d8: 1.2,
+        d10: 1.2,
+        d12: 1.8,
+        d20: 1.2,
+        d100: 1,
+      },
     },
     'preferred',
   );
@@ -25,6 +37,7 @@ function initDiceSoNice(dice3d) {
 export function isQuickInsertOn() {
   return game.modules.get('quick-insert')?.active && QuickInsert != null;
 }
+
 /**
  * Adds the quick insert functionality to the character sheet
  * @param {ICRPGActorSheet} actorSheet

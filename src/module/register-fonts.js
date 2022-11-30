@@ -7,6 +7,7 @@ export function registerFonts() {
       { urls: ['systems/icrpgme/fonts/Carlito-Bold.woff2'], weight: 700 },
       { urls: ['systems/icrpgme/fonts/Carlito-Italic.woff2'], style: 'italic' },
       { urls: ['systems/icrpgme/fonts/Carlito-BoldItalic.woff2'], weight: 700, style: 'italic' },
+      { urls: ['systems/icrpgme/fonts/uberlin.xbold.ttf'], weight: 900 },
     ],
   };
 
@@ -18,6 +19,11 @@ export function registerFonts() {
   CONFIG.fontDefinitions['Nusaliver'] = {
     editor: true,
     fonts: [{ urls: ['systems/icrpgme/fonts/nusaliver.woff2'] }],
+  };
+
+  CONFIG.fontDefinitions['Uberlin'] = {
+    editor: true,
+    fonts: [{ urls: ['systems/icrpgme/fonts/uberlin.xbold.ttf'] }],
   };
 
   CONFIG.defaultFontFamily = 'Carlito';

@@ -7,14 +7,6 @@
 }
 
 @font-face {
-  font-family: 'Chalkduster';
-  src: url('../fonts/Chalkduster.woff2') format('woff2'), url('../fonts/Chalkduster.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'nusaliver';
   src: url('../fonts/nusaliver.woff2') format('woff2'), url('../fonts/nusaliver.woff') format('woff');
   font-weight: 900;
@@ -54,9 +46,16 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Uberlin';
+  src: url('../fonts/uberlin.xbold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 $ff-flatbread: 'FlatBread', 'Arial', sans-serif;
 $ff-carlito: 'Carlito', 'Arial', sans-serif;
-$ff-chalkduster: 'Chalkduster', 'Arial', sans-serif;
 $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
 
 @each $s in [11, 12, 13, 14, 16, 18, 20, 24, 28, 32, 48] {

@@ -1,3 +1,19 @@
+## [1.2.1] UI Improvements 📖
+- Styled the **TOKEN NAMEPLATE**.
+- Added **FLOATING TEXT**. A notification over the token is displayed when
+  - Hero coin is added or used
+  - The character dying counter is updated
+  - A resource is updated
+  - An item state changes (equipped or carried)
+  - An item is added or removed
+  - A power's mastery is updated
+- Increased the readability of the character sheet loot tab.
+- UI tweaks in the character sheet.
+- When the sheet is locked, hovering on a not editable resource doesn't color the text red.
+- Fixed spells' levels not accepting numbers different from 1.
+- Right-clicking on an item shows the delete option even if the sheet is locked.
+
+
 ## [1.2.0] Spells and Powers 🪄🦸
 - Added **SPELL** item type! Spells are Loots that have additional information such as level, type, duration, target and flavor text.
 - Added **FILTERS**. In the character sheet loot section, you can press a button to toggle between spells only, loot only and loot + spells.

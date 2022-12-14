@@ -7,8 +7,8 @@ export class ICRPGCombatTracker extends CombatTracker {
     });
   }
 
-  constructor() {
-    super();
+  constructor(options) {
+    super(options);
     this.isIdCollapsed = new Map();
   }
 

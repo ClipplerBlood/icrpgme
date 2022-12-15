@@ -70,7 +70,28 @@ export class ICRPGActor extends Actor {
     });
   }
 
-  prepareHardSuit() {}
+  prepareHardSuit() {
+    const system = this.system;
+    // Set pilot derived attributes
+    const pilot = game.actors.get(system.pilotId);
+    if (pilot) {
+      for (const attr of ['constitution', 'intelligence', 'wisdom', 'charisma']) {
+        system.attributes[attr].base = pilot.system.attributes[attr].base;
+      }
+    }
+    // Sum all the bonuses from attributes and efforts
+    for (const group of ['attributes', 'efforts']) {
+      for (const k of Object.keys(system[group])) {
+        const att = system[group][k];
+        att.total = att.base + att.loot;
+        system[group][k].total = Math.clamped(att.total, -10, 10);
+      }
+    }
+    // Set defense
+    const defense = system.attributes.defense;
+    defense.total = 10 + defense.loot;
+    defense.total = Math.clamped(defense.total, 0, 20);
+  }
 
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);

@@ -23,6 +23,7 @@ export async function preloadTemplates() {
     // Hard Suit
     'systems/icrpgme/templates/actor/hardsuit-sheet.html',
     'systems/icrpgme/templates/actor/tabs/hardsuit-primary.html',
+    'systems/icrpgme/templates/actor/tabs/hardsuit-stats.html',
 
     // Item sheet
     'systems/icrpgme/templates/item/generic-item.html',

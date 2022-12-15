@@ -57,3 +57,26 @@
     </div>
   {{/if}}
 </div>
+
+
+{{#* inline "simpleItem"}}
+  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    {{#if isLocked}}
+      <div class="hard-suit-item-clickable"><strong>{{item.name}}:</strong> {{item.system.description}}</div>
+    {{else}}
+      <div class="flex-row" style="align-items: flex-end; position: relative">
+        <div style="margin-left: 4px;">
+          <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
+          {{#unless (or noDescription (and isLocked (not item.system.description)))}}
+            <textarea data-target="system.description" autosize spellcheck="false"
+                      placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
+          {{/unless}}
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}

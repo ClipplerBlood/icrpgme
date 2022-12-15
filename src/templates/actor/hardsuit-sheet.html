@@ -33,13 +33,19 @@
           <div class="ff-header c-white ta-center">{{localize "ICRPG.attributesLong.defense"}}</div>
           <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-group="attributes"
                data-roll="defense">
-          <input name="system.defense" value="{{system.defense}}" type="number" min="-9" max="10"
-            {{#if isLocked}}data-roll="defense" readonly{{/if}}>
+          <div class="icrpg-defense-box">
+            <div>{{localize "ICRPG.loot"}}</div>
+            <input class="icrpg-defense-loot " type="number"
+                   name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
+                   min="-10" max="10" {{readonly isLocked}}>
+            <div class="icrpg-defense-total hoverable" data-group="attributes"
+                 data-roll="defense">{{system.attributes.defense.total}}</div>
+          </div>
         </div>
 
         <div class="hard-suit-power-container">
           <div class="ff-header c-white ta-center">{{localize "ICRPG.hardSuit.power"}}</div>
-          <img src="systems/icrpgme/assets/ui/dice-transparent/d100.webp" style="width: auto; height: 80px">
+          <img src="systems/icrpgme/assets/ui/dice-transparent/d100.webp" style="width: auto; height: 64px">
           <input name="system.power" value="{{system.power}}" type="number" min="0" max="100">
         </div>
       </div>
@@ -50,8 +56,8 @@
       <div data-group="primary-tabs" data-tab="primary">
         {{> "systems/icrpgme/templates/actor/tabs/hardsuit-primary.html"}}
       </div>
-      <div data-group="primary-tabs" data-tab="suit">
-        {{> "systems/icrpgme/templates/actor/tabs/hardsuit-primary.html"}}
+      <div data-group="primary-tabs" data-tab="stats">
+        {{> "systems/icrpgme/templates/actor/tabs/hardsuit-stats.html"}}
       </div>
       <div data-group="primary-tabs" data-tab="notes">
         {{editor system.enrichedNotes target="system.notes" button=true owner=owner editable=editable
@@ -62,31 +68,10 @@
 
 
   <nav class="icrpg-sheet-nav" data-group="primary-tabs">
-    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">{{localize "ICRPG.tabs.stats"}}</a>
-    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="suit">{{localize "ICRPG.tabs.suit"}}</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">{{localize "ACTOR.TypeHardsuit"}}</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="stats">{{localize "ICRPG.tabs.stats"}}</a>
     <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="notes">{{localize "ICRPG.tabs.notes"}}</a>
   </nav>
 
 </form>
 
-{{#* inline "simpleItem"}}
-  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
-       data-item-id="{{item._id}}"
-       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
-    {{#if isLocked}}
-      <div class="hard-suit-item-clickable"><strong>{{item.name}}:</strong> {{item.system.description}}</div>
-    {{else}}
-      <div class="flex-row" style="align-items: flex-end; position: relative">
-        <div style="margin-left: 4px;">
-          <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
-          {{#unless (or noDescription (and isLocked (not item.system.description)))}}
-            <textarea data-target="system.description" autosize spellcheck="false"
-                      placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
-          {{/unless}}
-        </div>
-      </div>
-    {{/if}}
-
-    <div class="icrpg-sep-long"></div>
-  </div>
-{{/inline}}

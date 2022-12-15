@@ -165,6 +165,22 @@ export class ICRPGHardSuitDataModel extends foundry.abstract.DataModel {
       quality: f.string(),
       power: f.number({ min: 0, max: 100, initial: 100 }),
       notes: f.html({ initial: initialNote() }),
+      attributes: f.schema({
+        strength: f.hsAttribute(10),
+        dexterity: f.hsAttribute(10),
+        constitution: f.hsAttribute(10),
+        intelligence: f.hsAttribute(10),
+        wisdom: f.hsAttribute(10),
+        charisma: f.hsAttribute(10),
+        defense: f.hsAttribute(20),
+      }),
+      efforts: f.schema({
+        basic: f.hsAttribute(10),
+        weapons: f.hsAttribute(10),
+        guns: f.hsAttribute(10),
+        energy: f.hsAttribute(10),
+        ultimate: f.hsAttribute(10),
+      }),
     };
   }
 }

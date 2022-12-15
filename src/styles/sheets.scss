@@ -1092,11 +1092,22 @@ form.icrpg-monster-sheet {
     flex-direction: column;
     flex: 1;
 
+    .icrpg-defense-box {
+      top: 24px;
+      left: auto;
+
+      input {
+        top: 0;
+        left: 0;
+      }
+    }
+
     & > div {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     img {
       position: relative;
       top: 0;
@@ -1110,10 +1121,31 @@ form.icrpg-monster-sheet {
       font-size: var(--font-size-28);
       position: absolute;
       text-align: center;
-      top: 44px;
+      top: 50px;
       width: 128px;
       height: auto;
       color: black;
+    }
+  }
+
+  .hard-suit-stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    .icrpg-attribute-block {
+      justify-content: flex-end;
+    }
+
+    .hard-suit-attribute-block {
+      .dice-container {
+        width: 84px;
+      }
+
+      img {
+        object-fit: contain;
+        width: auto;
+      }
     }
   }
 }

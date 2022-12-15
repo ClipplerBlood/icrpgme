@@ -78,8 +78,7 @@
       "resources": "Resources",
       "item": "Item",
       "bonuses": "Bonuses",
-      "stats": "Stats",
-      "suit": "Suit"
+      "stats": "Stats"
     },
     "abilities": "Abilities",
     "powers": "Powers",
@@ -189,7 +188,8 @@
       "leftArm": "Left Arm",
       "rightArm": "Right Arm",
       "legs": "Legs",
-      "partType": "Part Type"
+      "partType": "Part Type",
+      "suit": "Suit"
     }
   }
 }

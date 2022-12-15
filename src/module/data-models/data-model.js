@@ -33,3 +33,11 @@ export const array = (element, options = {}) => new f.ArrayField(element, option
 
 // Html
 export const html = (obj = {}) => new f.HTMLField({ ...{ initial: '' }, ...obj });
+
+// Hard suit attribute
+export const hsAttribute = (m = 9) =>
+  new f.SchemaField({
+    total: bnf(m),
+    base: bnf(m),
+    loot: bnf(m),
+  });

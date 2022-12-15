@@ -1,18 +1,17 @@
 import * as f from './data-model.js';
 import { i18n } from '../utils/utils.js';
 
+const initialNote = () =>
+  `<h1><span style="font-family: FlatBread, Modesto Condensed, sans-serif">${i18n('ICRPG.tabs.notes')}</span></h1>`;
+
 export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
   static defineSchema() {
-    const initialNote = `<h1><span style="font-family: FlatBread, Modesto Condensed, sans-serif">${i18n(
-      'ICRPG.tabs.notes',
-    )}</span></h1>`;
-
     return {
       type: f.string(),
       world: f.string(),
       lifeform: f.string(),
       story: f.string(),
-      notes: f.html({ initial: initialNote }),
+      notes: f.html({ initial: initialNote() }),
       attributes: f.schema({
         strength: f.attributef(10),
         dexterity: f.attributef(10),
@@ -155,6 +154,17 @@ export class ICRPGVehicleDataModel extends foundry.abstract.DataModel {
         damage: f.number({ min: 0 }),
         value: f.number({ min: 0 }),
       }),
+    };
+  }
+}
+
+export class ICRPGHardSuitDataModel extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return {
+      pilotId: f.string(),
+      quality: f.string(),
+      power: f.number({ min: 0, max: 100, initial: 100 }),
+      notes: f.html({ initial: initialNote() }),
     };
   }
 }

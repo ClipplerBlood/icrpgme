@@ -1,6 +1,7 @@
 import ICRPGActorSheet from './actor/actor-sheet.js';
 import {
   ICRPGCharacterDataModel,
+  ICRPGHardSuitDataModel,
   ICRPGMonsterDataModel,
   ICRPGObstacleDataModel,
   ICRPGVehicleDataModel,
@@ -11,6 +12,8 @@ import {
   ICRPGItemLootDataModel,
   ICRPGItemPowerDataModel,
   ICRPGItemSpellDataModel,
+  ICRPGPartDataModel,
+  ICRPGPropertyDataModel,
 } from './data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
 import { ICRPGItemSheet } from './item/item-sheet.js';
@@ -25,6 +28,7 @@ export function registerSystem() {
   CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
   CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
   CONFIG.Actor.systemDataModels['vehicle'] = ICRPGVehicleDataModel;
+  CONFIG.Actor.systemDataModels['hardSuit'] = ICRPGHardSuitDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;
@@ -35,6 +39,8 @@ export function registerSystem() {
   CONFIG.Item.systemDataModels['power'] = ICRPGItemPowerDataModel;
   CONFIG.Item.systemDataModels['augment'] = ICRPGItemBaseDataModel;
   CONFIG.Item.systemDataModels['spell'] = ICRPGItemSpellDataModel;
+  CONFIG.Item.systemDataModels['property'] = ICRPGPropertyDataModel;
+  CONFIG.Item.systemDataModels['part'] = ICRPGPartDataModel;
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;

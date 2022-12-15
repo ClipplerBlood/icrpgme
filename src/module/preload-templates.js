@@ -20,6 +20,10 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/actor/tabs/vehicle-edit.html',
     'systems/icrpgme/templates/actor/tabs/vehicle-view.html',
 
+    // Hard Suit
+    'systems/icrpgme/templates/actor/hardsuit-sheet.html',
+    'systems/icrpgme/templates/actor/tabs/hardsuit-primary.html',
+
     // Item sheet
     'systems/icrpgme/templates/item/generic-item.html',
 

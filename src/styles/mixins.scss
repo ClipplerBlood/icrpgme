@@ -56,7 +56,7 @@
   transition: 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
-    transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1) !important;
     transition: 0.2s ease-in-out;
   }
 }

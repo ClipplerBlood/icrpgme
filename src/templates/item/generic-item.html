@@ -75,6 +75,20 @@
           {{>spellEdit item=item}}
         {{/if}}
 
+        <!-- ===  HARD SUIT PART === -->
+      {{else if (eq item.type "part")}}
+        {{>description system=system}}
+        <div>
+          <strong>{{localize "ICRPG.hardSuit.partType"}}</strong>
+          <select name="system.partType">
+            {{#select system.partType}}
+              <option value="core">{{localize "ICRPG.hardSuit.core"}}</option>
+              <option value="leftArm">{{localize "ICRPG.hardSuit.leftArm"}}</option>
+              <option value="rightArm">{{localize "ICRPG.hardSuit.rightArm"}}</option>
+              <option value="legs">{{localize "ICRPG.hardSuit.legs"}}</option>
+            {{/select}}
+          </select>
+        </div>
         <!-- ===  GENERIC === -->
       {{else}}
         {{>description system=system}}

@@ -55,5 +55,11 @@ export class ICRPGItem extends Item {
 
 Hooks.on('preCreateItem', (doc) => {
   if (!doc.actor) return;
-  if (doc.actor.type !== 'character') return false;
+  if (doc.actor.type === 'character') {
+    return ['loot', 'ability', 'power', 'augment', 'spell'].includes(doc.type);
+  }
+  if (doc.actor.type === 'hardSuit') {
+    return ['part', 'property'].includes(doc.type);
+  }
+  return false;
 });

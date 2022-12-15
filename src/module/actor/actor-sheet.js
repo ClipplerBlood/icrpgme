@@ -26,6 +26,7 @@ export default class ICRPGActorSheet extends ActorSheet {
     else if (t === 'monster') return 'systems/icrpgme/templates/actor/monster-sheet.html';
     else if (t === 'obstacle') return 'systems/icrpgme/templates/actor/obstacle-sheet.html';
     else if (t === 'vehicle') return 'systems/icrpgme/templates/actor/vehicle-sheet.html';
+    else if (t === 'hardSuit') return 'systems/icrpgme/templates/actor/hardsuit-sheet.html';
     return '';
   }
 
@@ -39,6 +40,7 @@ export default class ICRPGActorSheet extends ActorSheet {
 
     content.system.enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, { async: true });
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
+    if (this.actor.type === 'hardSuit') content = this.prepareHardSuit(content);
     return content;
   }
 
@@ -64,6 +66,25 @@ export default class ICRPGActorSheet extends ActorSheet {
     content.abilities = sort(itemsByType.get('ability'));
     content.powers = sort(itemsByType.get('power'));
     content.augments = sort(itemsByType.get('augment'));
+    content.properties = sort(itemsByType.get('property'));
+    content.parts = sort(itemsByType.get('part'));
+    return content;
+  }
+
+  prepareHardSuit(content) {
+    content.availablePilots = game.actors
+      .filter((a) => a.type === 'character' && a.isOwner)
+      .map((a) => ({
+        id: a.id,
+        name: a.name,
+      }));
+    const parts = content.parts ?? [];
+    content.parts = {
+      core: parts.filter((p) => p.system.partType === 'core'),
+      leftArm: parts.filter((p) => p.system.partType === 'leftArm'),
+      rightArm: parts.filter((p) => p.system.partType === 'rightArm'),
+      legs: parts.filter((p) => p.system.partType === 'legs'),
+    };
     return content;
   }
 
@@ -75,6 +96,10 @@ export default class ICRPGActorSheet extends ActorSheet {
     if (this.actor.type === 'character') this._activateCharacterListeners(html);
     else if (this.actor.type === 'monster') this._activateMonsterListeners(html);
     else if (this.actor.type === 'vehicle') return this._activateVehicleListeners(html);
+    else if (this.actor.type === 'hardSuit') {
+      this._activateCharacterListeners(html);
+      this._activateHardSuitListeners(html);
+    }
 
     // Hearts selector
     html.find('.icrpg-selectable-heart').click((ev) => {
@@ -130,7 +155,10 @@ export default class ICRPGActorSheet extends ActorSheet {
         item.update({ [target]: value });
       } else {
         if (typeof value === 'boolean' || !itemType) return;
-        this.actor.createEmbeddedDocuments('Item', [{ type: itemType, [target]: value }]);
+        const system = {};
+        const hardShellPartType = ct.closest('[data-part-type]').data('partType');
+        if (hardShellPartType) system.partType = hardShellPartType;
+        this.actor.createEmbeddedDocuments('Item', [{ type: itemType, [target]: value, system }]);
       }
     });
 
@@ -155,7 +183,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       },
     ];
 
-    ContextMenu.create(this, html, '.icrpg-actor-item-loot', itemContextMenu);
+    ContextMenu.create(this, html, '.icrpg-actor-item-loot[data-item-id]', itemContextMenu);
 
     // Item click
     html.find('.item-clickable input[data-target="name"]').click((ev) => {
@@ -269,6 +297,14 @@ export default class ICRPGActorSheet extends ActorSheet {
       const index = ct.closest('[data-maneuver-index]').data('maneuverIndex');
       const update = onArrayEdit(this.actor.system.maneuvers, ev, index);
       this.actor.update({ 'system.maneuvers': update });
+    });
+  }
+
+  _activateHardSuitListeners(html) {
+    // Item use
+    html.find('.item-clickable strong').click((ev) => {
+      const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
+      this.actor.useItem(itemId);
     });
   }
 

@@ -56,6 +56,23 @@
       @extend .ff-header;
       color: var(--c-red);
     }
+
+    select {
+      @include transparent-input;
+      @extend .ff-header;
+      height: 14px;
+      color: var(--c-red);
+      position: relative;
+      top: -1px;
+    }
+
+    select:disabled {
+      opacity: 1;
+      appearance: none;
+      width: 100%;
+      padding-left: 4px;
+      top: 0;
+    }
   }
 }
 
@@ -163,7 +180,8 @@
       height: 100%;
       margin-left: auto;
       margin-right: auto;
-      background: gainsboro;
+      //background: gainsboro;
+      background: white;
       border-radius: 8px;
       width: 100%;
       object-fit: scale-down;
@@ -446,6 +464,7 @@ input[type='number'].icrpg-max-carry {
   .flex-row {
     padding: 2px;
   }
+
   input {
     @include transparent-input;
     @extend .ff-content;
@@ -777,6 +796,7 @@ form.icrpg-monster-sheet {
   i {
     @include hover;
   }
+
   .spellbook-view-toggle img {
     @include hover;
     height: 16px;
@@ -889,6 +909,7 @@ form.icrpg-monster-sheet {
 
 .icrpg-sheet .clickable-action:hover {
   @include hover-red();
+
   input {
     color: var(--c-red);
   }
@@ -965,6 +986,7 @@ form.icrpg-monster-sheet {
     .tt-u + .tt-u {
       margin-top: -8px;
     }
+
     i {
       line-height: 1.2;
     }
@@ -978,16 +1000,120 @@ form.icrpg-monster-sheet {
       margin-right: 8px;
       border: none;
     }
+
     .flexrow {
       align-items: center;
       position: relative;
     }
+
     .spell-info {
       font-size: var(--font-size-18);
       color: var(--c-red);
       font-family: $ff-nusaliver;
       text-transform: uppercase;
       margin-top: 4px;
+    }
+  }
+}
+
+// Hard suit
+.hard-suit-power-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  color: #fdfdfd;
+  position: relative;
+
+  img {
+    height: 64px;
+  }
+}
+
+.icrpg-actor-main .hard-suit-loot-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  gap: 4px;
+  flex-direction: column;
+
+  .icrpg-sep-long {
+    width: 100%;
+  }
+
+  .icrpg-sheet-bar {
+    width: 100%;
+    flex: 0;
+  }
+
+  .icrpg-actor-item-loot {
+    width: 100%;
+  }
+
+  .item-list {
+    width: 100%;
+  }
+
+  .hard-suit-item-clickable {
+    font-size: 0.95rem;
+    padding-left: 4px;
+
+    strong {
+      text-transform: uppercase;
+    }
+
+    strong:hover {
+      cursor: pointer;
+      color: var(--c-red);
+    }
+  }
+}
+
+.hardsuit-sheet {
+  .editor {
+    margin-top: 0;
+    margin-left: 4px;
+    min-height: 468px;
+    max-height: 468px;
+
+    .editor-container {
+      margin: 8px 0 0;
+    }
+  }
+
+  .icrpg-tab-container {
+    height: 480px;
+  }
+
+  .icrpg-actor-side-footer {
+    width: 100%;
+    flex-direction: column;
+    flex: 1;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translateX(0);
+    }
+
+    input {
+      @include transparent-input;
+      font-family: $ff-flatbread;
+      font-size: var(--font-size-28);
+      position: absolute;
+      text-align: center;
+      top: 44px;
+      width: 128px;
+      height: auto;
+      color: black;
     }
   }
 }

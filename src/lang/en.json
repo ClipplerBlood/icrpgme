@@ -3,11 +3,14 @@
   "ACTOR.TypeMonster": "Monster",
   "ACTOR.TypeObstacle": "Obstacle",
   "ACTOR.TypeVehicle": "Vehicle",
+  "ACTOR.TypeHardsuit": "Hard Suit",
   "ITEM.TypeLoot": "Loot",
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypePower": "Power",
   "ITEM.TypeAugment": "Augment",
   "ITEM.TypeSpell": "Spell",
+  "ITEM.TypePart": "Hard Suit Part",
+  "ITEM.TypeProperty": "Hard Suit Property",
   "ICRPG": {
     "name": "Name",
     "world": "World",
@@ -74,7 +77,9 @@
       "notes": "Notes",
       "resources": "Resources",
       "item": "Item",
-      "bonuses": "Bonuses"
+      "bonuses": "Bonuses",
+      "stats": "Stats",
+      "suit": "Suit"
     },
     "abilities": "Abilities",
     "powers": "Powers",
@@ -173,6 +178,18 @@
       "itemCreate": "Added \n {name}",
       "itemDelete": "Removed \n {name}",
       "powerMastery": "{name} \n {mastery}/4 Mastery"
+    },
+    "hardSuit": {
+      "nickname": "Suit Nickname",
+      "pilot": "Pilot",
+      "quality": "Quality",
+      "power": "Power",
+      "properties": "Properties",
+      "core": "Core",
+      "leftArm": "Left Arm",
+      "rightArm": "Right Arm",
+      "legs": "Legs",
+      "partType": "Part Type"
     }
   }
 }

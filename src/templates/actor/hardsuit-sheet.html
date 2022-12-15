@@ -1,0 +1,92 @@
+<form autocomplete="off" class="hardsuit-sheet">
+  {{#*inline "headerField"}}
+    <div class="icrpg-header-field">
+      <span class="ff-header">{{localize label}}</span>
+      <input type="text" name="{{name}}" value="{{value}}" {{readonly isLocked}}>
+    </div>
+  {{/inline}}
+  {{ log this }}
+
+  <div class="icrpg-sheet-header">
+    <div class="flex-row">
+      {{> headerField name="name" value=actor.name label="ICRPG.hardSuit.nickname"}}
+      {{> headerField name="system.quality" value=system.quality label="ICRPG.hardSuit.quality"}}
+      <div class="icrpg-header-field">
+        <span class="ff-header">{{localize "ICRPG.hardSuit.pilot"}}</span>
+        <select name="system.pilotId" {{#if isLocked}}disabled{{/if}}>
+          {{selectOptions availablePilots selected=system.pilotId nameAttr="id" labelAttr="name"}}
+        </select>
+      </div>
+    </div>
+    <div class="icrpg-sep-long"></div>
+  </div>
+
+  <div class="icrpg-actor-main">
+    <div class="icrpg-actor-side" style="gap: 0">
+      <div class="icrpg-img-container">
+        <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"
+             style="object-fit: cover" />
+      </div>
+
+      <div class="icrpg-actor-side-footer">
+        <div>
+          <div class="ff-header c-white ta-center">{{localize "ICRPG.attributesLong.defense"}}</div>
+          <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-group="attributes"
+               data-roll="defense">
+          <input name="system.defense" value="{{system.defense}}" type="number" min="-9" max="10"
+            {{#if isLocked}}data-roll="defense" readonly{{/if}}>
+        </div>
+
+        <div class="hard-suit-power-container">
+          <div class="ff-header c-white ta-center">{{localize "ICRPG.hardSuit.power"}}</div>
+          <img src="systems/icrpgme/assets/ui/dice-transparent/d100.webp" style="width: auto; height: 80px">
+          <input name="system.power" value="{{system.power}}" type="number" min="0" max="100">
+        </div>
+      </div>
+
+    </div>
+
+    <section class="icrpg-tab-container">
+      <div data-group="primary-tabs" data-tab="primary">
+        {{> "systems/icrpgme/templates/actor/tabs/hardsuit-primary.html"}}
+      </div>
+      <div data-group="primary-tabs" data-tab="suit">
+        {{> "systems/icrpgme/templates/actor/tabs/hardsuit-primary.html"}}
+      </div>
+      <div data-group="primary-tabs" data-tab="notes">
+        {{editor system.enrichedNotes target="system.notes" button=true owner=owner editable=editable
+                 engine="prosemirror"}}
+      </div>
+    </section>
+  </div>
+
+
+  <nav class="icrpg-sheet-nav" data-group="primary-tabs">
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="primary">{{localize "ICRPG.tabs.stats"}}</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="suit">{{localize "ICRPG.tabs.suit"}}</a>
+    <a class="icrpg-sheet-bar" data-group="primary-tabs" data-tab="notes">{{localize "ICRPG.tabs.notes"}}</a>
+  </nav>
+
+</form>
+
+{{#* inline "simpleItem"}}
+  <div class="item icrpg-actor-item-loot {{#if isLocked}}item-clickable{{else}}item-editable{{/if}}"
+       data-item-id="{{item._id}}"
+       {{#if noDescription}}style="margin-top: 12px"{{/if}}>
+    {{#if isLocked}}
+      <div class="hard-suit-item-clickable"><strong>{{item.name}}:</strong> {{item.system.description}}</div>
+    {{else}}
+      <div class="flex-row" style="align-items: flex-end; position: relative">
+        <div style="margin-left: 4px;">
+          <input type="text" data-target="name" value="{{item.name}}" placeholder="{{localize "ICRPG.name"}}">
+          {{#unless (or noDescription (and isLocked (not item.system.description)))}}
+            <textarea data-target="system.description" autosize spellcheck="false"
+                      placeholder="{{localize "Description"}}">{{item.system.description}}</textarea>
+          {{/unless}}
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}

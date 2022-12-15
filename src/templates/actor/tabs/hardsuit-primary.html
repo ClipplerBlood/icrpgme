@@ -1,0 +1,59 @@
+<div class="hard-suit-loot-container">
+  <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.properties"}}</div>
+  <div data-item-type="property" class="item-list">
+    {{#each properties as | item |}}
+      {{~> simpleItem item=item isLocked=../isLocked}}
+    {{/each}}
+    {{#unless isLocked}}
+      {{~> simpleItem noDescription=true}}
+    {{/unless}}
+  </div>
+
+  {{#if (or parts.core.length (not isLocked))}}
+    <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.core"}}</div>
+    <div data-item-type="part" data-part-type="core" class="item-list">
+      {{#each parts.core as | item |}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
+      {{/each}}
+      {{#unless isLocked}}
+        {{~> simpleItem noDescription=true}}
+      {{/unless}}
+    </div>
+  {{/if}}
+
+  {{#if (or parts.leftArm.length (not isLocked))}}
+    <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.leftArm"}}</div>
+    <div data-item-type="part" data-part-type="leftArm" class="item-list">
+      {{#each parts.leftArm as | item |}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
+      {{/each}}
+      {{#unless isLocked}}
+        {{~> simpleItem noDescription=true}}
+      {{/unless}}
+    </div>
+  {{/if}}
+
+  {{#if (or parts.rightArm.length (not isLocked))}}
+    <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.rightArm"}}</div>
+    <div data-item-type="part" data-partType="rightArm" class="item-list">
+      {{#each parts.rightArm as | item |}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
+      {{/each}}
+      {{#unless isLocked}}
+        {{~> simpleItem noDescription=true}}
+      {{/unless}}
+    </div>
+  {{/if}}
+
+  {{#if (or parts.legs.length (not isLocked))}}
+    <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.legs"}}</div>
+    <div data-item-type="part" data-part-type="legs" class="item-list">
+      {{#each parts.legs as | item |}}
+        {{~> simpleItem item=item isLocked=../isLocked}}
+      {{/each}}
+      {{#unless isLocked}}
+        {{~> simpleItem noDescription=true}}
+      {{/unless}}
+    </div>
+  {{/if}}
+</div>

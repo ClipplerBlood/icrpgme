@@ -66,3 +66,15 @@ export class ICRPGItemSpellDataModel extends ICRPGItemLootDataModel {
     return { ...baseSchema, ...spellSchema };
   }
 }
+
+export class ICRPGPropertyDataModel extends ICRPGItemBaseDataModel {}
+
+export class ICRPGPartDataModel extends ICRPGItemBaseDataModel {
+  static defineSchema() {
+    const baseSchema = super.defineSchema();
+    const partSchema = {
+      partType: f.string({ initial: 'core', validate: (x) => ['core', 'leftArm', 'rightArm', 'legs'].includes(x) }),
+    };
+    return { ...baseSchema, ...partSchema };
+  }
+}

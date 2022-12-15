@@ -15,6 +15,8 @@ export class ICRPGActor extends Actor {
       case 'vehicle':
         this.prepareVehicle();
         break;
+      case 'hardSuit':
+        return this.prepareHardSuit();
     }
 
     // Set health
@@ -68,6 +70,8 @@ export class ICRPGActor extends Actor {
     });
   }
 
+  prepareHardSuit() {}
+
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);
     if (data?.img != null) return; // Avoid update if image already is set, like when importing or converting to compendium
@@ -109,8 +113,12 @@ export class ICRPGActor extends Actor {
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
+    } else if (this.type === 'hardSuit') {
+      prototypeToken.actorLink = true;
+      prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+      prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
     }
-
     return this.updateSource({ prototypeToken });
   }
 

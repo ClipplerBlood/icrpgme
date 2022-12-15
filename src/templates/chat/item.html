@@ -49,6 +49,13 @@
   {{else}}
     <div class="icrpg-chat-description">{{~item.system.description~}}</div>
   {{/if}}
+
+  {{#if (eq item.parent.type "hardSuit")}}
+    <div
+      style="font-family: 'nusaliver', sans-serif; text-transform: uppercase; font-size: 14px; flex: 0; white-space: nowrap; margin-right: 4px; color: var(--c-red); text-align: right">
+      <b>{{localize "ICRPG.hardSuit.power"}}: {{item.parent.system.power}}</b>
+    </div>
+  {{/if}}
 </div>
 
 

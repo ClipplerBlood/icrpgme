@@ -238,7 +238,11 @@ export class ICRPGActor extends Actor {
     // Get the attribute, either in attributes or efforts
     const attribute = this.system[group][name];
     if (attribute == null) throw `Attribute ${group}.${name} not found in actor`;
-    const dice = diceMap[name];
+    let dice = diceMap[name];
+
+    // Hard suits roll 1d100 for str and dex
+    const isHardSuitRoll = this.type === 'hardSuit' && ['strength', 'dexterity'].includes(name);
+    if (isHardSuitRoll) dice = '1d100';
 
     // Determine the modifier, depending on if actor or monster
     let mod = parseInt(options.mod);
@@ -251,7 +255,7 @@ export class ICRPGActor extends Actor {
     // Do the roll
     let formula = `@dice ${plusifyMod(mod)}`;
     const roll = new Roll(formula, { dice: dice, mod: mod, name: name });
-    postRollMessage(this, roll);
+    postRollMessage(this, roll, undefined, { isHardSuitRoll });
   }
 
   async useItem(itemId, options = {}) {

@@ -27,6 +27,7 @@
       width: 16px;
       height: 16px;
     }
+
     img {
       width: 16px;
       height: 16px;
@@ -44,6 +45,7 @@
     }
   }
 
+  .small-field,
   .resource-field,
   .hp-field {
     display: flex;
@@ -101,10 +103,12 @@
     i {
       filter: opacity(0.2);
     }
+
     &:hover {
       cursor: pointer;
     }
   }
+
   .drag-handle {
     flex: 0;
     width: 40px;
@@ -112,10 +116,12 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 8px;
+
     i {
       filter: opacity(0.2);
       transition: 0.3s ease-in-out;
     }
+
     i:hover {
       cursor: grab;
       filter: opacity(1);
@@ -142,11 +148,13 @@
       font-size: 15px;
     }
 
+    .small-field,
     .resource-field,
     .hp-field {
       flex: 0;
     }
 
+    .small-field input,
     .resource-field input,
     .hp-field input {
       height: 24px;
@@ -157,6 +165,7 @@
     .drag-handle {
       margin-right: 40px;
     }
+
     .turn-chunks {
       flex-basis: 100%;
 
@@ -166,6 +175,16 @@
         margin-left: 8px;
         top: -2px;
       }
+    }
+  }
+
+  .directory-item .icrpg-discrete-selector-container {
+    flex: 0;
+
+    div.selected,
+    div.not-selected {
+      height: 16px;
+      width: 16px;
     }
   }
 }

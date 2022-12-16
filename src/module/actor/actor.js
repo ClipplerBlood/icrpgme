@@ -101,6 +101,7 @@ export class ICRPGActor extends Actor {
       system.health.damage += Math.clamped(hits.value, 0, hits.max);
     }
     system.health.value = system.health.max - system.health.damage;
+    system.health.hearts = Math.ceil(system.health.max / 5) * 0.5;
   }
 
   async _preCreate(data, options, userId) {
@@ -148,7 +149,7 @@ export class ICRPGActor extends Actor {
       prototypeToken.actorLink = true;
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
-      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
+      prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.HOVER;
     }
     return this.updateSource({ prototypeToken });
   }

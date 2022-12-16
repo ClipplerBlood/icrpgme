@@ -229,6 +229,68 @@
         </div>
       </li>
     {{/each}}
+
+    {{#if hardSuits.length}}
+      <li class="icrpg-combat-divider">{{localize "ICRPG.hardSuit.hardSuits"}}</li>
+    {{/if}}
+    {{#each hardSuits as |turn|}}
+      <li class="combatant actor directory-item flexrow hard-suit {{turn.css}}" data-combatant-id="{{turn.id}}">
+        <img class="token-image" data-src="{{turn.img}}" alt="{{turn.name}}" />
+        <div class="token-name flexcol">
+          <h4>{{turn.name}}</h4>
+          <div class="hearts-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
+            {{#times turn.health.hearts}}
+              <div data-heart-index="{{@index}}">
+                <img src="systems/icrpgme/assets/ui/heart-red.webp">
+                <div class="bar-effect"></div>
+              </div>
+            {{/times}}
+          </div>
+        </div>
+
+        {{#if turn.owner}}
+          <div class="collapse-toggle">
+            {{#if turn.collapsed}}
+              <i class="fas fa-chevron-down"></i>
+            {{else}}
+              <i class="fas fa-chevron-up"></i>
+            {{/if}}
+          </div>
+        {{/if}}
+
+        {{#if @root.user.isGM}}
+          <div class="drag-handle" style="margin-right: 40px">
+            <i class="fas fa-bars"></i>
+          </div>
+        {{/if}}
+
+        {{#if turn.owner}}
+          <div class="resources collapsable" {{#if turn.collapsed}}style="display: none"{{/if}}>
+            <div class="flexrow" data-target="system.power">
+              <h4>{{localize "ICRPG.hardSuit.power"}}</h4>
+              <div class="resource-bar-container">
+                <div class="resource-bar"></div>
+              </div>
+              <div class="resource-field">
+                <input type="number" value="{{turn.power}}" min="0" max="100">
+              </div>
+            </div>
+
+            {{#each turn.parts as |part|}}
+              <div class="flexrow" data-item-id="{{part.id}}">
+                <h4>{{part.name}}</h4>
+                <div class="icrpg-discrete-selector-container">
+                  {{#times part.system.hits.max}}
+                    {{>selector index=@index target="system.hits.value" value=part.system.hits.value}}
+                  {{/times}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
+      </li>
+    {{/each}}
   </ol>
 
   <nav id="combat-controls" class="directory-footer flexrow" data-tooltip-direction="UP">
@@ -257,3 +319,13 @@
     {{/if}}
   </nav>
 </section>
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}">
+    {{#if (gt value index)}}
+      <div class="selected"></div>
+    {{else}}
+      <div class="not-selected"></div>
+    {{/if}}
+  </div>
+{{/inline}}

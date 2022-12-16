@@ -24,13 +24,16 @@ export class ICRPGCombatTracker extends CombatTracker {
     content.gmTurns = [];
     content.obstacles = [];
     content.vehicles = [];
+    content.hardSuits = [];
 
     const vehicleIds = combatants.filter((c) => c.actor.type === 'vehicle').map((c) => c.id);
     const obstaclesIds = combatants.filter((c) => c.actor.type === 'obstacle').map((c) => c.id);
+    const hardSuitsIds = combatants.filter((c) => c.actor.type === 'hardSuit').map((c) => c.id);
 
     content.turns.forEach((t) => {
       if (vehicleIds.includes(t.id)) return content.vehicles.push(t);
       if (obstaclesIds.includes(t.id)) return content.obstacles.push(t);
+      if (hardSuitsIds.includes(t.id)) return content.hardSuits.push(t);
 
       const init = parseInt(t.initiative);
       if (init < 40) content.gmTurns.push(t);
@@ -64,6 +67,12 @@ export class ICRPGCombatTracker extends CombatTracker {
         turn.mastery = actor.system.mastery;
         turn.sp = actor.system.sp;
         turn.resources = actor.system.resources;
+      }
+
+      // Handle hard suit
+      if (turn.type === 'hardSuit') {
+        turn.parts = actor.items.filter((i) => i.type === 'part').sort((a, b) => a.name.localeCompare(b.name));
+        turn.power = actor.system.power;
       }
       return turn;
     });
@@ -131,6 +140,11 @@ export class ICRPGCombatTracker extends CombatTracker {
         return actor.update({ [target]: Math.clamped(newValue, 0, resource.max) });
       }
 
+      // If power
+      if (target.includes('power')) {
+        return actor.update({ [target]: Math.clamped(0, newValue, 100) });
+      }
+
       // If generic
       const resources = actor.system.resources;
       const index = ct.closest('[data-resource-index]').data('resourceIndex');
@@ -143,7 +157,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
       const c = this.viewed?.combatants.get(cid);
       let dmg = c.actor.system.health.damage;
-      let maxHpOffset = c.actor.system.health.max % 10; // The damage offset. 10 -> 0; 5 -> 5.
+      let maxHpOffset = (10 - c.actor.system.health.max) % 10; // The damage offset. 10 -> 0; 5 -> 5.
 
       // If chunk, use the chunk dmg instead of the global
       const chunkIndex = $(hc).closest('[data-chunk-index]').data('chunkIndex');
@@ -170,9 +184,11 @@ export class ICRPGCombatTracker extends CombatTracker {
       const actor = this.viewed?.combatants.get(combatantId).actor;
 
       let resource = getProperty(actor, target);
+      if (!resource) return;
       let percentage;
       if (target.includes('mastery')) percentage = (resource / 20) * 100;
       else if (target.includes('sp')) percentage = (resource.value / resource.max) * 100;
+      else if (target.includes('power')) percentage = resource;
       else {
         const index = barContainer.closest('[data-resource-index]').data('resourceIndex');
         resource = actor.system.resources[index];
@@ -205,6 +221,22 @@ export class ICRPGCombatTracker extends CombatTracker {
         icon.removeClass('fa-chevron-up');
         icon.addClass('fa-chevron-down');
       }
+    });
+
+    // Item discrete selector
+    html.find('[data-item-id] .icrpg-discrete-selector').click((ev) => {
+      ev.stopPropagation();
+      const index = $(ev.currentTarget).closest('[data-index]').data('index');
+      const target = $(ev.currentTarget).closest('[data-target]').data('target');
+      const itemId = $(ev.currentTarget).closest('[data-item-id]').data('itemId');
+      const combatantId = $(ev.currentTarget).closest('li[data-combatant-id]').data('combatantId');
+      const actor = this.viewed?.combatants.get(combatantId).actor;
+      const item = actor?.items.get(itemId);
+      if (!item) return;
+
+      let value = index + 1;
+      if (getProperty(item, target) === value) value -= 1;
+      item.update({ [target]: value });
     });
   }
 

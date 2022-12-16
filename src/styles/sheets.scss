@@ -363,6 +363,21 @@ input[type='number'].icrpg-max-carry {
     height: 24px;
     width: 24px;
   }
+
+  div.not-selected,
+  div.selected {
+    @include hover;
+    height: 24px;
+    width: 24px;
+    margin-right: 4px;
+    border-radius: 12px;
+    border: 1px solid black;
+    background: white;
+  }
+
+  div.selected {
+    background: var(--c-red);
+  }
 }
 
 .icrpg-resource-tracker {
@@ -1151,7 +1166,7 @@ form.icrpg-monster-sheet {
     }
   }
 
-  .item-list .item:last-of-type .icrpg-sep-long {
+  .item-list .item-clickable:last-of-type .icrpg-sep-long {
     display: none;
   }
 }

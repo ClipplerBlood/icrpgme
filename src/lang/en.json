@@ -190,7 +190,8 @@
       "legs": "Legs",
       "partType": "Part Type",
       "suit": "Suit",
-      "maxHits": "Max Hits"
+      "maxHits": "Max Hits",
+      "hardSuits": "Hard Suits"
     }
   }
 }

@@ -16,7 +16,7 @@
 OFFICIAL Content Module is now available!
 </h3>
 <p align="center">
-You can check it out at <a href="https://www.runehammer.online/online-store/ICRPG-Foundry-VTT-Premium-Kit-p517442468">runehammer.online</a>
+Check it out at <a href="https://www.runehammer.online/online-store/ICRPG-Foundry-VTT-Premium-Kit-p517442468">runehammer.online</a>
 </p>
 <hr>
 

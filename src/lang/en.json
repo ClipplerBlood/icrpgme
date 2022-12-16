@@ -189,7 +189,8 @@
       "rightArm": "Right Arm",
       "legs": "Legs",
       "partType": "Part Type",
-      "suit": "Suit"
+      "suit": "Suit",
+      "maxHits": "Max Hits"
     }
   }
 }

@@ -30,6 +30,27 @@
       </div>
     </div>
     <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>
+
+    <!-- ===  HARD SUIT PART === -->
+  {{else if (eq item.type "part")}}
+    <div>
+      <div class="flex-row" style="align-items: center">
+        <img alt="{{item.name}}" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <div>
+          <input type="text" name="name" value="{{item.name}}" style="margin-left: 4px">
+          <select name="system.partType" class="transparent-input ff-header fs-18" style="color: #5c5c5c">
+            {{#select system.partType}}
+              <option value="core">{{localize "ICRPG.hardSuit.core"}}</option>
+              <option value="leftArm">{{localize "ICRPG.hardSuit.leftArm"}}</option>
+              <option value="rightArm">{{localize "ICRPG.hardSuit.rightArm"}}</option>
+              <option value="legs">{{localize "ICRPG.hardSuit.legs"}}</option>
+            {{/select}}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>
+
   {{else}}
     <div>
       <div class="flex-row" style="align-items: center">
@@ -78,16 +99,13 @@
         <!-- ===  HARD SUIT PART === -->
       {{else if (eq item.type "part")}}
         {{>description system=system}}
-        <div>
-          <strong>{{localize "ICRPG.hardSuit.partType"}}</strong>
-          <select name="system.partType">
-            {{#select system.partType}}
-              <option value="core">{{localize "ICRPG.hardSuit.core"}}</option>
-              <option value="leftArm">{{localize "ICRPG.hardSuit.leftArm"}}</option>
-              <option value="rightArm">{{localize "ICRPG.hardSuit.rightArm"}}</option>
-              <option value="legs">{{localize "ICRPG.hardSuit.legs"}}</option>
-            {{/select}}
-          </select>
+        <div class="icrpg-discrete-selector-container" style="position: absolute; bottom: 50px;">
+          <div class="ff-header">{{localize "ICRPG.hardSuit.maxHits"}}</div>
+          <div>
+            {{#times 5}}
+              {{>selector index=@index target="system.hits.max" value=system.hits.max}}
+            {{/times}}
+          </div>
         </div>
         <!-- ===  GENERIC === -->
       {{else}}

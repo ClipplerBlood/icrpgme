@@ -35,7 +35,7 @@
 
   {{#if (or parts.rightArm.length (not isLocked))}}
     <div class="icrpg-sheet-bar" data-item-type="loot">{{localize "ICRPG.hardSuit.rightArm"}}</div>
-    <div data-item-type="part" data-partType="rightArm" class="item-list">
+    <div data-item-type="part" data-part-type="rightArm" class="item-list">
       {{#each parts.rightArm as | item |}}
         {{~> simpleItem item=item isLocked=../isLocked}}
       {{/each}}
@@ -64,7 +64,18 @@
        data-item-id="{{item._id}}"
        {{#if noDescription}}style="margin-top: 12px"{{/if}}>
     {{#if isLocked}}
-      <div class="hard-suit-item-clickable"><strong>{{item.name}}:</strong> {{item.system.description}}</div>
+      <div class="hard-suit-item-clickable">
+        {{#if (eq item.type "part")}}
+          <div class="icrpg-discrete-selector-container" style="float: right; position: relative; bottom: 0; right: 0">
+            <div>
+              {{#times item.system.hits.max}}
+                {{>selector index=@index target="system.hits.value" value=item.system.hits.value}}
+              {{/times}}
+            </div>
+          </div>
+        {{/if}}
+        <strong>{{item.name}}:</strong> {{item.system.description}}
+      </div>
     {{else}}
       <div class="flex-row" style="align-items: flex-end; position: relative">
         <div style="margin-left: 4px;">
@@ -78,5 +89,15 @@
     {{/if}}
 
     <div class="icrpg-sep-long"></div>
+  </div>
+{{/inline}}
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector" data-target='{{target}}' data-index="{{index}}" data-tooltip="{{inc index}}">
+    {{#if (gt value index)}}
+      <img src="systems/icrpgme/assets/ui/selector-on.webp">
+    {{else}}
+      <img src="systems/icrpgme/assets/ui/selector.webp">
+    {{/if}}
   </div>
 {{/inline}}

@@ -1041,6 +1041,8 @@ form.icrpg-monster-sheet {
 
   .icrpg-sep-long {
     width: 100%;
+    margin-top: 3px;
+    margin-left: 2px;
   }
 
   .icrpg-sheet-bar {
@@ -1147,5 +1149,9 @@ form.icrpg-monster-sheet {
         width: auto;
       }
     }
+  }
+
+  .item-list .item:last-of-type .icrpg-sep-long {
+    display: none;
   }
 }

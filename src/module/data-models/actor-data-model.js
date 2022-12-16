@@ -181,6 +181,12 @@ export class ICRPGHardSuitDataModel extends foundry.abstract.DataModel {
         energy: f.hsAttribute(10),
         ultimate: f.hsAttribute(10),
       }),
+      health: f.schema({
+        hearts: f.number({ min: 0, max: 5, initial: 1, integer: false }),
+        max: f.number({ min: 0, max: 50 }),
+        damage: f.number({ min: 0 }),
+        value: f.number({ min: 0 }),
+      }),
     };
   }
 }

@@ -74,6 +74,10 @@ export class ICRPGPartDataModel extends ICRPGItemBaseDataModel {
     const baseSchema = super.defineSchema();
     const partSchema = {
       partType: f.string({ initial: 'core', validate: (x) => ['core', 'leftArm', 'rightArm', 'legs'].includes(x) }),
+      hits: f.schema({
+        max: f.number({ min: 0, max: 5, initial: 3 }),
+        value: f.number({ min: 0, initial: 0 }),
+      }),
     };
     return { ...baseSchema, ...partSchema };
   }

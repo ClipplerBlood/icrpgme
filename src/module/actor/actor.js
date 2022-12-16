@@ -91,6 +91,16 @@ export class ICRPGActor extends Actor {
     const defense = system.attributes.defense;
     defense.total = 10 + defense.loot;
     defense.total = Math.clamped(defense.total, 0, 20);
+
+    // Set hp from parts
+    system.health.max = 0;
+    system.health.damage = 0;
+    for (const part of this.items.filter((i) => i.type === 'part')) {
+      const hits = part.system.hits;
+      system.health.max += hits.max;
+      system.health.damage += Math.clamped(hits.value, 0, hits.max);
+    }
+    system.health.value = system.health.max - system.health.damage;
   }
 
   async _preCreate(data, options, userId) {

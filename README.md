@@ -11,6 +11,15 @@
   Discover the game at the <a href="https://www.runehammer.online/online-store">official Runehammer website</a>.
 </p>
 
+<hr>
+<h3 align="center">
+OFFICIAL Content Module is now available!
+</h3>
+<p align="center">
+You can check it out at <a href="https://www.runehammer.online/online-store/ICRPG-Foundry-VTT-Premium-Kit-p517442468">runehammer.online</a>
+</p>
+<hr>
+
 ## Features
 - Easy to use **character & monster sheets** using the same layout as the official paper sheets.
 - Easy to use **macros** to speed up play! No more asking "wait, how do I roll this?"

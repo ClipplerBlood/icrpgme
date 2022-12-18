@@ -150,6 +150,7 @@ export class ICRPGActor extends Actor {
       prototypeToken.disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
       prototypeToken.displayName = CONST.TOKEN_DISPLAY_MODES.HOVER;
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.HOVER;
+      prototypeToken.bar2 = { attribute: 'power' };
     }
     return this.updateSource({ prototypeToken });
   }

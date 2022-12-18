@@ -163,7 +163,10 @@ export class ICRPGHardSuitDataModel extends foundry.abstract.DataModel {
     return {
       pilotId: f.string(),
       quality: f.string(),
-      power: f.number({ min: 0, max: 100, initial: 100 }),
+      power: f.schema({
+        value: f.number({ min: 0, max: 100, initial: 100 }),
+        max: f.number({ initial: 100 }),
+      }),
       notes: f.html({ initial: initialNote() }),
       attributes: f.schema({
         strength: f.hsAttribute(10),

@@ -72,7 +72,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       // Handle hard suit
       if (turn.type === 'hardSuit') {
         turn.parts = actor.items.filter((i) => i.type === 'part').sort((a, b) => a.name.localeCompare(b.name));
-        turn.power = actor.system.power;
+        turn.power = actor.system.power.value;
       }
       return turn;
     });

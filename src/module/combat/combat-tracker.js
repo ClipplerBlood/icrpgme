@@ -187,7 +187,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (!resource) return;
       let percentage;
       if (target.includes('mastery')) percentage = (resource / 20) * 100;
-      else if (target.includes('sp')) percentage = (resource.value / resource.max) * 100;
+      else if (target.includes('sp') || target.includes('health')) percentage = (resource.value / resource.max) * 100;
       else if (target.includes('power')) percentage = resource;
       else {
         const index = barContainer.closest('[data-resource-index]').data('resourceIndex');

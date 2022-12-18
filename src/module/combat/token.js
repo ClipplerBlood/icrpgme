@@ -9,8 +9,9 @@ export class ICRPGToken extends Token {
    * @protected
    */
   _drawBar(number, bar, data) {
-    // If not health, skip
-    if (data.attribute !== 'health' || !useTokenHearts) return super._drawBar(number, bar, data);
+    // If not health, setting, or if is hardSuit, skip
+    if (data.attribute !== 'health' || !useTokenHearts || this.actor.type === 'hardSuit')
+      return super._drawBar(number, bar, data);
 
     // Grab actor data
     let hp = this.actor.system.health.value;

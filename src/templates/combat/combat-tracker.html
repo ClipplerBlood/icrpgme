@@ -101,7 +101,7 @@
 
         {{#if showResources}}
           <div class="resources collapsable" {{#if turn.collapsed}}style="display: none"{{/if}}>
-            {{#if (eq turn.type "character")}}
+            {{#if turn.showMastery}}
               <div class="flexrow" data-target="system.mastery">
                 <h4>{{localize "ICRPG.mastery"}}</h4>
                 <div class="resource-bar-container">
@@ -113,15 +113,17 @@
               </div>
             {{/if}}
 
-            <div class="flexrow" data-target="system.sp">
-              <h4>{{localize "ICRPG.sp"}}</h4>
-              <div class="resource-bar-container">
-                <div class="resource-bar"></div>
+            {{#if turn.showSp}}
+              <div class="flexrow" data-target="system.sp">
+                <h4>{{localize "ICRPG.sp"}}</h4>
+                <div class="resource-bar-container">
+                  <div class="resource-bar"></div>
+                </div>
+                <div class="resource-field">
+                  <input type="number" value="{{turn.sp.value}}" min="0" max="{{turn.sp.max}}">
+                </div>
               </div>
-              <div class="resource-field">
-                <input type="number" value="{{turn.sp.value}}" min="0" max="{{turn.sp.max}}">
-              </div>
-            </div>
+            {{/if}}
 
             {{#each turn.resources as |resource index|}}
               <div class="flexrow" data-resource-index="{{index}}" data-target="system.resources.{{index}}">

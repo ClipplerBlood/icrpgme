@@ -147,7 +147,11 @@
       "useBackgroundName": "Use Background",
       "useBackgroundHint": "When on, the Target & Timer app will have a background for increased legibility on dark scenes.",
       "hideSheetButtonName": "Hide \"Sheet\" header buttons",
-      "hideSheetButtonHint": "When on, hides the button to configure which sheet to use in actor and item sheets, reducing clutter."
+      "hideSheetButtonHint": "When on, hides the button to configure which sheet to use in actor and item sheets, reducing clutter.",
+      "hideCombatMasteryName": "Hide Mastery Resource",
+      "hideCombatMasteryHint": "When on, hides the Mastery resource in the Combat Tracker.",
+      "hideCombatSPName": "Hide SP Resource",
+      "hideCombatSPHint": "When on, hides the SP resource in the Combat Tracker."
     },
     "other": "Other",
     "gamemaster": "Gamemaster",

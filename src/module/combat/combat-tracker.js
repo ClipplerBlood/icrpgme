@@ -45,6 +45,8 @@ export class ICRPGCombatTracker extends CombatTracker {
   _enrichTurns(turns) {
     const combatants = this.viewed?.combatants;
     if (!combatants) return turns;
+    const showMastery = !game.settings.get('icrpgme', 'hideCombatMastery');
+    const showSp = !game.settings.get('icrpgme', 'hideCombatSP');
 
     return turns.map((turn) => {
       const combatant = combatants.get(turn.id);
@@ -62,12 +64,15 @@ export class ICRPGCombatTracker extends CombatTracker {
       turn.collapsed = this.isIdCollapsed.get(combatant.id);
 
       // Resources
+      turn.showMastery = showMastery;
+      turn.showSp = showSp;
       turn.showResources = turn.owner && ['character', 'monster'].includes(turn.type);
       if (turn.showResources) {
         turn.mastery = actor.system.mastery;
         turn.sp = actor.system.sp;
         turn.resources = actor.system.resources;
       }
+      if (turn.showResources) turn.showResources = showMastery || showSp || turn.resources.length;
 
       // Handle hard suit
       if (turn.type === 'hardSuit') {

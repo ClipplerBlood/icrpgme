@@ -52,6 +52,28 @@ export function registerSettings() {
     default: true,
   });
 
+  game.settings.register('icrpgme', 'hideCombatMastery', {
+    name: 'ICRPG.settings.hideCombatMasteryName',
+    hint: 'ICRPG.settings.hideCombatMasteryHint',
+    scope: 'world',
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+    onChange: () => ui.combat?._render(),
+  });
+
+  game.settings.register('icrpgme', 'hideCombatSP', {
+    name: 'ICRPG.settings.hideCombatSPName',
+    hint: 'ICRPG.settings.hideCombatSPHint',
+    scope: 'world',
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+    onChange: () => ui.combat?._render(),
+  });
+
   // === === === === HIDDEN
   game.settings.register('icrpgme', 'timers', {
     name: 'icrpg-timers',

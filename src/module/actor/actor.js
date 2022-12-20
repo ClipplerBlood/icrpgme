@@ -117,6 +117,9 @@ export class ICRPGActor extends Actor {
     } else if (this.type === 'obstacle') {
       img = 'systems/icrpgme/assets/bases/block.webp';
       tokenImg = 'systems/icrpgme/assets/bases/block.webp';
+    } else if (this.type === 'hardSuit') {
+      img = 'systems/icrpgme/assets/cards/hard-suit/hard-suit.webp';
+      tokenImg = 'systems/icrpgme/assets/tokens/hard-suit/hard-suit.webp';
     }
     if (img) this.updateSource({ img: img, 'prototypeToken.texture.src': tokenImg });
   }

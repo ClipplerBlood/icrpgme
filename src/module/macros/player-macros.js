@@ -46,7 +46,7 @@ export async function rollAll(options = { autoClose: true }) {
   d.getData = () => {
     if (!currentActor) return {};
     const data = { name: currentActor.name, attributes: {}, efforts: {} };
-    if (currentActor.type === 'character') {
+    if (['character', 'hardSuit'].includes(currentActor.type)) {
       for (const group of ['attributes', 'efforts']) {
         for (const [k, v] of Object.entries(currentActor.system[group])) data[group][k] = v.total;
       }

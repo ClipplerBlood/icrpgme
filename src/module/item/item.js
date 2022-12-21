@@ -17,6 +17,7 @@ export class ICRPGItem extends Item {
 
   async _preCreate(data, options, userId) {
     await super._preCreate(data, options, userId);
+    this.autoEquip();
     if (this._isActive) this._applyParentChanges(this.system.bonuses, +1);
   }
 
@@ -50,6 +51,24 @@ export class ICRPGItem extends Item {
       result[key] = value;
     }
     return expandObject(result);
+  }
+
+  /**
+   * Automatically sets the item as carried or equipped before creation, depending on the setting.
+   */
+  autoEquip() {
+    const setting = game.settings.get('icrpgme', 'autoEquip');
+    if (!['loot', 'spell'].includes(this.type)) return;
+    if (setting === 'none' || !this.parent || this.parent?.type !== 'character') return;
+
+    let system = {};
+    let parentWeight = this.parent.system.weight;
+    const canCarry = this.system.weight + parentWeight.carried.value <= parentWeight.carried.max;
+    const canEquip = this.system.weight + parentWeight.equipped.value <= parentWeight.equipped.max;
+
+    if ((setting === 'carried' || setting === 'both') && canCarry) system.carried = true;
+    if ((setting === 'equipped' || setting === 'both') && canEquip) system.equipped = true;
+    this.updateSource({ system });
   }
 }
 

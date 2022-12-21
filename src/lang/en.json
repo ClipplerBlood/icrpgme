@@ -151,7 +151,15 @@
       "hideCombatMasteryName": "Hide Mastery Resource",
       "hideCombatMasteryHint": "When on, hides the Mastery resource in the Combat Tracker.",
       "hideCombatSPName": "Hide SP Resource",
-      "hideCombatSPHint": "When on, hides the SP resource in the Combat Tracker."
+      "hideCombatSPHint": "When on, hides the SP resource in the Combat Tracker.",
+      "autoEquipName": "Auto Equip",
+      "autoEquipHint": "Select which equip state new Character Items will have.",
+      "autoEquipChoices": {
+        "none": "Disabled",
+        "equipped": "Equipped",
+        "carried": "Carried",
+        "both": "Equipped & Carried"
+      }
     },
     "other": "Other",
     "gamemaster": "Gamemaster",

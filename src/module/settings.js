@@ -74,6 +74,22 @@ export function registerSettings() {
     onChange: () => ui.combat?._render(),
   });
 
+  game.settings.register('icrpgme', 'autoEquip', {
+    name: 'ICRPG.settings.autoEquipName',
+    hint: 'ICRPG.settings.autoEquipHint',
+    scope: 'world',
+    config: true,
+    requiresReload: false,
+    type: String,
+    choices: {
+      none: 'ICRPG.settings.autoEquipChoices.none',
+      equipped: 'ICRPG.settings.autoEquipChoices.equipped',
+      carried: 'ICRPG.settings.autoEquipChoices.carried',
+      both: 'ICRPG.settings.autoEquipChoices.both',
+    },
+    default: 'none',
+  });
+
   // === === === === HIDDEN
   game.settings.register('icrpgme', 'timers', {
     name: 'icrpg-timers',

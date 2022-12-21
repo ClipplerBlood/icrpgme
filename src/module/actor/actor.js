@@ -115,8 +115,8 @@ export class ICRPGActor extends Actor {
       img = 'systems/icrpgme/assets/cards/monster/flaming%20skull.webp';
       tokenImg = 'systems/icrpgme/assets/tokens/monster/flaming%20skull.webp';
     } else if (this.type === 'obstacle') {
-      img = 'systems/icrpgme/assets/bases/block.webp';
-      tokenImg = 'systems/icrpgme/assets/bases/block.webp';
+      img = 'systems/icrpgme/assets/bases/offline%20glyph.webp';
+      tokenImg = 'systems/icrpgme/assets/bases/offline%20glyph.webp';
     } else if (this.type === 'hardSuit') {
       img = 'systems/icrpgme/assets/cards/hard-suit/hard-suit.webp';
       tokenImg = 'systems/icrpgme/assets/tokens/hard-suit/hard-suit.webp';

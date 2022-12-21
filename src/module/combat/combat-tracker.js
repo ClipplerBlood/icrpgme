@@ -189,7 +189,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const actor = this.viewed?.combatants.get(combatantId).actor;
 
       let resource = getProperty(actor, target);
-      if (!resource) return;
+      if (resource == null) return;
       let percentage;
       if (target.includes('mastery')) percentage = (resource / 20) * 100;
       else if (target.includes('sp') || target.includes('health')) percentage = (resource.value / resource.max) * 100;

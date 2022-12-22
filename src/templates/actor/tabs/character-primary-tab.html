@@ -127,7 +127,7 @@
       </div>
 
       <div class="icrpg-actor-side-footer">
-        <div>
+        <div style="position: relative">
           <div class="ff-header c-white ta-center">{{localize "ICRPG.attributesLong.defense"}}</div>
           <div class="ff-header c-grey fs-8 ta-center" style="margin-bottom: 4px">{{localize
             "ICRPG.defenseSubtitle"}}</div>
@@ -144,11 +144,11 @@
         </div>
         <div>
           <div class="ff-header c-white ta-center">{{localize "ICRPG.herocoin"}}</div>
-          <div>
+          <div style="position: relative" class="hoverable">
             {{#if system.heroCoin}}
-              <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin-active.webp" style="bottom: -23px;">
+              <img src="systems/icrpgme/assets/ui/hero-coin-active.webp" style="bottom: -23px;">
             {{else}}
-              <img class="hoverable" src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
+              <img src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
             {{/if}}
             <input type="checkbox" name="system.heroCoin" {{checked system.heroCoin}}>
           </div>

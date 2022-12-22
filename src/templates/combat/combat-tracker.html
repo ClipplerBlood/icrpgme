@@ -64,6 +64,13 @@
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
           <div class="hearts-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
+            {{#if turn.owner}}
+              <div style="position: relative; display: flex;align-items: center; margin-right: 4px; width: 18px">
+                <i class="fa-solid fa-shield" style="font-size: 18px; line-height: 13px;"></i>
+                <div style="position: absolute; line-height: 18px; font-weight: bold; width: 18px; text-align: center; color: #202020">{{turn.defense}}</div>
+              </div>
+            {{/if}}
+
             {{#times turn.health.hearts}}
               <div data-heart-index="{{@index}}">
                 <img src="systems/icrpgme/assets/ui/heart-red.webp">
@@ -72,6 +79,10 @@
             {{/times}}
           </div>
         </div>
+
+
+
+
 
         {{#if turn.showResources}}
           <div class="collapse-toggle">

@@ -59,6 +59,11 @@ export class ICRPGCombatTracker extends CombatTracker {
         turn.chunks = actor.system.chunks;
       }
 
+      // Handle character
+      if (actor?.type === 'character') {
+        turn.defense = actor.system.attributes.defense.total;
+      }
+
       // Set collapsed state
       if (!this.isIdCollapsed.has(combatant.id)) this.isIdCollapsed.set(combatant.id, true);
       turn.collapsed = this.isIdCollapsed.get(combatant.id);

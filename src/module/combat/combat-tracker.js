@@ -10,6 +10,7 @@ export class ICRPGCombatTracker extends CombatTracker {
   constructor(options) {
     super(options);
     this.isIdCollapsed = new Map();
+    this.ctrlHoverId = null;
   }
 
   async getData() {
@@ -248,6 +249,42 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (getProperty(item, target) === value) value -= 1;
       item.update({ [target]: value });
     });
+
+    // Hover on combatant with ctrl
+    if (game.user.isGM)
+      html.find('.combatant[data-combatant-id]').hover(
+        (ev) => {
+          if (!ev.ctrlKey) return;
+          // Grab last message and roll total
+          const lastMessage = game.messages.contents.at(-1);
+          if (!lastMessage?.rolls?.length) return;
+          const total = lastMessage.rolls.reduce((total, roll) => roll.total + total, 0);
+          // Update the hp input(s)
+          const damageInput = $(ev.currentTarget).find('input[data-target="system.health.damage"]');
+          damageInput.val('+' + total);
+          const valueInput = $(ev.currentTarget).find('input[data-target="system.health.value"]');
+          valueInput.val('-' + total);
+          // Add click ev listener
+          this.ctrlHoverId = ev.currentTarget.dataset.combatantId;
+          ev.currentTarget.addEventListener(
+            'click',
+            (ev.currentTarget.fn = () => damageInput.add(valueInput).trigger('change')),
+          );
+        },
+        (ev) => {
+          if (!this.ctrlHoverId) return;
+          // Reset inputs
+          $(ev.currentTarget)
+            .find('input[data-target="system.health.damage"]')
+            .val(this.viewed?.combatants.get(this.ctrlHoverId).actor.system.health.damage);
+          $(ev.currentTarget)
+            .find('input[data-target="system.health.value"]')
+            .val(this.viewed?.combatants.get(this.ctrlHoverId).actor.system.health.value);
+          // Remove listener
+          ev.currentTarget.removeEventListener('click', ev.currentTarget.fn);
+          this.ctrlHoverId = null;
+        },
+      );
   }
 
   _getEntryContextOptions() {

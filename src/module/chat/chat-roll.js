@@ -1,16 +1,16 @@
 import { _getBaseMessageData } from './chat-common.js';
 
-async function _renderRollMessage(messageData, options = {}) {
+async function _renderRollMessage(messageData, context = {}) {
   const rolls = messageData.rolls;
   if (rolls && game.dice3d) {
     for (let roll of rolls) {
       await game.dice3d.showForRoll(roll, game.user, true, messageData.whisper, messageData.blind);
     }
   }
-  return ChatMessage.create(messageData, options);
+  return ChatMessage.create(messageData, context);
 }
 
-export async function postRollMessage(actor, roll, options = { temporary: false }, messageData = {}) {
+export async function postRollMessage(actor, roll, context = { temporary: false }, messageData = {}) {
   if (!roll._evaluated) await roll.roll({ async: true });
 
   // Prepare chat data
@@ -21,5 +21,5 @@ export async function postRollMessage(actor, roll, options = { temporary: false 
     messageData: messageData,
   });
 
-  return _renderRollMessage(messageData, options);
+  return _renderRollMessage(messageData, context);
 }

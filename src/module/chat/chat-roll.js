@@ -11,7 +11,12 @@ async function _renderRollMessage(messageData, context = {}) {
 }
 
 export async function postRollMessage(actor, roll, context = { temporary: false }, messageData = {}) {
-  if (!roll._evaluated) await roll.roll({ async: true });
+  if (typeof roll === 'string' || roll instanceof String) {
+    roll = JSON.parse(roll);
+    let _roll = Roll.create('', roll);
+    console.log(_roll);
+  }
+  if (!roll._evaluated && roll.roll != null) await roll.roll({ async: true });
 
   // Prepare chat data
   messageData = mergeObject(_getBaseMessageData(actor, [roll]), messageData);

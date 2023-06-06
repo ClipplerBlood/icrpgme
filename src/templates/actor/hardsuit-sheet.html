@@ -52,13 +52,13 @@
     </div>
 
     <section class="icrpg-tab-container">
-      <div data-group="primary-tabs" data-tab="primary">
+      <div class="tab" data-group="primary-tabs" data-tab="primary">
         {{> "systems/icrpgme/templates/actor/tabs/hardsuit-primary.html"}}
       </div>
-      <div data-group="primary-tabs" data-tab="stats">
+      <div class="tab" data-group="primary-tabs" data-tab="stats">
         {{> "systems/icrpgme/templates/actor/tabs/hardsuit-stats.html"}}
       </div>
-      <div data-group="primary-tabs" data-tab="notes">
+      <div class="tab" data-group="primary-tabs" data-tab="notes">
         {{editor system.enrichedNotes target="system.notes" button=true owner=owner editable=editable
                  engine="prosemirror"}}
       </div>

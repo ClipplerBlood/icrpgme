@@ -24,23 +24,23 @@ import { ICRPGToken } from './combat/token.js';
 
 export function registerSystem() {
   // Actor registration
-  CONFIG.Actor.systemDataModels['character'] = ICRPGCharacterDataModel;
-  CONFIG.Actor.systemDataModels['monster'] = ICRPGMonsterDataModel;
-  CONFIG.Actor.systemDataModels['obstacle'] = ICRPGObstacleDataModel;
-  CONFIG.Actor.systemDataModels['vehicle'] = ICRPGVehicleDataModel;
-  CONFIG.Actor.systemDataModels['hardSuit'] = ICRPGHardSuitDataModel;
+  CONFIG.Actor.dataModels['character'] = ICRPGCharacterDataModel;
+  CONFIG.Actor.dataModels['monster'] = ICRPGMonsterDataModel;
+  CONFIG.Actor.dataModels['obstacle'] = ICRPGObstacleDataModel;
+  CONFIG.Actor.dataModels['vehicle'] = ICRPGVehicleDataModel;
+  CONFIG.Actor.dataModels['hardSuit'] = ICRPGHardSuitDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   CONFIG.Actor.documentClass = ICRPGActor;
 
   // Item registration
-  CONFIG.Item.systemDataModels['loot'] = ICRPGItemLootDataModel;
-  CONFIG.Item.systemDataModels['ability'] = ICRPGItemBaseDataModel;
-  CONFIG.Item.systemDataModels['power'] = ICRPGItemPowerDataModel;
-  CONFIG.Item.systemDataModels['augment'] = ICRPGItemBaseDataModel;
-  CONFIG.Item.systemDataModels['spell'] = ICRPGItemSpellDataModel;
-  CONFIG.Item.systemDataModels['property'] = ICRPGPropertyDataModel;
-  CONFIG.Item.systemDataModels['part'] = ICRPGPartDataModel;
+  CONFIG.Item.dataModels['loot'] = ICRPGItemLootDataModel;
+  CONFIG.Item.dataModels['ability'] = ICRPGItemBaseDataModel;
+  CONFIG.Item.dataModels['power'] = ICRPGItemPowerDataModel;
+  CONFIG.Item.dataModels['augment'] = ICRPGItemBaseDataModel;
+  CONFIG.Item.dataModels['spell'] = ICRPGItemSpellDataModel;
+  CONFIG.Item.dataModels['property'] = ICRPGPropertyDataModel;
+  CONFIG.Item.dataModels['part'] = ICRPGPartDataModel;
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;

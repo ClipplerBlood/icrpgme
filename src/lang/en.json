@@ -1,16 +1,22 @@
 {
-  "ACTOR.TypeCharacter": "Character",
-  "ACTOR.TypeMonster": "Monster",
-  "ACTOR.TypeObstacle": "Obstacle",
-  "ACTOR.TypeVehicle": "Vehicle",
-  "ACTOR.TypeHardsuit": "Hard Suit",
-  "ITEM.TypeLoot": "Loot",
-  "ITEM.TypeAbility": "Ability",
-  "ITEM.TypePower": "Power",
-  "ITEM.TypeAugment": "Augment",
-  "ITEM.TypeSpell": "Spell",
-  "ITEM.TypePart": "Hard Suit Part",
-  "ITEM.TypeProperty": "Hard Suit Property",
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "monster": "Monster",
+      "obstacle": "Obstacle",
+      "vehicle": "Vehicle",
+      "hardsuit": "Hard Suit"
+    },
+    "Item": {
+      "loot": "Loot",
+      "ability": "Ability",
+      "power": "Power",
+      "augment": "Augment",
+      "spell": "Spell",
+      "part": "Hard Suit Part",
+      "property": "Hard Suit Property"
+    }
+  },
   "ICRPG": {
     "name": "Name",
     "world": "World",

@@ -5,7 +5,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('localizeConcat', _localizeConcat);
   Handlebars.registerHelper('localizeConcatIf', _localizeConcatIf);
   Handlebars.registerHelper('localizationHas', (x) => game.i18n.has(x));
-  Handlebars.registerHelper('localizeType', (d) => i18n(`${d.documentName.toUpperCase()}.Type${d.type.titleCase()}`));
+  Handlebars.registerHelper('localizeType', (d) => i18n(`TYPES.${d.documentName}.${d.type}`));
   Handlebars.registerHelper('readonly', (x) => (x ? 'readonly' : ''));
   Handlebars.registerHelper('plusify', (x) => (x > 0 ? '+' + x : String(x)));
   Handlebars.registerHelper('times', _times);

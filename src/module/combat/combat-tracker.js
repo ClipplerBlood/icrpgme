@@ -76,9 +76,9 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (turn.showResources) {
         turn.mastery = actor.system.mastery;
         turn.sp = actor.system.sp;
-        turn.resources = actor.system.resources;
+        turn.resources = actor.system.resources ?? [];
       }
-      if (turn.showResources) turn.showResources = showMastery || showSp || turn.resources.length;
+      if (turn.showResources) turn.showResources = showMastery || showSp || turn.resources?.length > 0;
 
       // Handle hard suit
       if (turn.type === 'hardSuit') {

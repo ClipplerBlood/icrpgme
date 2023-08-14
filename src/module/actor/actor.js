@@ -265,7 +265,7 @@ export class ICRPGActor extends Actor {
     else if (this.type === 'monster') mod += attribute + this.system[group].all + this.system.allRollsMod;
 
     // Only exception to mod: defense
-    if (name === 'defense') mod -= 10;
+    if (name === 'defense' && mod >= 10) mod -= 10;
 
     // Do the roll
     let formula = `@dice ${plusifyMod(mod)}`;

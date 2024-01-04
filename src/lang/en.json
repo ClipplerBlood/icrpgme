@@ -144,8 +144,8 @@
       "maneuverDescription": "Maneuver Description"
     },
     "settings": {
-      "defenseStartName": "Defense Initial Value",
-      "defenseStartHint": "Default value of initial Defense attribute for the characters",
+      "defenseStartName": "Defense Starting Value",
+      "defenseStartHint": "Initial value of the Defense stat for the characters",
       "trackDamageName": "Track Damage",
       "trackDamageHint": "Track damage (additive) instead of current HP (subtractive) in the character sheet.",
       "showMonsterHPName": "Show Monsters HP to players",

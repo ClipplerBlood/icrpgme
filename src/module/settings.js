@@ -2,6 +2,16 @@ import { TimerTargetContainer } from './app/timer-target-app.js';
 
 export function registerSettings() {
   // Register any custom system settings here
+    game.settings.register('icrpgme', 'defenseStart', {
+    name: 'ICRPG.settings.defenseStartName',
+    hint: 'ICRPG.settings.defenseStartHint',
+    scope: 'world',
+    config: true,
+    requiresReload: true,
+    type: Number,
+    default: 10,
+  });
+  
   game.settings.register('icrpgme', 'trackDamage', {
     name: 'ICRPG.settings.trackDamageName',
     hint: 'ICRPG.settings.trackDamageHint',

@@ -42,7 +42,7 @@ export class ICRPGActor extends Actor {
     }
     // Set defense
     const defense = system.attributes.defense;
-    defense.total = 10 + defense.loot + system.attributes.constitution.total;
+    defense.total = (game.settings.get('icrpgme', 'defenseStart')) + defense.loot + system.attributes.constitution.total;
     defense.total = Math.clamped(defense.total, 0, 20);
     // Set weights
     const sum = (acc, i) => acc + i.system.weight;

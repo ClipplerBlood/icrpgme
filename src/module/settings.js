@@ -32,6 +32,16 @@ export function registerSettings() {
     default: true,
   });
 
+  game.settings.register('icrpgme', 'defenseStart', {
+    name: 'ICRPG.settings.defenseStartName',
+    hint: 'ICRPG.settings.defenseStartHint',
+    scope: 'world',
+    config: true,
+    requiresReload: true,
+    type: Number,
+    default: 10,
+  });
+
   game.settings.register('icrpgme', 'useBackground', {
     name: 'ICRPG.settings.useBackgroundName',
     hint: 'ICRPG.settings.useBackgroundHint',

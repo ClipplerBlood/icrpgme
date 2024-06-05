@@ -42,7 +42,7 @@ export class ICRPGActor extends Actor {
     }
     // Set defense
     const defense = system.attributes.defense;
-    defense.total = 10 + defense.loot + system.attributes.constitution.total;
+    defense.total = (game.settings.get('icrpgme', 'defenseStart')) + defense.loot + system.attributes.constitution.total;
     defense.total = Math.clamped(defense.total, 0, 20);
     // Set weights
     const sum = (acc, i) => acc + i.system.weight;
@@ -89,7 +89,7 @@ export class ICRPGActor extends Actor {
     }
     // Set defense
     const defense = system.attributes.defense;
-    defense.total = 10 + defense.loot;
+    defense.total = (game.settings.get('icrpgme', 'defenseStart')) + defense.loot;
     defense.total = Math.clamped(defense.total, 0, 20);
 
     // Set hp from parts
@@ -265,7 +265,7 @@ export class ICRPGActor extends Actor {
     else if (this.type === 'monster') mod += attribute + this.system[group].all + this.system.allRollsMod;
 
     // Only exception to mod: defense
-    if (name === 'defense' && mod >= 10) mod -= 10;
+    if (name === 'defense' && mod >= 10) mod -= (game.settings.get('icrpgme', 'defenseStart'));
 
     // Do the roll
     let formula = `@dice ${plusifyMod(mod)}`;

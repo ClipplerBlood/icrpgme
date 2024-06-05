@@ -97,3 +97,15 @@ The project is built with permission from the ICRPG creator Brandish Gilhelm (ak
 Bases, cards and tokens included in this system are part of the free [ICRPG CORE Online Play Assets](https://www.facebook.com/Runehammer.Games/posts/1449015628537373/) bundle.
 
 For development and redistribution of this project, see [LICENSE](https://github.com/ClipplerBlood/icrpgme/blob/master/LICENSE) for further details.
+
+# Contributors
+A big **thank you** to all contributors who have helped with this project!
+❤️
+
+
+<a href="https://github.com/clipplerblood/icrpgme/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=clipplerblood/icrpgme" />
+</a>
+
+
+Contributions are greatly appreciated, and new PRs are always welcome!

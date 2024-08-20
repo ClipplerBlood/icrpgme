@@ -1,12 +1,6 @@
 import { _getBaseMessageData } from './chat-common.js';
 
 async function _renderRollMessage(messageData, context = {}) {
-  const rolls = messageData.rolls;
-  if (rolls && game.dice3d) {
-    for (let roll of rolls) {
-      await game.dice3d.showForRoll(roll, game.user, true, messageData.whisper, messageData.blind);
-    }
-  }
   // V12 patch
   if ('temporary' in context && !context.temporary) {
     delete context.temporary;

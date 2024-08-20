@@ -113,7 +113,7 @@ export class ICRPGCombatTracker extends CombatTracker {
 
       // Get actor and old (hp) value
       const actor = this.viewed?.combatants.get(combatantId).actor;
-      const oldValue = getProperty(actor, target);
+      const oldValue = foundry.utils.getProperty(actor, target);
       let finalValue;
 
       // If newvalue has length 0, reset it in the html to the old
@@ -146,7 +146,7 @@ export class ICRPGCombatTracker extends CombatTracker {
 
       // If SP
       if (target.includes('sp')) {
-        const resource = getProperty(actor, target);
+        const resource = foundry.utils.getProperty(actor, target);
         target += `.value`;
         return actor.update({ [target]: Math.clamp(newValue, 0, resource.max) });
       }
@@ -194,7 +194,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       const combatantId = barContainer.closest('[data-combatant-id]').data('combatantId');
       const actor = this.viewed?.combatants.get(combatantId).actor;
 
-      let resource = getProperty(actor, target);
+      let resource = foundry.utils.getProperty(actor, target);
       if (resource == null) return;
       let percentage;
       if (target.includes('mastery')) percentage = (resource / 20) * 100;
@@ -246,7 +246,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (!item) return;
 
       let value = index + 1;
-      if (getProperty(item, target) === value) value -= 1;
+      if (foundry.utils.getProperty(item, target) === value) value -= 1;
       item.update({ [target]: value });
     });
 

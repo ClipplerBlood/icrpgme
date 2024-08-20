@@ -80,7 +80,7 @@ export class ICRPGItemSheet extends ItemSheet {
       const index = $(ev.currentTarget).closest('[data-index]').data('index');
       const target = $(ev.currentTarget).closest('[data-target]').data('target');
       let value = index + 1;
-      if (getProperty(this.document, target) === value) value -= 1;
+      if (foundry.utils.getProperty(this.document, target) === value) value -= 1;
       this.document.update({ [target]: value });
     });
   }

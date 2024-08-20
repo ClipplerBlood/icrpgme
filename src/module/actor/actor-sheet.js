@@ -196,7 +196,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       const index = $(ev.currentTarget).closest('[data-index]').data('index');
       const target = $(ev.currentTarget).closest('[data-target]').data('target');
       let value = index + 1;
-      if (getProperty(this.actor, target) === value) value -= 1;
+      if (foundry.utils.getProperty(this.actor, target) === value) value -= 1;
       this.actor.update({ [target]: value });
     });
 
@@ -209,7 +209,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       if (!item) return;
 
       let value = index + 1;
-      if (getProperty(item, target) === value) value -= 1;
+      if (foundry.utils.getProperty(item, target) === value) value -= 1;
       item.update({ [target]: value });
     });
 

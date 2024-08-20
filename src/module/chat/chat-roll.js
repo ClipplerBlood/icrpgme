@@ -16,7 +16,7 @@ export async function postRollMessage(actor, roll, context = { temporary: false 
     let _roll = Roll.create('', roll);
     console.log(_roll);
   }
-  if (!roll._evaluated && roll.roll != null) await roll.roll({ async: true });
+  if (!roll._evaluated && roll.roll != null) await roll.evaluate();
 
   // Prepare chat data
   messageData = foundry.utils.mergeObject(_getBaseMessageData(actor, [roll]), messageData);

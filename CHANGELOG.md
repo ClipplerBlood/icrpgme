@@ -6,6 +6,9 @@
   - Pilot attributes' total is now considered instead of base
   - Derived attributes are now properly loaded when opening the sheet
   - When updating pilot attributes the hard suit attributes are now automatically reloaded
+  - Fixed STR and DEX Suit mods not being *subtracted*
+  - Added flat Power roll (click the "POWER" text in the Hard Suit sheet)
+    - To roll it in macros, do `actor.roll("power", "attributes")`
 
 ## [1.2.1] UI Improvements 📖
 - Styled the **TOKEN NAMEPLATE**.

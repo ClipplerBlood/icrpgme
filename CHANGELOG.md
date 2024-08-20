@@ -1,6 +1,11 @@
 ## [1.4.0] V12 Compatibility
 - Added compatibility with FoundryVTT V12
 - Fixed Dice So Nice duplicated rolls
+- Hard Suit:
+  - Fixed missing localization
+  - Pilot attributes' total is now considered instead of base
+  - Derived attributes are now properly loaded when opening the sheet
+  - When updating pilot attributes the hard suit attributes are now automatically reloaded
 
 ## [1.2.1] UI Improvements 📖
 - Styled the **TOKEN NAMEPLATE**.

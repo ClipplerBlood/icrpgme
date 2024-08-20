@@ -75,8 +75,9 @@ export class ICRPGActor extends Actor {
     // Set pilot derived attributes
     const pilot = game.actors.get(system.pilotId);
     if (pilot) {
+      pilot.prepareData();
       for (const attr of ['constitution', 'intelligence', 'wisdom', 'charisma']) {
-        system.attributes[attr].base = pilot.system.attributes[attr].base;
+        system.attributes[attr].base = pilot.system.attributes[attr].total;
       }
     }
     // Sum all the bonuses from attributes and efforts
@@ -291,5 +292,26 @@ export class ICRPGActor extends Actor {
     if (!entry) return;
 
     postArrayActionMessage(this, entry);
+  }
+
+  async _onUpdate(changes, options, user) {
+    console.log('Update!');
+    if (this.type === 'character' && changes?.system?.attributes) {
+      const hsAttrs = ['constitution', 'intelligence', 'wisdom', 'charisma'];
+      for (const attrName of hsAttrs) {
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        if (attrName in changes?.system?.attributes) {
+          await this.updateLinkedHardSuits();
+          break;
+        }
+      }
+    }
+    return await super._onUpdate(changes, options, user);
+  }
+
+  async updateLinkedHardSuits() {
+    const linkedSuits = game.actors.filter((a) => a.type === 'hardSuit').filter((a) => a.system.pilotId === this.id);
+    linkedSuits.forEach((a) => a.prepareData());
+    linkedSuits.forEach((a) => a.sheet.render());
   }
 }

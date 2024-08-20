@@ -253,17 +253,21 @@ export class ICRPGActor extends Actor {
 
     // Get the attribute, either in attributes or efforts
     const attribute = this.system[group][name];
-    if (attribute == null) throw `Attribute ${group}.${name} not found in actor`;
+    if (attribute == null && name !== 'power') throw `Attribute ${group}.${name} not found in actor`;
     let dice = diceMap[name];
 
     // Hard suits roll 1d100 for str and dex
-    const isHardSuitRoll = this.type === 'hardSuit' && ['strength', 'dexterity'].includes(name);
+    const isHardSuitRoll = this.type === 'hardSuit' && ['strength', 'dexterity', 'power'].includes(name);
     if (isHardSuitRoll) dice = '1d100';
 
     // Determine the modifier, depending on if actor or monster
     let mod = parseInt(options.mod);
     if (this.type === 'character') mod += attribute.total;
     else if (this.type === 'monster') mod += attribute + this.system[group].all + this.system.allRollsMod;
+    else if (this.type === 'hardSuit' && attribute) {
+      let sign = dice === '1d100' ? -1 : 1;
+      mod += sign * attribute.total;
+    }
 
     // Only exception to mod: defense
     let defenseStart = game.settings.get('icrpgme', 'defenseStart');

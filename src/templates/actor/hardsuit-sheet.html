@@ -13,7 +13,7 @@
       <div class="icrpg-header-field">
         <span class="ff-header">{{localize "ICRPG.hardSuit.pilot"}}</span>
         <select name="system.pilotId" {{#if isLocked}}disabled{{/if}}>
-          {{selectOptions availablePilots selected=system.pilotId nameAttr="id" labelAttr="name"}}
+          {{selectOptions availablePilots selected=system.pilotId valueAttr="id" labelAttr="name"}}
         </select>
       </div>
     </div>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="hard-suit-power-container">
-          <div class="ff-header c-white ta-center">{{localize "ICRPG.hardSuit.power"}}</div>
+          <div class="ff-header c-white ta-center hoverable" data-roll="power" data-group="attributes">{{localize "ICRPG.hardSuit.power"}}</div>
           <img src="systems/icrpgme/assets/ui/dice-transparent/d100.webp" style="width: auto; height: 64px">
           <input name="system.power.value" value="{{system.power.value}}" type="number" min="0" max="100">
         </div>

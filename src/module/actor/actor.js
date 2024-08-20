@@ -225,7 +225,7 @@ export class ICRPGActor extends Actor {
     // If DAMAGE, then compute value
     else if (newHealth.damage != null && newHealth.value == null) {
       damage = newHealth.damage;
-      value = maxHP - value;
+      value = maxHP - damage;
     }
     // If BOTH, idk
     else console.warn(`Updating both hp damage and value ${newHealth}`);

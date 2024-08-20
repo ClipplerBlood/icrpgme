@@ -58,8 +58,10 @@
   "download": "This is auto replaced",
   "background": "systems/icrpgme/assets/world-bg.png",
   "initiative": "1d20",
-  "gridDistance": 1,
-  "gridUnits": "m",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": null
 }

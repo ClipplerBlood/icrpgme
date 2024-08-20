@@ -1,3 +1,7 @@
+## [1.4.0] V12 Compatibility
+- Added compatibility with FoundryVTT V12
+- Fixed Dice So Nice duplicated rolls
+
 ## [1.2.1] UI Improvements 📖
 - Styled the **TOKEN NAMEPLATE**.
 - Added **FLOATING TEXT**. A notification over the token is displayed when

@@ -9,6 +9,8 @@
   - Fixed STR and DEX Suit mods not being *subtracted*
   - Added flat Power roll (click the "POWER" text in the Hard Suit sheet)
     - To roll it in macros, do `actor.roll("power", "attributes")`
+  - Added Monster Rolls Macro by gus4294. You can find it in the Macros compendium.
+
 
 ## [1.2.1] UI Improvements 📖
 - Styled the **TOKEN NAMEPLATE**.

@@ -7,6 +7,10 @@ async function _renderRollMessage(messageData, context = {}) {
       await game.dice3d.showForRoll(roll, game.user, true, messageData.whisper, messageData.blind);
     }
   }
+  // V12 patch
+  if ('temporary' in context && !context.temporary) {
+    delete context.temporary;
+  }
   return ChatMessage.create(messageData, context);
 }
 

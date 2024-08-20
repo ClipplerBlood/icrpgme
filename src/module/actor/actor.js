@@ -271,7 +271,7 @@ export class ICRPGActor extends Actor {
     // Do the roll
     let formula = `@dice ${plusifyMod(mod)}`;
     const roll = new Roll(formula, { dice: dice, mod: mod, name: name });
-    postRollMessage(this, roll, undefined, { isHardSuitRoll });
+    await postRollMessage(this, roll, undefined, { isHardSuitRoll });
   }
 
   async useItem(itemId, options = {}) {

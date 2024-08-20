@@ -22,7 +22,7 @@ async function updateCombatant(combatantId, initiative, { diff = 0 } = {}) {
 
   const combat = game.combat,
     turn = combat.turn,
-    activeTurn = combat.combatant.id === combatantId;
+    activeTurn = combat.combatant?.id === combatantId;
 
   if (!activeTurn) return combat.updateEmbeddedDocuments('Combatant', [{ _id: combatantId, initiative }]);
 

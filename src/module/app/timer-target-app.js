@@ -3,7 +3,7 @@ import { i18n } from '../utils/utils.js';
 export class TimerTargetContainer extends Application {
   // ======= STATIC =======
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/app/timer-target-container.html',
       classes: ['timer-target-container'],
       title: 'ICRPG APP', // Needed otherwise it can break
@@ -42,11 +42,13 @@ export class TimerTargetContainer extends Application {
 
   // ======= ADD / DELETE / UPDATE =======
   addTarget(options = {}) {
-    this.targets = this.targets.concat([mergeObject({ value: 10, isEasy: false, isHard: false, name: '' }, options)]);
+    this.targets = this.targets.concat([
+      foundry.utils.mergeObject({ value: 10, isEasy: false, isHard: false, name: '' }, options),
+    ]);
   }
 
   addTimer(options) {
-    this.timers = this.timers.concat([mergeObject({ value: 4, name: '' }, options)]);
+    this.timers = this.timers.concat([foundry.utils.mergeObject({ value: 4, name: '' }, options)]);
   }
 
   // ======= RENDERING =======

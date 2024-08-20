@@ -2,7 +2,7 @@ import { initializeDraggableCombatTracker } from './combat-tracker-draggable.js'
 
 export class ICRPGCombatTracker extends CombatTracker {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       template: 'systems/icrpgme/templates/combat/combat-tracker.html',
     });
   }

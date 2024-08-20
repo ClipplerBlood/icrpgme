@@ -12,7 +12,7 @@ export async function postItemMessage(
   if (!item) throw 'Item not found in actor';
 
   // Build the message and post it
-  messageData = mergeObject(_getBaseMessageData(actor), messageData);
+  messageData = foundry.utils.mergeObject(_getBaseMessageData(actor), messageData);
   messageData.content = await renderTemplate('systems/icrpgme/templates/chat/item.html', {
     actor: actor,
     item: item,
@@ -29,7 +29,7 @@ export async function postArrayActionMessage(
   chatOptions = { temporary: false },
   messageData = {},
 ) {
-  messageData = mergeObject(_getBaseMessageData(actor), messageData);
+  messageData = foundry.utils.mergeObject(_getBaseMessageData(actor), messageData);
   messageData.content = await renderTemplate('systems/icrpgme/templates/chat/action.html', {
     actor: actor,
     name,

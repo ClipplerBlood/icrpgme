@@ -2,7 +2,7 @@ import { i18n, onArrayEdit } from '../utils/utils.js';
 
 export class ICRPGItemSheet extends ItemSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['icrpg-sheet item'],
       width: 700,
       height: 420,

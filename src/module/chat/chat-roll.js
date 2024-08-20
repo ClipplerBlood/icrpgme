@@ -19,7 +19,7 @@ export async function postRollMessage(actor, roll, context = { temporary: false 
   if (!roll._evaluated && roll.roll != null) await roll.roll({ async: true });
 
   // Prepare chat data
-  messageData = mergeObject(_getBaseMessageData(actor, [roll]), messageData);
+  messageData = foundry.utils.mergeObject(_getBaseMessageData(actor, [roll]), messageData);
   messageData.content = await renderTemplate('systems/icrpgme/templates/chat/roll.html', {
     actor: actor,
     roll: roll,

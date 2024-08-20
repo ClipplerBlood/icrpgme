@@ -73,7 +73,7 @@ export function innerNumericalOperation(a, b, op) {
     if (typeof va === 'object') {
       const diff = innerNumericalOperation(va, vb, op);
       if (diff == null || Object.keys(diff).length === 0) continue;
-      result[key] = mergeObject(result[key] ?? {}, diff);
+      result[key] = foundry.utils.mergeObject(result[key] ?? {}, diff);
       continue;
     }
 

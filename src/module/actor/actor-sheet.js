@@ -3,7 +3,7 @@ import { isQuickInsertOn, prepareQuickInsertSheet } from '../modules-integration
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['icrpg-sheet actor'],
       width: 920,
       height: 620,
@@ -351,7 +351,7 @@ export default class ICRPGActorSheet extends ActorSheet {
 
   async _render(force = false, options = {}) {
     const t = this.actor.type;
-    if (t === 'obstacle') options = mergeObject(options, { width: 420, height: 700 });
+    if (t === 'obstacle') options = foundry.utils.mergeObject(options, { width: 420, height: 700 });
     return super._render(force, options);
   }
 

@@ -31,7 +31,7 @@ export class ICRPGToken extends Token {
 
     for (let h = 0; h < nHearts; h++) {
       // Get the "relative" hp of the current heart
-      const r = Math.clamped(hp, 0, 10);
+      const r = Math.clamp(hp, 0, 10);
       hp -= 10;
 
       // Grab the sprite and set its dimensions

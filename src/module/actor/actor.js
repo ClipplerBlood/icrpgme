@@ -26,8 +26,8 @@ export class ICRPGActor extends Actor {
     } else {
       system.health.damage = system.health.max - system.health.value;
     }
-    system.health.value = Math.clamped(system.health.value, 0, system.health.max);
-    system.health.damage = Math.clamped(system.health.damage, 0, system.health.max);
+    system.health.value = Math.clamp(system.health.value, 0, system.health.max);
+    system.health.damage = Math.clamp(system.health.damage, 0, system.health.max);
   }
 
   prepareCharacter() {
@@ -37,13 +37,13 @@ export class ICRPGActor extends Actor {
       for (const k of Object.keys(system[group])) {
         const att = system[group][k];
         att.total = att.base + att.lifeform + att.loot;
-        system[group][k].total = Math.clamped(att.total, -10, 10);
+        system[group][k].total = Math.clamp(att.total, -10, 10);
       }
     }
     // Set defense
     const defense = system.attributes.defense;
     defense.total = game.settings.get('icrpgme', 'defenseStart') + defense.loot + system.attributes.constitution.total;
-    defense.total = Math.clamped(defense.total, 0, 20);
+    defense.total = Math.clamp(defense.total, 0, 20);
     // Set weights
     const sum = (acc, i) => acc + i.system.weight;
     system.weight.carried.value = this.items.filter((i) => i.system.carried).reduce(sum, 0);
@@ -63,8 +63,8 @@ export class ICRPGActor extends Actor {
       } else {
         chunk.health.damage = chunk.health.max - (chunk.health.value ?? 0);
       }
-      chunk.health.value = Math.clamped(chunk.health.value, 0, chunk.health.max);
-      chunk.health.damage = Math.clamped(chunk.health.damage, 0, chunk.health.max);
+      chunk.health.value = Math.clamp(chunk.health.value, 0, chunk.health.max);
+      chunk.health.damage = Math.clamp(chunk.health.damage, 0, chunk.health.max);
 
       for (const [k, v] of Object.entries(chunk.health)) this.system.health[k] += v;
     });
@@ -84,13 +84,13 @@ export class ICRPGActor extends Actor {
       for (const k of Object.keys(system[group])) {
         const att = system[group][k];
         att.total = att.base + att.loot;
-        system[group][k].total = Math.clamped(att.total, -10, 10);
+        system[group][k].total = Math.clamp(att.total, -10, 10);
       }
     }
     // Set defense
     const defense = system.attributes.defense;
     defense.total = game.settings.get('icrpgme', 'defenseStart') + defense.loot;
-    defense.total = Math.clamped(defense.total, 0, 20);
+    defense.total = Math.clamp(defense.total, 0, 20);
 
     // Set hp from parts
     system.health.max = 0;
@@ -98,7 +98,7 @@ export class ICRPGActor extends Actor {
     for (const part of this.items.filter((i) => i.type === 'part')) {
       const hits = part.system.hits;
       system.health.max += hits.max;
-      system.health.damage += Math.clamped(hits.value, 0, hits.max);
+      system.health.damage += Math.clamp(hits.value, 0, hits.max);
     }
     system.health.value = system.health.max - system.health.damage;
     system.health.hearts = Math.ceil(system.health.max / 5) * 0.5;

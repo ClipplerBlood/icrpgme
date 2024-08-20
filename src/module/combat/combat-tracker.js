@@ -141,25 +141,25 @@ export class ICRPGCombatTracker extends CombatTracker {
 
       // If mastery, simple update
       if (target.includes('mastery')) {
-        return actor.update({ [target]: Math.clamped(0, newValue, 20) });
+        return actor.update({ [target]: Math.clamp(0, newValue, 20) });
       }
 
       // If SP
       if (target.includes('sp')) {
         const resource = getProperty(actor, target);
         target += `.value`;
-        return actor.update({ [target]: Math.clamped(newValue, 0, resource.max) });
+        return actor.update({ [target]: Math.clamp(newValue, 0, resource.max) });
       }
 
       // If power
       if (target.includes('power')) {
-        return actor.update({ [target]: Math.clamped(0, newValue, 100) });
+        return actor.update({ [target]: Math.clamp(0, newValue, 100) });
       }
 
       // If generic
       const resources = actor.system.resources;
       const index = ct.closest('[data-resource-index]').data('resourceIndex');
-      resources[index].value = Math.clamped(newValue, 0, resources[index].max);
+      resources[index].value = Math.clamp(newValue, 0, resources[index].max);
       actor.update({ 'system.resources': resources }, { updateResourceIndex: index });
     });
 
@@ -180,7 +180,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       dmg += maxHpOffset; // Sum the offset to the damage, ensuring that the displayed heart maximum is 10
 
       $($(hc).find('[data-heart-index] .bar-effect').get().reverse()).each((_, el) => {
-        const w = 16 * (Math.clamped(dmg, 0, 10) / 10);
+        const w = 16 * (Math.clamp(dmg, 0, 10) / 10);
         dmg -= 10;
         el.style.width = Math.ceil(w) + 'px';
       });

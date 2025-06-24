@@ -22,6 +22,9 @@ import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
 
+const { Actors, Items } = foundry.documents.collections;
+const { ActorSheet } = foundry.appv1.sheets;
+
 export function registerSystem() {
   // Actor registration
   CONFIG.Actor.dataModels['character'] = ICRPGCharacterDataModel;

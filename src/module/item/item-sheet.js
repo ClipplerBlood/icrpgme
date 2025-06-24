@@ -1,4 +1,5 @@
 import { i18n, onArrayEdit } from '../utils/utils.js';
+const { ItemSheet } = foundry.appv1.sheets;
 
 export class ICRPGItemSheet extends ItemSheet {
   static get defaultOptions() {

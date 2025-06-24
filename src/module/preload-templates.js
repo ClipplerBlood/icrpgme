@@ -1,3 +1,5 @@
+const { loadTemplates } = foundry.applications.handlebars;
+
 export async function preloadTemplates() {
   const templatePaths = [
     // Add paths to "systems/icrpgme/templates"

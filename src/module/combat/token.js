@@ -1,4 +1,6 @@
 /* globals PIXI */
+const { Token } = foundry.canvas.placeables;
+const { loadTexture } = foundry.canvas;
 
 export class ICRPGToken extends Token {
   /**

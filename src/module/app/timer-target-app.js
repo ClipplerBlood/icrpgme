@@ -1,4 +1,5 @@
 import { i18n } from '../utils/utils.js';
+const ContextMenu = foundry.applications.ux.ContextMenu.implementation;
 
 export class TimerTargetContainer extends Application {
   // ======= STATIC =======

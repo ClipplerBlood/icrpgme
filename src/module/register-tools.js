@@ -11,7 +11,7 @@ Hooks.on('collapseSidebar', () => game.icrpgme.timerTargetContainer?.render());
 export function registerICRPGTools() {
   Hooks.on('getSceneControlButtons', (controls) => {
     if (!game.user.isGM) return;
-    controls.push({
+    controls['icrpgme-tools'] = {
       name: 'icrpgme-tools',
       title: i18n('ICRPG.tooltips.tools'),
       layer: 'controls',
@@ -21,22 +21,25 @@ export function registerICRPGTools() {
         {
           icon: 'fas fa-dice-d20',
           name: 'icrpg-target',
+          button: true,
           title: i18n('ICRPG.tooltips.target'),
           onClick: () => game.icrpgme.timerTargetContainer?.addTarget(),
         },
         {
           icon: 'fas fa-hourglass',
           name: 'icrpg-timer',
+          button: true,
           title: i18n('ICRPG.tooltips.timer'),
           onClick: () => game.icrpgme.timerTargetContainer?.addTimer(),
         },
         {
           icon: 'fa-duotone fa-cards-blank',
           name: 'icrpg-card',
+          button: true,
           title: i18n('ICRPG.tooltips.indexCard'),
           onClick: () => Hooks.call('requestSketchTile'),
         },
       ],
-    });
+    };
   });
 }

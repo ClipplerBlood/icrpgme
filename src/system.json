@@ -15,8 +15,8 @@
   "changelog": "https://github.com/ClipplerBlood/icrpgme/blob/master/CHANGELOG.md",
   "version": "This is auto replaced",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13"
   },
   "scripts": [],
   "esmodules": ["module/icrpgme.js"],

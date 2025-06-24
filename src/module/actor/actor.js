@@ -122,10 +122,12 @@ export class ICRPGActor extends Actor {
       img = 'systems/icrpgme/assets/cards/hard-suit/hard-suit.webp';
       tokenImg = 'systems/icrpgme/assets/tokens/hard-suit/hard-suit.webp';
     }
-    if (img) this.updateSource({ img: img, 'prototypeToken.texture.src': tokenImg });
+    var prototypeToken = this._getDefaultTokenSettings(data);
+    prototypeToken.texture = { src: tokenImg };
+    if (img) this.updateSource({ img: img, prototypeToken: prototypeToken });
   }
 
-  _applyDefaultTokenSettings(data, { _fromCompendium = false } = {}) {
+  _getDefaultTokenSettings(data, { _fromCompendium = false } = {}) {
     const prototypeToken = {
       bar1: { attribute: 'health' },
     };
@@ -156,7 +158,7 @@ export class ICRPGActor extends Actor {
       prototypeToken.displayBars = CONST.TOKEN_DISPLAY_MODES.HOVER;
       prototypeToken.bar2 = { attribute: 'power' };
     }
-    return this.updateSource({ prototypeToken });
+    return prototypeToken;
   }
 
   /**

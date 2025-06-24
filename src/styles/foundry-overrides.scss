@@ -1,29 +1,29 @@
 @import 'typography';
 
-:root {
-  --color-text-light-highlight: #eee;
-  --color-text-light-heading: #ddd;
-  --color-border-highlight: var(--c-red);
-  --color-border-highlight-alt: var(--c-red);
-  --color-underline-header: var(--c-red);
-  --color-shadow-primary: transparent;
-  --color-shadow-highlight: transparent;
-  --color-bg-option: #ddd;
-}
+//:root {
+//  --color-text-light-highlight: #eee;
+//  --color-text-light-heading: #ddd;
+//  --color-border-highlight: var(--c-red);
+//  --color-border-highlight-alt: var(--c-red);
+//  --color-underline-header: var(--c-red);
+//  --color-shadow-primary: transparent;
+//  --color-shadow-highlight: transparent;
+//  --color-bg-option: #ddd;
+//}
 
-input,
-.directory .directory-header .header-search input,
-button {
-  background: #ddd;
-}
+//input,
+//.directory .directory-header .header-search input,
+//button {
+//  background: #ddd;
+//}
 
-#chat-controls .roll-type-select {
-  background: #eee;
-}
+//#chat-controls .roll-type-select {
+//  background: #eee;
+//}
 
-.chat-message .table-draw .table-results .table-result img.result-image {
-  background: gainsboro;
-}
+//.chat-message .table-draw .table-results .table-result img.result-image {
+//  background: gainsboro;
+//}
 
 a.content-link {
   font-family: $ff-flatbread;
@@ -43,44 +43,44 @@ a.content-link {
   }
 }
 
-#navigation #scene-list .scene.view,
-#navigation #scene-list .scene.context,
-#navigation #nav-toggle,
-#controls ol.control-tools > li,
-#sidebar {
-  background: #222;
-}
+//#navigation #scene-list .scene.view,
+//#navigation #scene-list .scene.context,
+//#navigation #nav-toggle,
+//#controls ol.control-tools > li,
+//#sidebar {
+//  background: #222;
+//}
 
-header.window-header {
-  background: #202020;
-  border-bottom: none !important;
-  border-radius: 8px 8px 0 0;
-  color: white;
-}
+//header.window-header {
+//  background: #202020;
+//  border-bottom: none !important;
+//  border-radius: 8px 8px 0 0;
+//  color: white;
+//}
 
-.app.sidebar-popout {
-  background: rgba(34, 34, 34, 0.7);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
+//.app.sidebar-popout {
+//  background: rgba(34, 34, 34, 0.7);
+//  border-top-left-radius: 10px;
+//  border-top-right-radius: 10px;
+//}
 
-.app .window-content {
-  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
-  background-size: cover;
-}
+//.app .window-content {
+//  background-image: url('../assets/ui/backgrounds/bg-sheet.png');
+//  background-size: cover;
+//}
 
-#hotbar .macro .macro-key {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 15px;
-  line-height: 1;
-  padding: 0 4px;
-  font-weight: bold;
-  pointer-events: none;
-  color: black;
-  background: none;
-}
+//#hotbar .macro .macro-key {
+//  position: absolute;
+//  top: 0;
+//  right: 0;
+//  height: 15px;
+//  line-height: 1;
+//  padding: 0 4px;
+//  font-weight: bold;
+//  pointer-events: none;
+//  color: black;
+//  background: none;
+//}
 
 img#logo {
   content: url('../assets/ui/offline runehammer logo.jpg');
@@ -88,33 +88,33 @@ img#logo {
   border: 2px solid #222;
 }
 
-.prosemirror {
-  --color-control-bg: #ddd;
-  --color-hover-bg: #eee;
-}
+//.prosemirror {
+//  --color-control-bg: #ddd;
+//  --color-hover-bg: #eee;
+//}
+//
+//.directory .directory-item img {
+//  object-fit: cover;
+//  object-position: center;
+//}
+//
+//.directory .directory-item h3,
+//.directory .directory-item h4 {
+//  font-family: $ff-flatbread;
+//}
 
-.directory .directory-item img {
-  object-fit: cover;
-  object-position: center;
-}
-
-.directory .directory-item h3,
-.directory .directory-item h4 {
-  font-family: $ff-flatbread;
-}
-
-#sidebar #items .item {
-  height: 32px;
-
-  h4 {
-    height: 32px;
-    line-height: 32px;
-  }
-
-  img {
-    display: none;
-  }
-}
+//#sidebar #items .item {
+//  height: 32px;
+//
+//  h4 {
+//    height: 32px;
+//    line-height: 32px;
+//  }
+//
+//  img {
+//    display: none;
+//  }
+//}
 
 // Journal / System guide
 .journal-sheet-container {
@@ -157,8 +157,16 @@ img#logo {
   padding-left: 16px;
 }
 
+.journal-entry-page {
+  --color-text-emphatic: #111;
+  --color-text-subtle: #111;
+}
+
 .editor-content,
 .journal-page-content {
+  --color-text-primary: #111;
+  color: #111;
+
   h2,
   h3 {
     text-transform: uppercase;
@@ -167,6 +175,12 @@ img#logo {
     background: url(../assets/ui/backgrounds/bg-bar-4.webp) no-repeat bottom;
     padding-bottom: 9px;
     background-size: contain;
+    color: #111;
+  }
+
+  code {
+    background: #313131;
+    color: var(--c-red);
   }
 
   h3 {
@@ -405,9 +419,9 @@ img#logo {
 }
 
 // Compendium
-li.compendium-folder > .compendium-folder-header {
-  font-family: $ff-flatbread;
-}
+//li.compendium-folder > .compendium-folder-header {
+//  font-family: $ff-flatbread;
+//}
 
 //.compendium.directory .directory-list .directory-item {
 //  line-height: 28px;
@@ -419,17 +433,17 @@ li.compendium-folder > .compendium-folder-header {
 //}
 
 // Scrollbar
-::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background: #921e20;
-  border: none;
-}
+//::-webkit-scrollbar-thumb {
+//  border-radius: 3px;
+//  background: #921e20;
+//  border: none;
+//}
 
 // Scene nav
-#navigation {
-  .scene.nav-item {
-    .scene-name {
-      font-family: $ff-flatbread;
-    }
-  }
-}
+//#navigation {
+//  .scene.nav-item {
+//    .scene-name {
+//      font-family: $ff-flatbread;
+//    }
+//  }
+//}

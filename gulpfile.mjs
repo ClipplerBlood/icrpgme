@@ -104,7 +104,13 @@ export async function clean() {
   console.log('   ', files.join('\n    '));
 
   for (const filePath of files) {
-    await fs.remove(`${distDirectory}/${filePath}`);
+    try {
+      await fs.remove(`${distDirectory}/${filePath}`);
+    } catch (error) {
+      if (error.code !== 'EBUSY') {
+        throw error;
+      }
+    }
   }
 }
 

@@ -7,7 +7,7 @@ Targets. The add timer and add target buttons are now located at the top of the 
 - **NEW FEATURE**: Added coins resource! Requested in #3
 - Combat tracker improvements.
 - Fixed #16. Locking the sheet now correctly saves the modified values.
--
+- Target easy/hard modifier is now more legible. Implemented in #13 by @gus-uktena (many thanks!)
 
 ## [1.4.0] V12 Compatibility
 - Added compatibility with FoundryVTT V12

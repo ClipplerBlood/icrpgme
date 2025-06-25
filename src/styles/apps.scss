@@ -93,12 +93,12 @@
   }
 
   .target-mod {
-    color: #111;
+    color: white;
     position: absolute;
     right: 0;
     top: 12px;
     font-size: 20px;
-    text-shadow: 0 0 9px #ffffffb0;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
   }
 
   nav#context-menu {

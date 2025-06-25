@@ -5,6 +5,7 @@ more modern
 - **BREAKING**: Removed the "ICRPG Tools" controls on the left side. This used to contain controls for adding Timers and
 Targets. The add timer and add target buttons are now located at the top of the combat tracker
 - Combat tracker improvements.
+- **NEW FEATURE**: Added coins resource!
 
 ## [1.4.0] V12 Compatibility
 - Added compatibility with FoundryVTT V12

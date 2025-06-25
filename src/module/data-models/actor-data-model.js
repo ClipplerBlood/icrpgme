@@ -41,6 +41,7 @@ export class ICRPGCharacterDataModel extends foundry.abstract.DataModel {
         value: f.number(),
         max: f.number({ initial: 10 }),
       }),
+      coins: f.number({ min: 0, initial: 0 }),
       resources: f.array(
         f.schema({
           name: f.string(),

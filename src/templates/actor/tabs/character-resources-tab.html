@@ -33,7 +33,7 @@
 
 <div style="padding-top: 16px">
 
-  <div class="icrpg-discrete-selector-container">
+  <div class="icrpg-discrete-selector-container" style="margin-bottom: 4px">
     <div class="ff-header">{{localize "ICRPG.mastery"}}</div>
     <div>
       {{#times 20}}
@@ -50,6 +50,12 @@
     <div>/</div>
     <input type="number" name="system.sp.max" value="{{system.sp.max}}" {{readonly isLocked}} min="0" max="50" autosize
            style="text-align: left">
+  </div>
+
+  <div class="icrpg-resource-tracker">
+    <div class="ff-header">{{localize "ICRPG.coins"}}</div>
+    <input type="number" name="system.coins" value="{{system.coins}}" min="0" autosize
+           style="text-align: right; max-width: 80px; padding-right: 12px;">
   </div>
 
   {{#each system.resources as |resource index|}}

@@ -190,7 +190,7 @@ function renderCombatTrackerEvent(tracker, jq, _) {
   if (!game.user.isGM) return;
 
   // Mark all combatants as draggable
-  jq.find(combatantHandle).attr('draggable', true);
+  $(jq).find(combatantHandle).attr('draggable', true);
 }
 
 /**
@@ -198,7 +198,7 @@ function renderCombatTrackerEvent(tracker, jq, _) {
  * @param {JQuery} html
  * @param {Object} options
  */
-function hookCombatTracker(app, [html], _options) {
+function hookCombatTracker(app, html, _options) {
   if (!game.user.isGM) return;
 
   const listing = html.querySelector('.directory-list');

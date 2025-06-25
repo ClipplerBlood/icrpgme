@@ -1,9 +1,25 @@
 @import 'typography';
 
 #combat-tracker {
+  list-style: none;
+  flex-grow: 1;
+  padding-left: 0;
+  margin-top: 0;
+
+  img.token-image {
+    width: 50px;
+    flex-grow: 0;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
   h4 {
     font-family: $ff-flatbread;
     font-size: 16px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   li.combatant .token-name {
@@ -49,6 +65,7 @@
   .resource-field,
   .hp-field {
     display: flex;
+    flex-grow: 0;
     align-items: center;
     justify-content: flex-end;
     width: 40px;
@@ -92,14 +109,19 @@
     padding-bottom: 4px;
   }
 
-  li.icrpg-combat-divider:not(:first-of-type) {
+  li.icrpg-combat-divider {
+    &:not(:first-of-type) {
+      margin-top: 8px !important;
+    }
     padding-top: 8px !important;
-    margin-top: 8px !important;
     border-top: 1px solid #000000;
     box-shadow: inset -10px 15px 1px -15px #ffffff;
   }
 
   .collapse-toggle {
+    flex-grow: 0;
+    margin-right: 4px;
+
     i {
       filter: opacity(0.2);
     }

@@ -143,7 +143,7 @@ export class ICRPGCombat extends Combat {
     }
 
     // Create the obstacle
-    let obstacleName = i18n('ACTOR.TypeObstacle');
+    let obstacleName = i18n('TYPES.Actor.obstacle');
     let actor = await Actor.create({
       name: obstacleName,
       type: 'obstacle',

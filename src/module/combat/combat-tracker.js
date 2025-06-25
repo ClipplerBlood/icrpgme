@@ -1,11 +1,18 @@
 import { initializeDraggableCombatTracker } from './combat-tracker-draggable.js';
+const { CombatTracker } = foundry.applications.sidebar.tabs;
 
 export class ICRPGCombatTracker extends CombatTracker {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static PARTS = {
+    header: {
+      template: 'templates/sidebar/tabs/combat/header.hbs',
+    },
+    tracker: {
       template: 'systems/icrpgme/templates/combat/combat-tracker.html',
-    });
-  }
+    },
+    footer: {
+      template: 'templates/sidebar/tabs/combat/footer.hbs',
+    },
+  };
 
   constructor(options) {
     super(options);
@@ -13,12 +20,12 @@ export class ICRPGCombatTracker extends CombatTracker {
     this.ctrlHoverId = null;
   }
 
-  async getData() {
-    const content = await super.getData();
+  async _prepareContext(options) {
+    const content = await super._prepareContext(options);
     const combatants = this.viewed?.combatants ?? [];
     content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
     content.showMonsterHP = game.settings.get('icrpgme', 'showMonsterHP');
-    content.turns = this._enrichTurns(content.turns);
+    content.turns = this._enrichTurns(content.turns ?? this.viewed?.turns ?? []);
 
     // Split turns into player combatants (also includes NPCS) and GM combatants
     content.playerTurns = [];
@@ -72,7 +79,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       // Resources
       turn.showMastery = showMastery;
       turn.showSp = showSp;
-      turn.showResources = turn.owner && ['character', 'monster'].includes(turn.type);
+      turn.showResources = (turn.isOwner || turn.isGM) && ['character', 'monster'].includes(turn.type);
       if (turn.showResources) {
         turn.mastery = actor.system.mastery;
         turn.sp = actor.system.sp;
@@ -89,8 +96,10 @@ export class ICRPGCombatTracker extends CombatTracker {
     });
   }
 
-  activateListeners(html) {
-    super.activateListeners(html);
+  _onRender(context, options) {
+    // super.activateListeners(html);
+    super._onRender(context, options);
+    const html = $(this.element);
 
     // Health input
     html.find('.hp-field input').on('click', (ev) => {
@@ -285,49 +294,52 @@ export class ICRPGCombatTracker extends CombatTracker {
           this.ctrlHoverId = null;
         },
       );
+    console.log(html.find("[data-control='addObstacle']"));
+    console.log(this);
+    html.find("[data-control='addObstacle']").click(() => this.viewed?.addObstacle());
   }
 
-  _getEntryContextOptions() {
-    return [
-      {
-        name: 'COMBAT.CombatantUpdate',
-        icon: '<i class="fas fa-edit"></i>',
-        callback: this._onConfigureCombatant.bind(this),
-      },
-      {
-        name: 'COMBAT.PingCombatant',
-        icon: '<i class="fa-solid fa-bullseye-arrow"></i>',
-        callback: (li) => {
-          const c = this.viewed?.combatants.get(li.data('combatant-id'));
-          if (c) return this._onPingCombatant(c);
-        },
-      },
-      {
-        name: 'COMBAT.ToggleVis',
-        icon: '<i class="fas fa-eye-slash"></i>',
-        callback: (li) => {
-          const c = this.viewed?.combatants.get(li.data('combatant-id'));
-          if (c) return c.update({ hidden: !c.hidden });
-        },
-      },
-      {
-        name: 'COMBAT.ToggleDead',
-        icon: '<i class="fas fa-skull"></i>',
-        callback: (li) => {
-          const c = this.viewed.combatants.get(li.data('combatant-id'));
-          if (c) return this._onToggleDefeatedStatus(c);
-        },
-      },
-      {
-        name: 'COMBAT.CombatantRemove',
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (li) => {
-          const c = this.viewed?.combatants.get(li.data('combatant-id'));
-          if (c) return c.delete();
-        },
-      },
-    ];
-  }
+  // _getEntryContextOptions() {
+  //   return [
+  //     {
+  //       name: 'COMBAT.CombatantUpdate',
+  //       icon: '<i class="fas fa-edit"></i>',
+  //       callback: this._onConfigureCombatant.bind(this),
+  //     },
+  //     {
+  //       name: 'COMBAT.PingCombatant',
+  //       icon: '<i class="fa-solid fa-bullseye-arrow"></i>',
+  //       callback: (li) => {
+  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
+  //         if (c) return this._onPingCombatant(c);
+  //       },
+  //     },
+  //     {
+  //       name: 'COMBAT.ToggleVis',
+  //       icon: '<i class="fas fa-eye-slash"></i>',
+  //       callback: (li) => {
+  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
+  //         if (c) return c.update({ hidden: !c.hidden });
+  //       },
+  //     },
+  //     {
+  //       name: 'COMBAT.ToggleDead',
+  //       icon: '<i class="fas fa-skull"></i>',
+  //       callback: (li) => {
+  //         const c = this.viewed.combatants.get(li.data('combatant-id'));
+  //         if (c) return this._onToggleDefeatedStatus(c);
+  //       },
+  //     },
+  //     {
+  //       name: 'COMBAT.CombatantRemove',
+  //       icon: '<i class="fas fa-trash"></i>',
+  //       callback: (li) => {
+  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
+  //         if (c) return c.delete();
+  //       },
+  //     },
+  //   ];
+  // }
 }
 
 initializeDraggableCombatTracker();

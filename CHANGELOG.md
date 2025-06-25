@@ -1,11 +1,13 @@
 ## [1.5.0] V13 Compatibility
 - Added compatibility with FoundryVTT V13
-- Removed custom UI stylings. This ensures compatibility with FoundryVTT and other external modules while looking
+- **BREAKING**: Removed custom UI stylings. This ensures compatibility with FoundryVTT and other external modules while looking
 more modern
 - **BREAKING**: Removed the "ICRPG Tools" controls on the left side. This used to contain controls for adding Timers and
 Targets. The add timer and add target buttons are now located at the top of the combat tracker
+- **NEW FEATURE**: Added coins resource! Requested in #3
 - Combat tracker improvements.
-- **NEW FEATURE**: Added coins resource!
+- Fixed #16. Locking the sheet now correctly saves the modified values.
+-
 
 ## [1.4.0] V12 Compatibility
 - Added compatibility with FoundryVTT V12

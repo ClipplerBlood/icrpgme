@@ -334,6 +334,7 @@ export default class ICRPGActorSheet extends ActorSheet {
       } else {
         ev.currentTarget.innerHTML = `<i class="fas fa-unlock"></i><strong>${i18n('ICRPG.unlocked')}</strong>`;
       }
+      this.submit();
       this.render();
       const notification = _isLocked ? 'ICRPG.notifications.lockedSheet' : 'ICRPG.notifications.unlockedSheet';
       ui.notifications.info(notification, { localize: true });

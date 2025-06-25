@@ -93,17 +93,18 @@
   }
 
   .target-mod {
-    color: black;
+    color: #111;
     position: absolute;
     right: 0;
     top: 12px;
     font-size: 20px;
+    text-shadow: 0 0 9px #ffffffb0;
   }
 
   nav#context-menu {
     min-width: $size;
     width: $size;
     max-width: $size;
-    font-family: var(--font-primary);
+    font-family: var(--font-body);
   }
 }

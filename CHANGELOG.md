@@ -1,3 +1,11 @@
+## [1.5.0] V13 Compatibility
+- Added compatibility with FoundryVTT V13
+- Removed custom UI stylings. This ensures compatibility with FoundryVTT and other external modules while looking
+more modern
+- **BREAKING**: Removed the "ICRPG Tools" controls on the left side. This used to contain controls for adding Timers and
+Targets. The add timer and add target buttons are now located at the top of the combat tracker
+- Combat tracker improvements.
+
 ## [1.4.0] V12 Compatibility
 - Added compatibility with FoundryVTT V12
 - Fixed Dice So Nice duplicated rolls

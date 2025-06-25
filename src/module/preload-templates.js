@@ -43,6 +43,7 @@ export async function preloadTemplates() {
 
     // Combat tracker
     'systems/icrpgme/templates/combat/combat-tracker.html',
+    'systems/icrpgme/templates/combat/combat-header.html',
   ];
 
   Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.html';

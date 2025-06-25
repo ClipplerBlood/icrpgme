@@ -3,13 +3,13 @@ import { preloadTemplates } from './preload-templates.js';
 import { registerSystem } from './register-system.js';
 import registerHandlebarsHelpers from './utils/handlebars.js';
 import { integrateExternalModules } from './modules-integration.js';
-import { registerICRPGTools } from './register-tools.js';
 import * as playerMacros from './macros/player-macros.js';
 import * as importMacros from './macros/import-macros.js';
 import { registerFonts } from './register-fonts.js';
 import { sendDevMessages } from './utils/dev-messages.js';
 import { importDocuments } from './utils/import-documents.js';
 import { handleMigrations } from './migration.js';
+import { TimerTargetContainer } from './app/timer-target-app.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -49,4 +49,12 @@ integrateExternalModules();
 registerFonts();
 
 // Register the custom apps
-registerICRPGTools();
+Hooks.once('ready', () => {
+  const app = TimerTargetContainer.create();
+  if (app.targets.length === 0 && game.user.isGM) app.addTarget();
+});
+
+Hooks.on('collapseSidebar', () => {
+  foundry.utils.debounce(() => game.icrpgme.timerTargetContainer?.render(), 250)();
+  // game.icrpgme.timerTargetContainer?.render();
+});

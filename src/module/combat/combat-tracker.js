@@ -4,13 +4,20 @@ const { CombatTracker } = foundry.applications.sidebar.tabs;
 export class ICRPGCombatTracker extends CombatTracker {
   static PARTS = {
     header: {
-      template: 'templates/sidebar/tabs/combat/header.hbs',
+      template: 'systems/icrpgme/templates/combat/combat-header.html',
     },
     tracker: {
       template: 'systems/icrpgme/templates/combat/combat-tracker.html',
     },
     footer: {
       template: 'templates/sidebar/tabs/combat/footer.hbs',
+    },
+  };
+
+  static DEFAULT_OPTIONS = {
+    actions: {
+      addTarget: () => game.icrpgme.timerTargetContainer?.addTarget(),
+      addTimer: () => game.icrpgme.timerTargetContainer?.addTimer(),
     },
   };
 
@@ -295,51 +302,8 @@ export class ICRPGCombatTracker extends CombatTracker {
         },
       );
     console.log(html.find("[data-control='addObstacle']"));
-    console.log(this);
     html.find("[data-control='addObstacle']").click(() => this.viewed?.addObstacle());
   }
-
-  // _getEntryContextOptions() {
-  //   return [
-  //     {
-  //       name: 'COMBAT.CombatantUpdate',
-  //       icon: '<i class="fas fa-edit"></i>',
-  //       callback: this._onConfigureCombatant.bind(this),
-  //     },
-  //     {
-  //       name: 'COMBAT.PingCombatant',
-  //       icon: '<i class="fa-solid fa-bullseye-arrow"></i>',
-  //       callback: (li) => {
-  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
-  //         if (c) return this._onPingCombatant(c);
-  //       },
-  //     },
-  //     {
-  //       name: 'COMBAT.ToggleVis',
-  //       icon: '<i class="fas fa-eye-slash"></i>',
-  //       callback: (li) => {
-  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
-  //         if (c) return c.update({ hidden: !c.hidden });
-  //       },
-  //     },
-  //     {
-  //       name: 'COMBAT.ToggleDead',
-  //       icon: '<i class="fas fa-skull"></i>',
-  //       callback: (li) => {
-  //         const c = this.viewed.combatants.get(li.data('combatant-id'));
-  //         if (c) return this._onToggleDefeatedStatus(c);
-  //       },
-  //     },
-  //     {
-  //       name: 'COMBAT.CombatantRemove',
-  //       icon: '<i class="fas fa-trash"></i>',
-  //       callback: (li) => {
-  //         const c = this.viewed?.combatants.get(li.data('combatant-id'));
-  //         if (c) return c.delete();
-  //       },
-  //     },
-  //   ];
-  // }
 }
 
 initializeDraggableCombatTracker();

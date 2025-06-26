@@ -1,7 +1,9 @@
 import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
 import { isQuickInsertOn, prepareQuickInsertSheet } from '../modules-integration.js';
+
 const { ActorSheet } = foundry.appv1.sheets;
 const ContextMenu = foundry.applications.ux.ContextMenu.implementation;
+const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 export default class ICRPGActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -170,7 +172,7 @@ export default class ICRPGActorSheet extends ActorSheet {
         name: i18n('ICRPG.contextMenu.openItem'),
         icon: '<i class="fas fa-scroll"></i>',
         callback: (header) => {
-          const itemId = header.closest('[data-item-id]').data('itemId');
+          const itemId = $(header).closest('[data-item-id]').data('itemId');
           this.actor.items.get(itemId)?.sheet.render(true);
         },
       },
@@ -179,13 +181,13 @@ export default class ICRPGActorSheet extends ActorSheet {
         icon: '<i class="fas fa-times"></i>',
         condition: this.actor.isOwner,
         callback: (header) => {
-          const itemId = header.closest('[data-item-id]').data('itemId');
+          const itemId = $(header).closest('[data-item-id]').data('itemId');
           this.actor.items.get(itemId)?.delete();
         },
       },
     ];
 
-    ContextMenu.create(this, html, '.icrpg-actor-item-loot[data-item-id]', itemContextMenu);
+    new ContextMenu(html.get(0), '.icrpg-actor-item-loot[data-item-id]', itemContextMenu, { jQuery: false });
 
     // Item click
     html.find('.item-clickable input[data-target="name"]').click((ev) => {

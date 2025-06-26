@@ -1,4 +1,5 @@
 import { i18n } from '../utils/utils.js';
+
 const ContextMenu = foundry.applications.ux.ContextMenu.implementation;
 
 export class TimerTargetContainer extends Application {
@@ -95,7 +96,7 @@ export class TimerTargetContainer extends Application {
       this[group] = current;
     };
     const toggleDifficulty = (header, target) => {
-      const index = header.closest('[data-index]').data('index');
+      const index = $(header).closest('[data-index]').data('index');
       const current = this.targets;
       const t = current[index];
       if (target === 'isEasy') {
@@ -108,31 +109,41 @@ export class TimerTargetContainer extends Application {
       this.targets = current;
     };
 
-    ContextMenu.create(this, html, '.target', [
-      {
-        name: i18n('Delete'),
-        icon: '<i class="fas fa-times"></i>',
-        condition: (element) => element.data('index') > 0,
-        callback: (header) => remove(header),
-      },
-      {
-        name: i18n('ICRPG.hard'),
-        icon: '<i class="fa-solid fa-up"></i>',
-        callback: (header) => toggleDifficulty(header, 'isHard'),
-      },
-      {
-        name: i18n('ICRPG.easy'),
-        icon: '<i class="fa-solid fa-down"></i>',
-        callback: (header) => toggleDifficulty(header, 'isEasy'),
-      },
-    ]);
+    new ContextMenu(
+      html.get(0),
+      '.target',
+      [
+        {
+          name: i18n('Delete'),
+          icon: '<i class="fas fa-times"></i>',
+          condition: (element) => element.dataset?.index > 0,
+          callback: (header) => remove(header),
+        },
+        {
+          name: i18n('ICRPG.hard'),
+          icon: '<i class="fa-solid fa-up"></i>',
+          callback: (header) => toggleDifficulty(header, 'isHard'),
+        },
+        {
+          name: i18n('ICRPG.easy'),
+          icon: '<i class="fa-solid fa-down"></i>',
+          callback: (header) => toggleDifficulty(header, 'isEasy'),
+        },
+      ],
+      { jQuery: false },
+    );
 
-    ContextMenu.create(this, html, '.timer', [
-      {
-        name: i18n('Delete'),
-        icon: '<i class="fas fa-times"></i>',
-        callback: (header) => remove(header),
-      },
-    ]);
+    new ContextMenu(
+      html.get(0),
+      '.timer',
+      [
+        {
+          name: i18n('Delete'),
+          icon: '<i class="fas fa-times"></i>',
+          callback: (header) => remove(header),
+        },
+      ],
+      { jQuery: false },
+    );
   }
 }

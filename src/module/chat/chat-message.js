@@ -1,3 +1,5 @@
+const { renderTemplate } = foundry.applications.handlebars;
+
 export class ICRPGRollMessage extends ChatMessage {
   static async create(messageData, messageOptions) {
     // Intercept roll creation

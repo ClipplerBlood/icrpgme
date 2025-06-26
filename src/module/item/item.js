@@ -1,5 +1,7 @@
 import { innerNumericalOperation } from '../utils/utils.js';
 
+const { expandObject, flattenObject } = foundry.utils;
+
 export class ICRPGItem extends Item {
   async _preUpdate(changes, options, user) {
     await super._preUpdate(changes, options, user);

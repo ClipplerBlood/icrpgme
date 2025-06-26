@@ -1,4 +1,8 @@
 {
+  "icrpgme": {
+    "ICRPGActorSheet": "ICRPG Actor Sheet",
+    "ICRPGItemSheet": "ICRPG Item Sheet"
+  },
   "TYPES": {
     "Actor": {
       "character": "Character",

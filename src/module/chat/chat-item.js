@@ -1,4 +1,5 @@
 import { _getBaseMessageData } from './chat-common.js';
+const { renderTemplate } = foundry.applications.handlebars;
 
 export async function postItemMessage(
   actor,

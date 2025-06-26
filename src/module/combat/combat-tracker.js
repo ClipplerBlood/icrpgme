@@ -67,15 +67,16 @@ export class ICRPGCombatTracker extends CombatTracker {
       const combatant = combatants.get(turn.id);
       const actor = combatant.actor;
       turn.health = actor?.system?.health;
-      turn.type = actor.type;
+      turn.icrpgActorType = actor.type;
+      const type = actor.type;
 
       // Handle vehicle
-      if (actor?.type === 'vehicle') {
+      if (type === 'vehicle') {
         turn.chunks = actor.system.chunks;
       }
 
       // Handle character
-      if (actor?.type === 'character') {
+      if (type === 'character') {
         turn.defense = actor.system.attributes.defense.total;
       }
 
@@ -86,7 +87,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       // Resources
       turn.showMastery = showMastery;
       turn.showSp = showSp;
-      turn.showResources = (turn.isOwner || turn.isGM) && ['character', 'monster'].includes(turn.type);
+      turn.showResources = (turn.isOwner || turn.isGM) && ['character', 'monster'].includes(type);
       if (turn.showResources) {
         turn.mastery = actor.system.mastery;
         turn.sp = actor.system.sp;
@@ -95,7 +96,7 @@ export class ICRPGCombatTracker extends CombatTracker {
       if (turn.showResources) turn.showResources = showMastery || showSp || turn.resources?.length > 0;
 
       // Handle hard suit
-      if (turn.type === 'hardSuit') {
+      if (type === 'hardSuit') {
         turn.parts = actor.items.filter((i) => i.type === 'part').sort((a, b) => a.name.localeCompare(b.name));
         turn.power = actor.system.power.value;
       }

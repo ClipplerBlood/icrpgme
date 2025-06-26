@@ -20,6 +20,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    margin-bottom: 4px;
   }
 
   li.combatant .token-name {
@@ -37,6 +38,8 @@
     align-content: center;
     gap: 2px;
     position: relative;
+    justify-self: flex-end;
+    align-self: flex-start;
 
     & > div {
       position: relative;
@@ -56,8 +59,31 @@
       width: 16px;
       position: absolute;
       height: 16px;
-      right: 0;
+      right: -1px;
       backdrop-filter: saturate(0);
+    }
+  }
+
+  .shield-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+    width: 18px;
+
+    i {
+      font-size: 18px;
+      line-height: 13px;
+      color: var(--color-text-primary);
+    }
+
+    div {
+      position: absolute;
+      line-height: 18px;
+      font-weight: bold;
+      width: 18px;
+      text-align: center;
+      color: var(--sidebar-background);
     }
   }
 
@@ -100,19 +126,22 @@
   }
 
   .icrpg-combat-divider {
-    font-family: $ff-nusaliver;
+    //font-family: $ff-nusaliver;
+    //text-transform: uppercase;
+    font-weight: bolder;
     text-align: center;
     margin-top: 4px;
     font-size: 16px;
-    text-transform: uppercase;
     padding-top: 4px;
     padding-bottom: 4px;
+    color: var(--color-text-secondary);
   }
 
   li.icrpg-combat-divider {
     &:not(:first-of-type) {
       margin-top: 8px !important;
     }
+
     padding-top: 8px !important;
     border-top: 1px solid #000000;
     box-shadow: inset -10px 15px 1px -15px #ffffff;

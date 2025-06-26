@@ -1,5 +1,7 @@
 import { _getBaseMessageData } from './chat-common.js';
 
+const { renderTemplate } = foundry.applications.handlebars;
+
 async function _renderRollMessage(messageData, context = {}) {
   // V12 patch
   if ('temporary' in context && !context.temporary) {

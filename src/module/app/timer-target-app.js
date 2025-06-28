@@ -72,6 +72,8 @@ export class TimerTargetContainer extends HandlebarsApplicationMixin(Application
     const margin = 8;
     const sidebarRect = $('#sidebar').get(0).getBoundingClientRect();
     $(this.element).css('right', window.innerWidth - sidebarRect.left + margin);
+    $(this.element).css('width', this.element.querySelector('.timer-target-container').childElementCount * 100 + 'px');
+    $(this.element).css('left', '');
     $('#ui-top').css('margin-right', $(this.element).width() + margin);
     if (game.settings.get('icrpgme', 'useBackground')) this.element.addClass('bg-enabled');
   }

@@ -27,6 +27,8 @@
 
 a.content-link {
   font-family: $ff-flatbread;
+  color: #eee;
+  font-weight: 100;
 }
 
 .chat-message a.content-link {
@@ -266,6 +268,7 @@ img#logo {
       padding-bottom: 0;
       margin-top: 12px !important;
       margin-bottom: -8px !important;
+      color: #111;
 
       span {
         text-transform: none;

@@ -28,8 +28,6 @@ Hooks.once('init', async () => {
   // Preload Handlebars templates
   await preloadTemplates();
   registerHandlebarsHelpers();
-
-  // Register custom sheets (if any)
 });
 
 // Setup system
@@ -42,6 +40,13 @@ Hooks.once('ready', async () => {
   await handleMigrations();
   sendDevMessages();
   await importDocuments();
+
+  // Set the combat tracker icon
+  const combatSettings = game.settings.get('core', 'combatTrackerConfig');
+  if (game.user.isGM && combatSettings?.turnMarker?.src === '') {
+    combatSettings.turnMarker.src = 'modules/icrpg-premium-content/assets/icons/icrpgme.webp';
+    await game.settings.set('core', 'combatTrackerConfig', combatSettings);
+  }
 });
 
 // Add any additional hooks if necessary

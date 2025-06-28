@@ -5,10 +5,10 @@ const { CombatTracker } = foundry.applications.sidebar.tabs;
 export class ICRPGCombatTracker extends CombatTracker {
   static PARTS = {
     header: {
-      template: 'systems/icrpgme/templates/combat/combat-header.html',
+      template: 'systems/icrpgme/templates/combat/combat-header.hbs',
     },
     tracker: {
-      template: 'systems/icrpgme/templates/combat/combat-tracker.html',
+      template: 'systems/icrpgme/templates/combat/combat-tracker.hbs',
     },
     footer: {
       template: 'templates/sidebar/tabs/combat/footer.hbs',

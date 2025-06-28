@@ -18,7 +18,7 @@ export class TimerTargetContainer extends HandlebarsApplicationMixin(Application
 
   static PARTS = {
     body: {
-      template: 'systems/icrpgme/templates/app/timer-target-container.html',
+      template: 'systems/icrpgme/templates/app/timer-target-container.hbs',
     },
   };
 

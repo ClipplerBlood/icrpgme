@@ -21,7 +21,7 @@ export class ICRPGItemSheet extends ItemSheet {
   }
 
   get template() {
-    return 'systems/icrpgme/templates/item/generic-item.html';
+    return 'systems/icrpgme/templates/item/generic-item.hbs';
   }
 
   async getData() {

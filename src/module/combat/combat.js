@@ -54,6 +54,41 @@ export class ICRPGCombat extends Combat {
     return this.update(updateData, updateOptions);
   }
 
+  async previousTurn() {
+    if (this.round === 0) return this;
+    if (this.turn === 0 || this.turns.length === 0) return this.previousRound();
+
+    // Determine the previous turn number
+    let previousTurn = null;
+    const reversedTurns = Array.from(this.turns.entries()).reverse();
+
+    for (const [i, t] of reversedTurns) {
+      // Skip turns after current turn
+      if (i >= this.turn) continue;
+
+      // Skip defeated and obstacles
+      if (this.settings.skipDefeated && t.isDefeated) continue;
+      if (t.actor.type === 'obstacle') continue;
+
+      previousTurn = i;
+      break;
+    }
+
+    // Maybe advance to the previous round
+    if (this.round > 1 && previousTurn === null) {
+      return this.previousRound();
+    }
+
+    const advanceTime = this.getTimeDelta(this.round, this.turn, this.round, previousTurn);
+
+    // Update the document, passing data through a hook first
+    const updateData = { round: this.round, turn: previousTurn };
+    const updateOptions = { direction: -1, worldTime: { delta: advanceTime } };
+    Hooks.callAll('combatTurn', this, updateData, updateOptions);
+    await this.update(updateData, updateOptions);
+    return this;
+  }
+
   /**
    * Roll initiative for one or multiple Combatants within the Combat document
    * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll

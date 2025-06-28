@@ -2,7 +2,7 @@
     {{#* inline "liTurn"}}
       <li class="combatant actor directory-item flexrow {{turn.css}}" data-combatant-id="{{turn.id}}" data-action="activateCombatant">
 
-        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}" loading="lazy"/>
+        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}"/>
 
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
@@ -128,7 +128,7 @@
     {{/if}}
     {{#each vehicles as |turn|}}
       <li class="combatant actor directory-item flexrow vehicle {{turn.css}}" data-combatant-id="{{turn.id}}">
-        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}" loading="lazy"/>
+        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}"/>
 
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
@@ -190,7 +190,7 @@
     {{/if}}
     {{#each hardSuits as |turn|}}
       <li class="combatant actor directory-item flexrow hard-suit {{turn.css}}" data-combatant-id="{{turn.id}}">
-        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}" loading="lazy"/>
+        <img class="token-image" src="{{turn.img}}" alt="{{turn.name}}"/>
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
           <div class="resource-bar-container" style="{{#if hideHP}}visibility: hidden;{{/if}} margin-top:4px"

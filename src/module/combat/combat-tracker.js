@@ -1,4 +1,5 @@
 import { initializeDraggableCombatTracker } from './combat-tracker-draggable.js';
+
 const { CombatTracker } = foundry.applications.sidebar.tabs;
 
 export class ICRPGCombatTracker extends CombatTracker {
@@ -27,34 +28,90 @@ export class ICRPGCombatTracker extends CombatTracker {
     this.ctrlHoverId = null;
   }
 
-  async _prepareContext(options) {
-    const content = await super._prepareContext(options);
+  async _prepareTrackerContext(context, options) {
+    await super._prepareTrackerContext(context, options);
     const combatants = this.viewed?.combatants ?? [];
-    content.trackDamage = game.settings.get('icrpgme', 'trackDamage');
-    content.showMonsterHP = game.settings.get('icrpgme', 'showMonsterHP');
-    content.turns = this._enrichTurns(content.turns ?? this.viewed?.turns ?? []);
+    context.trackDamage = game.settings.get('icrpgme', 'trackDamage');
+    context.showMonsterHP = game.settings.get('icrpgme', 'showMonsterHP');
+    context.turns = this._enrichTurns(context.turns ?? this.viewed?.turns ?? []);
 
     // Split turns into player combatants (also includes NPCS) and GM combatants
-    content.playerTurns = [];
-    content.gmTurns = [];
-    content.obstacles = [];
-    content.vehicles = [];
-    content.hardSuits = [];
+    context.playerTurns = [];
+    context.gmTurns = [];
+    context.obstacles = [];
+    context.vehicles = [];
+    context.hardSuits = [];
 
     const vehicleIds = combatants.filter((c) => c.actor.type === 'vehicle').map((c) => c.id);
     const obstaclesIds = combatants.filter((c) => c.actor.type === 'obstacle').map((c) => c.id);
     const hardSuitsIds = combatants.filter((c) => c.actor.type === 'hardSuit').map((c) => c.id);
 
-    content.turns.forEach((t) => {
-      if (vehicleIds.includes(t.id)) return content.vehicles.push(t);
-      if (obstaclesIds.includes(t.id)) return content.obstacles.push(t);
-      if (hardSuitsIds.includes(t.id)) return content.hardSuits.push(t);
+    context.turns.forEach((t) => {
+      if (vehicleIds.includes(t.id)) return context.vehicles.push(t);
+      if (obstaclesIds.includes(t.id)) return context.obstacles.push(t);
+      if (hardSuitsIds.includes(t.id)) return context.hardSuits.push(t);
 
       const init = parseInt(t.initiative);
-      if (init < 40) content.gmTurns.push(t);
-      else content.playerTurns.push(t);
+      if (init < 40) context.gmTurns.push(t);
+      else context.playerTurns.push(t);
     });
-    return content;
+    return context;
+  }
+
+  async _renderHTML(context, options) {
+    var parts = await super._renderHTML(context, options);
+
+    // Hearts HP progress bar (everything but chunks)
+    $(parts.tracker)
+      .find('.hearts-container')
+      .each((_, hc) => {
+        const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
+        const c = this.viewed?.combatants.get(cid);
+        let dmg = c.actor.system.health.damage;
+        let maxHpOffset = (10 - c.actor.system.health.max) % 10; // The damage offset. 10 -> 0; 5 -> 5.
+
+        // If chunk, use the chunk dmg instead of the global
+        const chunkIndex = $(hc).closest('[data-chunk-index]').data('chunkIndex');
+        if (chunkIndex != null) {
+          const chunk = c.actor.system.chunks[chunkIndex];
+          dmg = chunk.health.damage;
+          maxHpOffset = chunk.health.max % 10;
+        }
+        dmg += maxHpOffset; // Sum the offset to the damage, ensuring that the displayed heart maximum is 10
+
+        $($(hc).find('[data-heart-index] .bar-effect').get().reverse()).each((_, el) => {
+          const w = 16 * (Math.clamp(dmg, 0, 10) / 10);
+          dmg -= 10;
+          el.style.width = Math.ceil(w) + 'px';
+        });
+      });
+
+    // Resources progress bar
+    $(parts.tracker)
+      .find('.resource-bar-container')
+      .each((_, barContainer) => {
+        barContainer = $(barContainer);
+        const bar = barContainer.find('.resource-bar');
+        const target = barContainer.closest('[data-target]').data('target');
+        const combatantId = barContainer.closest('[data-combatant-id]').data('combatantId');
+        const actor = this.viewed?.combatants.get(combatantId).actor;
+
+        let resource = foundry.utils.getProperty(actor, target);
+        if (resource == null) return;
+        let percentage;
+        if (target.includes('mastery')) percentage = (resource / 20) * 100;
+        else if (target.includes('sp') || target.includes('health')) percentage = (resource.value / resource.max) * 100;
+        else if (target.includes('power')) percentage = resource;
+        else {
+          const index = barContainer.closest('[data-resource-index]').data('resourceIndex');
+          resource = actor.system.resources[index];
+          percentage = (resource.value / resource.max) * 100;
+        }
+        percentage += `%`;
+
+        bar.css('width', percentage);
+      });
+    return parts;
   }
 
   _enrichTurns(turns) {
@@ -180,53 +237,6 @@ export class ICRPGCombatTracker extends CombatTracker {
       actor.update({ 'system.resources': resources }, { updateResourceIndex: index });
     });
 
-    // Hearts HP progress bar (everything but chunks)
-    html.find('.hearts-container').each((_, hc) => {
-      const cid = $(hc).closest('[data-combatant-id]').data('combatantId');
-      const c = this.viewed?.combatants.get(cid);
-      let dmg = c.actor.system.health.damage;
-      let maxHpOffset = (10 - c.actor.system.health.max) % 10; // The damage offset. 10 -> 0; 5 -> 5.
-
-      // If chunk, use the chunk dmg instead of the global
-      const chunkIndex = $(hc).closest('[data-chunk-index]').data('chunkIndex');
-      if (chunkIndex != null) {
-        const chunk = c.actor.system.chunks[chunkIndex];
-        dmg = chunk.health.damage;
-        maxHpOffset = chunk.health.max % 10;
-      }
-      dmg += maxHpOffset; // Sum the offset to the damage, ensuring that the displayed heart maximum is 10
-
-      $($(hc).find('[data-heart-index] .bar-effect').get().reverse()).each((_, el) => {
-        const w = 16 * (Math.clamp(dmg, 0, 10) / 10);
-        dmg -= 10;
-        el.style.width = Math.ceil(w) + 'px';
-      });
-    });
-
-    // Resources progress bar
-    html.find('.resource-bar-container').each((_, barContainer) => {
-      barContainer = $(barContainer);
-      const bar = barContainer.find('.resource-bar');
-      const target = barContainer.closest('[data-target]').data('target');
-      const combatantId = barContainer.closest('[data-combatant-id]').data('combatantId');
-      const actor = this.viewed?.combatants.get(combatantId).actor;
-
-      let resource = foundry.utils.getProperty(actor, target);
-      if (resource == null) return;
-      let percentage;
-      if (target.includes('mastery')) percentage = (resource / 20) * 100;
-      else if (target.includes('sp') || target.includes('health')) percentage = (resource.value / resource.max) * 100;
-      else if (target.includes('power')) percentage = resource;
-      else {
-        const index = barContainer.closest('[data-resource-index]').data('resourceIndex');
-        resource = actor.system.resources[index];
-        percentage = (resource.value / resource.max) * 100;
-      }
-      percentage += `%`;
-
-      bar.css('width', percentage);
-    });
-
     // Toolbar buttons
     html.find('[data-control="shuffle"]').click(() => this.viewed?.shuffleCombatants());
 
@@ -314,7 +324,17 @@ Hooks.on('updateActor', async (actor, changes, _options, _userID) => {
 
   if (actor.type === 'obstacle' && changes.name != null) {
     game.combats.forEach((combat) => {
-      combat.combatants.filter((c) => c.actor.uuid === actor.uuid).forEach((c) => c.update({ name: changes.name }));
+      combat.combatants.filter((c) => c.actor === actor).forEach((c) => c.update({ name: changes.name }));
+    });
+  }
+
+  // Toggle the defeated status when a non-character actor hp changes
+  const isHpUpdated = changes?.system?.health != null;
+  if (actor.type !== 'character' && isHpUpdated) {
+    game.combats.forEach((combat) => {
+      combat.combatants
+        .filter((c) => c.actor === actor)
+        .forEach((c) => c.update({ defeated: actor.system.health?.value === 0 }));
     });
   }
 });

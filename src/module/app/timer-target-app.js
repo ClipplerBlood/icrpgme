@@ -1,16 +1,29 @@
 import { i18n } from '../utils/utils.js';
 
 const ContextMenu = foundry.applications.ux.ContextMenu.implementation;
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export class TimerTargetContainer extends Application {
+export class TimerTargetContainer extends HandlebarsApplicationMixin(ApplicationV2) {
   // ======= STATIC =======
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static DEFAULT_OPTIONS = {
+    classes: ['timer-target-app'],
+    window: {
+      title: 'ICRPG APP',
+      frame: false,
+    },
+    position: {
+      top: 8,
+    },
+  };
+
+  static PARTS = {
+    body: {
       template: 'systems/icrpgme/templates/app/timer-target-container.html',
-      classes: ['timer-target-container'],
-      title: 'ICRPG APP', // Needed otherwise it can break
-      popOut: false,
-    });
+    },
+  };
+
+  async _renderHTML(context, options) {
+    return await super._renderHTML(context, options);
   }
 
   static create() {
@@ -54,16 +67,16 @@ export class TimerTargetContainer extends Application {
   }
 
   // ======= RENDERING =======
-  async _render(force = false, options = {}) {
-    await super._render(force, options);
+  async render(force = false, options = {}) {
+    await super.render(force, options);
     const margin = 8;
     const sidebarRect = $('#sidebar').get(0).getBoundingClientRect();
-    this.element.css('right', window.innerWidth - sidebarRect.left + margin);
-    $('#ui-top').css('margin-right', this.element.width() + margin);
+    $(this.element).css('right', window.innerWidth - sidebarRect.left + margin);
+    $('#ui-top').css('margin-right', $(this.element).width() + margin);
     if (game.settings.get('icrpgme', 'useBackground')) this.element.addClass('bg-enabled');
   }
 
-  getData(_options = {}) {
+  _prepareContext(_options = {}) {
     return {
       user: game.user,
       targets: this.targets,
@@ -71,8 +84,8 @@ export class TimerTargetContainer extends Application {
     };
   }
 
-  activateListeners(html) {
-    super.activateListeners(html);
+  _onRender(_context, _options) {
+    const html = $(this.element);
     if (!game.user.isGM) return;
 
     // Inputs

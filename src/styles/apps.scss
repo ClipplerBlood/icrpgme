@@ -1,23 +1,21 @@
 @import 'mixins';
 @import 'typography';
 
+.timer-target-app {
+  position: absolute;
+  //max-width: 50vw;
+}
+
 .timer-target-container {
   $size: 80px;
-  //background: #202020;
-  //background: #202020b0;
-  //backdrop-filter: blur(3px);
-  //box-shadow: 0 0 10px var(--color-shadow-dark);
   width: auto;
-  float: right;
   border-radius: 4px;
   color: white;
   font-family: $ff-nusaliver;
   display: flex;
   flex-direction: row-reverse;
   gap: 2px;
-  position: absolute;
   flex-wrap: wrap;
-  max-width: 50vw;
   top: 8px;
 
   &.bg-enabled {
@@ -36,11 +34,11 @@
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    height: $size + 5px;
+    height: $size + 20px;
   }
 
   .target {
-    width: $size + 10px;
+    width: $size + 20px;
   }
 
   .timer {
@@ -55,9 +53,11 @@
     width: auto;
     filter: blur(1px);
   }
+
   .target img {
     height: $size;
   }
+
   .timer img {
     height: $size - 5px;
   }
@@ -66,6 +66,7 @@
     @include transparent-input();
     position: relative;
   }
+
   input.value {
     width: $size - 10px;
     font-size: 30px;
@@ -78,6 +79,7 @@
     &:hover {
       color: black !important;
     }
+
     &:read-only:focus,
     &:read-only:hover {
       color: white !important;
@@ -88,6 +90,7 @@
     bottom: -42px;
     text-align: center;
   }
+
   .target input.name {
     width: $size;
   }

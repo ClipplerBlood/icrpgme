@@ -89,6 +89,7 @@ export class TimerTargetContainer extends Application {
 
     // Context Menus
     const remove = (header) => {
+      header = $(header);
       const index = header.closest('[data-index]').data('index');
       const group = header.closest('[data-group]').data('group');
       const current = this[group];

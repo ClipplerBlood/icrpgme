@@ -67,9 +67,6 @@
                 data-tooltip="ICRPG.tooltips.target"
                 aria-label="{{ localize "ICRPG.tooltips.target" }}">
         </button>
-        <!--            <button type="button" class="inline-control combat-control icon fa-solid fa-users-cog" data-action="rollNPC"-->
-        <!--                    {{#unless combat.turns.length}}disabled{{/unless}} data-tooltip="COMBAT.RollNPC"-->
-        <!--                    aria-label="{{ localize "COMBAT.RollNPC" }}"></button>-->
       {{else}}
         <div class="spacer"></div>
         <div class="spacer"></div>
@@ -91,7 +88,16 @@
 
     {{!-- Combat Controls --}}
     <div class="control-buttons right flexrow">
-      <div class="spacer"></div>
+      {{#if user.isGM }}
+        <button type="button"
+                class="inline-control combat-control icon fa-solid fa-random"
+                data-action="shuffle"
+                data-tooltip="ICRPG.tooltips.shuffle"
+                aria-label="{{ localize "ICRPG.tooltips.shuffle" }}">
+        </button>
+      {{else}}
+        <div class="spacer"></div>
+      {{/if}}
       <button type="button"
               class="encounter-context-menu inline-control combat-control icon fa-solid fa-ellipsis-vertical"
               {{#unless (and user.isGM hasCombat)}}disabled{{/unless}}></button>

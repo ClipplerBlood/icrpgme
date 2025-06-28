@@ -19,6 +19,7 @@ export class ICRPGCombatTracker extends CombatTracker {
     actions: {
       addTarget: () => game.icrpgme.timerTargetContainer?.addTarget(),
       addTimer: () => game.icrpgme.timerTargetContainer?.addTimer(),
+      shuffle: () => game.combat.shuffleCombatants(),
     },
   };
 

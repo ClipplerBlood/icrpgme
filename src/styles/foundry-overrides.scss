@@ -157,15 +157,22 @@ img#logo {
   padding-left: 16px;
 }
 
-.journal-entry-page {
-  --color-text-emphatic: #111;
-  --color-text-subtle: #111;
-}
+//
+//.journal-entry-page {
+//  --color-text-emphatic: #111;
+//  --color-text-subtle: #111;
+//}
 
-.editor-content,
 .journal-page-content {
-  --color-text-primary: #111;
   color: #111;
+
+  .editor-content {
+    p,
+    h2,
+    h3 {
+      color: var(--color-text-primary); // Ripristiniamo il colore originale dell'editor
+    }
+  }
 
   h2,
   h3 {
@@ -270,9 +277,11 @@ img#logo {
     p {
       margin-bottom: 0;
     }
+
     p + p {
       margin-top: 2px;
     }
+
     p + h5 {
       margin-top: 1.2rem !important;
     }
@@ -342,6 +351,7 @@ img#logo {
     tr:nth-child(odd) {
       background: rgba(247, 247, 247, 0.5);
     }
+
     //tr:first-child {
     //  background: none;
     //}
@@ -361,6 +371,7 @@ img#logo {
         font-size: 32px;
         margin-bottom: 0;
       }
+
       p {
         display: block;
         background: url('/systems/icrpgme/assets/ui/dice-red/target.webp') no-repeat;
@@ -381,19 +392,23 @@ img#logo {
 
   .journal-monsters-page {
     font-size: var(--font-size-16);
+
     h2 {
       margin-right: 0;
       margin-left: 0;
     }
+
     img.monster-image {
       float: right;
       max-width: 200px;
       max-height: 200px;
       mix-blend-mode: multiply;
     }
+
     .hp-box img {
       width: 20px;
     }
+
     .hp-box {
       text-transform: uppercase;
       font-weight: bold;
@@ -402,15 +417,18 @@ img#logo {
       align-items: center;
       gap: 4px;
     }
+
     .monster-props {
       text-transform: uppercase;
       font-weight: bold;
       font-style: italic;
     }
+
     .monster-action + div:not(.monster-action) {
       margin-top: 8px;
     }
   }
+
   .table-journal {
     p {
       margin-bottom: 2px;

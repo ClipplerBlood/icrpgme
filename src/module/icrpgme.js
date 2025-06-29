@@ -63,3 +63,7 @@ Hooks.on('collapseSidebar', () => {
   foundry.utils.debounce(() => game.icrpgme.timerTargetContainer?.render(), 250)();
   // game.icrpgme.timerTargetContainer?.render();
 });
+
+Hooks.once('ready', async () => {
+  await Array.from(game.collections.get('Item'))[0].sheet.render(true);
+});

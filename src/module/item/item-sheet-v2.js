@@ -27,6 +27,9 @@ export default class ICRPGItemSheetV2 extends ICRPGBaseSheet {
     },
   };
 
+  static PARTS_NON_EDITABLE = ['bonuses', 'tabNavigation'];
+  static PARTS_NON_VISIBLE = ['description'];
+
   static TABS = {
     primary: {
       tabs: [

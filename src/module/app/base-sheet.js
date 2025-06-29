@@ -9,6 +9,9 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     },
   };
 
+  static PARTS_NON_VISIBLE = [];
+  static PARTS_NON_EDITABLE = [];
+
   static async toggleEditable(_event, _target) {
     const wasPreviouslyUnlocked = this.locked === false;
     this.locked = !(this.locked ?? true);
@@ -69,12 +72,29 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
   async minimize() {
     await super.minimize();
     this.window.title.style.display = 'block';
-    this.window.editSlider.style.display = 'none';
+    $(this.window.editSlider).css('display', 'none');
   }
 
   async maximize() {
     await super.maximize();
     this.window.title.style.display = 'none';
-    this.window.editSlider.style.display = 'flex';
+    $(this.window.editSlider).css('display', 'flex');
+  }
+
+  _configureRenderOptions(options) {
+    super._configureRenderOptions(options);
+
+    // Hide parts for users that do not have view permissions
+    if (!this.isVisible) {
+      options.parts = options.parts.filter(
+        (part) =>
+          !this.constructor.PARTS_NON_VISIBLE.includes(part) && !this.constructor.PARTS_NON_EDITABLE.includes(part),
+      );
+    }
+
+    // Hide parts for users that do not have edit permissions
+    if (!this.isEditable) {
+      options.parts = options.parts.filter((part) => !this.constructor.PARTS_NON_EDITABLE.includes(part));
+    }
   }
 }

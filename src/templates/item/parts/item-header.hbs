@@ -1,0 +1,11 @@
+{{log @root}}
+<div>
+  <div class="item-header">
+    <img src="{{document.img}}"
+         title="{{document.name}}" {{#if editable}}data-edit="img" data-action="editImage" {{else}}data-action="showArtwork"{{/if}}/>
+    <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}/>
+    <!--  <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>-->
+  </div>
+  <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>
+</div>
+

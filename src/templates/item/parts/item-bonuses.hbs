@@ -1,0 +1,41 @@
+<section class="tab item-bonuses {{tab.cssClass}}" data-tab="bonuses" data-group="primary">
+  <div class="bonus-col">
+    <div class="ff-header fs-16">{{localize "ICRPG.attributes"}}</div>
+    {{#each system.bonuses.attributes as |bonusValue bonusKey|}}
+      {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.attributes." bonusKey)}}
+    {{/each}}
+  </div>
+
+  <div class="bonus-col">
+    <div class="ff-header fs-16">{{localize "ICRPG.efforts"}}</div>
+    {{#each system.bonuses.efforts as |bonusValue bonusKey|}}
+      {{>bonusRow bonusValue=bonusValue bonusKey=bonusKey name=(concat "system.bonuses.efforts." bonusKey)}}
+    {{/each}}
+  </div>
+
+  <div class="bonus-col">
+    <div class="ff-header fs-16">{{localize "ICRPG.weight.weight"}}</div>
+    {{#if (or (eq document.type "loot") (eq document.type "spell"))}}
+      {{>bonusRow bonusValue=system.weight name="system.weight" loc="ICRPG.weight.item"}}
+    {{/if}}
+    {{#with system.bonuses.weight as |weight| }}
+      {{>bonusRow bonusValue=weight.carried name="system.bonuses.weight.carried" loc="ICRPG.weight.carriedCapacity"}}
+      {{>bonusRow bonusValue=weight.equipped name="system.bonuses.weight.equipped" loc="ICRPG.weight.equippedCapacity"}}
+    {{/with}}
+  </div>
+</section>
+
+{{#*inline "bonusRow"}}
+  <div class="bonus-row value-{{bonusValue}}">
+    <input type="number" min="-10" max="10" value="{{bonusValue}}"
+           name="{{name}}" {{readonly @root.readonly}}>
+    <div>
+      {{#if loc}}
+        {{localize loc}}
+      {{else}}
+        {{localizeConcatIf "ICRPG.attributesShort." bonusKey}}
+        {{localizeConcatIf "ICRPG.effortsLong." bonusKey}}
+      {{/if}}
+    </div>
+  </div>
+{{/inline}}

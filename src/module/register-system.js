@@ -21,6 +21,7 @@ import { ICRPGItem } from './item/item.js';
 import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
+import ICRPGItemSheetV2 from './item/item-sheet-v2.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -47,6 +48,13 @@ export function registerSystem() {
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;
+
+  const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
+  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGItemSheetV2, {
+    types: ['loot'],
+    makeDefault: true,
+    label: 'icrpgme.ICRPGSheetV2',
+  });
 
   // ChatMessage registration
   CONFIG.ChatMessage.documentClass = ICRPGRollMessage;

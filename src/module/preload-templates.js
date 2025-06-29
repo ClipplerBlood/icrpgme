@@ -44,6 +44,14 @@ export async function preloadTemplates() {
     // Combat tracker
     'systems/icrpgme/templates/combat/combat-tracker.hbs',
     'systems/icrpgme/templates/combat/combat-header.hbs',
+
+    // V2 sheets
+    'systems/icrpgme/templates/item/parts/item-header.hbs',
+    'systems/icrpgme/templates/item/parts/item-description.hbs',
+    'systems/icrpgme/templates/item/parts/item-bonuses.hbs',
+
+    // Generic
+    'systems/icrpgme/templates/generic/tab-navigation.hbs',
   ];
 
   Roll.CHAT_TEMPLATE = 'systems/icrpgme/templates/chat/roll.hbs';

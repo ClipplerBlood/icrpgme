@@ -1,0 +1,74 @@
+@import '../typography';
+@import '../mixins';
+
+.item-header {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 48px;
+    width: 48px;
+    background: gainsboro;
+    object-fit: cover;
+    flex: 0;
+    border-radius: 2px;
+    border: 3px solid var(--c-border);
+    //outline: 1px solid gainsboro;
+    outline: none;
+    margin-right: 8px;
+
+    &[src='icons/svg/item-bag.svg']:not([data-edit]) {
+      display: none;
+    }
+  }
+
+  input[name='name'] {
+    @extend .ff-header;
+    color: var(--c-text);
+    font-size: 20px;
+    padding: 0;
+  }
+}
+
+.item-description {
+  font-size: 16px;
+
+  div {
+    white-space: pre-wrap;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
+
+.item-bonuses {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 16px;
+
+  .bonus-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    //font-family: $ff-carlito;
+    font-family: $ff-flatbread;
+    font-weight: 100;
+    font-size: 14px;
+
+    &.value-0,
+    &.value-0 input {
+      color: var(--c-light-grey) !important;
+    }
+
+    input {
+      width: 18px;
+      margin-right: 6px;
+      height: 16px;
+      text-align: right;
+    }
+  }
+}

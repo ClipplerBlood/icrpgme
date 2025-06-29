@@ -1,7 +1,8 @@
 {
   "icrpgme": {
     "ICRPGActorSheet": "ICRPG Actor Sheet",
-    "ICRPGItemSheet": "ICRPG Item Sheet"
+    "ICRPGItemSheet": "ICRPG Item Sheet (v1)",
+    "ICRPGSheetV2": "ICRPG Sheet (v2)"
   },
   "TYPES": {
     "Actor": {
@@ -114,6 +115,7 @@
     "easy": "Easy",
     "hard": "Hard",
     "initiative": "Initiative",
+    "lockUnlock": "Lock/Unlock Sheet",
     "locked": "Locked",
     "unlocked": "Unlocked",
     "notifications": {

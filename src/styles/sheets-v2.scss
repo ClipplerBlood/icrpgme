@@ -1,0 +1,174 @@
+/*======================================
+VARIABLES
+=======================================*/
+body.theme-dark form.icrpg-sheet-v2 {
+  --c-text: #f3f3f3;
+  //--c-border: #fafafa;
+  --c-border: var(--c-text);
+  --c-text-negative: #111;
+  --color-text-primary: var(--c-text);
+
+  &::before {
+    filter: blur(2px) invert(0.9);
+  }
+
+  background: black;
+}
+
+body.theme-light form.icrpg-sheet-v2 {
+  --c-text: #111;
+  --c-border: #111;
+  --c-text-negative: white;
+  --color-text-primary: var(--c-text);
+
+  &::before {
+    filter: blur(2px) brightness(0.97);
+  }
+
+  background: white;
+}
+
+/*======================================
+SHEET APP CONTAINER
+=======================================*/
+form.icrpg-sheet-v2 {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/ui/backgrounds/bg-sheet.png');
+    background-size: cover;
+    filter: blur(2px) brightness(0.97);
+    z-index: -1;
+  }
+
+  /*======================================
+  WINDOW HEADER
+  =======================================*/
+  .window-header {
+    justify-content: flex-end;
+    background: none;
+    border: none;
+
+    .slide-toggle-track {
+      margin-left: 2px;
+      margin-right: auto;
+    }
+
+    button.header-control {
+      color: var(--c-text);
+      border: none;
+      box-shadow: inset 0px 0px 2px 0px var(--c-border);
+    }
+
+    .window-title {
+      color: black;
+    }
+  }
+
+  /*======================================
+  TABS
+  =======================================*/
+  .icrpg-sheet-tabs {
+    display: flex;
+    padding: 8px 0 0;
+    gap: 4px;
+    margin: auto 0 0;
+    border: none;
+
+    a {
+      background-color: var(--c-border);
+      -webkit-mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: cover;
+      mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      color: var(--c-text-negative);
+      @extend .ff-header;
+      height: 25px;
+      padding-top: 6px;
+      font-size: 16px;
+      padding-left: 6px;
+      flex: 1;
+      text-align: left;
+      line-height: 1;
+    }
+
+    a.active {
+      color: var(--c-red);
+      text-shadow: none;
+    }
+  }
+
+  .tab:not(.active) {
+    display: none !important;
+  }
+
+  /*======================================
+   WINDOW CONTENT
+   =======================================*/
+  .window-content {
+    overflow: visible;
+    padding: 0 8px 8px;
+
+    @import './sheets/item-sheet';
+
+    input {
+      @include transparent-input();
+      color: var(--c-text);
+    }
+
+    section {
+      color: var(--c-text);
+      font-family: $ff-carlito;
+    }
+
+    textarea {
+      @include transparent-input();
+      width: auto;
+      height: auto;
+      color: var(--c-text);
+      font-family: $ff-carlito;
+      font-size: 16px;
+    }
+  }
+
+  /*======================================
+  LOCKED SLIDER
+  =======================================*/
+  .slide-toggle-track {
+    width: 32px;
+    height: 16px;
+    border-radius: 9px;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0px 0px 2px 0px var(--c-border);
+    cursor: pointer;
+    background: var(--c-text);
+
+    .slide-toggle-thumb {
+      width: 14px;
+      height: 14px;
+      background: var(--c-text-negative);
+      border-radius: 10px;
+      border: 1px solid var(--c-border);
+      cursor: pointer;
+      margin: 0 1px;
+    }
+
+    &.locked {
+      justify-content: flex-start;
+      background: var(--c-border);
+    }
+
+    &:not(.locked) {
+      justify-content: flex-end;
+      background: red;
+    }
+  }
+}

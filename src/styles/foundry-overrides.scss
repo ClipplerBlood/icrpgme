@@ -157,6 +157,7 @@ img#logo {
   border-bottom: none;
   padding-bottom: 5px;
   padding-left: 16px;
+  color: #111;
 }
 
 //
@@ -170,9 +171,13 @@ img#logo {
 
   .editor-content {
     p,
+    h1,
     h2,
-    h3 {
-      color: var(--color-text-primary); // Ripristiniamo il colore originale dell'editor
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--color-text-primary);
     }
   }
 

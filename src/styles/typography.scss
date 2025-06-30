@@ -57,6 +57,7 @@
 $ff-flatbread: 'FlatBread', 'Arial', sans-serif;
 $ff-carlito: 'Carlito', 'Arial', sans-serif;
 $ff-nusaliver: 'nusaliver', 'Arial', sans-serif;
+$ff-signika: 'Signika', 'Carlito', 'Arial', sans-serif;
 
 @each $s in [11, 12, 13, 14, 16, 18, 20, 24, 28, 32, 48] {
   .fs-#{$s} {

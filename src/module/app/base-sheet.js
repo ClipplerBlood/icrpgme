@@ -57,6 +57,7 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     context.editable = this.isEditable && !this.locked;
     context.readonly = !context.editable;
     context.fields = this.document.system.schema.fields;
+    context.isEditable = this.isEditable;
     return context;
   }
 
@@ -100,5 +101,19 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     if (!this.isEditable) {
       options.parts = options.parts.filter((part) => !this.constructor.PARTS_NON_EDITABLE.includes(part));
     }
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    const html = $(this.element);
+
+    // Discrete selector
+    html.find('.icrpg-discrete-selector-v2').click((ev) => {
+      const index = $(ev.currentTarget).closest('[data-index]').data('index');
+      const target = $(ev.currentTarget).closest('[data-target]').data('target');
+      let value = index + 1;
+      if (foundry.utils.getProperty(this.document, target) === value) value -= 1;
+      this.document.update({ [target]: value });
+    });
   }
 }

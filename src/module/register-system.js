@@ -22,8 +22,8 @@ import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
 import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
-import ICRPGLootSheet from './item/sheets/loot-sheet.js';
-import ICRPGAbilitySheet from './item/sheets/ability-sheet.js';
+import ICRPGBaseItemSheetV2 from './item/item-sheet-v2.js';
+import ICRPGPowerSheet from './item/sheets/power-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -58,9 +58,9 @@ export function registerSystem() {
       label: 'icrpgme.ICRPGSheetV2',
     });
 
-  registerItemSheet(['loot'], ICRPGLootSheet);
+  registerItemSheet(['loot', 'ability', 'augment'], ICRPGBaseItemSheetV2);
   registerItemSheet(['spell'], ICRPGSpellSheet);
-  registerItemSheet(['ability'], ICRPGAbilitySheet);
+  registerItemSheet(['power'], ICRPGPowerSheet);
 
   // ChatMessage registration
   CONFIG.ChatMessage.documentClass = ICRPGRollMessage;

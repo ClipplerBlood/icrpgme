@@ -34,17 +34,11 @@
 @mixin flex-row {
   display: flex;
   flex-direction: row;
-  & > * {
-    flex: 1;
-  }
 }
 
 @mixin flex-col {
   display: flex;
   flex-direction: column;
-  & > * {
-    flex: 1;
-  }
 }
 
 .flex-row {
@@ -53,6 +47,18 @@
 
 .flex-col {
   @include flex-col;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 @mixin hover {
@@ -164,7 +170,7 @@ input[type='checkbox'][readonly] {
   animation: shake 0.3s;
 }
 
-@each $s in [4, 8, 12, 16, 20, 32] {
+@each $s in [0, 4, 8, 12, 16, 20, 32] {
   .mt-#{$s} {
     margin-top: #{$s}px;
   }

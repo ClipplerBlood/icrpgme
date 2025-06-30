@@ -1,0 +1,40 @@
+<section class="tab {{tab.cssClass}} item-description power" data-tab="description" data-group="primary">
+
+  {{#if editable}}
+    <textarea name="system.description" autosize spellcheck="false" class="description-text"
+              placeholder="{{localize "Description"}}">{{system.description}}</textarea>
+    {{#each system.spCosts as |entry index|}}
+      <div class="power-cost edit" data-entry-index="{{index}}">
+        <div class="flex-row items-center">
+          <b>{{localize "ICRPG.spCost"}}:</b>
+          <input type="number" min="0" data-target="cost" value="{{entry.cost}}" placeholder="0" class="font-bold">
+        </div>
+        <textarea placeholder="{{localize "Description"}}" spellcheck="false" autosize
+                  data-target="description">{{entry.description}}</textarea>
+      </div>
+    {{/each}}
+    <div class="power-cost edit" data-entry-index="-1">
+      <div class="flex-row items-center">
+        <b>{{localize "ICRPG.spCost"}}:</b>
+        <input type="number" min="0" data-target="cost" placeholder="0" class="font-bold">
+      </div>
+    </div>
+
+  {{else}}
+    <div class="description-text">{{system.description}}</div>
+    {{#each system.spCosts as |entry index|}}
+      <div class="power-cost" data-entry-index="{{index}}">
+        <b>{{localize "ICRPG.spCost"}} {{entry.cost}}:</b>
+        <p class="mt-0">{{entry.description}}</p>
+      </div>
+    {{/each}}
+  {{/if}}
+
+
+</section>
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector v2" data-target='{{target}}' data-index="{{index}}">
+    <div class="{{#if (gt value index)}}selected{{/if}}"></div>
+  </div>
+{{/inline}}

@@ -50,6 +50,7 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/item/parts/item-description.hbs',
     'systems/icrpgme/templates/item/parts/item-bonuses.hbs',
     'systems/icrpgme/templates/item/parts/spell-description.hbs',
+    'systems/icrpgme/templates/item/parts/power-description.hbs',
 
     // Generic
     'systems/icrpgme/templates/generic/tab-navigation.hbs',

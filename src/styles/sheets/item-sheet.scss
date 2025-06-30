@@ -39,7 +39,7 @@
 .item-description {
   font-size: 16px;
 
-  div {
+  .description-text {
     white-space: pre-wrap;
   }
 
@@ -75,6 +75,22 @@
       margin-right: 6px;
       height: 16px;
       text-align: right;
+    }
+  }
+}
+
+.item-description.power {
+  .description-text {
+    font-style: italic;
+  }
+
+  .power-cost {
+    margin-top: 16px;
+  }
+
+  .power-cost.edit .flex-row {
+    * {
+      flex: 1;
     }
   }
 }

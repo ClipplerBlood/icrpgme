@@ -4,7 +4,7 @@
     <img class="item-image" src="{{document.img}}"
          title="{{document.name}}" {{#if editable}}data-edit="img" data-action="editImage"
          {{else}}data-action="showArtwork"{{/if}}/>
-    <div>
+    <div style="flex-grow: 1">
       <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}/>
 
       {{#if (eq document.type "spell")}}

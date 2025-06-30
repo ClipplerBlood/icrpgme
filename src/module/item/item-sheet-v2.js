@@ -17,9 +17,11 @@ export default class ICRPGBaseItemSheetV2 extends ICRPGBaseSheet {
     },
     description: {
       template: 'systems/icrpgme/templates/item/parts/item-description.hbs',
+      scrollable: [''],
     },
     bonuses: {
       template: 'systems/icrpgme/templates/item/parts/item-bonuses.hbs',
+      scrollable: [''],
     },
 
     tabNavigation: {

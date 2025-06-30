@@ -114,6 +114,7 @@ form.icrpg-sheet-v2 {
   .window-content {
     overflow: visible;
     padding: 0 8px 8px;
+    max-height: calc(100% - 36px);
 
     @import './sheets/item-sheet';
 
@@ -129,6 +130,9 @@ form.icrpg-sheet-v2 {
     section {
       color: var(--c-text);
       font-family: $ff-carlito;
+    }
+    > section {
+      overflow-y: auto;
     }
 
     textarea {

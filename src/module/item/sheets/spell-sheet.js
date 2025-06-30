@@ -7,9 +7,11 @@ export default class ICRPGSpellSheet extends ICRPGBaseItemSheetV2 {
     },
     description: {
       template: 'systems/icrpgme/templates/item/parts/spell-description.hbs',
+      scrollable: [''],
     },
     bonuses: {
       template: 'systems/icrpgme/templates/item/parts/item-bonuses.hbs',
+      scrollable: [''],
     },
 
     tabNavigation: {

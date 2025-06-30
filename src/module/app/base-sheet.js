@@ -56,6 +56,7 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     this.locked ??= true;
     context.editable = this.isEditable && !this.locked;
     context.readonly = !context.editable;
+    context.fields = this.document.system.schema.fields;
     return context;
   }
 

@@ -23,6 +23,7 @@ import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
 import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
 import ICRPGLootSheet from './item/sheets/loot-sheet.js';
+import ICRPGAbilitySheet from './item/sheets/ability-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -50,17 +51,16 @@ export function registerSystem() {
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;
 
-  const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
-  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGLootSheet, {
-    types: ['loot'],
-    makeDefault: true,
-    label: 'icrpgme.ICRPGSheetV2',
-  });
-  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGSpellSheet, {
-    types: ['spell'],
-    makeDefault: true,
-    label: 'icrpgme.ICRPGSheetV2',
-  });
+  const registerItemSheet = (types, SheetClass) =>
+    Items.registerSheet('icrpgme', SheetClass, {
+      makeDefault: true,
+      types,
+      label: 'icrpgme.ICRPGSheetV2',
+    });
+
+  registerItemSheet(['loot'], ICRPGLootSheet);
+  registerItemSheet(['spell'], ICRPGSpellSheet);
+  registerItemSheet(['ability'], ICRPGAbilitySheet);
 
   // ChatMessage registration
   CONFIG.ChatMessage.documentClass = ICRPGRollMessage;

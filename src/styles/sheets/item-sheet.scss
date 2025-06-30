@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
 
-  img {
+  img.item-image {
     height: 48px;
     width: 48px;
     background: gainsboro;
@@ -20,6 +20,12 @@
     &[src='icons/svg/item-bag.svg']:not([data-edit]) {
       display: none;
     }
+  }
+
+  img.spell-img-decoration {
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
   }
 
   input[name='name'] {

@@ -21,7 +21,8 @@ import { ICRPGItem } from './item/item.js';
 import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
-import ICRPGItemSheetV2 from './item/item-sheet-v2.js';
+import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
+import ICRPGLootSheet from './item/sheets/loot-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -50,8 +51,13 @@ export function registerSystem() {
   CONFIG.Item.documentClass = ICRPGItem;
 
   const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
-  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGItemSheetV2, {
+  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGLootSheet, {
     types: ['loot'],
+    makeDefault: true,
+    label: 'icrpgme.ICRPGSheetV2',
+  });
+  DocumentSheetConfig.registerSheet(Item, 'icrpgme', ICRPGSpellSheet, {
+    types: ['spell'],
     makeDefault: true,
     label: 'icrpgme.ICRPGSheetV2',
   });

@@ -1,6 +1,6 @@
 import { ICRPGBaseSheet } from '../app/base-sheet.js';
 
-export default class ICRPGItemSheetV2 extends ICRPGBaseSheet {
+export default class ICRPGBaseItemSheetV2 extends ICRPGBaseSheet {
   static DEFAULT_OPTIONS = {
     classes: ['icrpg-sheet-v2'],
     window: {

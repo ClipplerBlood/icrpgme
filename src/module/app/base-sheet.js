@@ -7,6 +7,9 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     actions: {
       toggleEditable: ICRPGBaseSheet.toggleEditable,
     },
+    form: {
+      submitOnChange: true,
+    },
   };
 
   static PARTS_NON_VISIBLE = [];
@@ -65,7 +68,7 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
 
   async close(options = {}) {
     // Prevent closing if the sheet is unlocked
-    if (!this.locked) return;
+    if (!this.locked) await this.submit();
     return await super.close(options);
   }
 

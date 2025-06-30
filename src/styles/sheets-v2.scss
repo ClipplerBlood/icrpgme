@@ -65,7 +65,7 @@ form.icrpg-sheet-v2 {
     }
 
     .window-title {
-      color: black;
+      color: var(--c-text);
     }
   }
 
@@ -120,6 +120,10 @@ form.icrpg-sheet-v2 {
     input {
       @include transparent-input();
       color: var(--c-text);
+
+      &::placeholder {
+        color: var(--c-light-grey);
+      }
     }
 
     section {
@@ -134,6 +138,10 @@ form.icrpg-sheet-v2 {
       color: var(--c-text);
       font-family: $ff-carlito;
       font-size: 16px;
+
+      &::placeholder {
+        color: var(--c-light-grey);
+      }
     }
   }
 

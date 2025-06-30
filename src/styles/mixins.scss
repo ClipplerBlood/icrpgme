@@ -163,3 +163,12 @@ input[type='checkbox'][readonly] {
 .shake {
   animation: shake 0.3s;
 }
+
+@each $s in [4, 8, 12, 16, 20, 32] {
+  .mt-#{$s} {
+    margin-top: #{$s}px;
+  }
+  .mb-#{$s} {
+    margin-bottom: #{$s}px;
+  }
+}

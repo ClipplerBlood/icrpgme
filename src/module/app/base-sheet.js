@@ -75,7 +75,7 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
   async _preparePartContext(partId, context, options) {
     context = await super._preparePartContext(partId, context, options);
     // Each part gets also its tab data, if present
-    context.tab = context.tabs[partId];
+    context.tab = context.tabs?.[partId];
     return context;
   }
 

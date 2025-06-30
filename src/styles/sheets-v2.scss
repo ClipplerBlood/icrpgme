@@ -121,7 +121,9 @@ form.icrpg-sheet-v2 {
     padding: 0 8px 8px;
     max-height: calc(100% - 36px);
 
+    // IMPORT TYPE SPECIFIC STYLES
     @import './sheets/item-sheet';
+    @import './sheets/actor-sheet';
 
     input {
       @include transparent-input();

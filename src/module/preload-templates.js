@@ -45,7 +45,11 @@ export async function preloadTemplates() {
     'systems/icrpgme/templates/combat/combat-tracker.hbs',
     'systems/icrpgme/templates/combat/combat-header.hbs',
 
-    // V2 sheets
+    //// V2 sheets
+    // Actors
+    'systems/icrpgme/templates/actor-v2/monster/monster-header.hbs',
+
+    // Items
     'systems/icrpgme/templates/item/parts/item-header.hbs',
     'systems/icrpgme/templates/item/parts/item-description.hbs',
     'systems/icrpgme/templates/item/parts/item-bonuses.hbs',

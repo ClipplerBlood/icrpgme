@@ -1,0 +1,19 @@
+@import '../typography';
+@import '../mixins';
+
+.monster-header {
+  overflow-y: visible;
+
+  .icrpg-name-container {
+    background-image: url(/systems/icrpgme/assets/ui/backgrounds/bg-monster-header.webp);
+    background-size: 100% 100%;
+    font-size: 28px;
+
+    input {
+      font-family: $ff-nusaliver;
+      padding-top: 6px;
+      padding-left: 8px;
+      height: 40px;
+    }
+  }
+}

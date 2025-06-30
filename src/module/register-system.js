@@ -24,9 +24,23 @@ import { ICRPGToken } from './combat/token.js';
 import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
 import ICRPGBaseItemSheetV2 from './item/item-sheet-v2.js';
 import ICRPGPowerSheet from './item/sheets/power-sheet.js';
+import ICRPGMonsterSheet from './actor/sheets/monster-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
+const registerItemSheet = (types, SheetClass) =>
+  Items.registerSheet('icrpgme', SheetClass, {
+    makeDefault: true,
+    types,
+    label: 'icrpgme.ICRPGSheetV2',
+  });
+
+const registerActorSheet = (types, SheetClass) =>
+  Actors.registerSheet('icrpgme', SheetClass, {
+    makeDefault: true,
+    types,
+    label: 'icrpgme.ICRPGSheetV2',
+  });
 
 export function registerSystem() {
   // Actor registration
@@ -37,6 +51,7 @@ export function registerSystem() {
   CONFIG.Actor.dataModels['hardSuit'] = ICRPGHardSuitDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
+  registerActorSheet(['monster'], ICRPGMonsterSheet);
   CONFIG.Actor.documentClass = ICRPGActor;
 
   // Item registration
@@ -50,13 +65,6 @@ export function registerSystem() {
   Items.unregisterSheet('core', ActorSheet);
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;
-
-  const registerItemSheet = (types, SheetClass) =>
-    Items.registerSheet('icrpgme', SheetClass, {
-      makeDefault: true,
-      types,
-      label: 'icrpgme.ICRPGSheetV2',
-    });
 
   registerItemSheet(['loot', 'ability', 'augment'], ICRPGBaseItemSheetV2);
   registerItemSheet(['spell'], ICRPGSpellSheet);

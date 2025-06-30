@@ -1,0 +1,33 @@
+import { ICRPGBaseSheet } from '../app/base-sheet.js';
+
+export default class ICRPGActorSheetV2 extends ICRPGBaseSheet {
+  static DEFAULT_OPTIONS = {
+    classes: ['icrpg-sheet-v2', 'actor'],
+    window: {
+      resizable: true,
+    },
+    position: {
+      width: 400,
+    },
+    actions: {
+      setHearts: ICRPGActorSheetV2.setHearts,
+    },
+  };
+
+  /**
+   * Set the number of hearts after a click event
+   * @param _event
+   * @param target
+   */
+  static setHearts(_event, target) {
+    const heartIndex = Number(target.dataset['index']);
+    const currentHearts = this.document.system.health.hearts;
+    const newHearts = heartIndex + 1;
+
+    let finalHearts;
+    if (newHearts !== currentHearts) finalHearts = newHearts;
+    else finalHearts = currentHearts - 0.5;
+
+    this.document.update({ 'system.health.hearts': finalHearts });
+  }
+}

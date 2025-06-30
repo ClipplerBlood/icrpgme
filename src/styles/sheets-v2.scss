@@ -108,6 +108,11 @@ form.icrpg-sheet-v2 {
     display: none !important;
   }
 
+  &.item.locked .icrpg-sheet-tabs {
+    // Hide the tab nav for locked items
+    display: none;
+  }
+
   /*======================================
    WINDOW CONTENT
    =======================================*/

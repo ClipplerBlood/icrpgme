@@ -23,7 +23,7 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     if (wasPreviouslyUnlocked) {
       await this.submit();
     }
-    this.render();
+    await this.render();
   }
 
   async _renderFrame(options) {
@@ -46,6 +46,17 @@ export class ICRPGBaseSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     // Hide the title if not minimized
     if (!this.minimized) this.window.title.style.display = 'none';
     return frame;
+  }
+
+  async render(options = {}, _options = {}) {
+    await super.render(options, _options);
+
+    // Add the locked class to the element
+    if (this.locked) {
+      this.element.classList.add('locked');
+    } else {
+      this.element.classList.remove('locked');
+    }
   }
 
   async _prepareContext(options) {

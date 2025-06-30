@@ -1,7 +1,7 @@
-import ICRPGBaseItemSheetV2 from '../item-sheet-v2.js';
+import ICRPGItemSheetV2 from '../item-sheet-v2.js';
 import { onArrayEdit } from '../../utils/utils.js';
 
-export default class ICRPGPowerSheet extends ICRPGBaseItemSheetV2 {
+export default class ICRPGPowerSheet extends ICRPGItemSheetV2 {
   static PARTS = {
     header: {
       template: 'systems/icrpgme/templates/item/parts/item-header.hbs',

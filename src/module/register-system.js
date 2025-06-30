@@ -22,7 +22,7 @@ import { ICRPGCombatTracker } from './combat/combat-tracker.js';
 import { ICRPGCombat } from './combat/combat.js';
 import { ICRPGToken } from './combat/token.js';
 import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
-import ICRPGBaseItemSheetV2 from './item/item-sheet-v2.js';
+import ICRPGItemSheetV2 from './item/item-sheet-v2.js';
 import ICRPGPowerSheet from './item/sheets/power-sheet.js';
 import ICRPGMonsterSheet from './actor/sheets/monster-sheet.js';
 
@@ -66,7 +66,7 @@ export function registerSystem() {
   Items.registerSheet('icrpgme', ICRPGItemSheet, { makeDefault: true });
   CONFIG.Item.documentClass = ICRPGItem;
 
-  registerItemSheet(['loot', 'ability', 'augment'], ICRPGBaseItemSheetV2);
+  registerItemSheet(['loot', 'ability', 'augment'], ICRPGItemSheetV2);
   registerItemSheet(['spell'], ICRPGSpellSheet);
   registerItemSheet(['power'], ICRPGPowerSheet);
 

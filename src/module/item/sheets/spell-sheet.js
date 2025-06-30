@@ -1,6 +1,6 @@
-import ICRPGBaseItemSheetV2 from '../item-sheet-v2.js';
+import ICRPGItemSheetV2 from '../item-sheet-v2.js';
 
-export default class ICRPGSpellSheet extends ICRPGBaseItemSheetV2 {
+export default class ICRPGSpellSheet extends ICRPGItemSheetV2 {
   static PARTS = {
     header: {
       template: 'systems/icrpgme/templates/item/parts/item-header.hbs',

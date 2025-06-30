@@ -104,7 +104,8 @@ export const diceMap = {
 Hooks.on('renderActorSheet', (app, html, data) => _onRenderInner(app, html, data));
 Hooks.on('renderItemSheet', (app, html, data) => _onRenderInner(app, html, data));
 Hooks.on('renderICRPGBaseApp', (app, html, data) => _onRenderInner(app, html, data));
-Hooks.on('renderICRPGBaseSheet', (app, html, context, _options) => _onRenderInner(app, $(html), context));
+Hooks.on('renderICRPGActorSheetV2', (app, html, context, _options) => _onRenderInner(app, $(html), context));
+Hooks.on('renderICRPGItemSheetV2', (app, html, context, _options) => _onRenderInner(app, $(html), context));
 
 // eslint-disable-next-line no-unused-vars
 function _onRenderInner(app, html, data) {

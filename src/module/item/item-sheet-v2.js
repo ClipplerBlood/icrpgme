@@ -1,6 +1,9 @@
-import { ICRPGBaseSheet } from '../app/base-sheet.js';
+import ICRPGSheetMixin from '../app/icrpg-sheet-mixin.js';
 
-export default class ICRPGBaseItemSheetV2 extends ICRPGBaseSheet {
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+const { ItemSheetV2 } = foundry.applications.sheets;
+
+export default class ICRPGItemSheetV2 extends ICRPGSheetMixin(HandlebarsApplicationMixin(ItemSheetV2)) {
   static DEFAULT_OPTIONS = {
     classes: ['icrpg-sheet-v2', 'item'],
     window: {

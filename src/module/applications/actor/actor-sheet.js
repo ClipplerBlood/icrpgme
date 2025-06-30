@@ -1,5 +1,5 @@
-import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
-import { isQuickInsertOn, prepareQuickInsertSheet } from '../modules-integration.js';
+import { i18n, onArrayEdit, trimNewLineWhitespace } from '../../utils/utils.js';
+import { isQuickInsertOn, prepareQuickInsertSheet } from '../../modules-integration.js';
 
 const { ActorSheet } = foundry.appv1.sheets;
 const ContextMenu = foundry.applications.ux.ContextMenu.implementation;

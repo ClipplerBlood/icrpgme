@@ -1,4 +1,4 @@
-import ICRPGItemSheetV2 from '../item-sheet-v2.js';
+import ICRPGItemSheetV2 from './item-sheet-v2.js';
 import { onArrayEdit } from '../../utils/utils.js';
 
 export default class ICRPGPowerSheet extends ICRPGItemSheetV2 {

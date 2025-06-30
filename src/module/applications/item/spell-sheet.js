@@ -1,4 +1,4 @@
-import ICRPGItemSheetV2 from '../item-sheet-v2.js';
+import ICRPGItemSheetV2 from './item-sheet-v2.js';
 
 export default class ICRPGSpellSheet extends ICRPGItemSheetV2 {
   static PARTS = {

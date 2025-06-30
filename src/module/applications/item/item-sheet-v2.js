@@ -1,4 +1,4 @@
-import ICRPGSheetMixin from '../app/icrpg-sheet-mixin.js';
+import ICRPGSheetMixin from '../icrpg-sheet-mixin.js';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;

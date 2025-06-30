@@ -1,4 +1,4 @@
-import ICRPGBaseActorSheetV2 from '../actor-sheet-v2.js';
+import ICRPGBaseActorSheetV2 from './actor-sheet-v2.js';
 
 export default class ICRPGMonsterSheet extends ICRPGBaseActorSheetV2 {
   static PARTS = {

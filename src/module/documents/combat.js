@@ -1,6 +1,6 @@
 import { postRollMessage } from '../chat/chat-roll.js';
 import { i18n } from '../utils/utils.js';
-import { ICRPGActor } from '../actor/actor.js';
+import { ICRPGActor } from './actor.js';
 
 export class ICRPGCombat extends Combat {
   getInitiativeValue(combatant) {

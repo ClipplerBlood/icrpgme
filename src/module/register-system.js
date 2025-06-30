@@ -1,12 +1,12 @@
-import ICRPGActorSheet from './actor/actor-sheet.js';
+import ICRPGActorSheet from './applications/actor/actor-sheet.js';
 import {
   ICRPGCharacterDataModel,
   ICRPGHardSuitDataModel,
   ICRPGMonsterDataModel,
   ICRPGObstacleDataModel,
   ICRPGVehicleDataModel,
-} from './data-models/actor-data-model.js';
-import { ICRPGActor } from './actor/actor.js';
+} from './documents/data-models/actor-data-model.js';
+import { ICRPGActor } from './documents/actor.js';
 import {
   ICRPGItemBaseDataModel,
   ICRPGItemLootDataModel,
@@ -14,17 +14,17 @@ import {
   ICRPGItemSpellDataModel,
   ICRPGPartDataModel,
   ICRPGPropertyDataModel,
-} from './data-models/item-data-model.js';
+} from './documents/data-models/item-data-model.js';
 import { ICRPGRollMessage } from './chat/chat-message.js';
-import { ICRPGItemSheet } from './item/item-sheet.js';
-import { ICRPGItem } from './item/item.js';
-import { ICRPGCombatTracker } from './combat/combat-tracker.js';
-import { ICRPGCombat } from './combat/combat.js';
-import { ICRPGToken } from './combat/token.js';
-import ICRPGSpellSheet from './item/sheets/spell-sheet.js';
-import ICRPGItemSheetV2 from './item/item-sheet-v2.js';
-import ICRPGPowerSheet from './item/sheets/power-sheet.js';
-import ICRPGMonsterSheet from './actor/sheets/monster-sheet.js';
+import { ICRPGItemSheet } from './applications/item/item-sheet.js';
+import { ICRPGItem } from './documents/item.js';
+import { ICRPGCombatTracker } from './applications/combat/combat-tracker.js';
+import { ICRPGCombat } from './documents/combat.js';
+import { ICRPGToken } from './applications/combat/token.js';
+import ICRPGSpellSheet from './applications/item/spell-sheet.js';
+import ICRPGItemSheetV2 from './applications/item/item-sheet-v2.js';
+import ICRPGPowerSheet from './applications/item/power-sheet.js';
+import ICRPGMonsterSheet from './applications/actor/monster-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;

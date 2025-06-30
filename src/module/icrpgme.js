@@ -9,7 +9,7 @@ import { registerFonts } from './register-fonts.js';
 import { sendDevMessages } from './utils/dev-messages.js';
 import { importDocuments } from './utils/import-documents.js';
 import { handleMigrations } from './migration.js';
-import { TimerTargetContainer } from './app/timer-target-app.js';
+import { TimerTargetContainer } from './applications/timer-target-app.js';
 
 // Initialize system
 Hooks.once('init', async () => {

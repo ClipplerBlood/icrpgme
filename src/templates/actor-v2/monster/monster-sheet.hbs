@@ -107,8 +107,8 @@
   {{#if readonly}}
     <div class="icrpg-monster-actions-container">
       {{#each system.monsterActions as |action index|}}
-        <div class="mb-4" data-action-index="{{index}}">
-          <b class="clickable-action tt-u">{{action.name}}: </b>{{action.description}}
+        <div class="mb-4" data-action-index="{{index}}" data-action="useAction">
+          <b class="tt-u">{{action.name}}: </b>{{action.description}}
         </div>
       {{/each}}
     </div>
@@ -116,7 +116,7 @@
     <div class="icrpg-monster-actions-container edit">
       {{#each system.monsterActions as |action index|}}
         <div class="monster-action" data-action-index="{{index}}">
-          <input type="text" value="{{action.name}}" data-target="name"
+          <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
                  placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
           <textarea placeholder="{{localize "ICRPG.monsterSheet.actionDescription"}}"
                     spellcheck="false"
@@ -125,7 +125,7 @@
         </div>
       {{/each}}
       <div class="monster-action" data-action-index="-1">
-        <input type="text" value="{{action.name}}" data-target="name"
+        <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
                placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
       </div>
     </div>

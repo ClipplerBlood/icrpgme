@@ -14,6 +14,7 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
     },
     actions: {
       setHearts: ICRPGActorSheetV2.setHearts,
+      useAction: ICRPGActorSheetV2.useAction,
     },
   };
 
@@ -32,5 +33,10 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
     else finalHearts = currentHearts - 0.5;
 
     this.document.update({ 'system.health.hearts': finalHearts });
+  }
+
+  static useAction(_event, target) {
+    const { actionIndex } = target.dataset;
+    this.actor.useAction(actionIndex);
   }
 }

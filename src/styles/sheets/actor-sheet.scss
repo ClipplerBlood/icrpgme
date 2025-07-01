@@ -74,7 +74,14 @@
       font-family: $ff-carlito;
     }
   }
-
+  .icrpg-monster-actions-container {
+    [data-action] {
+      cursor: pointer;
+    }
+    [data-action]:hover b {
+      color: var(--c-red);
+    }
+  }
   .icrpg-monster-actions-container.edit {
     .monster-action {
       display: flex;

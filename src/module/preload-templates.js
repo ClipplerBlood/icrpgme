@@ -47,7 +47,7 @@ export async function preloadTemplates() {
 
     //// V2 sheets
     // Actors
-    'systems/icrpgme/templates/actor-v2/monster/monster-header.hbs',
+    'systems/icrpgme/templates/actor-v2/monster/monster-sheet.hbs',
 
     // Items
     'systems/icrpgme/templates/item/parts/item-header.hbs',

@@ -61,6 +61,14 @@
   flex: 1;
 }
 
+.italic {
+  font-style: italic;
+}
+
+.w-full {
+  width: 100%;
+}
+
 @mixin hover {
   transition: 0.2s ease-in-out;
   &:hover {

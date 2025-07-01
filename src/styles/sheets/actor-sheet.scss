@@ -1,19 +1,100 @@
 @import '../typography';
 @import '../mixins';
 
-.monster-header {
-  overflow-y: visible;
+.monster-sheet {
+  font-size: 16px;
 
   .icrpg-name-container {
     background-image: url(/systems/icrpgme/assets/ui/backgrounds/bg-monster-header.webp);
     background-size: 100% 100%;
     font-size: 28px;
+    position: relative;
+    height: 40px;
 
     input {
       font-family: $ff-nusaliver;
       padding-top: 6px;
       padding-left: 8px;
       height: 40px;
+      position: absolute;
+      top: 0;
     }
+  }
+
+  .icrpg-monster-attributes {
+    font-style: italic;
+    font-weight: bold;
+    font-family: $ff-carlito;
+  }
+
+  .icrpg-monster-attributes.view {
+    span::after {
+      content: ',';
+      white-space: pre;
+    }
+
+    span:last-of-type::after {
+      display: none;
+    }
+  }
+
+  .icrpg-monster-attributes.edit {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 12px;
+    row-gap: 4px;
+    text-transform: uppercase;
+    font-size: 14px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .row.value-0,
+    .row.value-0 input {
+      color: var(--c-light-grey) !important;
+    }
+
+    input {
+      width: 20px;
+      height: 16px;
+      text-align: right;
+      padding-right: 4px;
+    }
+
+    textarea {
+      font-style: italic;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-family: $ff-carlito;
+    }
+  }
+
+  .icrpg-monster-actions-container.edit {
+    .monster-action {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    input {
+      max-width: 50%;
+      height: 22px;
+      font-weight: bold;
+
+      &::placeholder {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .monster-image-container {
+    max-width: 33%;
+    float: right;
   }
 }

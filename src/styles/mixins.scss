@@ -99,6 +99,28 @@
   @include hover;
 }
 
+@mixin bg-black-bar {
+  background-color: var(--c-border);
+  -webkit-mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  color: var(--c-text-negative);
+
+  @extend .ff-header;
+  font-size: 16px;
+  height: 25px;
+  padding-top: 6px;
+  padding-left: 6px;
+  text-align: left;
+}
+
+.bg-black-bar {
+  @include bg-black-bar;
+}
+
 .icrpg-sep-long {
   height: 4px;
   width: auto;

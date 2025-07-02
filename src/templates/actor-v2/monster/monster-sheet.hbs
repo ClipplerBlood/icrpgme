@@ -2,7 +2,7 @@
 
 <section class="monster-sheet" style="overflow-y: auto">
   <!--ACTOR IMAGE-->
-  <div class="monster-image-container">
+  <div class="actor-image-container">
     <img alt="{{document.name}}" src="{{document.img}}" title="{{document.name}}"
       {{#if document.flags.icrpgme.blendImg}}style="mix-blend-mode: multiply" data-blend {{/if}}
       {{#if editable}}data-edit="img" data-action="editImage" {{else}} data-action="showPortraitArtwork"{{/if}}
@@ -10,7 +10,7 @@
   </div>
 
   <!--  ACTOR NAME-->
-  <div class="icrpg-name-container">
+  <div class="actor-name-container">
     <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}>
   </div>
 
@@ -105,7 +105,7 @@
 
   <!--  ACTIONS-->
   {{#if readonly}}
-    <div class="icrpg-monster-actions-container">
+    <div class="actions-container">
       {{#each system.monsterActions as |action index|}}
         <div class="mb-4" data-action-index="{{index}}" data-action="useAction">
           <b class="tt-u">{{action.name}}: </b>{{action.description}}
@@ -113,9 +113,9 @@
       {{/each}}
     </div>
   {{else}}
-    <div class="icrpg-monster-actions-container edit">
+    <div class="actions-container edit">
       {{#each system.monsterActions as |action index|}}
-        <div class="monster-action" data-action-index="{{index}}">
+        <div class="action" data-action-index="{{index}}">
           <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
                  placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
           <textarea placeholder="{{localize "ICRPG.monsterSheet.actionDescription"}}"
@@ -124,7 +124,7 @@
                     data-target="description">{{action.description}}</textarea>
         </div>
       {{/each}}
-      <div class="monster-action" data-action-index="-1">
+      <div class="action" data-action-index="-1">
         <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
                placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
       </div>

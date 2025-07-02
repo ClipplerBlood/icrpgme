@@ -1,10 +1,11 @@
 @import '../typography';
 @import '../mixins';
 
+.vehicle-sheet,
 .monster-sheet {
   font-size: 16px;
 
-  .icrpg-name-container {
+  .actor-name-container {
     background-image: url(/systems/icrpgme/assets/ui/backgrounds/bg-monster-header.webp);
     background-size: 100% 100%;
     font-size: 28px;
@@ -74,7 +75,8 @@
       font-family: $ff-carlito;
     }
   }
-  .icrpg-monster-actions-container {
+
+  .actions-container {
     [data-action] {
       cursor: pointer;
     }
@@ -82,8 +84,8 @@
       color: var(--c-red);
     }
   }
-  .icrpg-monster-actions-container.edit {
-    .monster-action {
+  .actions-container.edit {
+    .action {
       display: flex;
       flex-direction: column;
       margin-bottom: 8px;
@@ -100,8 +102,18 @@
     }
   }
 
-  .monster-image-container {
+  .actor-image-container {
     max-width: 33%;
     float: right;
+  }
+}
+
+.vehicle-sheet {
+  .icrpg-heart {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    margin-left: 2px;
   }
 }

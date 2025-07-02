@@ -25,6 +25,7 @@ import ICRPGSpellSheet from './applications/item/spell-sheet.js';
 import ICRPGItemSheetV2 from './applications/item/item-sheet-v2.js';
 import ICRPGPowerSheet from './applications/item/power-sheet.js';
 import ICRPGMonsterSheet from './applications/actor/monster-sheet.js';
+import ICRPGVehicleSheet from './applications/actor/vehicle-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -52,6 +53,7 @@ export function registerSystem() {
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
   registerActorSheet(['monster'], ICRPGMonsterSheet);
+  registerActorSheet(['vehicle'], ICRPGVehicleSheet);
   CONFIG.Actor.documentClass = ICRPGActor;
 
   // Item registration

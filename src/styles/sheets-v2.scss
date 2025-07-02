@@ -1,3 +1,5 @@
+@import 'mixins';
+
 /*======================================
 VARIABLES
 =======================================*/
@@ -80,21 +82,8 @@ form.icrpg-sheet-v2 {
     border: none;
 
     a {
-      background-color: var(--c-border);
-      -webkit-mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-size: cover;
-      mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
-      mask-repeat: no-repeat;
-      mask-size: cover;
-      color: var(--c-text-negative);
-      @extend .ff-header;
-      height: 25px;
-      padding-top: 6px;
-      font-size: 16px;
-      padding-left: 6px;
+      @include bg-black-bar;
       flex: 1;
-      text-align: left;
       line-height: 1;
     }
 

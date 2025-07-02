@@ -65,6 +65,6 @@ Hooks.on('collapseSidebar', () => {
 });
 
 Hooks.once('ready', async () => {
-  await game.actors.get('V4WwwqrRcqUnweHq').sheet.render(true);
-  await game.actors.get('x5n6lahEB90RGKzn').sheet.render(true);
+  await game.actors.get('Yyb056qGHm3xuizV').sheet.render(true);
+  await game.actors.get('RuTuwtjlB0sOLFqE').sheet.render(true);
 });

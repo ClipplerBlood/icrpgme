@@ -20,13 +20,11 @@ export default class ICRPGMonsterSheet extends ICRPGBaseActorSheetV2 {
 
     // Monster Actions edit
     const html = $(this.element);
-    html
-      .find('.icrpg-monster-actions-container.edit input, .icrpg-monster-actions-container.edit textarea')
-      .on('change', (ev) => {
-        const ct = $(ev.currentTarget);
-        const index = ct.closest('[data-action-index]').data('actionIndex');
-        const update = onArrayEdit(this.actor.system.monsterActions, ev, index);
-        this.actor.update({ 'system.monsterActions': update });
-      });
+    html.find('.actions-container.edit input, .actions-container.edit textarea').on('change', (ev) => {
+      const ct = $(ev.currentTarget);
+      const index = ct.closest('[data-action-index]').data('actionIndex');
+      const update = onArrayEdit(this.actor.system.monsterActions, ev, index);
+      this.actor.update({ 'system.monsterActions': update });
+    });
   }
 }

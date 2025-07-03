@@ -49,6 +49,7 @@ export async function preloadTemplates() {
     // Actors
     'systems/icrpgme/templates/actor-v2/monster/monster-sheet.hbs',
     'systems/icrpgme/templates/actor-v2/vehicle/vehicle-sheet.hbs',
+    'systems/icrpgme/templates/actor-v2/obstacle/obstacle-sheet.hbs',
 
     // Items
     'systems/icrpgme/templates/item/parts/item-header.hbs',

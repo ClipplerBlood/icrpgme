@@ -46,6 +46,7 @@ export default function ICRPGSheetMixin(DocumentSheetV2Class) {
     }
 
     async render(options = {}, _options = {}) {
+      this.locked = options?.locked ?? this.locked;
       await super.render(options, _options);
 
       // Add the locked class to the element

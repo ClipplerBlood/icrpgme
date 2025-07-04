@@ -27,8 +27,10 @@
 
 a.content-link {
   font-family: $ff-flatbread;
-  color: #eee;
+  color: #181818;
   font-weight: 100;
+  font-size: 14px;
+  background: rgb(221, 221, 221);
 }
 
 .chat-message a.content-link {

@@ -3,7 +3,7 @@ import { onArrayEdit } from '../../utils/utils.js';
 
 export default class ICRPGMonsterSheet extends ICRPGBaseActorSheetV2 {
   static PARTS = {
-    header: {
+    sheet: {
       template: 'systems/icrpgme/templates/actor-v2/monster/monster-sheet.hbs',
       scrollable: [''],
     },

@@ -146,7 +146,8 @@
 }
 
 textarea[autosize] {
-  height: 0;
+  //height: 0;
+  box-sizing: content-box;
   overflow: hidden;
   resize: none;
   min-height: 0;

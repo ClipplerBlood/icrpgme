@@ -3,9 +3,9 @@ import { onArrayEdit } from '../../utils/utils.js';
 
 export default class ICRPGVehicleSheet extends ICRPGBaseActorSheetV2 {
   static PARTS = {
-    header: {
+    sheet: {
       template: 'systems/icrpgme/templates/actor-v2/vehicle/vehicle-sheet.hbs',
-      scrollable: ['.vehicle-sheet'],
+      scrollable: [''],
     },
   };
 

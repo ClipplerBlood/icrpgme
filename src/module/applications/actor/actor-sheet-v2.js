@@ -53,4 +53,18 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
     const rollGroup = target.closest('[data-group]')?.dataset.group;
     await this.actor.roll(rollName, rollGroup);
   }
+
+  async _onRender(context, options) {
+    super._onRender(context, options);
+
+    const lock = this.window.editSlider.querySelector('.slide-toggle-thumb');
+    if (lock) {
+      this.element.querySelectorAll('input[readonly]').forEach((input) => {
+        input.addEventListener('click', () => {
+          lock.classList.add('shake-animation');
+          setTimeout(() => lock.classList.remove('shake-animation'), 500);
+        });
+      });
+    }
+  }
 }

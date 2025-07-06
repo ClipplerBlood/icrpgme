@@ -1,6 +1,4 @@
 <section class="tab character-tab {{tab.cssClass}} icrpg-actor-main" data-tab="character" data-group="primary">
-
-
   <div>
     {{>attributeBlock attributeName="strength"}}
     {{>attributeBlock attributeName="dexterity"}}
@@ -35,21 +33,21 @@
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.base"
                  value="{{defaultValue attribute.base ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.base"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.lifeform"
                  value="{{defaultValue attribute.lifeform ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.lifeform"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.attributes.{{../attributeName}}.loot"
                  value="{{defaultValue attribute.loot ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.loot"}}</div>
         </div>
       </div>
@@ -71,20 +69,20 @@
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.efforts.{{../effortName}}.base" value="{{defaultValue effort.base ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.base"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.efforts.{{../effortName}}.lifeform"
                  value="{{defaultValue effort.lifeform ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.lifeform"}}</div>
         </div>
         <div class="icrpg-mods-sep"></div>
         <div>
           <input type="number" name="system.efforts.{{../effortName}}.loot" value="{{defaultValue effort.loot ""}}"
-                 min="-10" max="10" {{readonly ../isLocked}}>
+                 min="-10" max="10" {{readonly @root.readonly}}>
           <div>{{localize "ICRPG.loot"}}</div>
         </div>
       </div>

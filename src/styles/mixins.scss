@@ -201,6 +201,26 @@ input[type='checkbox'][readonly] {
   animation: shake 0.3s;
 }
 
+@keyframes locked-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(0px);
+  }
+  40%,
+  80% {
+    transform: translateX(16px);
+  }
+}
+
+.slide-toggle-thumb.shake-animation {
+  animation: locked-shake 0.5s ease-in-out;
+  //background-color: var(--c-red) !important;
+}
+
 @each $s in [0, 4, 8, 12, 16, 20, 32] {
   .mt-#{$s} {
     margin-top: #{$s}px;

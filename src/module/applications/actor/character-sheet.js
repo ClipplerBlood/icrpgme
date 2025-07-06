@@ -9,6 +9,16 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     character: {
       template: 'systems/icrpgme/templates/actor-v2/character/main-character-tab.hbs',
     },
+    loot: {
+      template: 'systems/icrpgme/templates/actor-v2/character/loot-tab.hbs',
+    },
+    resources: {
+      template: 'systems/icrpgme/templates/actor-v2/character/resources-tab.hbs',
+    },
+    notes: {
+      template: 'systems/icrpgme/templates/actor-v2/character/notes-tab.hbs',
+    },
+
     tabNavigation: {
       template: 'systems/icrpgme/templates/generic/tab-navigation.hbs',
     },
@@ -32,7 +42,7 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
           label: 'ICRPG.tabs.character',
         },
         {
-          id: 'lootAbilities',
+          id: 'loot',
           label: 'ICRPG.tabs.lootAbilities',
         },
         {
@@ -60,5 +70,11 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
       this.actor.update({ 'system.monsterActions': update });
     });
     console.log(context);
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    context.system.enrichedNotes = await TextEditor.enrichHTML(this.document.system.notes, { async: true });
+    return context;
   }
 }

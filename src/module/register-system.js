@@ -27,6 +27,7 @@ import ICRPGPowerSheet from './applications/item/power-sheet.js';
 import ICRPGMonsterSheet from './applications/actor/monster-sheet.js';
 import ICRPGVehicleSheet from './applications/actor/vehicle-sheet.js';
 import ICRPGObstacleSheet from './applications/actor/obstacle-sheet.js';
+import ICRPGCharacterSheet from './applications/actor/character-sheet.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -53,6 +54,7 @@ export function registerSystem() {
   CONFIG.Actor.dataModels['hardSuit'] = ICRPGHardSuitDataModel;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('icrpgme', ICRPGActorSheet, { makeDefault: true });
+  registerActorSheet(['character'], ICRPGCharacterSheet);
   registerActorSheet(['monster'], ICRPGMonsterSheet);
   registerActorSheet(['vehicle'], ICRPGVehicleSheet);
   registerActorSheet(['obstacle'], ICRPGObstacleSheet);

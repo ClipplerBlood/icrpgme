@@ -7,7 +7,7 @@
         <div class="token-name flexcol">
           <h4>{{turn.name}}</h4>
           <div class="hearts-container" style="{{#if hideHP}}visibility: hidden{{/if}}">
-            {{log turn}}
+
             {{#if (and (or turn.isOwner turn.isGM) (eq turn.icrpgActorType "character"))}}
               <div class="shield-container">
                 <i class="fa-solid fa-shield"></i>

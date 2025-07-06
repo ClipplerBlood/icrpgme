@@ -10,7 +10,6 @@ export default function ICRPGSheetMixin(DocumentSheetV2Class) {
           const wasPreviouslyUnlocked = this.locked === false;
           this.locked = !(this.locked ?? true);
           this.window.editSlider?.classList.toggle('locked');
-
           if (wasPreviouslyUnlocked) {
             await this.submit();
           }

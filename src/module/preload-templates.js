@@ -47,6 +47,12 @@ export async function preloadTemplates() {
 
     //// V2 sheets
     // Actors
+    'systems/icrpgme/templates/actor-v2/character/character-header.hbs',
+    'systems/icrpgme/templates/actor-v2/character/character-aside.hbs',
+    'systems/icrpgme/templates/actor-v2/character/loot-tab.hbs',
+    'systems/icrpgme/templates/actor-v2/character/notes-tab.hbs',
+    'systems/icrpgme/templates/actor-v2/character/resources-tab.hbs',
+    'systems/icrpgme/templates/actor-v2/character/main-character-tab.hbs',
     'systems/icrpgme/templates/actor-v2/monster/monster-sheet.hbs',
     'systems/icrpgme/templates/actor-v2/vehicle/vehicle-sheet.hbs',
     'systems/icrpgme/templates/actor-v2/obstacle/obstacle-sheet.hbs',

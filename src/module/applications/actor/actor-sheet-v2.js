@@ -15,6 +15,7 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
     actions: {
       setHearts: ICRPGActorSheetV2.setHearts,
       useAction: ICRPGActorSheetV2.useAction,
+      roll: ICRPGActorSheetV2.roll,
     },
   };
 
@@ -38,5 +39,18 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
   static useAction(_event, target) {
     const { actionIndex } = target.dataset;
     this.actor.useAction(actionIndex);
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    context.actor ??= context.document;
+    context.trackDamage = game.settings.get('icrpgme', 'trackDamage');
+    return context;
+  }
+
+  static async roll(_event, target) {
+    const rollName = target.closest('[data-roll]')?.dataset.roll;
+    const rollGroup = target.closest('[data-group]')?.dataset.group;
+    await this.actor.roll(rollName, rollGroup);
   }
 }

@@ -1,0 +1,80 @@
+<section class="icrpg-actor-side">
+  <div class="icrpg-img-container">
+    <img alt="{{actor.name}}" src="{{actor.img}}" title="{{actor.name}}"
+      {{#if editable}}data-edit="img" data-action="editImage" {{else}} data-action="showPortraitArtwork"{{/if}}
+    />
+  </div>
+
+  {{#* inline "selectableHeart"}}
+    <div
+      class="{{#if @root.readonly}}icrpg-heart{{else}}icrpg-selectable-heart{{/if}}"
+      data-index="{{index}}"
+      {{#if @root.editable}}data-action="setHearts"{{/if}}
+    >
+      <img class="heart" src="{{healthImageChooser actor index}}">
+    </div>
+  {{/inline}}
+
+  <div class="icrpg-hp-container">
+    <div style="display: flex">
+      {{>selectableHeart index=0}}
+      {{>selectableHeart index=1}}
+      {{>selectableHeart index=2}}
+      {{>selectableHeart index=3}}
+      {{>selectableHeart index=4}}
+      <div style="margin-left: auto; margin-right: 4px; align-self: center">
+        <img class="heart" src="systems/icrpgme/assets/ui/heart-grey.webp"
+             style="display: inline;height: 12px;width: 12px;top: 2px;position: relative;margin-right: 3px;">
+        <span style="font-size: 11px" class="ff-header c-grey">= 10 {{localize "ICRPG.hp"}}</span>
+      </div>
+    </div>
+    <div style="display: inline">
+      {{#if trackDamage}}
+        <input type="number" name="system.health.damage" data-tooltip="{{localize "ICRPG.damage"}}"
+               value="{{system.health.damage}}" min="0" max="{{system.health.max}}">
+      {{else}}
+        <input type="number" name="system.health.value" data-tooltip="{{localize "ICRPG.currentHP"}}"
+               value="{{system.health.value}}" min="0" max="{{system.health.max}}">
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="icrpg-actor-side-footer">
+    <div style="position: relative">
+      <div class="ff-header c-white ta-center">{{localize "ICRPG.attributesLong.defense"}}</div>
+      <div class="ff-header c-grey fs-8 ta-center" style="margin-bottom: 4px">{{localize
+        "ICRPG.defenseSubtitle"}}</div>
+      <img class="hoverable" src="systems/icrpgme/assets/ui/defense.webp" data-group="attributes" data-roll="defense">
+      <div class="icrpg-defense-box">
+        <div>{{localize "ICRPG.attributesShort.constitution"}} + {{localize "ICRPG.loot"}}</div>
+        <div class="icrpg-defense-con">{{system.attributes.constitution.total}}</div>
+        <input class="icrpg-defense-loot " type="number"
+               name="system.attributes.defense.loot" value="{{system.attributes.defense.loot}}" placeholder="0"
+               min="-10" max="10" {{readonly readonly}}>
+        <div class="icrpg-defense-total hoverable" data-group="attributes"
+             data-roll="defense">{{system.attributes.defense.total}}</div>
+      </div>
+    </div>
+    <div>
+      <div class="ff-header c-white ta-center">{{localize "ICRPG.herocoin"}}</div>
+      <div style="position: relative" class="hoverable">
+        {{#if system.heroCoin}}
+          <img src="systems/icrpgme/assets/ui/hero-coin-active.webp" style="bottom: -23px;">
+        {{else}}
+          <img src="systems/icrpgme/assets/ui/hero-coin.webp" style="bottom: -23px;">
+        {{/if}}
+        <input type="checkbox" name="system.heroCoin" {{checked system.heroCoin}}>
+      </div>
+    </div>
+    <div style="position: relative">
+      <div class="ff-header c-white ta-center">{{localize "ICRPG.dying"}}</div>
+      <div class="ff-header c-grey fs-8 ta-center" style="margin-bottom: 4px">{{localize
+        "ICRPG.dyingSubtitle"}}</div>
+      <img src="systems/icrpgme/assets/ui/dying.webp">
+      <input class="icrpg-dying" type="number" name="system.dyingRounds"
+             value="{{defaultValue system.dyingRounds ""}}"
+             placeholder="" min="0" max="9">
+    </div>
+  </div>
+
+</section>

@@ -3,21 +3,35 @@
 /*======================================
 VARIABLES
 =======================================*/
-body.theme-dark form.icrpg-sheet-v2 {
-  --c-text: #f3f3f3;
-  //--c-border: #fafafa;
-  --c-border: var(--c-text);
-  --c-text-negative: #111;
-  --color-text-primary: var(--c-text);
 
-  &::before {
-    filter: blur(2px) invert(0.9);
-  }
+//body.theme-dark form.icrpg-sheet-v2 {
+//  --c-text: #f3f3f3;
+//  //--c-border: #fafafa;
+//  --c-border: var(--c-text);
+//  --c-text-negative: #111;
+//  --color-text-primary: var(--c-text);
+//
+//  &::before {
+//    filter: blur(2px) invert(0.9);
+//  }
+//
+//  background: black;
+//}
+//
+//body.theme-light form.icrpg-sheet-v2 {
+//  --c-text: #111;
+//  --c-border: #111;
+//  --c-text-negative: white;
+//  --color-text-primary: var(--c-text);
+//
+//  &::before {
+//    filter: blur(2px) brightness(0.97);
+//  }
+//
+//  background: white;
+//}
 
-  background: black;
-}
-
-body.theme-light form.icrpg-sheet-v2 {
+form.icrpg-sheet-v2 {
   --c-text: #111;
   --c-border: #111;
   --c-text-negative: white;
@@ -113,6 +127,7 @@ form.icrpg-sheet-v2 {
     // IMPORT TYPE SPECIFIC STYLES
     @import './sheets/item-sheet';
     @import './sheets/actor-sheet';
+    @import './sheets/character-sheet';
 
     input {
       @include transparent-input();
@@ -203,3 +218,7 @@ form.icrpg-sheet-v2 {
     }
   }
 }
+
+//.icrpg-sheet-v2.actor {
+//  min-width: 800px;
+//}

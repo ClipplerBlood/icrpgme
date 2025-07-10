@@ -6,10 +6,11 @@ export default function ICRPGSheetMixin(DocumentSheetV2Class) {
 
     static DEFAULT_OPTIONS = {
       actions: {
-        toggleEditable: async function (_event, _target) {
+        toggleEditable: async function (event, _target) {
           const wasPreviouslyUnlocked = this.locked === false;
           this.locked = !(this.locked ?? true);
           this.window.editSlider?.classList.toggle('locked');
+          event.stopImmediatePropagation();
           if (wasPreviouslyUnlocked) {
             await this.submit();
           }

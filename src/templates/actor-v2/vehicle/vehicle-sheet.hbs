@@ -14,7 +14,7 @@
 
   <!--  DESCRIPTION-->
   {{#if readonly}}
-    <div class="italic mt-8 mb-8">{{system.description}}</div>
+    <div class="italic mt-8 mb-8 whitespace-pre-wrap">{{system.description}}</div>
   {{else}}
     <textarea class="italic mt-8 w-full"
               name="system.description"
@@ -65,9 +65,7 @@
               <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
             {{/if}}
           </div>
-          <div>
-            <b class="tt-u">{{chunk.name}}: </b>{{chunk.description}}
-          </div>
+          <div class="whitespace-pre-wrap"><b class="tt-u">{{chunk.name}}: </b>{{chunk.description}}</div>
         </div>
       {{/each}}
     </div>
@@ -96,9 +94,10 @@
     <div class="bg-black-bar mb-4" style="max-width: 65%">{{localize "ICRPG.vehicleSheet.maneuvers"}}</div>
     <div class="actions-container">
       {{#each system.maneuvers as |maneuver index|}}
-        <div class="mb-4" data-action-index="{{index}}" data-action="useAction">
-          <b class="tt-u">{{maneuver.name}}: </b>{{maneuver.description}}
-        </div>
+        <div class="mb-4 whitespace-pre-wrap"
+             data-action-index="{{index}}"
+             data-action="useAction"
+        ><b class="tt-u">{{maneuver.name}}: </b>{{maneuver.description}}</div>
       {{/each}}
     </div>
   {{/if}}

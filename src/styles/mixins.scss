@@ -69,6 +69,10 @@
   width: 100%;
 }
 
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
 @mixin hover {
   transition: 0.2s ease-in-out;
   &:hover {

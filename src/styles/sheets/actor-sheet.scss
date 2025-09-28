@@ -124,6 +124,11 @@
 .loot-tab {
   padding-top: 16px;
 
+  & > div {
+    min-height: 465px;
+    max-height: 465px;
+  }
+
   div div div:not(:first-child) h3 {
     margin-top: 4px;
   }

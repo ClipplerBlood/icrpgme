@@ -119,6 +119,7 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     context.powers = items.filter((i) => i.type === 'power');
     context.augments = items.filter((i) => i.type === 'augment');
     context.spells = items.filter((i) => i.type === 'spell');
+    context.noItems = items.size === 0;
 
     return context;
   }

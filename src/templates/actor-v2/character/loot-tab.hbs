@@ -64,7 +64,7 @@
     {{!-- Left column: Loot, Spells, Weight --}}
     <div>
       {{!-- Loot list (shown if there is any loot or sheet is editable) --}}
-      {{#if (or loot.length editable)}}
+      {{#if (or loot.length editable noItems)}}
         <div>
           <h3 class="icrpg-block-title">{{localize "TYPES.Item.loot"}}</h3>
 
@@ -83,7 +83,7 @@
           {{/each}}
 
           {{!-- Quick-create input for new loot (editable only) --}}
-          {{#if editable}}
+          {{#if (or editable noItems)}}
             <input
               type="text"
               placeholder="{{localize 'ICRPG.name'}}"
@@ -94,7 +94,7 @@
       {{/if}}
 
       {{!-- Spells list --}}
-      {{#if (or spells.length editable)}}
+      {{#if (or spells.length editable noItems)}}
         <div>
           <h3 class="icrpg-block-title">{{localize "ICRPG.spells"}}</h3>
 
@@ -112,7 +112,7 @@
             </div>
           {{/each}}
 
-          {{#if editable}}
+          {{#if (or editable noItems)}}
             <input
               type="text"
               placeholder="{{localize 'ICRPG.name'}}"
@@ -130,7 +130,7 @@
           {{!-- Equipped weight block --}}
           <div>
             <div>{{localize "ICRPG.equipped"}}</div>
-            {{#if editable}}
+            {{#if (or editable noItems)}}
               <div>
                 MAX
                 <input
@@ -149,7 +149,7 @@
           {{!-- Carried weight block --}}
           <div>
             <div>{{localize "ICRPG.carried"}}</div>
-            {{#if editable}}
+            {{#if (or editable noItems)}}
               <div>
                 MAX
                 <input
@@ -171,7 +171,7 @@
     {{!-- Right column: Abilities, Powers, Augments --}}
     <div>
       {{!-- Abilities list --}}
-      {{#if (or abilities.length editable)}}
+      {{#if (or abilities.length editable noItems)}}
         <div>
           <h3 class="icrpg-block-title">{{localize "ICRPG.abilities"}}</h3>
 
@@ -182,7 +182,7 @@
             </div>
           {{/each}}
 
-          {{#if editable}}
+          {{#if (or editable noItems)}}
             <input
               type="text"
               placeholder="{{localize 'ICRPG.name'}}"
@@ -193,7 +193,7 @@
       {{/if}}
 
       {{!-- Powers list with mastery pips --}}
-      {{#if (or powers.length editable)}}
+      {{#if (or powers.length editable noItems)}}
         <div>
           <h3 class="icrpg-block-title">{{localize "ICRPG.powers"}}</h3>
 
@@ -213,7 +213,7 @@
             </div>
           {{/each}}
 
-          {{#if editable}}
+          {{#if (or editable noItems)}}
             <input
               type="text"
               placeholder="{{localize 'ICRPG.name'}}"
@@ -224,7 +224,7 @@
       {{/if}}
 
       {{!-- Augments list --}}
-      {{#if (or augments.length editable)}}
+      {{#if (or augments.length editable noItems)}}
         <div>
           <h3 class="icrpg-block-title">{{localize "ICRPG.augments"}}</h3>
 
@@ -235,7 +235,7 @@
             </div>
           {{/each}}
 
-          {{#if editable}}
+          {{#if (or editable noItems)}}
             <input
               type="text"
               placeholder="{{localize 'ICRPG.name'}}"

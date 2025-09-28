@@ -76,6 +76,7 @@
     "dying": "Dying",
     "dyingSubtitle": "1d4 rnds 'til dead",
     "defenseSubtitle": "10+DEF = Enemy to hit roll",
+    "resource": "Resource",
     "newResourceName": "New Resource Name",
     "herocoin": "Hero Coin",
     "mastery": "Mastery",

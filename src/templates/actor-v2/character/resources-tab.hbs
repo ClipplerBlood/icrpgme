@@ -1,3 +1,56 @@
+{{#* inline "selector"}}
+  {{#if (gt value index)}}
+    <div class="select-circle full" data-target="{{target}}" data-index="{{index}}" data-tooltip="{{inc index}}"
+         data-action="selectorClick"></div>
+  {{else}}
+    <div class="select-circle" data-target="{{target}}" data-index="{{index}}" data-tooltip="{{inc index}}"
+         data-action="selectorClick"></div>
+  {{/if}}
+{{/inline}}
 <section class="tab resources-tab {{tab.cssClass}}" data-tab="resources" data-group="primary">
- Resources Here
+  <div class="mastery-container">
+    <div>{{localize "ICRPG.mastery"}}</div>
+    <div>
+      {{#times 20}}
+        {{~> selector index=@index target="system.mastery" value=system.mastery}}
+      {{/times}}
+    </div>
+  </div>
+  <table class="resources-table">
+    <thead>
+    <tr>
+      <th>{{localize "ICRPG.resource"}}</th>
+      <th>{{localize "value"}}</th>
+      <th>{{localize "max"}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{localize "ICRPG.sp"}}</td>
+      <td><input type="number" name="system.sp.value" value="{{system.sp.value}}" min="0" max="{{system.sp.max}}"></td>
+      <td><input type="number" name="system.sp.max" value="{{system.sp.max}}" {{readonly locked}} min="0" max="50"></td>
+    </tr>
+    <tr>
+      <td>{{localize "ICRPG.coins"}}</td>
+      <td><input type="number" name="system.coins" value="{{system.coins}}" min="0"></td>
+      <td></td>
+    </tr>
+    {{#each system.resources as |resource index| }}
+      <tr data-resource-index="{{index}}">
+        <td><input type="text" data-target="name" autosize {{readonly ../readonly}} value="{{resource.name}}"></td>
+        <td><input type="number" data-target="value" autosize value="{{resource.value}}" min="0" max="{{resource.max}}">
+        </td>
+        <td><input type="number" data-target="max" autosize value="{{resource.max}}" min="0" {{readonly ../readonly}}>
+        </td>
+      </tr>
+    {{/each}}
+    {{#if editable}}
+      <tr data-resource-index="-1">
+        <td><input type="text" data-target="name" autosize placeholder="{{localize "ICRPG.resource"}}"></td>
+        <td></td>
+        <td></td>
+      </tr>
+    {{/if}}
+    </tbody>
+  </table>
 </section>

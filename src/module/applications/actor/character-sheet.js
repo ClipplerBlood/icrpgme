@@ -13,9 +13,11 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     },
     loot: {
       template: 'systems/icrpgme/templates/actor-v2/character/loot-tab.hbs',
+      scrollable: [''],
     },
     resources: {
       template: 'systems/icrpgme/templates/actor-v2/character/resources-tab.hbs',
+      scrollable: [''],
     },
     notes: {
       template: 'systems/icrpgme/templates/actor-v2/character/notes-tab.hbs',
@@ -41,6 +43,7 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
       carryItem: ICRPGCharacterSheet.carryItem,
       uncarryItem: ICRPGCharacterSheet.uncarryItem,
       setPowerMastery: ICRPGCharacterSheet.setPowerMastery,
+      selectorClick: ICRPGCharacterSheet.selectorClick,
     },
   };
 
@@ -93,8 +96,14 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     ];
     new ContextMenu(this.element, '.item[data-item-id]', itemContextMenu, { jQuery: false });
 
+    // In place item creation
     this.element.querySelectorAll('.loot-tab input[data-type]').forEach((input) => {
       input.addEventListener('change', (e) => this.createItemInPlace(e));
+    });
+
+    // Resource edit
+    this.element.querySelectorAll('[data-resource-index] input').forEach((input) => {
+      input.addEventListener('change', (e) => this.onResourceEdit(e));
     });
     console.log(context);
   }
@@ -146,6 +155,18 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     power.update({ 'system.mastery': index });
   }
 
+  static selectorClick(_event, target) {
+    let index = target.closest('[data-index]').dataset.index;
+    if (index == null) return;
+    index = Number(index);
+
+    const t = target.closest('[data-target]').dataset.target;
+    let oldValue = foundry.utils.getProperty(this.actor, t);
+    let newValue = index + 1;
+    if (oldValue === newValue) newValue = 0;
+    this.actor.update({ [t]: newValue });
+  }
+
   async createItemInPlace(event) {
     const itemType = event.currentTarget.dataset.type;
     const value = event.currentTarget.value;
@@ -153,5 +174,29 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
     console.log(event, itemType, value);
     const docs = await this.actor.createEmbeddedDocuments('Item', [{ type: itemType, name: value }]);
     await docs[0].sheet.render({ force: true, locked: false });
+  }
+
+  async onResourceEdit(e) {
+    let index = e.currentTarget.closest('[data-resource-index]').dataset.resourceIndex;
+    if (index == null) return;
+    index = Number(index);
+
+    const value = e.currentTarget.value;
+    const target = e.currentTarget.dataset.target;
+    const resources = this.actor.system.resources;
+    const options = {};
+    if (index < 0) {
+      console.assert(target === 'name');
+      resources.push({ name: value, value: 0, max: 1 });
+      options.updateResourceIndex = resources.length - 1;
+    } else {
+      if ((target === 'max' && parseInt(value) <= 0) || String(value).length === 0) {
+        resources.splice(index, 1);
+      } else {
+        resources[index][target] = value;
+        options.updateResourceIndex = index;
+      }
+    }
+    this.actor.update({ 'system.resources': resources }, options);
   }
 }

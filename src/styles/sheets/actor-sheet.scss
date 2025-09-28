@@ -262,6 +262,129 @@
   }
 }
 
+.resources-tab {
+  .mastery-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    margin-bottom: 4px;
+    min-height: 32px;
+    font-family: $ff-flatbread;
+    text-transform: uppercase;
+    font-size: 16px;
+    justify-items: end;
+    padding: 4px 4px 4px 4px;
+    margin-top: 8px;
+    background: #222;
+    color: #fff;
+
+    .select-circle {
+      background: #fff;
+    }
+
+    .select-circle.full {
+      background: var(--c-red);
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      align-items: center;
+    }
+  }
+
+  input[type='number'] {
+    width: auto !important;
+  }
+
+  table {
+    background: transparent;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+    margin-top: 8px;
+
+    // Keep columns as tight as possible and left-aligned
+    th,
+    td {
+      text-align: left;
+      white-space: nowrap;
+      padding: 2px 4px;
+      background: transparent;
+    }
+
+    thead {
+      background: transparent;
+      border: none;
+    }
+
+    // Header style like h3
+    thead th {
+      font-family: $ff-flatbread;
+      font-weight: lighter;
+      font-size: 16px;
+      color: #222;
+      text-transform: uppercase;
+    }
+
+    // Body font
+    tbody td {
+      font-family: $ff-carlito;
+      font-size: 16px;
+    }
+
+    // Row dividers
+    thead tr th {
+      border-bottom: 2px solid #222;
+    }
+
+    tbody tr + tr td {
+      border-top: 2px solid #222;
+    }
+
+    tbody tr td:first-child {
+      text-transform: uppercase;
+      font-weight: bold;
+
+      input {
+        text-transform: uppercase;
+      }
+    }
+
+    // Make first column minimal and last column take remaining width
+    th:first-child,
+    td:first-child {
+      width: 1%;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    // Keep middle column tight (numbers)
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 1%;
+      white-space: nowrap;
+    }
+
+    // Let the last column expand
+    th:last-child,
+    td:last-child {
+      width: 99%;
+      white-space: normal;
+    }
+
+    // Ensure inputs align left within cells
+    input[type='number'],
+    input[type='text'],
+    input[type='search'] {
+      text-align: left;
+      width: auto;
+    }
+  }
+}
+
 hr {
   border: 1px solid #222;
   margin: 4px 0;

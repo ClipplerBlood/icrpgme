@@ -48,11 +48,11 @@ form.icrpg-sheet-v2 {
 SHEET APP CONTAINER
 =======================================*/
 form.icrpg-sheet-v2 {
-  background: linear-gradient( rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08) ), url('../assets/ui/backgrounds/bg-sheet.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('../assets/ui/backgrounds/bg-sheet.png');
   background-size: cover;
 
   .window-content {
-    background: linear-gradient( rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.04) ), url('../assets/ui/backgrounds/bg-sheet.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.04)), url('../assets/ui/backgrounds/bg-sheet.png');
     background-size: cover;
   }
 
@@ -177,6 +177,11 @@ form.icrpg-sheet-v2 {
         }
       }
     }
+  }
+
+  &.character .window-content {
+    min-height: 570px;
+    max-height: 570px;
   }
 
   /*======================================

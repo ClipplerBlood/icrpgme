@@ -1,3 +1,155 @@
+{{#* inline "carriedSelector"}}
+  {{#if item.system.equipped}}
+    <div class="select-circle full" data-action="carryItem" data-tooltip="ICRPG.equipped"></div>
+  {{else if item.system.carried}}
+    <div class="select-circle half" data-action="uncarryItem" data-tooltip="ICRPG.carried"></div>
+  {{else}}
+    <div class="select-circle empty" data-action="equipItem" data-tooltip="ICRPG.unequipped"></div>
+  {{/if}}
+{{/inline}}
+
+{{#* inline "masterySelector"}}
+  {{#if (gte i.system.mastery index)}}
+    <div class="select-circle full" data-action="setPowerMastery" data-index="{{index}}"></div>
+  {{else}}
+    <div class="select-circle" data-action="setPowerMastery" data-index="{{index}}"></div>
+  {{/if}}
+
+{{/inline}}
+
+
 <section class="tab loot-tab {{tab.cssClass}}" data-tab="loot" data-group="primary">
-  Loot Here
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+    <div>
+      {{#if (or loot.length editable)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "TYPES.Item.loot"}}</h3>
+          {{#each loot as | i | }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-tooltip="{{i.system.description}}" data-action="useItem">{{i.name}}</div>
+              {{~> carriedSelector item=i}}
+              {{!--
+              <div class="item-description">{{i.system.description}}</div>
+              --}}
+            </div>
+          {{/each}}
+          {{#if editable}}
+            <input type="text" placeholder="{{localize 'ICRPG.name'}}" data-type="loot">
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (or spells.length editable)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.spells"}}</h3>
+          {{#each spells as | i | }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-tooltip="{{i.system.description}}" data-action="useItem">{{i.name}}</div>
+              <div class="spell-type">{{spellType i}}</div>
+              {{~> carriedSelector item=i}}
+              {{!--
+              <div class="item-description">{{i.system.description}}</div>
+              {{#if i.system.target}}
+                <div class="spell-target">{{i.system.target}}</div>
+              {{/if}}
+              {{#if i.system.duration}}
+                <div class="spell-duration">{{i.system.duration}}</div>
+              {{/if}}
+              {{#if i.system.flavorText}}
+                <div class="spell-flavor-text">{{i.system.flavorText}}</div>
+              {{/if}}
+              --}}
+            </div>
+          {{/each}}
+          {{#if editable}}
+            <input type="text" placeholder="{{localize 'ICRPG.name'}}" data-type="spell">
+          {{/if}}
+        </div>
+      {{/if}}
+      <hr>
+      <div>
+        <div class="weight-container">
+          <div>
+            <div>{{localize "ICRPG.equipped"}}</div>
+            {{#if editable}}
+              <div>MAX <input type="number" value="{{system.weight.equipped.max}}"
+                              name="system.weight.equipped.max"></div>
+            {{else}}
+              <div>{{system.weight.equipped.value}}/{{system.weight.equipped.max}}</div>
+            {{/if}}
+          </div>
+          <div>
+            <div>{{localize "ICRPG.carried"}}</div>
+            {{#if editable}}
+              <div>MAX <input type="number" value="{{system.weight.carried.max}}"
+                              name="system.weight.carried.max"></div>
+            {{else}}
+              <div>{{system.weight.carried.value}}/{{system.weight.carried.max}}</div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      {{#if (or abilities.length editable)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.abilities"}}</h3>
+          {{#each abilities as |i| }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+              <div class="item-description">{{i.system.description}}</div>
+            </div>
+          {{/each}}
+          {{#if editable}}
+            <input type="text" placeholder="{{localize 'ICRPG.name'}}" data-type="ability">
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (or powers.length editable)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.powers"}}</h3>
+          {{#each powers as |i|}}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+              <div class="flex-row" data-tooltip="{{localize 'ICRPG.mastery'}}">
+
+                {{~> masterySelector i=i index=1}}
+                {{~> masterySelector i=i index=2}}
+                {{~> masterySelector i=i index=3}}
+                {{~> masterySelector i=i index=4}}
+              </div>
+              <div class="item-description">{{i.system.description}}</div>
+              {{!--
+              {{#each i.system.spCosts as |entry index|}}
+                <div class="power-cost" data-entry-index="{{index}}" data-action="useItem"><b
+                  class="clickable-action">{{localize
+                  "ICRPG.spCost"}} {{entry.cost}}:</b> {{entry.description}}</div>
+              {{/each}}
+              --}}
+            </div>
+          {{/each}}
+          {{#if editable}}
+            <input type="text" placeholder="{{localize 'ICRPG.name'}}" data-type="power">
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (or augments.length editable)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.augments"}}</h3>
+          {{#each augments as |i|}}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+              <div class="item-description">{{i.system.description}}</div>
+            </div>
+          {{/each}}
+          {{#if editable}}
+            <input type="text" placeholder="{{localize 'ICRPG.name'}}" data-type="augment">
+          {{/if}}
+        </div>
+      {{/if}}
+
+    </div>
+  </div>
 </section>

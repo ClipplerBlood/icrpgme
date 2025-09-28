@@ -95,8 +95,10 @@
     "abilities": "Abilities",
     "powers": "Powers",
     "augments": "Augments",
+    "spells": "Spells",
     "carried": "Carried",
     "equipped": "Equipped",
+    "unequipped": "Unequipped",
     "roll": {
       "roll": "Roll",
       "modifier": "Modifier",

@@ -81,10 +81,12 @@
     [data-action] {
       cursor: pointer;
     }
+
     [data-action]:hover b {
       color: var(--c-red);
     }
   }
+
   .actions-container.edit {
     .action {
       display: flex;
@@ -118,3 +120,150 @@
     margin-left: 2px;
   }
 }
+
+.loot-tab {
+  padding-top: 16px;
+
+  div div div:not(:first-child) h3 {
+    margin-top: 4px;
+  }
+
+  h3 {
+    font-family: $ff-flatbread;
+    color: white;
+    background: url("/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp");
+    display: block;
+    font-size: 16px;
+    height: 25px;
+    margin: 0;
+    background-size: cover;
+    line-height: 30px;
+    padding-left: 8px;
+    font-weight: lighter;
+  }
+
+  .item {
+    [data-action='useItem'] {
+      &:hover {
+        color: var(--c-red);
+        cursor: pointer;
+      }
+    }
+
+    .select-circle {
+      margin-right: 4px;
+    }
+
+    .item-name {
+      font-weight: bold;
+      display: block;
+      flex-grow: 1;
+      text-transform: uppercase;
+    }
+
+    .spell-flavor-text,
+    .spell-duration,
+    .spell-target,
+    .power-cost,
+    .item-description {
+      flex-basis: 100%;
+      font-size: 14px;
+      color: #4b4b4b;
+      line-height: 1;
+      white-space: pre-line;
+    }
+
+    &:not(:last-child) .item-description {
+      margin-bottom: 4px;
+    }
+
+    .spell-duration,
+    .spell-target {
+      font-weight: 600;
+    }
+
+    .spell-flavor-text {
+      font-style: italic;
+    }
+
+    .spell-type {
+      margin-right: 4px;
+      color: #4b4b4b;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    flex-wrap: wrap;
+    font-family: $ff-carlito;
+    font-size: 16px;
+    padding-left: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .weight-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      justify-content: space-between;
+      font-family: $ff-flatbread;
+      font-weight: lighter;
+      font-size: 10px;
+      color: #4b4b4b;
+    }
+
+    input {
+      display: inline;
+      width: 20px;
+      height: 14px;
+      text-align: right;
+      color: #4b4b4b;
+    }
+  }
+
+  input[data-type] {
+    font-weight: bold;
+    display: block;
+    flex-grow: 1;
+    text-transform: uppercase;
+    padding-left: 4px;
+    height: 16px;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    font-size: 16px;
+  }
+}
+
+.select-circle {
+  height: 16px;
+  width: 16px;
+  border-radius: 12px;
+  border: 2px solid #222;
+
+  &[data-action] {
+    @include hover;
+  }
+
+  &.full {
+    background: #222;
+  }
+
+  &.half {
+    background: #cacaca;
+  }
+}
+
+hr {
+  border: 1px solid #222;
+  margin: 4px 0;
+}
+

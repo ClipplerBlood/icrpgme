@@ -27,6 +27,10 @@
 
 a.content-link {
   font-family: $ff-flatbread;
+  color: #181818;
+  font-weight: 100;
+  font-size: 14px;
+  background: rgb(221, 221, 221);
 }
 
 .chat-message a.content-link {
@@ -155,6 +159,9 @@ img#logo {
   border-bottom: none;
   padding-bottom: 5px;
   padding-left: 16px;
+  color: #111;
+  font-weight: 100;
+  font-size: 32px;
 }
 
 //
@@ -168,9 +175,13 @@ img#logo {
 
   .editor-content {
     p,
+    h1,
     h2,
-    h3 {
-      color: var(--color-text-primary); // Ripristiniamo il colore originale dell'editor
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--color-text-primary);
     }
   }
 
@@ -266,6 +277,7 @@ img#logo {
       padding-bottom: 0;
       margin-top: 12px !important;
       margin-bottom: -8px !important;
+      color: #111;
 
       span {
         text-transform: none;

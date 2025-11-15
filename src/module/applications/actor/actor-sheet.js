@@ -1,5 +1,5 @@
-import { i18n, onArrayEdit, trimNewLineWhitespace } from '../utils/utils.js';
-import { isQuickInsertOn, prepareQuickInsertSheet } from '../modules-integration.js';
+import { i18n, onArrayEdit, trimNewLineWhitespace } from '../../utils/utils.js';
+import { isQuickInsertOn, prepareQuickInsertSheet } from '../../modules-integration.js';
 
 const { ActorSheet } = foundry.appv1.sheets;
 const ContextMenu = foundry.applications.ux.ContextMenu.implementation;
@@ -26,11 +26,11 @@ export default class ICRPGActorSheet extends ActorSheet {
 
   get template() {
     const t = this.actor.type;
-    if (t === 'character') return 'systems/icrpgme/templates/actor/character-sheet.html';
-    else if (t === 'monster') return 'systems/icrpgme/templates/actor/monster-sheet.html';
-    else if (t === 'obstacle') return 'systems/icrpgme/templates/actor/obstacle-sheet.html';
-    else if (t === 'vehicle') return 'systems/icrpgme/templates/actor/vehicle-sheet.html';
-    else if (t === 'hardSuit') return 'systems/icrpgme/templates/actor/hardsuit-sheet.html';
+    if (t === 'character') return 'systems/icrpgme/templates/actor/character-sheet.hbs';
+    else if (t === 'monster') return 'systems/icrpgme/templates/actor/monster-sheet.hbs';
+    else if (t === 'obstacle') return 'systems/icrpgme/templates/actor/obstacle-sheet.hbs';
+    else if (t === 'vehicle') return 'systems/icrpgme/templates/actor/vehicle-sheet.hbs';
+    else if (t === 'hardSuit') return 'systems/icrpgme/templates/actor/hardsuit-sheet.hbs';
     return '';
   }
 

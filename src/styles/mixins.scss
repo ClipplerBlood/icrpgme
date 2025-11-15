@@ -2,6 +2,9 @@
   border: none;
   background: none;
   padding: 0;
+  box-shadow: none;
+  transition: none !important;
+
   &:focus,
   &:hover {
     border: none;
@@ -31,17 +34,11 @@
 @mixin flex-row {
   display: flex;
   flex-direction: row;
-  & > * {
-    flex: 1;
-  }
 }
 
 @mixin flex-col {
   display: flex;
   flex-direction: column;
-  & > * {
-    flex: 1;
-  }
 }
 
 .flex-row {
@@ -50,6 +47,30 @@
 
 .flex-col {
   @include flex-col;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
 }
 
 @mixin hover {
@@ -82,6 +103,28 @@
   @include hover;
 }
 
+@mixin bg-black-bar {
+  background-color: var(--c-border);
+  -webkit-mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-image: url('/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp');
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  color: var(--c-text-negative);
+
+  @extend .ff-header;
+  font-size: 16px;
+  height: 25px;
+  padding-top: 6px;
+  padding-left: 6px;
+  text-align: left;
+}
+
+.bg-black-bar {
+  @include bg-black-bar;
+}
+
 .icrpg-sep-long {
   height: 4px;
   width: auto;
@@ -107,7 +150,8 @@
 }
 
 textarea[autosize] {
-  height: 0;
+  //height: 0;
+  box-sizing: content-box;
   overflow: hidden;
   resize: none;
   min-height: 0;
@@ -159,4 +203,33 @@ input[type='checkbox'][readonly] {
 
 .shake {
   animation: shake 0.3s;
+}
+
+@keyframes locked-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(0px);
+  }
+  40%,
+  80% {
+    transform: translateX(16px);
+  }
+}
+
+.slide-toggle-thumb.shake-animation {
+  animation: locked-shake 0.5s ease-in-out;
+  //background-color: var(--c-red) !important;
+}
+
+@each $s in [0, 4, 8, 12, 16, 20, 32] {
+  .mt-#{$s} {
+    margin-top: #{$s}px;
+  }
+  .mb-#{$s} {
+    margin-bottom: #{$s}px;
+  }
 }

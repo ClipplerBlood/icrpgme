@@ -15,6 +15,7 @@ export default function registerHandlebarsHelpers() {
   Handlebars.registerHelper('romanize', romanize);
   Handlebars.registerHelper('spellPrefix', _spellPrefix);
   Handlebars.registerHelper('wrapAmpersand', (x) => x.replace('&', '\n&'));
+  Handlebars.registerHelper('spellType', _spellType);
 }
 
 function _localizeConcat(...args) {
@@ -63,4 +64,14 @@ function _spellPrefix(spell) {
   if (prefix.length === 0) return '';
   const html = `<b class="tt-u ff-content" style="font-size: 0.95rem; flex: 0; white-space: nowrap; margin-right: 4px;">${prefix}:</b>`;
   return new Handlebars.SafeString(html);
+}
+
+function _spellType(spell) {
+  const system = spell.system;
+  let prefix = '';
+  prefix += system.spellType ?? '';
+  prefix = prefix.toLowerCase().replace('spell', '').trim().toUpperCase();
+  prefix += ' ' + romanize(system.spellLevel) ?? '';
+  prefix = prefix.trim();
+  return prefix;
 }

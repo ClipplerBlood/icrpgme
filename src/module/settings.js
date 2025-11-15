@@ -1,4 +1,4 @@
-import { TimerTargetContainer } from './app/timer-target-app.js';
+import { TimerTargetContainer } from './applications/timer-target-app.js';
 
 export function registerSettings() {
   // Register any custom system settings here

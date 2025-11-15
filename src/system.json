@@ -63,5 +63,10 @@
     "units": "m"
   },
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": null
+  "secondaryTokenAttribute": null,
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs", "json"]
+    }
+  }
 }

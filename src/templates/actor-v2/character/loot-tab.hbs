@@ -1,0 +1,249 @@
+{{!--
+  Inline partial: carriedSelector
+  Purpose: Render a circular indicator representing item state (equipped / carried / unequipped),
+           and wire the appropriate action when clicked.
+  States:
+    - Equipped => full circle, clicking will "carryItem"
+    - Carried (but not equipped) => half circle, clicking will "uncarryItem"
+    - Unequipped/Not carried => empty circle, clicking will "equipItem"
+--}}
+{{#* inline "carriedSelector"}}
+  {{#if item.system.equipped}}
+  {{!-- Equipped: full indicator, clicking transitions to "carried" --}}
+    <div
+      class="select-circle full"
+      data-action="carryItem"
+      data-tooltip="ICRPG.equipped"
+    ></div>
+  {{else if item.system.carried}}
+  {{!-- Carried: half indicator, clicking removes from carried --}}
+    <div
+      class="select-circle half"
+      data-action="uncarryItem"
+      data-tooltip="ICRPG.carried"
+    ></div>
+  {{else}}
+  {{!-- Not carried / unequipped: empty indicator, clicking equips --}}
+    <div
+      class="select-circle empty"
+      data-action="equipItem"
+      data-tooltip="ICRPG.unequipped"
+    ></div>
+  {{/if}}
+{{/inline}}
+
+{{!--
+  Inline partial: masterySelector
+  Purpose: Render one mastery pip (dot). Full if index <= current mastery, empty otherwise.
+  Behavior: Clicking sets mastery to the given index via "setPowerMastery".
+  Usage: Render 4 instances (indexes 1..4) to display mastery level.
+--}}
+{{#* inline "masterySelector"}}
+  {{#if (gte i.system.mastery index)}}
+    <div
+      class="select-circle full"
+      data-action="setPowerMastery"
+      data-index="{{index}}"
+    ></div>
+  {{else}}
+    <div
+      class="select-circle"
+      data-action="setPowerMastery"
+      data-index="{{index}}"
+    ></div>
+  {{/if}}
+{{/inline}}
+
+<section
+  class="tab loot-tab {{tab.cssClass}}"
+  data-tab="loot"
+  data-group="primary"
+>
+  {{!-- Two-column responsive grid --}}
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+    {{!-- Left column: Loot, Spells, Weight --}}
+    <div>
+      {{!-- Loot list (shown if there is any loot or sheet is editable) --}}
+      {{#if (or loot.length editable noItems)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "TYPES.Item.loot"}}</h3>
+
+          {{!-- Each loot item: name + carried/equipped selector --}}
+          {{#each loot as | i | }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div
+                class="item-name"
+                data-tooltip="{{i.system.description}}"
+                data-action="useItem"
+              >
+                {{i.name}}
+              </div>
+              {{~> carriedSelector item=i}}
+            </div>
+          {{/each}}
+
+          {{!-- Quick-create input for new loot (editable only) --}}
+          {{#if (or editable noItems)}}
+            <input
+              type="text"
+              placeholder="{{localize 'ICRPG.name'}}"
+              data-type="loot"
+            >
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{!-- Spells list --}}
+      {{#if (or spells.length editable noItems)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.spells"}}</h3>
+
+          {{#each spells as | i | }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div
+                class="item-name"
+                data-tooltip="{{i.system.description}}"
+                data-action="useItem"
+              >
+                {{i.name}}
+              </div>
+              <div class="spell-type">{{spellType i}}</div>
+              {{~> carriedSelector item=i}}
+            </div>
+          {{/each}}
+
+          {{#if (or editable noItems)}}
+            <input
+              type="text"
+              placeholder="{{localize 'ICRPG.name'}}"
+              data-type="spell"
+            >
+          {{/if}}
+        </div>
+      {{/if}}
+
+      <hr>
+
+      {{!-- Weight summary for equipped and carried items --}}
+      <div>
+        <div class="weight-container">
+          {{!-- Equipped weight block --}}
+          <div>
+            <div>{{localize "ICRPG.equipped"}}</div>
+            {{#if (or editable noItems)}}
+              <div>
+                MAX
+                <input
+                  type="number"
+                  value="{{system.weight.equipped.max}}"
+                  name="system.weight.equipped.max"
+                >
+              </div>
+            {{else}}
+              <div>
+                {{system.weight.equipped.value}}/{{system.weight.equipped.max}}
+              </div>
+            {{/if}}
+          </div>
+
+          {{!-- Carried weight block --}}
+          <div>
+            <div>{{localize "ICRPG.carried"}}</div>
+            {{#if (or editable noItems)}}
+              <div>
+                MAX
+                <input
+                  type="number"
+                  value="{{system.weight.carried.max}}"
+                  name="system.weight.carried.max"
+                >
+              </div>
+            {{else}}
+              <div>
+                {{system.weight.carried.value}}/{{system.weight.carried.max}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Right column: Abilities, Powers, Augments --}}
+    <div>
+      {{!-- Abilities list --}}
+      {{#if (or abilities.length editable noItems)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.abilities"}}</h3>
+
+          {{#each abilities as |i| }}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+              <div class="item-description">{{i.system.description}}</div>
+            </div>
+          {{/each}}
+
+          {{#if (or editable noItems)}}
+            <input
+              type="text"
+              placeholder="{{localize 'ICRPG.name'}}"
+              data-type="ability"
+            >
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{!-- Powers list with mastery pips --}}
+      {{#if (or powers.length editable noItems)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.powers"}}</h3>
+
+          {{#each powers as |i|}}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+
+              {{!-- Mastery pips: 1..4, tooltip shows "Mastery" --}}
+              <div class="flex-row" data-tooltip="{{localize 'ICRPG.mastery'}}">
+                {{~> masterySelector i=i index=1}}
+                {{~> masterySelector i=i index=2}}
+                {{~> masterySelector i=i index=3}}
+                {{~> masterySelector i=i index=4}}
+              </div>
+
+              <div class="item-description">{{i.system.description}}</div>
+            </div>
+          {{/each}}
+
+          {{#if (or editable noItems)}}
+            <input
+              type="text"
+              placeholder="{{localize 'ICRPG.name'}}"
+              data-type="power"
+            >
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{!-- Augments list --}}
+      {{#if (or augments.length editable noItems)}}
+        <div>
+          <h3 class="icrpg-block-title">{{localize "ICRPG.augments"}}</h3>
+
+          {{#each augments as |i|}}
+            <div class="item" data-item-id="{{i.id}}">
+              <div class="item-name" data-action="useItem">{{i.name}}</div>
+              <div class="item-description">{{i.system.description}}</div>
+            </div>
+          {{/each}}
+
+          {{#if (or editable noItems)}}
+            <input
+              type="text"
+              placeholder="{{localize 'ICRPG.name'}}"
+              data-type="augment"
+            >
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</section>

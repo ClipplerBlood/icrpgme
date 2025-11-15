@@ -1,7 +1,8 @@
 {
   "icrpgme": {
-    "ICRPGActorSheet": "ICRPG Actor Sheet",
-    "ICRPGItemSheet": "ICRPG Item Sheet"
+    "ICRPGActorSheet": "ICRPG Actor Sheet (v1)",
+    "ICRPGItemSheet": "ICRPG Item Sheet (v1)",
+    "ICRPGSheetV2": "ICRPG Sheet (v2)"
   },
   "TYPES": {
     "Actor": {
@@ -75,6 +76,7 @@
     "dying": "Dying",
     "dyingSubtitle": "1d4 rnds 'til dead",
     "defenseSubtitle": "10+DEF = Enemy to hit roll",
+    "resource": "Resource",
     "newResourceName": "New Resource Name",
     "herocoin": "Hero Coin",
     "mastery": "Mastery",
@@ -94,8 +96,10 @@
     "abilities": "Abilities",
     "powers": "Powers",
     "augments": "Augments",
+    "spells": "Spells",
     "carried": "Carried",
     "equipped": "Equipped",
+    "unequipped": "Unequipped",
     "roll": {
       "roll": "Roll",
       "modifier": "Modifier",
@@ -114,6 +118,7 @@
     "easy": "Easy",
     "hard": "Hard",
     "initiative": "Initiative",
+    "lockUnlock": "Lock/Unlock Sheet",
     "locked": "Locked",
     "unlocked": "Unlocked",
     "notifications": {

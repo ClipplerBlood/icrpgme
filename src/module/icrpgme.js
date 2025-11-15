@@ -9,7 +9,7 @@ import { registerFonts } from './register-fonts.js';
 import { sendDevMessages } from './utils/dev-messages.js';
 import { importDocuments } from './utils/import-documents.js';
 import { handleMigrations } from './migration.js';
-import { TimerTargetContainer } from './app/timer-target-app.js';
+import { TimerTargetContainer } from './applications/timer-target-app.js';
 
 // Initialize system
 Hooks.once('init', async () => {
@@ -62,4 +62,9 @@ Hooks.once('ready', () => {
 Hooks.on('collapseSidebar', () => {
   foundry.utils.debounce(() => game.icrpgme.timerTargetContainer?.render(), 250)();
   // game.icrpgme.timerTargetContainer?.render();
+});
+
+Hooks.once('ready', async () => {
+  // await game.actors.get('Zi2wnszmwMtNsVnO').sheet.render(true);
+  // await game.actors.get('BCMRYvjPPkVsfh7R').sheet.render(true);
 });

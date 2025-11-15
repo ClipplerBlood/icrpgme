@@ -43,6 +43,10 @@
       box-shadow: none;
     }
   }
+
+  .flex-row > * {
+    flex: 1;
+  }
 }
 
 .icrpg-sheet-header {

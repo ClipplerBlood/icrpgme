@@ -107,14 +107,14 @@ Hooks.on('renderICRPGBaseApp', (app, html, data) => _onRenderInner(app, html, da
 
 // eslint-disable-next-line no-unused-vars
 function _onRenderInner(app, html, data) {
-  _initializeAutosize(html);
-  html.find('nav > *').click(() => setTimeout(() => _initializeAutosize(html), 5));
+  prepareAutosizeTextareas(html);
+  html.find('nav > *').click(() => setTimeout(() => prepareAutosizeTextareas(html), 5));
   html.find('textarea').each((_, el) => {
     el.value = trimNewLineWhitespace(el.value);
   });
 }
 
-function _initializeAutosize(html) {
+export function prepareAutosizeTextareas(html) {
   const autoresize = (el) => {
     const jEl = $(el);
     if (jEl.prop('tagName') === 'INPUT') {
@@ -133,6 +133,24 @@ function _initializeAutosize(html) {
   };
 
   html.find('[autosize]').each((_, el) => autoresize(el));
+}
+
+function autoResizeV2(el) {
+  el.style.height = 0;
+  el.style.height = el.scrollHeight + 'px';
+}
+
+export function prepareAutosizeTextareasV2(html) {
+  const textareas = html.querySelectorAll('textarea[autosize]');
+  textareas.forEach((textarea) => {
+    textarea.addEventListener('input', () => {
+      autoResizeV2(textarea);
+    });
+
+    setTimeout(() => {
+      autoResizeV2(textarea);
+    }, 0);
+  });
 }
 
 export function romanize(num) {

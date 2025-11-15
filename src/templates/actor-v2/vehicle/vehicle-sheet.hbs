@@ -1,0 +1,111 @@
+<section class="vehicle-sheet" style="overflow-y: auto">
+  <!--ACTOR IMAGE-->
+  <div class="actor-image-container">
+    <img alt="{{document.name}}" src="{{document.img}}" title="{{document.name}}"
+      {{#if document.flags.icrpgme.blendImg}}style="mix-blend-mode: multiply" data-blend {{/if}}
+      {{#if editable}}data-edit="img" data-action="editImage" {{else}} data-action="showPortraitArtwork"{{/if}}
+    />
+  </div>
+
+  <!--  ACTOR NAME-->
+  <div class="actor-name-container">
+    <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}>
+  </div>
+
+  <!--  DESCRIPTION-->
+  {{#if readonly}}
+    <div class="italic mt-8 mb-8 whitespace-pre-wrap">{{system.description}}</div>
+  {{else}}
+    <textarea class="italic mt-8 w-full"
+              name="system.description"
+              spellcheck="false"
+              style="max-width: 65%"
+              placeholder="{{localize "ICRPG.monsterSheet.monsterDescription"}}"
+              autosize>{{system.description}}</textarea>
+  {{/if}}
+
+
+  <!--  CHUNKS-->
+  {{#if editable}}
+    <div class="bg-black-bar mb-4" style="max-width: 65%">{{localize "ICRPG.vehicleSheet.chunks"}}</div>
+    <div class="actions-container edit" data-action-group="chunks">
+      {{#each system.chunks as |chunk index|}}
+        <div class="flexrow" data-chunk-index="{{index}}">
+          <div class="icrpg-heart hoverable">
+            {{#if (eq chunk.health.hearts 0.5)}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-half-red.webp">
+            {{else}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+            {{/if}}
+          </div>
+          <div class="action">
+            <input type="text" value="{{chunk.name}}" data-target="name" class="tt-u"
+                   placeholder="{{localize "ICRPG.vehicleSheet.chunkName"}}">
+            <textarea placeholder="{{localize "ICRPG.vehicleSheet.chunkDescription"}}"
+                      spellcheck="false"
+                      autosize
+                      data-target="description">{{chunk.description}}</textarea>
+          </div>
+        </div>
+      {{/each}}
+      <div class="action" data-chunk-index="-1">
+        <input type="text" value="{{chunk.name}}" data-target="name" class="tt-u"
+               placeholder="{{localize "ICRPG.vehicleSheet.chunkName"}}">
+      </div>
+    </div>
+  {{else if system.chunks.length}}
+    <div class="bg-black-bar mb-4" style="max-width: 65%">{{localize "ICRPG.vehicleSheet.chunks"}}</div>
+    <div class="actions-container">
+      {{#each system.chunks as |chunk index|}}
+        <div class="flexrow mb-4">
+          <div class="icrpg-heart">
+            {{#if (eq chunk.health.hearts 0.5)}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-half-red.webp">
+            {{else}}
+              <img class="heart" src="systems/icrpgme/assets/ui/heart-red.webp">
+            {{/if}}
+          </div>
+          <div class="whitespace-pre-wrap"><b class="tt-u">{{chunk.name}}: </b>{{chunk.description}}</div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <!--  MANEUVERS-->
+  {{#if editable}}
+    <div class="bg-black-bar mb-4" style="max-width: 65%">{{localize "ICRPG.vehicleSheet.maneuvers"}}</div>
+    <div class="actions-container edit" data-action-group="maneuvers">
+      {{#each system.maneuvers as |maneuver index|}}
+        <div class="action" data-action-index="{{index}}">
+          <input type="text" value="{{maneuver.name}}" data-target="name" class="tt-u"
+                 placeholder="{{localize "ICRPG.vehicleSheet.maneuverName"}}">
+          <textarea placeholder="{{localize "ICRPG.vehicleSheet.maneuverDescription"}}"
+                    spellcheck="false"
+                    autosize
+                    data-target="description">{{maneuver.description}}</textarea>
+        </div>
+      {{/each}}
+      <div class="action" data-action-index="-1">
+        <input type="text" value="{{maneuver.name}}" data-target="name" class="tt-u"
+               placeholder="{{localize "ICRPG.vehicleSheet.maneuverName"}}">
+      </div>
+    </div>
+  {{else if system.maneuvers.length}}
+    <div class="bg-black-bar mb-4" style="max-width: 65%">{{localize "ICRPG.vehicleSheet.maneuvers"}}</div>
+    <div class="actions-container">
+      {{#each system.maneuvers as |maneuver index|}}
+        <div class="mb-4 whitespace-pre-wrap"
+             data-action-index="{{index}}"
+             data-action="useAction"
+        ><b class="tt-u">{{maneuver.name}}: </b>{{maneuver.description}}</div>
+      {{/each}}
+    </div>
+  {{/if}}
+</section>
+
+<!-- HELPERS -->
+{{#* inline "selectableHeart"}}
+  <div class="icrpg-selectable-heart" data-index="{{index}}" data-action="setHearts">
+    <img class="heart" src="{{healthImageChooser document index}}">
+  </div>
+{{/inline}}

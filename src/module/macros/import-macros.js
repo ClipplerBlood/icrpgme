@@ -1,6 +1,6 @@
 import * as TOML from '@ltd/j-toml';
-import { ICRPGItem } from '../item/item.js';
-import { ICRPGActor } from '../actor/actor.js';
+import { ICRPGItem } from '../documents/item.js';
+import { ICRPGActor } from '../documents/actor.js';
 
 const ITEM_DN = ICRPGItem.documentName;
 const ACTOR_DN = ICRPGActor.documentName;

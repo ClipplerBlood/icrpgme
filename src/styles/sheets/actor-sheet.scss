@@ -1,0 +1,397 @@
+@import '../typography';
+@import '../mixins';
+
+.obstacle-sheet,
+.vehicle-sheet,
+.monster-sheet {
+  font-size: 16px;
+
+  .actor-name-container {
+    background-image: url(/systems/icrpgme/assets/ui/backgrounds/bg-monster-header.webp);
+    background-size: 100% 100%;
+    font-size: 28px;
+    position: relative;
+    height: 40px;
+
+    input {
+      font-family: $ff-nusaliver;
+      padding-top: 6px;
+      padding-left: 8px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .icrpg-monster-attributes {
+    font-style: italic;
+    font-weight: bold;
+    font-family: $ff-carlito;
+  }
+
+  .icrpg-monster-attributes.view {
+    span::after {
+      content: ',';
+      white-space: pre;
+    }
+
+    span:last-of-type::after {
+      display: none;
+    }
+  }
+
+  .icrpg-monster-attributes.edit {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 12px;
+    row-gap: 4px;
+    text-transform: uppercase;
+    font-size: 14px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .row.value-0,
+    .row.value-0 input {
+      color: var(--c-light-grey) !important;
+    }
+
+    input {
+      width: 20px;
+      height: 16px;
+      text-align: right;
+      padding-right: 4px;
+    }
+
+    textarea {
+      font-style: italic;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-family: $ff-carlito;
+    }
+  }
+
+  .actions-container {
+    [data-action] {
+      cursor: pointer;
+    }
+
+    [data-action]:hover b {
+      color: var(--c-red);
+    }
+  }
+
+  .actions-container.edit {
+    .action {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    input {
+      max-width: 50%;
+      height: 22px;
+      font-weight: bold;
+
+      &::placeholder {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .actor-image-container {
+    max-width: 33%;
+    float: right;
+  }
+}
+
+.vehicle-sheet {
+  .icrpg-heart {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    margin-left: 2px;
+  }
+}
+
+.loot-tab {
+  padding-top: 16px;
+
+  & > div {
+    min-height: 465px;
+    max-height: 465px;
+  }
+
+  div div div:not(:first-child) h3 {
+    margin-top: 4px;
+  }
+
+  h3 {
+    font-family: $ff-flatbread;
+    color: white;
+    background: url("/systems/icrpgme/assets/ui/backgrounds/bg-bar.webp");
+    display: block;
+    font-size: 16px;
+    height: 25px;
+    margin: 0;
+    background-size: cover;
+    line-height: 30px;
+    padding-left: 8px;
+    font-weight: lighter;
+  }
+
+  .item {
+    [data-action='useItem'] {
+      &:hover {
+        color: var(--c-red);
+        cursor: pointer;
+      }
+    }
+
+    .select-circle {
+      margin-right: 4px;
+    }
+
+    .item-name {
+      font-weight: bold;
+      display: block;
+      flex-grow: 1;
+      text-transform: uppercase;
+    }
+
+    .spell-flavor-text,
+    .spell-duration,
+    .spell-target,
+    .power-cost,
+    .item-description {
+      flex-basis: 100%;
+      font-size: 14px;
+      color: #4b4b4b;
+      line-height: 1;
+      white-space: pre-line;
+    }
+
+    &:not(:last-child) .item-description {
+      margin-bottom: 4px;
+    }
+
+    .spell-duration,
+    .spell-target {
+      font-weight: 600;
+    }
+
+    .spell-flavor-text {
+      font-style: italic;
+    }
+
+    .spell-type {
+      margin-right: 4px;
+      color: #4b4b4b;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    flex-wrap: wrap;
+    font-family: $ff-carlito;
+    font-size: 16px;
+    padding-left: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .weight-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      justify-content: space-between;
+      font-family: $ff-flatbread;
+      font-weight: lighter;
+      font-size: 10px;
+      color: #4b4b4b;
+    }
+
+    input {
+      display: inline;
+      width: 20px;
+      height: 14px;
+      text-align: right;
+      color: #4b4b4b;
+    }
+  }
+
+  input[data-type] {
+    font-weight: bold;
+    display: block;
+    flex-grow: 1;
+    text-transform: uppercase;
+    padding-left: 4px;
+    height: 16px;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    font-size: 16px;
+  }
+}
+
+.select-circle {
+  height: 16px;
+  width: 16px;
+  border-radius: 12px;
+  border: 2px solid #222;
+
+  &[data-action] {
+    @include hover;
+  }
+
+  &.full {
+    background: #222;
+  }
+
+  &.half {
+    background: #cacaca;
+  }
+}
+
+.resources-tab {
+  .mastery-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    margin-bottom: 4px;
+    min-height: 32px;
+    font-family: $ff-flatbread;
+    text-transform: uppercase;
+    font-size: 16px;
+    justify-items: end;
+    padding: 4px 4px 4px 4px;
+    margin-top: 8px;
+    background: #222;
+    color: #fff;
+
+    .select-circle {
+      background: #fff;
+    }
+
+    .select-circle.full {
+      background: var(--c-red);
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      align-items: center;
+    }
+  }
+
+  input[type='number'] {
+    width: auto !important;
+  }
+
+  table {
+    background: transparent;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+    margin-top: 8px;
+
+    // Keep columns as tight as possible and left-aligned
+    th,
+    td {
+      text-align: left;
+      white-space: nowrap;
+      padding: 2px 4px;
+      background: transparent;
+    }
+
+    thead {
+      background: transparent;
+      border: none;
+    }
+
+    // Header style like h3
+    thead th {
+      font-family: $ff-flatbread;
+      font-weight: lighter;
+      font-size: 16px;
+      color: #222;
+      text-transform: uppercase;
+    }
+
+    // Body font
+    tbody td {
+      font-family: $ff-carlito;
+      font-size: 16px;
+    }
+
+    // Row dividers
+    thead tr th {
+      border-bottom: 2px solid #222;
+    }
+
+    tbody tr + tr td {
+      border-top: 2px solid #222;
+    }
+
+    tbody tr td:first-child {
+      text-transform: uppercase;
+      font-weight: bold;
+
+      input {
+        text-transform: uppercase;
+      }
+    }
+
+    // Make first column minimal and last column take remaining width
+    th:first-child,
+    td:first-child {
+      width: 1%;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    // Keep middle column tight (numbers)
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 1%;
+      white-space: nowrap;
+    }
+
+    // Let the last column expand
+    th:last-child,
+    td:last-child {
+      width: 99%;
+      white-space: normal;
+    }
+
+    // Ensure inputs align left within cells
+    input[type='number'],
+    input[type='text'],
+    input[type='search'] {
+      text-align: left;
+      width: auto;
+    }
+  }
+}
+
+hr {
+  border: 1px solid #222;
+  margin: 4px 0;
+}
+

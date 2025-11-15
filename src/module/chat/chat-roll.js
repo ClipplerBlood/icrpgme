@@ -20,7 +20,7 @@ export async function postRollMessage(actor, roll, context = { temporary: false 
 
   // Prepare chat data
   messageData = foundry.utils.mergeObject(_getBaseMessageData(actor, [roll]), messageData);
-  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/roll.html', {
+  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/roll.hbs', {
     actor: actor,
     roll: roll,
     messageData: messageData,

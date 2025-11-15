@@ -1,0 +1,225 @@
+@import 'mixins';
+
+/*======================================
+VARIABLES
+=======================================*/
+
+//body.theme-dark form.icrpg-sheet-v2 {
+//  --c-text: #f3f3f3;
+//  //--c-border: #fafafa;
+//  --c-border: var(--c-text);
+//  --c-text-negative: #111;
+//  --color-text-primary: var(--c-text);
+//
+//  &::before {
+//    filter: blur(2px) invert(0.9);
+//  }
+//
+//  background: black;
+//}
+//
+//body.theme-light form.icrpg-sheet-v2 {
+//  --c-text: #111;
+//  --c-border: #111;
+//  --c-text-negative: white;
+//  --color-text-primary: var(--c-text);
+//
+//  &::before {
+//    filter: blur(2px) brightness(0.97);
+//  }
+//
+//  background: white;
+//}
+
+form.icrpg-sheet-v2 {
+  --c-text: #111;
+  --c-border: #111;
+  --c-text-negative: white;
+  --color-text-primary: var(--c-text);
+
+  &::before {
+    filter: blur(2px) brightness(0.97);
+  }
+
+  background: white;
+}
+
+/*======================================
+SHEET APP CONTAINER
+=======================================*/
+form.icrpg-sheet-v2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('../assets/ui/backgrounds/bg-sheet.png');
+  background-size: cover;
+
+  .window-content {
+    background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.04)), url('../assets/ui/backgrounds/bg-sheet.png');
+    background-size: cover;
+  }
+
+
+  /*======================================
+  WINDOW HEADER
+  =======================================*/
+  .window-header {
+    justify-content: flex-end;
+    background: none;
+    border: none;
+
+    .slide-toggle-track {
+      margin-left: 2px;
+      margin-right: auto;
+    }
+
+    button.header-control {
+      color: var(--c-text);
+      border: none;
+      box-shadow: inset 0px 0px 2px 0px var(--c-border);
+    }
+
+    .window-title {
+      color: var(--c-text);
+    }
+  }
+
+  /*======================================
+  TABS
+  =======================================*/
+  .icrpg-sheet-tabs {
+    display: flex;
+    padding: 8px 0 0;
+    gap: 4px;
+    margin: auto 0 0;
+    border: none;
+
+    a {
+      @include bg-black-bar;
+      flex: 1;
+      line-height: 1;
+    }
+
+    a.active {
+      color: var(--c-red);
+      text-shadow: none;
+    }
+  }
+
+  .tab:not(.active) {
+    display: none !important;
+  }
+
+  &.item.locked .icrpg-sheet-tabs {
+    // Hide the tab nav for locked items
+    display: none;
+  }
+
+  /*======================================
+   WINDOW CONTENT
+   =======================================*/
+  .window-content {
+    overflow: visible;
+    padding: 0 8px 8px;
+    max-height: calc(100% - 36px);
+
+    // IMPORT TYPE SPECIFIC STYLES
+    @import './sheets/item-sheet';
+    @import './sheets/actor-sheet';
+    @import './sheets/character-sheet';
+
+    input {
+      @include transparent-input();
+      color: var(--c-text);
+
+      &::placeholder {
+        color: var(--c-light-grey);
+      }
+    }
+
+    section {
+      color: var(--c-text);
+      font-family: $ff-signika;
+    }
+
+    > section {
+      overflow-y: auto;
+    }
+
+    textarea {
+      @include transparent-input();
+      width: auto;
+      height: auto;
+      color: var(--c-text);
+      font-family: $ff-signika;
+      font-size: 16px;
+
+      &::placeholder {
+        color: var(--c-light-grey);
+      }
+    }
+
+    .icrpg-discrete-selector-container-v2 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2px;
+
+      .icrpg-discrete-selector-v2 {
+        div {
+          height: 16px;
+          width: 16px;
+          background: #f3f3f3;
+          border-radius: 8px;
+          border: 2px solid var(--c-border);
+          @include hover;
+        }
+
+        div.selected {
+          background: var(--c-red);
+        }
+      }
+    }
+  }
+
+  &.character .window-content {
+    min-height: 570px;
+    max-height: 570px;
+  }
+
+  /*======================================
+  LOCKED SLIDER
+  =======================================*/
+  .slide-toggle-track {
+    width: 32px;
+    height: 16px;
+    border-radius: 9px;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0px 0px 2px 0px var(--c-border);
+    cursor: pointer;
+    background: var(--c-text);
+
+    .slide-toggle-thumb {
+      width: 14px;
+      height: 14px;
+      background: var(--c-text-negative);
+      border-radius: 10px;
+      border: 1px solid var(--c-border);
+      cursor: pointer;
+      margin: 0 1px;
+    }
+
+    &.locked {
+      justify-content: flex-start;
+      background: var(--c-border);
+    }
+
+    &:not(.locked) {
+      justify-content: flex-end;
+      background: red;
+    }
+  }
+}
+
+//.icrpg-sheet-v2.actor {
+//  min-width: 800px;
+//}

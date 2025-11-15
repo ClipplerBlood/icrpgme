@@ -1,4 +1,4 @@
-import { i18n, onArrayEdit } from '../utils/utils.js';
+import { i18n, onArrayEdit } from '../../utils/utils.js';
 const { ItemSheet } = foundry.appv1.sheets;
 
 export class ICRPGItemSheet extends ItemSheet {
@@ -21,7 +21,7 @@ export class ICRPGItemSheet extends ItemSheet {
   }
 
   get template() {
-    return 'systems/icrpgme/templates/item/generic-item.html';
+    return 'systems/icrpgme/templates/item/generic-item.hbs';
   }
 
   async getData() {

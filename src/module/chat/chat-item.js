@@ -14,7 +14,7 @@ export async function postItemMessage(
 
   // Build the message and post it
   messageData = foundry.utils.mergeObject(_getBaseMessageData(actor), messageData);
-  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/item.html', {
+  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/item.hbs', {
     actor: actor,
     item: item,
     messageData: messageData,
@@ -31,7 +31,7 @@ export async function postArrayActionMessage(
   messageData = {},
 ) {
   messageData = foundry.utils.mergeObject(_getBaseMessageData(actor), messageData);
-  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/action.html', {
+  messageData.content = await renderTemplate('systems/icrpgme/templates/chat/action.hbs', {
     actor: actor,
     name,
     description,

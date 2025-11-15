@@ -1,0 +1,43 @@
+
+<div>
+  <div class="item-header">
+    <img class="item-image" src="{{document.img}}"
+         title="{{document.name}}" {{#if editable}}data-edit="img" data-action="editImage"
+         {{else}}data-action="showArtwork"{{/if}}/>
+    <div style="flex-grow: 1">
+      <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}/>
+      <div class="flex-row">
+
+        {{#if (eq document.type "spell")}}
+          <div class="ff-header fs-14 c-red">
+            {{#if system.spellType}}{{system.spellType}} {{/if}}
+            {{#if system.spellLevel}}{{romanize system.spellLevel}}{{/if}}
+          </div>
+
+        {{else if (and (eq document.type "power") isEditable)}}
+          <div class="ff-header fs-14 c-red flex-1">{{localizeConcat "TYPES.Item." document.type}}</div>
+          <div class="icrpg-discrete-selector-container-v2" data-tooltip="ICRPG.mastery">
+            {{#times 4}}
+              {{>selector index=@index target="system.mastery" value=system.mastery}}
+            {{/times}}
+          </div>
+
+        {{else}}
+          <div class="ff-header fs-14 c-red">{{localizeConcat "TYPES.Item." document.type}}</div>
+        {{/if}}
+      </div>
+
+    </div>
+    {{#if (eq document.type "spell")}}
+      <img src="/systems/icrpgme/assets/ui/magic-red.webp" alt="" class="spell-img-decoration">
+    {{/if}}
+  </div>
+  <div class="icrpg-sep-long" style="margin-top: 4px; margin-bottom: 4px"></div>
+</div>
+
+{{#*inline "selector"}}
+  <div class="icrpg-discrete-selector-v2" data-target='{{target}}' data-index="{{index}}">
+    <div class="{{#if (gt value index)}}selected{{/if}}"></div>
+  </div>
+{{/inline}}
+

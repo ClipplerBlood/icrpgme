@@ -23,17 +23,17 @@
 
   <section class="icrpg-tab-container">
     <div class="tab" data-group="primary-tabs" data-tab="primary">
-      {{> "systems/icrpgme/templates/actor/tabs/character-primary-tab.html"}}
+      {{> "systems/icrpgme/templates/actor/tabs/character-primary-tab.hbs"}}
     </div>
     <div class="tab" data-group="primary-tabs" data-tab="loot-abilities">
-      {{> "systems/icrpgme/templates/actor/tabs/character-loot-tab.html"}}
+      {{> "systems/icrpgme/templates/actor/tabs/character-loot-tab.hbs"}}
     </div>
     <div class="tab" data-group="primary-tabs" data-tab="notes">
       {{editor system.enrichedNotes target="system.notes" button=true owner=owner editable=editable
                engine="prosemirror"}}
     </div>
     <div class="tab" data-group="primary-tabs" data-tab="resources">
-      {{> "systems/icrpgme/templates/actor/tabs/character-resources-tab.html"}}
+      {{> "systems/icrpgme/templates/actor/tabs/character-resources-tab.hbs"}}
     </div>
   </section>
 

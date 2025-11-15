@@ -1,6 +1,6 @@
 import { postRollMessage } from '../chat/chat-roll.js';
 import { i18n } from '../utils/utils.js';
-import { ICRPGActor } from '../actor/actor.js';
+import { ICRPGActor } from './actor.js';
 
 export class ICRPGCombat extends Combat {
   getInitiativeValue(combatant) {
@@ -195,7 +195,7 @@ export class ICRPGCombat extends Combat {
     const token = (await scene.createEmbeddedDocuments('Token', [td]))[0];
 
     // Add the combatant
-    this.createEmbeddedDocuments('Combatant', [
+    const obstacle = await this.createEmbeddedDocuments('Combatant', [
       {
         tokenId: token.id,
         sceneId: scene.id,
@@ -203,6 +203,9 @@ export class ICRPGCombat extends Combat {
         hidden: token.hidden,
       },
     ]);
+
+    // Render the sheet
+    await obstacle[0].actor.sheet.render({ force: true, locked: false });
   }
 }
 

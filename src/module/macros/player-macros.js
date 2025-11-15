@@ -39,7 +39,7 @@ export async function rollAll(options = { autoClose: true }) {
       width: 360,
       height: 380,
       classes: ['icrpg-roll-all-dialog'],
-      template: 'systems/icrpgme/templates/dialog/roll-all-dialog.html',
+      template: 'systems/icrpgme/templates/dialog/roll-all-dialog.hbs',
     },
   );
 

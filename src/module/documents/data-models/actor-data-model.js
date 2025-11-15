@@ -1,5 +1,5 @@
 import * as f from './data-model.js';
-import { i18n } from '../utils/utils.js';
+import { i18n } from '../../utils/utils.js';
 
 const initialNote = () =>
   `<h1><span style="font-family: FlatBread, Modesto Condensed, sans-serif">${i18n('ICRPG.tabs.notes')}</span></h1>`;

@@ -1,0 +1,165 @@
+
+<section class="monster-sheet" style="overflow-y: auto">
+  <!--ACTOR IMAGE-->
+  <div class="actor-image-container">
+    <img alt="{{document.name}}" src="{{document.img}}" title="{{document.name}}"
+      {{#if document.flags.icrpgme.blendImg}}style="mix-blend-mode: multiply" data-blend {{/if}}
+      {{#if editable}}data-edit="img" data-action="editImage" {{else}} data-action="showPortraitArtwork"{{/if}}
+    />
+  </div>
+
+  <!--  ACTOR NAME-->
+  <div class="actor-name-container">
+    <input type="text" name="name" value="{{document.name}}" {{readonly readonly}}>
+  </div>
+
+  <!--  HEARTS-->
+  {{#if readonly}}
+    <div class="icrpg-hp-container" style="display: flex; height: 22px">
+      {{>heart index=0}}
+      {{>heart index=1}}
+      {{>heart index=2}}
+      {{>heart index=3}}
+      {{>heart index=4}}
+      {{>heart index=5}}
+      {{>heart index=6}}
+      {{>heart index=7}}
+      {{>heart index=8}}
+      {{>heart index=9}}
+      {{#if system.extraHealth}}
+        <div
+          style="font-family: 'Carlito', sans-serif; font-size: 16px; font-weight: bold;">{{system.extraHealth}}</div>
+      {{/if}}
+    </div>
+  {{else}}
+    <div class="icrpg-hp-container" style="display: flex; height: 22px">
+      {{>selectableHeart index=0}}
+      {{>selectableHeart index=1}}
+      {{>selectableHeart index=2}}
+      {{>selectableHeart index=3}}
+      {{>selectableHeart index=4}}
+      {{>selectableHeart index=5}}
+      {{>selectableHeart index=6}}
+      {{>selectableHeart index=7}}
+      {{>selectableHeart index=8}}
+      {{>selectableHeart index=9}}
+    </div>
+  {{/if}}
+
+  <!--  ATTRIBUTES-->
+  {{#if readonly}}
+    <div class="icrpg-monster-attributes view">
+      {{>attribute prop=system.allRollsMod key='allRolls' locPrefix="ICRPG.monsterSheet."}}
+      {{#each system.attributes as |prop key|}}
+        {{>attribute prop=prop key=key locPrefix="ICRPG.attributesShort."}}
+      {{/each}}
+      {{#each system.efforts as |prop key|}}
+        {{>attribute prop=prop key=key locPrefix="ICRPG.monsterefforts."}}
+      {{/each}}
+      {{#if system.extraAction}}
+        <span>{{system.extraAction}}</span>
+      {{/if}}
+    </div>
+  {{else}}
+    <div class="icrpg-monster-attributes edit">
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.attributes"}}</div>
+        {{#each system.attributes as |prop key|}}
+          <div class="row value-{{prop}}">
+            <input type="number" value="{{prop}}" name="system.attributes.{{key}}">
+            <div>{{localizeConcat "ICRPG.attributesShort." key}}</div>
+          </div>
+        {{/each}}
+      </div>
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.efforts"}}</div>
+        {{#each system.efforts as |prop key|}}
+          <div class="row value-{{prop}}">
+            <input type="number" value="{{prop}}" name="system.efforts.{{key}}">
+            <div>{{localizeConcat "ICRPG.effortsLong." key}}</div>
+          </div>
+        {{/each}}
+      </div>
+      <div>
+        <div class="ff-header fs-18" style="font-style: normal; font-weight: normal">{{localize
+          "ICRPG.other"}}</div>
+        <div class="row value-{{system.allRollsMod}}">
+          <input type="number" value="{{system.allRollsMod}}" name="system.allRollsMod">
+          <div>{{localize "ICRPG.monsterSheet.allRolls"}}</div>
+        </div>
+        <div class="row">
+            <textarea name="system.extraAction" autosize
+                      placeholder="{{localize "ICRPG.monsterSheet.extraAction"}}">{{system.extraAction}}</textarea>
+        </div>
+        <div class="row">
+            <textarea name="system.extraHealth" autosize
+                      placeholder="{{localize "ICRPG.monsterSheet.extraHealth"}}">{{system.extraHealth}}</textarea>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <div class="icrpg-sep-monster-half mb-8" style="width: 53.5%;"></div>
+
+  <!--  ACTIONS-->
+  {{#if readonly}}
+    <div class="actions-container">
+      {{#each system.monsterActions as |action index|}}
+        <div class="mb-4" data-action-index="{{index}}" data-action="useAction">
+          <b class="tt-u">{{action.name}}: </b>{{action.description}}
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="actions-container edit">
+      {{#each system.monsterActions as |action index|}}
+        <div class="action" data-action-index="{{index}}">
+          <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
+                 placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
+          <textarea placeholder="{{localize "ICRPG.monsterSheet.actionDescription"}}"
+                    spellcheck="false"
+                    autosize
+                    data-target="description">{{action.description}}</textarea>
+        </div>
+      {{/each}}
+      <div class="action" data-action-index="-1">
+        <input type="text" value="{{action.name}}" data-target="name" class="tt-u"
+               placeholder="{{localize "ICRPG.monsterSheet.actionName"}}">
+      </div>
+    </div>
+  {{/if}}
+
+  <!--  DESCRIPTION-->
+  {{#if readonly}}
+    <div class="italic mt-8">{{system.description}}</div>
+  {{else}}
+    <textarea class="italic mt-8 w-full"
+              name="system.description"
+              spellcheck="false"
+              placeholder="{{localize "ICRPG.monsterSheet.monsterDescription"}}"
+              autosize>{{system.description}}</textarea>
+  {{/if}}
+</section>
+
+
+<!-- HELPERS -->
+{{#* inline "selectableHeart"}}
+  <div class="icrpg-selectable-heart" data-index="{{index}}" data-action="setHearts">
+    <img class="heart" src="{{healthImageChooser document index}}">
+  </div>
+{{/inline}}
+
+{{#* inline "heart"}}
+  {{#if (gt system.health.hearts index)}}
+    <div class="icrpg-heart">
+      <img class="heart" src="{{healthImageChooser document index}}">
+    </div>
+  {{/if}}
+{{/inline}}
+
+{{#*inline "attribute"}}
+  {{#if prop}}
+    <span>{{plusify prop}} {{localizeConcat locPrefix key}}</span>
+  {{/if}}
+{{/inline}}

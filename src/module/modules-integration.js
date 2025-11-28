@@ -124,10 +124,10 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
      * Handle action hover
      * Called by Token Action HUD Core when an action is hovered on or off
      * @override
-     * @param {object} event        The event
-     * @param {string} encodedValue The encoded value
+     * @param {object} _event        The event
+     * @param {string} _encodedValue The encoded value
      */
-    async handleActionHover(event, encodedValue) {}
+    async handleActionHover(_event, _encodedValue) {}
 
     /**
      * Handle group click
@@ -136,7 +136,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
      * @param {object} event The event
      * @param {object} group The group
      */
-    async handleGroupClick(event, group) {}
+    async handleGroupClick(_event, _group) {}
 
     /**
      * Handle action
@@ -185,7 +185,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
          * @override
          * @param {array} groupIds
          */ a;
-        async buildSystemActions(groupIds) {
+        async buildSystemActions(_groupIds) {
           // Set actor and token variables
           this.actorType = this.actor?.type;
 
@@ -238,7 +238,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
 
           let groupData = { id: 'attribute', type: 'system' };
           const attrs = Object.entries(attributes)
-            .filter(([effId, effData]) => effId !== 'all')
+            .filter(([effId, _]) => effId !== 'all')
             .map(([attributeId, attributeData]) => {
               let mod = attributeData.total;
               if (mod == null) {
@@ -257,7 +257,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
           const efforts = actor.system.efforts;
           groupData = { id: 'effort', type: 'system' };
           const effs = Object.entries(efforts)
-            .filter(([effId, effData]) => effId !== 'all')
+            .filter(([effId, _]) => effId !== 'all')
             .map(([effId, effData]) => {
               let mod = effData.total;
               if (mod == null) {
@@ -267,7 +267,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
               return {
                 id: effId,
                 name: plusify(mod),
-                listName: i18n(effId),
+                listName: i18ns('effortsLong.' + effId),
                 encodedValue: ['effort', effId].join(this.delimiter),
                 img: `systems/icrpgme/assets/icons/macro/${diemap[effId]}.webp`,
               };
@@ -380,13 +380,13 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
      */
     async registerDefaults() {
       let groups = {
-        loot: { id: 'loot', name: 'Loot', type: 'system' },
-        spell: { id: 'spell', name: 'Spell', type: 'system' },
-        ability: { id: 'ability', name: 'Ability', type: 'system' },
-        power: { id: 'power', name: 'Power', type: 'system' },
-        augment: { id: 'augment', name: 'Augment', type: 'system' },
-        attribute: { id: 'attribute', name: 'Attribute', type: 'system' },
-        effort: { id: 'effort', name: 'Effort', type: 'system' },
+        loot: { id: 'loot', name: 'TYPES.Item.loot', type: 'system' },
+        spell: { id: 'spell', name: 'TYPES.Item.spell', type: 'system' },
+        ability: { id: 'ability', name: 'TYPES.Item.ability', type: 'system' },
+        power: { id: 'power', name: 'TYPES.Item.power', type: 'system' },
+        augment: { id: 'augment', name: 'TYPES.Item.augment', type: 'system' },
+        attribute: { id: 'attribute', name: 'ICRPG.attributes', type: 'system' },
+        effort: { id: 'effort', name: 'ICRPG.efforts', type: 'system' },
         monsterAction: { id: 'monsterAction', name: 'Monster Action', type: 'system' },
       };
       Object.values(groups).forEach((group) => {

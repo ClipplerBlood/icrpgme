@@ -26,6 +26,7 @@
     "name": "Name",
     "world": "World",
     "lifeform": "Life Form",
+    "type": "Type",
     "story": "Story",
     "base": "Base",
     "coins": "Coins",

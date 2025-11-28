@@ -2,6 +2,10 @@ export function i18n(s) {
   return game.i18n.localize(s);
 }
 
+export function i18ns(s) {
+  return i18n('ICRPG.' + s);
+}
+
 export function plusify(x) {
   return x >= 0 ? '+' + x : x.toString();
 }

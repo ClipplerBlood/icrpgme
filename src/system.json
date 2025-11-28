@@ -19,8 +19,12 @@
     "verified": "13"
   },
   "scripts": [],
-  "esmodules": ["module/icrpgme.js"],
-  "styles": ["styles/icrpgme.css"],
+  "esmodules": [
+    "module/icrpgme.js"
+  ],
+  "styles": [
+    "styles/icrpgme.css"
+  ],
   "packs": [
     {
       "name": "icrpg-macros",
@@ -51,6 +55,23 @@
         "type": "module"
       }
     ],
+    "recommends": [
+      {
+        "id": "dice-calculator",
+        "type": "module",
+        "reason": "Faster dice rolling"
+      },
+      {
+        "id": "token-action-hud-core",
+        "type": "module",
+        "reason": "Adds HUD for making actions and rolls without having to open the sheet"
+      },
+      {
+        "id": "dice-so-nice",
+        "type": "module",
+        "reason": "3d dice"
+      }
+    ],
     "conflicts": []
   },
   "socket": false,
@@ -66,7 +87,11 @@
   "secondaryTokenAttribute": null,
   "flags": {
     "hotReload": {
-      "extensions": ["css", "hbs", "json"]
+      "extensions": [
+        "css",
+        "hbs",
+        "json"
+      ]
     }
   }
 }

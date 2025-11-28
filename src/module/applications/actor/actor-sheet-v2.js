@@ -67,4 +67,15 @@ export default class ICRPGActorSheetV2 extends ICRPGSheetMixin(HandlebarsApplica
       });
     }
   }
+
+  _getHeaderControls() {
+    const controls = super._getHeaderControls();
+    controls.push({
+      action: 'configurePrototypeToken',
+      icon: 'fa-solid fa-hand-sparkles',
+      label: 'DOCUMENT.ActiveEffects',
+      ownership: 'OWNER',
+    });
+    return controls;
+  }
 }

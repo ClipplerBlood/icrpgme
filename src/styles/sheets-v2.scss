@@ -35,7 +35,10 @@ form.icrpg-sheet-v2 {
   --c-text: #111;
   --c-border: #111;
   --c-text-negative: white;
-  --color-text-primary: var(--c-text);
+
+  .window-content {
+    --color-text-primary: var(--c-text);
+  }
 
   &::before {
     filter: blur(2px) brightness(0.97);

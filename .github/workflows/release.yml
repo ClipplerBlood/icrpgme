@@ -6,7 +6,7 @@ name: Release
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 env:
   package_type: system
@@ -114,3 +114,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: './dist/${{ env.package_type }}.json, ./${{ env.package_type }}.zip'
           body: ${{ github.event.release.body }}
+
+      - name: Publish Module to FoundryVTT Website
+        id: publish-to-foundry-website
+        uses: cs96and/FoundryVTT-release-package@v1
+        with:
+          package-token: ${{ secrets.PACKAGE_TOKEN }}
+          manifest-url: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.json

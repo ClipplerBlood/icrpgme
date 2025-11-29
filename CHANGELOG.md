@@ -1,3 +1,9 @@
+## [1.5.1] Fixes
+
+- Items are now not carried when equipped.
+- Fixed issue with item bonuses being applied incorrectly.
+- Minor UI fixes
+
 ## [1.5.0] V13 Compatibility
 
 - Added compatibility with FoundryVTT V13

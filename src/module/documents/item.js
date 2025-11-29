@@ -7,7 +7,8 @@ export class ICRPGItem extends Item {
     await super._preUpdate(changes, options, user);
 
     // Handle equipping/unequipping
-    if (changes?.system?.equipped != null) {
+    const equipChange = changes?.system?.equipped;
+    if (equipChange != null && equipChange !== this.system.equipped) {
       const sign = changes.system.equipped ? +1 : -1;
       this._applyParentChanges(this.system.bonuses, sign, changes.system?.bonuses);
     }

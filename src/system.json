@@ -55,6 +55,23 @@
         "type": "module"
       }
     ],
+    "recommends": [
+      {
+        "id": "dice-calculator",
+        "type": "module",
+        "reason": "Faster dice rolling"
+      },
+      {
+        "id": "token-action-hud-core",
+        "type": "module",
+        "reason": "Adds HUD for making actions and rolls without having to open the sheet"
+      },
+      {
+        "id": "dice-so-nice",
+        "type": "module",
+        "reason": "3d dice"
+      }
+    ],
     "conflicts": []
   },
   "socket": false,

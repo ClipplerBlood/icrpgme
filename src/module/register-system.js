@@ -28,6 +28,8 @@ import ICRPGMonsterSheet from './applications/actor/monster-sheet.js';
 import ICRPGVehicleSheet from './applications/actor/vehicle-sheet.js';
 import ICRPGObstacleSheet from './applications/actor/obstacle-sheet.js';
 import ICRPGCharacterSheet from './applications/actor/character-sheet.js';
+import EncounterEntryPage from './applications/journal-encounter-page.js';
+import ICRPGJournalEncounterDataModel from './documents/data-models/journal-encounter-data-model.js';
 
 const { Actors, Items } = foundry.documents.collections;
 const { ActorSheet } = foundry.appv1.sheets;
@@ -85,4 +87,14 @@ export function registerSystem() {
 
   // Token
   CONFIG.Token.objectClass = ICRPGToken;
+
+  // Page
+  CONFIG.JournalEntryPage.dataModels['icrpgmeEncounter'] = ICRPGJournalEncounterDataModel;
+
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(
+    foundry.documents.JournalEntryPage,
+    'icrpgme',
+    EncounterEntryPage,
+    { types: [`icrpgmeEncounter`], makeDefault: true, label: 'ICRPGME.encounter' },
+  );
 }

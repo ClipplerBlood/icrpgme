@@ -151,8 +151,8 @@ img#logo {
 }
 
 // Also for editor
-.editor-content h1,
-.journal-entry-page h1 {
+article .editor-content h1,
+article.journal-entry-page h1 {
   font-family: $ff-flatbread;
   background: url('../assets/ui/backgrounds/bg-bar-red.webp') no-repeat bottom;
   background-size: contain;
@@ -170,7 +170,7 @@ img#logo {
 //  --color-text-subtle: #111;
 //}
 
-.journal-page-content {
+article .journal-page-content {
   color: #111;
 
   .editor-content {
@@ -194,7 +194,12 @@ img#logo {
     padding-bottom: 9px;
     background-size: contain;
     color: #111;
+
+    &.no-bar {
+      background: none;
+    }
   }
+
 
   code {
     background: #313131;
@@ -205,6 +210,7 @@ img#logo {
     text-align: center;
   }
 
+  strong.red,
   h4 {
     color: var(--c-red);
     text-transform: uppercase;
@@ -444,6 +450,51 @@ img#logo {
   .table-journal {
     p {
       margin-bottom: 2px;
+    }
+  }
+}
+
+article.icrpg-encounter-page {
+  .journal-page-content {
+    h2 {
+      margin: 12px 0 4px;
+      padding: 0;
+      font-size: 18px;
+    }
+  }
+
+  header {
+    background: #00000026;
+    position: relative;
+    padding-top: 5px;
+    margin-top: 20px;
+
+    h3 {
+      background: none;
+      padding: 0 0 0 16px;
+      text-align: left;
+      display: inline-block;
+      font-size: 32px;
+      margin-bottom: 0;
+      font-family: $ff-nusaliver;
+      text-transform: uppercase;
+      color: black;
+    }
+
+    p {
+      display: block;
+      background: url('/systems/icrpgme/assets/ui/dice-red/target.webp') no-repeat;
+      background-size: contain;
+      height: 64px;
+      width: 64px;
+      font-size: 26px;
+      padding-top: 17px;
+      padding-left: 12px;
+      font-family: $ff-nusaliver;
+      color: white;
+      float: right;
+      top: -34px;
+      position: relative;
     }
   }
 }

@@ -1,3 +1,5 @@
+const TextEditor = foundry.applications.ux.TextEditor.implementation;
+
 export default class EncounterEntryPage extends foundry.applications.sheets.journal.JournalEntryPageHandlebarsSheet {
   static DEFAULT_OPTIONS = {
     classes: ['icrpg-encounter-page'],

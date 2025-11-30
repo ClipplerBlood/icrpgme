@@ -89,12 +89,12 @@ export function registerSystem() {
   CONFIG.Token.objectClass = ICRPGToken;
 
   // Page
-  CONFIG.JournalEntryPage.dataModels['icrpgmeEncounter'] = ICRPGJournalEncounterDataModel;
+  CONFIG.JournalEntryPage.dataModels['encounter'] = ICRPGJournalEncounterDataModel;
 
   foundry.applications.apps.DocumentSheetConfig.registerSheet(
     foundry.documents.JournalEntryPage,
     'icrpgme',
     EncounterEntryPage,
-    { types: [`icrpgmeEncounter`], makeDefault: true, label: 'ICRPGME.encounter' },
+    { types: [`encounter`], makeDefault: true, label: 'ICRPGME.encounter' },
   );
 }

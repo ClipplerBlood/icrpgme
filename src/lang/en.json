@@ -22,7 +22,7 @@
       "property": "Hard Suit Property"
     },
     "JournalEntryPage": {
-      "icrpgmeEncounter": "ICRPG Encounter"
+      "encounter": "ICRPG Encounter"
     }
   },
   "ICRPG": {

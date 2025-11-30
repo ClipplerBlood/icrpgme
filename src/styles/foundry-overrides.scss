@@ -26,11 +26,18 @@
 //}
 
 a.content-link {
-  font-family: $ff-flatbread;
+  //font-family: $ff-flatbread;
+  //font-weight: 100;
   color: #181818;
-  font-weight: 100;
+  background: rgb(221 221 221 / 46%);
   font-size: 14px;
-  background: rgb(221, 221, 221);
+  height: 18px;
+  display: inline-block;
+
+  i {
+    color: #181818;
+    display: none;
+  }
 }
 
 .chat-message a.content-link {
@@ -325,6 +332,13 @@ article .journal-page-content {
       h5 {
         color: var(--c-red);
       }
+
+      hr {
+        display: inline-block;
+        width: calc(100% - 230px);
+        height: 8px;
+        margin: 0;
+      }
     }
   }
 
@@ -417,6 +431,11 @@ article .journal-page-content {
   .journal-monsters-page {
     font-size: var(--font-size-16);
 
+    hr {
+      clear: left;
+      margin: 0;
+    }
+
     h2 {
       margin-right: 0;
       margin-left: 0;
@@ -446,6 +465,10 @@ article .journal-page-content {
       text-transform: uppercase;
       font-weight: bold;
       font-style: italic;
+
+      p {
+        margin-bottom: 0;
+      }
     }
 
     .monster-action + div:not(.monster-action) {

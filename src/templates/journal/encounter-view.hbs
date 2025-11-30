@@ -1,0 +1,61 @@
+<div>
+  {{#if title.show}}
+    <header>
+      <h3>{{ name }}</h3>
+      {{#if system.encounterTarget}}
+        <p>{{system.encounterTarget}}</p>
+      {{/if}}
+    </header>
+  {{/if}}
+
+  {{#* inline "displayBlock"}}
+    {{#if value}}
+      <p style="margin: 0 0 4px"><strong class="red">{{localize label}}: </strong>{{value}}</p>
+    {{/if}}
+  {{/inline}}
+
+  <div class="journal-page-content">
+    <div class="icrpg-journal-encounter">
+      {{#if (or system.danger system.energy system.wonder)}}
+        <h2 class="no-bar">{{localize "ICRPG.journal.dew"}}</h2>
+        <div class="icrpg-journal-">
+          {{>displayBlock value=system.danger label="ICRPG.journal.danger"}}
+          {{>displayBlock value=system.energy label="ICRPG.journal.energy"}}
+          {{>displayBlock value=system.wonder label="ICRPG.journal.wonder"}}
+        </div>
+      {{/if}}
+
+
+      {{#if (or system.timers system.threats system.treats)}}
+        <h2 class="no-bar">{{localize "ICRPG.journal.ttt"}}</h2>
+        <div>
+          {{>displayBlock value=system.timers label="ICRPG.journal.timers"}}
+          {{>displayBlock value=system.threats label="ICRPG.journal.threats"}}
+          {{>displayBlock value=system.treats label="ICRPG.journal.treats"}}
+        </div>
+      {{/if}}
+
+      {{#if (or system.damage system.disruption system.duration)}}
+        <h2 class="no-bar">{{localize "ICRPG.journal.ddd"}}</h2>
+        <div>
+          {{>displayBlock value=system.damage label="ICRPG.journal.damage"}}
+          {{>displayBlock value=system.disruption label="ICRPG.journal.disruption"}}
+          {{>displayBlock value=system.duration label="ICRPG.journal.duration"}}
+        </div>
+      {{/if}}
+
+      {{#if system.encounterType}}
+        <div>
+          {{>displayBlock value=system.encounterType label="ICRPG.journal.encounterType"}}
+        </div>
+      {{/if}}
+
+      {{#if document.text.enriched}}
+        <h2 class="no-bar">{{localize "Description"}}</h2>
+        {{{document.text.enriched}}}
+      {{/if}}
+    </div>
+
+
+  </div>
+</div>

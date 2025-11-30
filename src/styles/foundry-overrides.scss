@@ -26,11 +26,18 @@
 //}
 
 a.content-link {
-  font-family: $ff-flatbread;
+  //font-family: $ff-flatbread;
+  //font-weight: 100;
   color: #181818;
-  font-weight: 100;
+  background: rgb(221 221 221 / 46%);
   font-size: 14px;
-  background: rgb(221, 221, 221);
+  height: 18px;
+  display: inline-block;
+
+  i {
+    color: #181818;
+    display: none;
+  }
 }
 
 .chat-message a.content-link {
@@ -151,8 +158,8 @@ img#logo {
 }
 
 // Also for editor
-.editor-content h1,
-.journal-entry-page h1 {
+article .editor-content h1,
+article.journal-entry-page h1 {
   font-family: $ff-flatbread;
   background: url('../assets/ui/backgrounds/bg-bar-red.webp') no-repeat bottom;
   background-size: contain;
@@ -170,7 +177,13 @@ img#logo {
 //  --color-text-subtle: #111;
 //}
 
-.journal-page-content {
+.journal-entry-page {
+  .journal-page-header {
+    margin-top: 16px;
+  }
+}
+
+article .journal-page-content {
   color: #111;
 
   .editor-content {
@@ -194,7 +207,12 @@ img#logo {
     padding-bottom: 9px;
     background-size: contain;
     color: #111;
+
+    &.no-bar {
+      background: none;
+    }
   }
+
 
   code {
     background: #313131;
@@ -205,6 +223,7 @@ img#logo {
     text-align: center;
   }
 
+  strong.red,
   h4 {
     color: var(--c-red);
     text-transform: uppercase;
@@ -313,6 +332,13 @@ img#logo {
       h5 {
         color: var(--c-red);
       }
+
+      hr {
+        display: inline-block;
+        width: calc(100% - 230px);
+        height: 8px;
+        margin: 0;
+      }
     }
   }
 
@@ -405,6 +431,11 @@ img#logo {
   .journal-monsters-page {
     font-size: var(--font-size-16);
 
+    hr {
+      clear: left;
+      margin: 0;
+    }
+
     h2 {
       margin-right: 0;
       margin-left: 0;
@@ -434,6 +465,10 @@ img#logo {
       text-transform: uppercase;
       font-weight: bold;
       font-style: italic;
+
+      p {
+        margin-bottom: 0;
+      }
     }
 
     .monster-action + div:not(.monster-action) {
@@ -444,6 +479,51 @@ img#logo {
   .table-journal {
     p {
       margin-bottom: 2px;
+    }
+  }
+}
+
+article.icrpg-encounter-page {
+  .journal-page-content {
+    h2 {
+      margin: 12px 0 4px;
+      padding: 0;
+      font-size: 18px;
+    }
+  }
+
+  header {
+    background: #00000026;
+    position: relative;
+    padding-top: 5px;
+    margin-top: 20px;
+
+    h3 {
+      background: none;
+      padding: 0 0 0 16px;
+      text-align: left;
+      display: inline-block;
+      font-size: 32px;
+      margin-bottom: 0;
+      font-family: $ff-nusaliver;
+      text-transform: uppercase;
+      color: black;
+    }
+
+    p {
+      display: block;
+      background: url('/systems/icrpgme/assets/ui/dice-red/target.webp') no-repeat;
+      background-size: contain;
+      height: 64px;
+      width: 64px;
+      font-size: 26px;
+      padding-top: 17px;
+      padding-left: 12px;
+      font-family: $ff-nusaliver;
+      color: white;
+      float: right;
+      top: -34px;
+      position: relative;
     }
   }
 }

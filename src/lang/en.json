@@ -2,7 +2,8 @@
   "icrpgme": {
     "ICRPGActorSheet": "ICRPG Actor Sheet (v1)",
     "ICRPGItemSheet": "ICRPG Item Sheet (v1)",
-    "ICRPGSheetV2": "ICRPG Sheet (v2)"
+    "ICRPGSheetV2": "ICRPG Sheet (v2)",
+    "ICRPGJournalEntry": "ICRPG Journal Sheet"
   },
   "TYPES": {
     "Actor": {
@@ -20,6 +21,9 @@
       "spell": "Spell",
       "part": "Hard Suit Part",
       "property": "Hard Suit Property"
+    },
+    "JournalEntryPage": {
+      "encounter": "ICRPG Encounter"
     }
   },
   "ICRPG": {
@@ -223,6 +227,24 @@
       "suit": "Suit",
       "maxHits": "Max Hits",
       "hardSuits": "Hard Suits"
+    },
+    "journal": {
+      "dew": "Do the D.E.W.",
+      "danger": "Danger",
+      "energy": "Energy",
+      "wonder": "Wonder",
+      "ttt": "The Three T's",
+      "timers": "Timers",
+      "threats": "Threats",
+      "treats": "Treats",
+      "ddd": "Challenge Tuning: 3 D's",
+      "damage": "Damage",
+      "disruption": "Disruption",
+      "duration": "Duration",
+      "encounter": "Encounter",
+      "encounterType": "Encounter Type",
+      "encounterTarget": "Target",
+      "roomDesign": "Room Design"
     }
   }
 }

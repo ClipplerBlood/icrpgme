@@ -170,6 +170,12 @@ article.journal-entry-page h1 {
 //  --color-text-subtle: #111;
 //}
 
+.journal-entry-page {
+  .journal-page-header {
+    margin-top: 16px;
+  }
+}
+
 article .journal-page-content {
   color: #111;
 

@@ -93,5 +93,10 @@
         "json"
       ]
     }
+  },
+  "documentTypes": {
+    "JournalEntryPage": {
+      "encounter": {}
+    }
   }
 }

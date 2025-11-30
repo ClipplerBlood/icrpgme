@@ -134,7 +134,7 @@ export default class ICRPGCharacterSheet extends ICRPGBaseActorSheetV2 {
 
   static equipItem(_event, target) {
     const itemId = target.closest('[data-item-id]').dataset.itemId;
-    this.actor.items.get(itemId).update({ 'system.equipped': true, 'system.carried': true });
+    this.actor.items.get(itemId).update({ 'system.equipped': true, 'system.carried': false });
   }
 
   static carryItem(_event, target) {

@@ -13,11 +13,15 @@
       {{> headerField name="name" value=document.name label="Name"}}
       {{> headerField name="system.world" value=system.world label="ICRPG.world"}}
       {{> headerField name="system.lifeform" value=system.lifeform label="ICRPG.lifeform"}}
-      {{> headerField name="system.type" value=system.type label="Type"}}
+      {{> headerField name="system.type" value=system.type label="ICRPG.type"}}
     </div>
     <div class="icrpg-sep-long"></div>
     <div class="flex-row" style="margin-top: 12px">
-      {{> headerField name="system.story" value=system.story label="ICRPG.story"}}
+      <div class="icrpg-header-field">
+        <span class="ff-header">{{localize "ICRPG.story"}}</span>
+        <input class="c-red" type="text" name="system.story" value="{{system.story}}" {{readonly @root.readonly}}
+               style="width: 800px">
+      </div>
     </div>
     <div class="icrpg-sep-long"></div>
   </div>

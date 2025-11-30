@@ -1,0 +1,68 @@
+<aside class="sidebar journal-sidebar flexcol">
+
+  {{!-- Sidebar Search --}}
+  <search>
+    {{#if lockMode }}
+      <button type="button" class="inline-control lock-mode icon {{ lockMode.icon }}" data-action="toggleLock"
+              data-tooltip aria-label="{{ localize lockMode.label }}"></button>
+    {{/if}}
+    <button type="button" class="inline-control view-mode icon {{ viewMode.icon }}" data-action="toggleMode"
+            data-tooltip aria-label="{{ localize viewMode.label }}"></button>
+    <button type="button" class="inline-control toggle-search-mode icon {{ searchMode.icon }}"
+            data-action="toggleSearch" data-tooltip aria-label="{{ localize searchMode.label }}"></button>
+    <input type="search" name="search" autocomplete="off" placeholder="{{ searchMode.placeholder }}"
+           aria-label="{{ searchMode.placeholder }}">
+    <button type="button" class="inline-control collapse-toggle icon {{ expandMode.icon }}"
+            data-action="toggleSidebar" data-tooltip aria-label="{{ localize expandMode.label }}"></button>
+  </search>
+
+  {{!-- Table of Contents --}}
+  <nav class="toc" data-tooltip-direction="RIGHT">
+    <ol>
+      {{#each toc}}
+
+      {{!-- Categories --}}
+        {{#if isCategory}}
+          <li class="category" data-category-id="{{ id }}" data-tooltip aria-label="{{ name }}">
+            <strong>{{ name }}</strong>
+          </li>
+
+        {{!-- Pages --}}
+        {{else}}
+          <li class="{{ tocClass }}" data-page-id="{{ id }}" {{#if hidden}}hidden{{/if}}>
+            <div class="page-heading" data-action="goToHeading">
+              <span class="page-index" data-tooltip-text="{{ name }}">{{ number }}</span>
+              <span class="page-title ellipsis">{{ name }}</span>
+              {{#if icon}}
+                <span class="page-ownership {{ ownershipClass }}"></span>
+              {{/if}}
+            </div>
+          </li>
+
+        {{/if}}
+      {{/each}}
+    </ol>
+  </nav>
+
+  {{!-- Page Navigation Buttons --}}
+  <footer class="action-buttons">
+
+    <input class="title" name="name" type="text" value="{{ document.name }}"
+           placeholder="{{ localize "JOURNAL.EntryTitle" }}"
+           aria-label="{{ localize "JOURNAL.EntryTitle" }}"
+           style="margin-bottom: 4px;">
+
+    <div class="flexrow">
+      <button type="button" class="previous icon fas fa-chevron-left" data-action="previousPage" data-tooltip
+              aria-label="{{ localize "JOURNAL.PrevPage" }}"></button>
+      {{#if editable}}
+        <button type="button" class="create" data-action="createPage">
+          <i class="fas fa-file-circle-plus" inert></i>
+          <span>{{ localize "JOURNAL.AddPage" }}</span>
+        </button>
+      {{/if}}
+      <button type="button" class="next icon fas fa-chevron-right" data-action="nextPage" data-tooltip
+              aria-label="{{ localize "JOURNAL.NextPage" }}"></button>
+    </div>
+  </footer>
+</aside>

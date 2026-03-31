@@ -1,3 +1,14 @@
+## [1.6.0] Journal Sheet and Token Action Hud
+
+- **NEW FEATURE**: ICRPG Encounter Journal Pages
+  - Added a journal type "form" for creating encounters and scenes the "ICRPG way".
+- **NEW INTEGRATION**: Token Action Hud. TAH is now fully integrated with ICRPG. This is now the recommended way to roll
+  monster actions.
+- Fixed #26. Monster token HP is now correctly calculated when creating a new token.
+- Fixed #27. Combat tracker is now scrollable.
+- Fixed #28. Defense can now be rolled from the sheet
+- Now changing an actor's image for the first time also changes the prototype token.
+
 ## [1.5.1] Fixes
 
 - Items are now not carried when equipped.

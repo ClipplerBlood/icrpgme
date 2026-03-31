@@ -191,15 +191,14 @@ export class ICRPGActor extends Actor {
     if (changed.img != null) {
       const isSystemImage = (img) =>
         img?.startsWith('systems/icrpgme/assets/cards') || img?.startsWith('systems/icrpgme/assets/tokens');
-      // If the changed image is a default one, change the prototype token with the corresponding
       if (isSystemImage(changed.img) && isSystemImage(this.prototypeToken?.texture?.src)) {
+        // If the changed image is a default one, change the prototype token with the corresponding
         const tokenImg = changed.img.replace('systems/icrpgme/assets/cards/', 'systems/icrpgme/assets/tokens/');
         changed.prototypeToken = { texture: { src: tokenImg } };
+      } else if (!isSystemImage(changed.img) && isSystemImage(this.prototypeToken?.texture.src)) {
+        //If the changed image is not a default one and the prototype is a default, override the prototype with the new
+        changed.prototypeToken = { texture: { src: changed.img } };
       }
-      // If the changed image is not a default one and the prototype is a default, override the prototype with the new
-      // else if (!isSystemImage(changed.img) && isSystemImage(this.prototypeToken?.texture.src)) {
-      //   changed.prototypeToken = { texture: { src: changed.img } };
-      // }
     }
 
     // Actor name and prototype token

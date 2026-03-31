@@ -5,6 +5,25 @@
   flex-grow: 1;
   padding-left: 0;
   margin-top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  li.combatant {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .token-name {
+    min-width: 0 !important;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
 
   @keyframes pulse {
     0% {
@@ -34,6 +53,7 @@
     h4 {
       text-decoration: underline;
       color: #788ea1;
+
       &::after {
         content: ' (H)';
       }
@@ -44,10 +64,12 @@
     .token-image {
       filter: grayscale(1);
     }
+
     h4 {
       text-decoration: line-through;
       color: gray;
     }
+
     .hearts-container img {
       filter: grayscale(1);
     }
@@ -71,10 +93,6 @@
     overflow: hidden;
     white-space: nowrap;
     margin-bottom: 4px;
-  }
-
-  li.combatant .token-name {
-    min-width: 150px;
   }
 
   h3.encounter-title.noborder {

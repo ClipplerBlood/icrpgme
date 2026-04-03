@@ -1,3 +1,6 @@
+## [1.6.1] Enhacement
+- Item descriptions now render @uuid links (and other enriched HTML) instead of displaying them as raw text by @HunterCFigueroa
+
 ## [1.6.0] Journal Sheet and Token Action Hud
 
 - **NEW FEATURE**: ICRPG Encounter Journal Pages

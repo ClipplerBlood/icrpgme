@@ -44,7 +44,7 @@
     </div>
 
   {{else}}
-    <div class="description-text">{{system.description}}</div>
+    <div class="description-text">{{{system.enrichedDescription}}}</div>
     {{#if system.target}}
       <div class="tt-u mt-12"><b>{{localize "ICRPG.spell.target"}}: {{system.target}}</b></div>
     {{/if}}

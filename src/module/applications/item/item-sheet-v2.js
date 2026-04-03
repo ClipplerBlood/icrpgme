@@ -2,6 +2,7 @@ import ICRPGSheetMixin from '../icrpg-sheet-mixin.js';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
+const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 export default class ICRPGItemSheetV2 extends ICRPGSheetMixin(HandlebarsApplicationMixin(ItemSheetV2)) {
   static DEFAULT_OPTIONS = {
@@ -34,6 +35,14 @@ export default class ICRPGItemSheetV2 extends ICRPGSheetMixin(HandlebarsApplicat
 
   static PARTS_NON_EDITABLE = ['bonuses', 'tabNavigation'];
   static PARTS_NON_VISIBLE = ['description'];
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    if (context.system?.description) {
+      context.system.enrichedDescription = await TextEditor.enrichHTML(context.system.description, { async: true });
+    }
+    return context;
+  }
 
   static TABS = {
     primary: {

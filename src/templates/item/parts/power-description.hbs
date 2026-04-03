@@ -21,7 +21,7 @@
     </div>
 
   {{else}}
-    <div class="description-text">{{system.description}}</div>
+    <div class="description-text">{{{system.enrichedDescription}}}</div>
     {{#each system.spCosts as |entry index|}}
       <div class="power-cost" data-entry-index="{{index}}">
         <b>{{localize "ICRPG.spCost"}} {{entry.cost}}:</b>

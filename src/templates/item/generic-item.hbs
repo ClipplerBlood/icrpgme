@@ -156,7 +156,7 @@
 
 {{#* inline "description"}}
   {{#if isLocked}}
-    <div class="item-description">{{system.description}}</div>
+    <div class="item-description">{{{system.enrichedDescription}}}</div>
   {{else}}
     <textarea name="system.description" autosize spellcheck="false"
               placeholder="{{localize "Description"}}">{{system.description}}</textarea>

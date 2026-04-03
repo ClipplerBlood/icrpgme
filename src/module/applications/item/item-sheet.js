@@ -1,5 +1,6 @@
 import { i18n, onArrayEdit } from '../../utils/utils.js';
 const { ItemSheet } = foundry.appv1.sheets;
+const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 export class ICRPGItemSheet extends ItemSheet {
   static get defaultOptions() {
@@ -28,6 +29,7 @@ export class ICRPGItemSheet extends ItemSheet {
     let content = super.getData();
     content.system = this.item.system;
     content.isLocked = this.isLocked ?? true;
+    content.system.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
     return content;
   }
 

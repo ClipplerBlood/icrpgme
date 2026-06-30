@@ -11,7 +11,7 @@
       "monster": "Monster",
       "obstacle": "Obstacle",
       "vehicle": "Vehicle",
-      "hardsuit": "Hard Suit"
+      "hardSuit": "Hard Suit"
     },
     "Item": {
       "loot": "Loot",

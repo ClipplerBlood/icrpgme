@@ -16,7 +16,7 @@
   "version": "This is auto replaced",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
   },
   "scripts": [],
   "esmodules": [
@@ -95,6 +95,22 @@
     }
   },
   "documentTypes": {
+    "Actor": {
+      "character": {},
+      "monster": {},
+      "obstacle": {},
+      "vehicle": {},
+      "hardSuit": {}
+    },
+    "Item": {
+      "loot": {},
+      "ability": {},
+      "power": {},
+      "augment": {},
+      "spell": {},
+      "part": {},
+      "property": {}
+    },
     "JournalEntryPage": {
       "encounter": {}
     }

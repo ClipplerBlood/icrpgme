@@ -27,7 +27,7 @@ const distDirectory = './dist';
 const stylesDirectory = `${sourceDirectory}/styles`;
 const stylesExtension = 'scss';
 const sourceFileExtension = 'js';
-const staticFiles = ['assets', 'fonts', 'lang', 'packs', 'templates', 'system.json', 'template.json'];
+const staticFiles = ['assets', 'fonts', 'lang', 'packs', 'templates', 'system.json'];
 
 /********************/
 /*      BUILD       */
@@ -94,22 +94,13 @@ export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, co
  * Remove built files from `dist` folder while ignoring source files
  */
 export async function clean() {
-  const files = [...staticFiles, 'module'];
+  console.log(' ', `Cleaning ${distDirectory}`);
 
-  if (fs.existsSync(`${stylesDirectory}/${packageId}.${stylesExtension}`)) {
-    files.push('styles');
-  }
-
-  console.log(' ', 'Files to clean:');
-  console.log('   ', files.join('\n    '));
-
-  for (const filePath of files) {
-    try {
-      await fs.remove(`${distDirectory}/${filePath}`);
-    } catch (error) {
-      if (error.code !== 'EBUSY') {
-        throw error;
-      }
+  try {
+    await fs.remove(distDirectory);
+  } catch (error) {
+    if (error.code !== 'EBUSY') {
+      throw error;
     }
   }
 }
